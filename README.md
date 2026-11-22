@@ -8,13 +8,14 @@ Notes on reading Levent Alpöge's Lean 4 proof of the Riemann hypothesis.
 
 ## Pinned sources
 
-Every task reads the Lean library from one mirror at one commit:
+Every task reads the Lean library from one repository at one commit:
 
-- Mirror: `github.com/tamnd/riemann-lean`, commit `af705e0d9a5904326eb0693310e36d9484df7f8f`.
-- The main theorems are in `lean/src/Main.lean` [3](docs/references.md#reference-3).
+- Repository: `github.com/leanprover-community/riemann-hypothesis`, the Lean community's copy, at commit `40e56bab026552e089d7afcfeff08d2defb9c005`. This first commit is the submitted source as published; its message is "Mirror the submission exactly as published".
+- Later commits on its `main` branch hold cleanup and simplification work by other people. Read them to see what is already simplified, not as the original.
+- The main theorems are in `src/Main.lean` [3](docs/references.md#reference-3).
 - The proof map is the README of `github.com/nasqret/riemann-rev`, commit `d53b3804bd013df4cf9af3b4087728148c90c9bd` [4](docs/references.md#reference-4).
 
-The mirror says it holds the release without change. This project has not checked that against the original archive.
+The project first read twelve files from another mirror, `github.com/tamnd/riemann-lean`. All twelve are byte-identical to the files at the commit above (compared by SHA-256 on 22 November 2026).
 
 ## Goal
 
@@ -24,7 +25,7 @@ Understand the argument. Do not rebuild it: other people have checked the proof 
 
 - Read theorem statements top-down, starting from `Main.lean`.
 - Follow the proof route one level at a time, and record lemma statements only.
-- Fetch single files from a public mirror. Never download or read the library in bulk.
+- Fetch single files from the pinned repository. Never download or read the library in bulk.
 - For each step, write a plain explanation that names the Lean declaration and the classical source of the idea.
 - Mark each statement as checked against the Lean source, or as an expectation.
 

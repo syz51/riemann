@@ -86,6 +86,6 @@ Steps 3, 4 and 16 and part of step 5 read like records of earlier attempts. The 
 
 ## Limits of this note
 
-- The dashboard links lead to a second mirror, `Deicyde/riemann-hypothesis`, at commit `40e56bab026552e089d7afcfeff08d2defb9c005`, with files under `src/`. Our pinned mirror holds the files under `lean/src/`. For the three files we read that the dashboard also links (`ClaimStrip.lean`, `RhOfRight.lean`, `MainConclusion.lean`), the line ranges agree with our copies. We have not compared other files.
+- The dashboard links lead to `Deicyde/riemann-hypothesis` at commit `40e56bab026552e089d7afcfeff08d2defb9c005`. Our pinned repository [7](../references.md#reference-7) has the same commit hash, so the line ranges in the links apply to our files.
 - We read the route section of the dashboard and its table of fourteen components. We did not read the dashboard's guide (a PDF) or its ledger of runs.
 - We did not open the Lean declarations named in the table. Each name is copied from the dashboard.

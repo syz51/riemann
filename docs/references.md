@@ -20,11 +20,11 @@ Inspection: the page read in full. The pages it links (the Xena post on four cri
 
 ## Reference 3
 
-[3] Levent Alpöge and Claude. **Main.lean, the main theorems of the Lean library**. File `lean/src/Main.lean` in the mirror tamnd/riemann-lean, commit af705e0d9a5904326eb0693310e36d9484df7f8f. [Original](https://github.com/tamnd/riemann-lean/blob/af705e0d9a5904326eb0693310e36d9484df7f8f/lean/src/Main.lean). Accessed 22 November 2026, Asia/Tokyo.
+[3] Levent Alpöge and Claude. **Main.lean, the main theorems of the Lean library**. File `src/Main.lean` in leanprover-community/riemann-hypothesis, commit 40e56bab026552e089d7afcfeff08d2defb9c005. [Original](https://github.com/leanprover-community/riemann-hypothesis/blob/40e56bab026552e089d7afcfeff08d2defb9c005/src/Main.lean). Accessed 22 November 2026, Asia/Tokyo.
 
 Inspection depth: full.
 
-Inspection: the file read in full: two imports and five theorems. Its imports, `Statements` and `Supplements.Kernels.MainTheoremsAll`, are read under reference 7. The mirror says it holds the release of 20 November 2026 without change; that claim is not checked here against the original archive.
+Inspection: the file read in full: two imports and five theorems. Its imports, `Statements` and `Supplements.Kernels.MainTheoremsAll`, are read under reference 7. The repository says this commit is the submission exactly as published.
 
 ## Reference 4
 
@@ -48,12 +48,12 @@ Inspection: metadata only. The page is saved and not read; the title here is a d
 
 Inspection depth: abstract.
 
-Inspection: abstract only. One definition was read, `RiemannHypothesis`; the rest of the file is saved and not read. The commit is the latest that changed this file, not the Mathlib version the library builds against.
+Inspection: abstract only. One definition was read, `RiemannHypothesis`; the rest of the file is saved and not read. The commit is the latest that changed this file, not the Mathlib version the library builds against, which is commit 0df444a360eaa60ab8c11dca51a86af692955474.
 
 ## Reference 7
 
-[7] Levent Alpöge and Claude. **The Lean library of the proof, files read by this project**. Files under `lean/src/` in the mirror tamnd/riemann-lean, commit af705e0d9a5904326eb0693310e36d9484df7f8f. [Original](https://github.com/tamnd/riemann-lean/tree/af705e0d9a5904326eb0693310e36d9484df7f8f/lean/src). Accessed 22 November 2026, Asia/Tokyo.
+[7] Levent Alpöge and Claude. **The Lean library of the proof, files read by this project**. Files under `src/` in leanprover-community/riemann-hypothesis, commit 40e56bab026552e089d7afcfeff08d2defb9c005. [Original](https://github.com/leanprover-community/riemann-hypothesis/tree/40e56bab026552e089d7afcfeff08d2defb9c005/src). Accessed 22 November 2026, Asia/Tokyo.
 
 Inspection depth: abstract.
 
-Inspection: abstract only, relative to the whole library: twelve files read, out of 175,187 that one mirror reports. Eleven are attached here as texts; the twelfth, `Main.lean`, is attached to reference 3. The notes that quote the files list them. The mirror says it holds the release without change; that claim is not checked here.
+Inspection: abstract only, relative to the whole library: twelve files read, out of 175,187 that the repository's README reports. Eleven are attached here as texts; the twelfth, `Main.lean`, is attached to reference 3. The notes that quote the files list them. The repository says this commit is the submission exactly as published. The files were first fetched from the mirror tamnd/riemann-lean and are byte-identical to this commit. The repository's README was also read.

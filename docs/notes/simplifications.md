@@ -1,6 +1,6 @@
 # Simplification candidates
 
-Each entry names a place where the argument looks longer than it needs to be, the reason, and the Lean declarations it concerns. Statements come from the pinned mirror [7](../references.md#reference-7). An entry is a candidate, not a checked simplification.
+Each entry names a place where the argument looks longer than it needs to be, the reason, and the Lean declarations it concerns. Statements come from the pinned repository [7](../references.md#reference-7). An entry is a candidate, not a checked simplification.
 
 ## 1. The Riemann hypothesis is derived three times
 
