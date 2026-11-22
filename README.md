@@ -2,10 +2,19 @@
 
 Notes on reading Levent Alpöge's Lean 4 proof of the Riemann hypothesis.
 
-The facts on this page come from two sources, read on 22 November 2026. Neither is in the reference registry yet, so no check covers this page.
+- The proof was released on November 20, 2026, as a Lean library of 17 million lines [2](docs/references.md#reference-2).
+- The exported proof was checked by Lean's official kernel, the `con-leche` and `con-ron` checkers, and several independent checkers [2](docs/references.md#reference-2).
+- The author's note describes the work and lists 20 dated steps of the argument [1](docs/references.md#reference-1).
 
-- [The Lean and Mathlib joint statement](https://leanprover-community.github.io/blog/posts/riemann-hypothesis/) gives the release date, 20 November 2026, and the checkers that accepted the proof: Lean's official kernel, `con-leche` and `con-ron`.
-- Public mirrors of the archive report its size as about 17 million lines. This number is reported, not counted here.
+## Pinned sources
+
+Every task reads the Lean library from one mirror at one commit:
+
+- Mirror: `github.com/tamnd/riemann-lean`, commit `af705e0d9a5904326eb0693310e36d9484df7f8f`.
+- The main theorems are in `lean/src/Main.lean` [3](docs/references.md#reference-3).
+- The proof map is the README of `github.com/nasqret/riemann-rev`, commit `d53b3804bd013df4cf9af3b4087728148c90c9bd` [4](docs/references.md#reference-4).
+
+The mirror says it holds the release without change. This project has not checked that against the original archive.
 
 ## Goal
 
@@ -15,7 +24,7 @@ Understand the argument. Do not rebuild it: other people have checked the proof 
 
 - Read theorem statements top-down, starting from `Main.lean`.
 - Follow the proof route one level at a time, and record lemma statements only.
-- Fetch single files from a public mirror. Never download or read the library in bulk: it holds about 17 million lines.
+- Fetch single files from a public mirror. Never download or read the library in bulk.
 - For each step, write a plain explanation that names the Lean declaration and the classical source of the idea.
 - Mark each statement as checked against the Lean source, or as an expectation.
 

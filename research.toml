@@ -90,7 +90,7 @@ registry = "docs/references.jsonl"
 
 [claimcheck]
 registry = "docs/references.jsonl"
-paths = ["docs"]
+paths = ["docs", "README.md"]
 exclude = ["docs/references.md"]
 
 [[lab.checks]]
