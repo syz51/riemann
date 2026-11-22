@@ -9,6 +9,9 @@
   --accent-soft: #f6e3d8;
   --mark: #2f5d8a;
   --strip: rgb(47 93 138 / 0.08);
+  --lean-keyword: #7a3e9d;
+  --lean-type: #0f6b6b;
+  --lean-number: #855600;
   --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
   --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
@@ -25,6 +28,9 @@
     --accent-soft: #46291b;
     --mark: #8fb8de;
     --strip: rgb(143 184 222 / 0.1);
+    --lean-keyword: #c9a0e6;
+    --lean-type: #6fc7c0;
+    --lean-number: #e0b660;
   }
 }
 
@@ -155,6 +161,18 @@ figcaption {
 
 .lean code {
   font-family: inherit;
+}
+
+.lean .keyword {
+  color: var(--lean-keyword);
+}
+
+.lean .type {
+  color: var(--lean-type);
+}
+
+.lean .number {
+  color: var(--lean-number);
 }
 
 .piece {

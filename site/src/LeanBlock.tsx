@@ -1,4 +1,5 @@
 import { For } from "solid-js";
+import { colourLean } from "./leanColours";
 import type { Snippet } from "./steps/types";
 
 type Props = {
@@ -10,6 +11,15 @@ type Props = {
   onPin: (piece: string) => void;
 };
 
+/** Lean text with its keywords, types and numbers coloured. */
+function Lean(props: { text: string }) {
+  return (
+    <For each={colourLean(props.text)}>
+      {(run) => (run.role ? <span class={run.role}>{run.text}</span> : run.text)}
+    </For>
+  );
+}
+
 /** A Lean snippet whose marked pieces show their meaning on hover, focus or press. */
 export function LeanBlock(props: Props) {
   return (
@@ -19,7 +29,7 @@ export function LeanBlock(props: Props) {
           <For each={props.snippet.tokens}>
             {(token) =>
               typeof token === "string" ? (
-                token
+                <Lean text={token} />
               ) : (
                 <button
                   type="button"
@@ -31,7 +41,7 @@ export function LeanBlock(props: Props) {
                   onBlur={() => props.onFocus(null)}
                   onClick={() => props.onPin(token.piece)}
                 >
-                  {token.text}
+                  <Lean text={token.text} />
                 </button>
               )
             }

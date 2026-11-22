@@ -27,7 +27,7 @@ Do not write Solid code from memory of version 1 or of React.
 - `src/steps/stepN.ts` holds the content of one step as data: Lean snippets cut into tokens, and one explanation per marked piece. The types are in `src/steps/types.ts`.
 - The content comes from `docs/notes/`. The notes are the source; change a fact in the note first, then in the step file.
 - Lean text is verbatim. Added line breaks are allowed, and the snippet's `source` line must say so.
-- `src/LeanBlock.tsx` renders a snippet. `src/Plane.tsx` draws the complex plane. `src/App.tsx` owns the state: the hovered piece, the focused piece and the pinned piece.
+- `src/LeanBlock.tsx` renders a snippet. `src/leanColours.ts` colours keywords, types and numbers with one small pattern; it adds no dependency, so the page stays small. Add a word to the pattern when a new step quotes it. `src/Plane.tsx` draws the complex plane. `src/App.tsx` owns the state: the hovered piece, the focused piece and the pinned piece.
 
 ## Rules for the content
 
