@@ -1,0 +1,332 @@
+:root {
+  color-scheme: light dark;
+  --page: #fbfaf7;
+  --surface: #ffffff;
+  --text: #1d1c1a;
+  --muted: #64605a;
+  --border: #dedad2;
+  --accent: #a4441c;
+  --accent-soft: #f6e3d8;
+  --mark: #2f5d8a;
+  --strip: rgb(47 93 138 / 0.08);
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --page: #171614;
+    --surface: #1f1e1b;
+    --text: #ece9e2;
+    --muted: #a39e94;
+    --border: #38352f;
+    --accent: #f0a07a;
+    --accent-soft: #46291b;
+    --mark: #8fb8de;
+    --strip: rgb(143 184 222 / 0.1);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--text);
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+header.site,
+main {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+header.site {
+  padding-top: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--sans);
+  font-size: 0.9rem;
+}
+
+header.site p {
+  margin: 0;
+}
+
+.project {
+  font-weight: 600;
+}
+
+.about {
+  color: var(--muted);
+}
+
+a {
+  color: var(--accent);
+}
+
+main {
+  padding-top: 2.5rem;
+  padding-bottom: 4rem;
+}
+
+.count {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+h1 {
+  margin: 0.25rem 0 0.5rem;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  line-height: 1.15;
+  font-weight: 600;
+}
+
+.summary {
+  margin: 0 0 2.5rem;
+  max-width: 40rem;
+  font-size: 1.2rem;
+  color: var(--muted);
+}
+
+h2 {
+  margin: 0 0 0.35rem;
+  font-family: var(--sans);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+p {
+  margin: 0 0 0.9rem;
+}
+
+.columns {
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  align-items: start;
+}
+
+.reading section + section {
+  margin-top: 2.25rem;
+}
+
+.reading p {
+  max-width: 38rem;
+}
+
+.side {
+  position: sticky;
+  top: 1.25rem;
+}
+
+figure {
+  margin: 0;
+}
+
+figcaption {
+  margin-top: 0.5rem;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.lean pre {
+  margin: 0;
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  line-height: 2.1;
+}
+
+.lean code {
+  font-family: inherit;
+}
+
+.piece {
+  padding: 0.2rem 0.3rem;
+  border: 0;
+  border-bottom: 2px solid var(--border);
+  border-radius: 4px 4px 0 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  line-height: 1.4;
+  cursor: pointer;
+  transition:
+    background-color 120ms,
+    border-color 120ms;
+}
+
+.piece.active,
+.piece[aria-pressed="true"] {
+  background: var(--accent-soft);
+  border-bottom-color: var(--accent);
+}
+
+.piece:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.explanation {
+  min-height: 9.5rem;
+  margin-bottom: 1.25rem;
+  padding: 1rem 1.1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
+}
+
+.explanation p {
+  margin: 0;
+}
+
+.hint {
+  color: var(--muted);
+}
+
+.plane svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  font-family: var(--sans);
+}
+
+.plane .field {
+  fill: var(--surface);
+  stroke: var(--border);
+  transition: fill 120ms;
+}
+
+.plane .field.on {
+  fill: var(--accent-soft);
+  stroke: var(--accent);
+}
+
+.plane .strip {
+  fill: var(--strip);
+}
+
+.plane .axis {
+  stroke: var(--muted);
+  stroke-width: 1;
+}
+
+.plane .tick {
+  fill: var(--muted);
+  font-size: 11px;
+}
+
+.plane .critical line {
+  stroke: var(--mark);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 4;
+}
+
+.plane .critical text,
+.plane .pole text {
+  fill: var(--mark);
+  font-size: 12px;
+}
+
+.plane .zeros circle {
+  fill: var(--mark);
+  stroke: var(--surface);
+  stroke-width: 1.5;
+}
+
+.plane .pole circle {
+  fill: var(--surface);
+  stroke: var(--mark);
+  stroke-width: 2;
+}
+
+.plane g {
+  transition: opacity 120ms;
+}
+
+.plane .critical.on line {
+  stroke: var(--accent);
+  stroke-width: 3;
+  stroke-dasharray: none;
+}
+
+.plane .critical.on text,
+.plane .pole.on text {
+  fill: var(--accent);
+  font-weight: 600;
+}
+
+.plane .zeros.on circle {
+  fill: var(--accent);
+  r: 6px;
+}
+
+.plane .pole.on circle {
+  stroke: var(--accent);
+  stroke-width: 3;
+  r: 7px;
+}
+
+.next {
+  max-width: 40rem;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 52rem) {
+  .columns {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.75rem;
+  }
+
+  .side {
+    position: static;
+  }
+
+  .lean pre {
+    font-size: 0.82rem;
+    white-space: pre-wrap;
+  }
+
+  /* The explanation stays in view while the reader presses parts of the Lean text. */
+  main {
+    padding-bottom: 14rem;
+  }
+
+  .explanation {
+    position: fixed;
+    z-index: 1;
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    min-height: 0;
+    max-height: 45vh;
+    margin: 0;
+    overflow-y: auto;
+    box-shadow: 0 6px 24px rgb(0 0 0 / 0.25);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}

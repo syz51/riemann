@@ -17,6 +17,13 @@ Every task reads the Lean library from one repository at one commit:
 
 The project first read twelve files from another mirror, `github.com/tamnd/riemann-lean`. All twelve are byte-identical to the files at the commit above (compared by SHA-256 on 22 November 2026).
 
+## The explainer site
+
+`site/` holds an interactive page that explains the proof one step at a time. It is built with Solid 2.0 and Vite. It explains the Lean code and does not run it. The content comes from the notes in `docs/notes/`.
+
+- Run it: `cd site && bun install && bun run dev`.
+- Build it: `bun run build`. The result is in `site/dist/`.
+
 ## Goal
 
 Understand the argument. Do not rebuild it: other people have checked the proof with several kernels.

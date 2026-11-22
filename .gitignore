@@ -4,3 +4,7 @@ sources/
 .DS_Store
 # The lock that `papers registry build` takes on the registry.
 docs/references.jsonl.lock
+
+# The explainer site
+node_modules/
+site/dist/
