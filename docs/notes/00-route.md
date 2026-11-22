@@ -8,9 +8,9 @@ Two outlines of the proof exist. This note pairs them.
 ## Result in short
 
 - The dashboard does not mention the timeline. So every pairing in this note is our judgement, made from shared words and formulas. No source states a pairing.
-- The two outlines have different orders. The timeline follows the discovery, by date. The dashboard follows the logic, backwards from the theorem.
+- The two outlines have different orders. The timeline lists ideas with the date of each. Its dates are not in order: for example, steps 11 and 13 carry the earliest date, 10/6/26. So a step number is not a position in time. The dashboard follows the logic, backwards from the theorem.
 - Eleven timeline steps have a strong counterpart. Six have a weak one. Three have none: they look like early ideas that the final proof does not use by that name.
-- Three parts of the dashboard route have no timeline step: the reflection, the conversion from one character to all characters, and the Galois representations.
+- Six of the fourteen dashboard components have no timeline step. They include the reflection, the conversion from one character to all characters, and the Galois representations.
 - The first timeline step, "Stepanov determinant", has no counterpart by name. Its idea appears in dashboard step 4 in a different form.
 
 ## The dashboard route
@@ -19,9 +19,9 @@ The dashboard reads the proof backwards, from the theorem to its input [4](../re
 
 | Step | Name | In one sentence (dashboard's words) | Status |
 | --- | --- | --- | --- |
-| D1 | Reflection | "A zero left of the critical line would have a mirror image right of it." | Checked by two kernels |
+| D1 | Reflection | "A zero left of the critical line would have a mirror image right of it." | Checked by two kernels; Kernel-checked at the archive pin |
 | D2 | The statistic | "A weighted count of primes whose size encodes the zeros." | Kernel-checked at the archive pin |
-| D3 | A localized Landau theorem | "An upper bound on long intervals already excludes zeros." | Checked by two kernels |
+| D3 | A localized Landau theorem | "An upper bound on long intervals already excludes zeros." | Checked by two kernels; Kernel-checked at the archive pin |
 | D4 | The estimate, I: a slope inequality for a chain of theta lifts | "Numbers divisible by many primes cannot be small: an upper bound for a prime sum." | Partly checked |
 | D5 | The estimate, II: from the slope inequality to the bound | "Fourier analysis isolates the wanted character with positive weights." | Kernel-checked at the archive pin |
 | D6 | The price of divisibility: Iwasawa theory | "The divisibility can fail a little; Galois cohomology measures by how much." | Partly checked |
@@ -39,7 +39,7 @@ All seven steps are part of the complete proof that the kernels accepted. The la
 The dashboard also reports two implications checked in isolation [4](../references.md#reference-4). They show where the elementary part of the proof starts:
 
 - A one-sided bound on the prime sum `G` on long intervals implies Mathlib's `RiemannHypothesis`. The theorem is `riemannHypothesis_of_prime_windows`.
-- The statement `TopG`, with the window statement `VWinAt` for every primitive character, implies the Riemann hypothesis and the three Dirichlet statements. The theorem is `endpoints_of_topG_vWin401`.
+- The statement `TopG`, with the window statement `VWinAt` for every primitive character, implies, in the dashboard's words, "RH ∧ half-plane nonvanishing ∧ critical-strip zeros, for every positive modulus". The theorem is `endpoints_of_topG_vWin401`.
 
 So D1, D2 and D3 are classical analysis. The new arithmetic is in D4 to D7.
 
@@ -67,7 +67,7 @@ The step text is quoted from the saved text of the note [1](../references.md#ref
 | 16 | 10/14/26 | "Relative trace formula, seen in a different half-plane argument …" | No counterpart found | none | Our judgement |
 | 17 | 11/15/26 | "for the classes in H 1 … that we couldn't kill by twisting, fight for a significant weakening of Vandiver." | D6: the cohomology bound; component 11 | `VWinAt`, `VVle` | Our judgement, strong: the same cohomology groups, and the dashboard names Vandiver |
 | 18 | 11/15/26 | "computation of covolumes, theta series' index, congruences between lifts and forms." | Component 9 (covolume control) and component 14 (a covolume bound) | `topDesWin`, `every_character_of_literature_of_vWin` | Our judgement, strong for covolumes only |
-| 19 | 10/19/26 | "precise choice of the Iwasawa tower, specifically using Behrend!!" | Component 12: auxiliary primes and Behrend towers | `noRel_image`, `hostThickExists` | Our judgement, strong: the dashboard names Behrend |
+| 19 | 10/19/26 | "precise choice of the Iwasawa tower, specifically using Behrend!!" | Component 12: auxiliary primes and Behrend towers | `pairEx`, `noRel_image` | Our judgement, strong: the dashboard names Behrend |
 | 20 | 11/16/26 | "GRH." | Component 1: the five endpoints | `riemannHypothesis` and the four other theorems of `Main.lean` | Our judgement, strong |
 
 Steps 3, 4 and 16 and part of step 5 read like records of earlier attempts. The note itself calls step 3 the "sign-only proof of Weil and Deligne", which concerns function fields [1](../references.md#reference-1). We have not checked whether the final proof uses them.
@@ -75,6 +75,7 @@ Steps 3, 4 and 16 and part of step 5 read like records of earlier attempts. The 
 ## Dashboard parts with no timeline step
 
 - D1, the reflection, and the passage from primitive characters to all characters (components 2 and 3). These are classical. Our note [01-top-levels.md](01-top-levels.md) reads them.
+- Component 5, the Mellin transform and positive residues.
 - Component 7, the order of choices, and component 10, hosts for every character.
 - D7, the Galois representations of automorphic forms (component 13). The dashboard says the archive contains its own formal construction of them and does not cite the literature [4](../references.md#reference-4). The timeline does not name this part, although it is at the base of the dashboard's route.
 
