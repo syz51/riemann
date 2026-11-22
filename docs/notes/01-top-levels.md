@@ -26,7 +26,9 @@ In plain words: if zeta is zero at `s`, and `s` is not a trivial zero (−2, −
 theorem riemannHypothesis : RiemannHypothesis := rhOfAll
 ```
 
-`Main.lean` imports `Statements`, and `Statements.lean` imports only Mathlib. So the name `RiemannHypothesis` here is Mathlib's definition.
+The name `RiemannHypothesis` here is Mathlib's definition. The evidence is `RhOfRight.lean` (level 2): it imports only Mathlib, and it proves a theorem whose conclusion is `RiemannHypothesis`. Lean allows one declaration for each full name, so the library cannot hold a second top-level `RiemannHypothesis`.
+
+One limit: reference [6](../references.md#reference-6) is the Mathlib file at its latest commit. The mirror's README says the library builds against Mathlib commit `0df444a360eaa60ab8c11dca51a86af692955474`. We have not compared the definition at that commit.
 
 ## Level 1: `rhOfAll`
 
@@ -70,9 +72,19 @@ File `Formalism/GammaFactorNonvanishing/RhOfRight.lean`, which imports only Math
 theorem Formalism.VW.rh_of_right (hz : ∀ s : ℂ, 1 / 2 < s.re → s ≠ 1 → riemannZeta s ≠ 0) : RiemannHypothesis := by
 ```
 
-In plain words: if zeta has no zero to the right of the line, then all its non-trivial zeros are on the line. The reason is classical. The functional equation pairs each zero `s` with the zero `1 − s`. A zero to the left of the line would give a zero to the right. We read the statement only, not its proof, which fills the rest of the 62-line file.
+In plain words: if zeta has no zero to the right of the line, then all its non-trivial zeros are on the line.
 
-The same file family proves the matching fact for every primitive character, `Formalism.VW.critLine`. Its proof is under 20 lines and uses the same symmetry, through Mathlib's `completedLFunction_one_sub`.
+The proof fills the rest of the 62-line file. We read it. It works as follows:
+
+- Take a zero `s` with real part below 1/2. Then `1 − s` has real part above 1/2.
+- Mathlib's functional equation `riemannZeta_one_sub` writes zeta at `s` as a product of four factors: a power of 2π, the Gamma function at `1 − s`, a cosine, and zeta at `1 − s`.
+- The first two factors are never zero here. Zeta at `1 − s` is not zero, by the hypothesis `hz`.
+- The cosine is zero only when `s` is an even integer `-2 * k` [7](../references.md#reference-7). The proof excludes each case: k < 0 contradicts the real part, k = 0 gives `s = 0` where zeta is not zero, and k > 0 is a trivial zero, which the hypothesis `htriv` excludes.
+- So the product is not zero, and `s` is not a zero. This contradicts the choice of `s`.
+
+So the trivial zeros are not paired with zeros on the right. They are the zeros of the cosine factor.
+
+`CritLine.lean` also proves the matching fact for every primitive character, `Formalism.VW.critLine`. Its proof is under 20 lines and uses the same symmetry, through Mathlib's `completedLFunction_one_sub`.
 
 ## Level 3: where `EveryCharacter` comes from
 
@@ -94,7 +106,7 @@ Guesses from the names, not checked:
 - `LLC` stands for the local Langlands correspondence.
 - `VWin` is a statement that some comparison "wins", one case per character.
 
-`EveryCharacter.lean` shows one more layer of the same step:
+`EveryCharacter.lean` holds a theorem with the same conclusion. Guess: `every_character_of_literature_of_vWin` uses it. We have not read the file that would show the link, `EveryCharacterOfLiteratureOfVWin.lean`, so `plugAll` is not confirmed as part of the route.
 
 ```lean
 theorem UpperTheory.Top.plugAll (hG : GlobalTheory.GLq.Green) (hV : UpperTheory.Top.VWin)
@@ -102,7 +114,7 @@ theorem UpperTheory.Top.plugAll (hG : GlobalTheory.GLq.Green) (hV : UpperTheory.
   UpperTheory.Top.imprimitive (UpperTheory.Top.plugWin hG hV h)
 ```
 
-In plain words: three inputs (`Green`, `VWin`, and a package `Hyps`) give a statement `ZeroFreeAll`, and the lemma `imprimitive` turns that into `EveryCharacter`. Guess: `ZeroFreeAll` is the statement for primitive characters, and `imprimitive` extends it to all characters.
+In plain words: three inputs (`Green`, `VWin`, and a package `Hyps`) go into `plugWin`, and the lemma `imprimitive` turns the result into `EveryCharacter`. Guess: `plugWin` gives the statement for primitive characters, and `imprimitive` extends it to all characters.
 
 ## How readable are the statements?
 
@@ -115,7 +127,13 @@ So the method works, but below level 3 each name needs its definition before its
 
 ## Names that need care
 
-Several names contain `Literature`, `Hypotheses` or `published`, for example `every_character_of_literature_of_vWin` and `published_hypotheses_from_patching_alt`. They are theorems in the library, not assumptions: `everyCharacter` takes no hypothesis. We have not checked what these names record. One reading is that they formalize results from published papers.
+Several names contain `Literature`, `Hypotheses` or `published`, for example `every_character_of_literature_of_vWin` and `published_hypotheses_from_patching_alt`. We have not checked what these names record. One reading is that they formalize results from published papers.
+
+What we know about them:
+
+- `everyCharacter` itself takes no hypothesis. That fact alone does not show that the lemmas below it are proved: a lemma can still rest on an added axiom.
+- Inside the library, some of these propositions are passed as hypotheses. For example, `CorGKOf.lean` has `corGK_of (hH : UpperTheory.V.Af.HypothesesH') : U3.CorGK`. So such a lemma is conditional, and a later theorem must supply the hypothesis.
+- The dashboard reports that the main theorems rest on only the three standard axioms of Lean (`propext`, `Classical.choice`, `Quot.sound`) [4](../references.md#reference-4). If that report is right, no such proposition is left as an assumption. We have not run this check ourselves.
 
 ## Simplification candidates seen here
 
@@ -134,5 +152,6 @@ All from `lean/src/` of the pinned mirror:
 - `Formalism/GammaFactorNonvanishing/RhOfRight.lean`
 - `Development/AutomorphicArithmetic/CharacterBoxes/EveryCharacter.lean`
 - `Development/AutomorphicArithmetic/CharacterBoxes/MainConclusion.lean`
-- `Development/AutomorphicArithmetic/CharacterBoxes/ClaimStrip.lean` (declaration names only)
+- `Development/AutomorphicArithmetic/CharacterBoxes/ClaimStrip.lean` (declaration names, and the proofs of `strip` and `zeta`)
+- `Development/AutomorphicArithmetic/CharacterBoxes/HalfPlane.lean`
 - `Development/AutomorphicArithmetic/AutomorphicVarieties/SmallClassNumbers/CorGKOf.lean` (not on the path to `rhOfAll`)

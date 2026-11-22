@@ -24,7 +24,7 @@ Inspection: the page read in full. The pages it links (the Xena post on four cri
 
 Inspection depth: full.
 
-Inspection: the file read in full: two imports and five theorems. Its imports, `Statements` and `Supplements.Kernels.MainTheoremsAll`, are not read. The mirror says it holds the release of 20 November 2026 without change; that claim is not checked here against the original archive.
+Inspection: the file read in full: two imports and five theorems. Its imports, `Statements` and `Supplements.Kernels.MainTheoremsAll`, are read under reference 7. The mirror says it holds the release of 20 November 2026 without change; that claim is not checked here against the original archive.
 
 ## Reference 4
 
@@ -46,9 +46,9 @@ Inspection: metadata only. The page is saved and not read; the title here is a d
 
 [6] Mathlib contributors. **Mathlib.NumberTheory.LSeries.RiemannZeta**. Lean source file in leanprover-community/mathlib4, commit 9c98189ea3eebebb36e263edb82e7ffc6b037303; it holds the definition `RiemannHypothesis`. [Original](https://github.com/leanprover-community/mathlib4/blob/9c98189ea3eebebb36e263edb82e7ffc6b037303/Mathlib/NumberTheory/LSeries/RiemannZeta.lean). Accessed 22 November 2026, Asia/Tokyo.
 
-Inspection depth: metadata.
+Inspection depth: abstract.
 
-Inspection: metadata only. The file is saved and not read. The commit is the latest that changed this file, not the Mathlib version the library builds against.
+Inspection: abstract only. One definition was read, `RiemannHypothesis`; the rest of the file is saved and not read. The commit is the latest that changed this file, not the Mathlib version the library builds against.
 
 ## Reference 7
 
@@ -56,4 +56,4 @@ Inspection: metadata only. The file is saved and not read. The commit is the lat
 
 Inspection depth: abstract.
 
-Inspection: abstract only, relative to the whole library: eleven files read, out of 175,187 that one mirror reports. The files read are attached as texts and listed in the notes that quote them. The mirror says it holds the release without change; that claim is not checked here.
+Inspection: abstract only, relative to the whole library: twelve files read, out of 175,187 that one mirror reports. Eleven are attached here as texts; the twelfth, `Main.lean`, is attached to reference 3. The notes that quote the files list them. The mirror says it holds the release without change; that claim is not checked here.
