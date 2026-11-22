@@ -6,6 +6,7 @@ type Props = {
   active: string | null;
   pinned: string | null;
   onHover: (piece: string | null) => void;
+  onFocus: (piece: string | null) => void;
   onPin: (piece: string) => void;
 };
 
@@ -24,11 +25,10 @@ export function LeanBlock(props: Props) {
                   type="button"
                   class={["piece", { active: props.active === token.piece }]}
                   aria-pressed={props.pinned === token.piece ? "true" : "false"}
-                  aria-describedby="explanation"
                   onPointerEnter={() => props.onHover(token.piece)}
                   onPointerLeave={() => props.onHover(null)}
-                  onFocus={() => props.onHover(token.piece)}
-                  onBlur={() => props.onHover(null)}
+                  onFocus={() => props.onFocus(token.piece)}
+                  onBlur={() => props.onFocus(null)}
                   onClick={() => props.onPin(token.piece)}
                 >
                   {token.text}

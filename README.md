@@ -22,7 +22,7 @@ The project first read twelve files from another mirror, `github.com/tamnd/riema
 `site/` holds an interactive page that explains the proof one step at a time. It is built with Solid 2.0 and Vite. It explains the Lean code and does not run it. The content comes from the notes in `docs/notes/`.
 
 - Run it: `cd site && bun install && bun run dev`.
-- Build it: `bun run build`. The result is in `site/dist/`.
+- Build it: `cd site && bun run build`. The result is in `site/dist/`.
 
 ## Goal
 

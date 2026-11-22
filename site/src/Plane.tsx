@@ -1,8 +1,8 @@
 import { For } from "solid-js";
 import type { PlaneMark } from "./steps/types";
 
-// The real axis runs from -7.5 to 3.5 and the imaginary axis from -36 to 36.
-// The vertical scale is compressed, so that the first zeros fit in the picture.
+// The picture shows real parts from -8.25 to 4.25 and imaginary parts from -40
+// to 40. The vertical scale is compressed, so that the first zeros fit.
 const WIDTH = 500;
 const HEIGHT = 400;
 const x = (re: number) => 30 + (re + 7.5) * 40;

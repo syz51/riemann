@@ -1,7 +1,8 @@
-import type { Step } from "./types";
+import { defineStep } from "./types";
 
-// Source of the content: docs/notes/01-top-levels.md, "Level 0: the target".
-export const step1: Step = {
+// Source of the content: docs/notes/01-top-levels.md, "Level 0: the target", and
+// docs/notes/03-grh-statements.md for the reason behind `s ≠ 1`.
+export const step1 = defineStep({
   number: 1,
   of: 4,
   title: "What exactly was proved",
@@ -75,7 +76,7 @@ export const step1: Step = {
       id: "pole",
       title: "Third condition: s is not 1",
       meaning:
-        "Zeta has no value at 1: it grows without limit there. A Lean function must give a value for every input, so Mathlib gives zeta an arbitrary value at 1. This condition keeps that value out of the statement.",
+        "Zeta has a pole at 1: it grows without limit near that point, so it has no natural value there. A Lean function must give a value for every input, so Mathlib's zeta has a value at 1 by convention. This condition keeps that point out of the statement.",
       mark: "pole",
     },
     {
@@ -104,4 +105,4 @@ export const step1: Step = {
     },
   ],
   next: "Step 2 shows what rhOfAll is. The proof never works on zeta alone. It proves a larger statement about a whole family of functions, and zeta is one member.",
-};
+});

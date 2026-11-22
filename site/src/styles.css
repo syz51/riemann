@@ -184,7 +184,7 @@ figcaption {
 }
 
 .explanation {
-  min-height: 9.5rem;
+  min-height: 15rem;
   margin-bottom: 1.25rem;
   padding: 1rem 1.1rem;
   background: var(--surface);
@@ -284,6 +284,11 @@ figcaption {
   r: 7px;
 }
 
+.plane-inline {
+  display: none;
+  margin-top: 1.25rem;
+}
+
 .next {
   max-width: 40rem;
   margin-top: 3rem;
@@ -299,6 +304,15 @@ figcaption {
 
   .side {
     position: static;
+  }
+
+  /* The picture moves under the statement, next to the parts that mark it. */
+  .plane-inline {
+    display: block;
+  }
+
+  .plane-side {
+    display: none;
   }
 
   .lean pre {
@@ -318,7 +332,7 @@ figcaption {
     right: 0.75rem;
     bottom: 0.75rem;
     min-height: 0;
-    max-height: 45vh;
+    max-height: 38vh;
     margin: 0;
     overflow-y: auto;
     box-shadow: 0 6px 24px rgb(0 0 0 / 0.25);

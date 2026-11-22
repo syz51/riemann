@@ -27,7 +27,7 @@ Do not write Solid code from memory of version 1 or of React.
 - `src/steps/stepN.ts` holds the content of one step as data: Lean snippets cut into tokens, and one explanation per marked piece. The types are in `src/steps/types.ts`.
 - The content comes from `docs/notes/`. The notes are the source; change a fact in the note first, then in the step file.
 - Lean text is verbatim. Added line breaks are allowed, and the snippet's `source` line must say so.
-- `src/LeanBlock.tsx` renders a snippet. `src/Plane.tsx` draws the complex plane. `src/App.tsx` owns the state: the hovered piece and the pinned piece.
+- `src/LeanBlock.tsx` renders a snippet. `src/Plane.tsx` draws the complex plane. `src/App.tsx` owns the state: the hovered piece, the focused piece and the pinned piece.
 
 ## Rules for the content
 
@@ -48,4 +48,6 @@ Add a line here when Solid 2.0 or the toolchain behaves differently from what yo
 - ARIA attributes with true or false values take strings: `aria-pressed={x() ? "true" : "false"}`. A boolean is a type error.
 - Conditional classes use the array and object form, also on SVG elements: `class={["zeros", { on: active() }]}`.
 - In `<For>`, the default callback gets the raw item. A plain `typeof` test on it at the top of the callback is fine for static data.
+- Keep pointer hover and keyboard focus in separate signals. With one shared signal, a pointer that leaves one piece closes the explanation of the focused piece.
+- Wrap step data in `defineStep` (`src/steps/types.ts`). It makes a token with an unknown piece id a type error.
 - A page built by Vite does not load from `file://`. Serve `dist/` with `vite preview` to check it.

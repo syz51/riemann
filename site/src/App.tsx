@@ -6,12 +6,22 @@ import { step1 as step } from "./steps/step1";
 export function App() {
   const [hovered, setHovered] = createSignal<string | null>(null);
   const [pinned, setPinned] = createSignal<string | null>(null);
-  const activeId = createMemo(() => hovered() ?? pinned());
+  const [focused, setFocused] = createSignal<string | null>(null);
+  // The pointer wins over keyboard focus, and both win over the pinned piece.
+  const activeId = createMemo(() => hovered() ?? focused() ?? pinned());
   const active = createMemo(() =>
     step.pieces.find((piece) => piece.id === activeId()),
   );
-  const togglePin = (piece: string) =>
-    setPinned((current) => (current === piece ? null : piece));
+  const togglePin = (piece: string) => {
+    if (pinned() === piece) {
+      // A press that releases the pin also drops the focus state, so that the
+      // explanation closes on a touch screen, where the button keeps focus.
+      setPinned(null);
+      setFocused(null);
+    } else {
+      setPinned(piece);
+    }
+  };
 
   return (
     <>
@@ -33,7 +43,7 @@ export function App() {
         <div class="columns">
           <div class="reading">
             <For each={step.snippets}>
-              {(snippet) => (
+              {(snippet, index) => (
                 <section>
                   <h2>{snippet.heading}</h2>
                   <p>{snippet.intro}</p>
@@ -42,8 +52,14 @@ export function App() {
                     active={activeId()}
                     pinned={pinned()}
                     onHover={setHovered}
+                    onFocus={setFocused}
                     onPin={togglePin}
                   />
+                  <Show when={index() === 0}>
+                    <div class="plane-inline">
+                      <Plane mark={active()?.mark} />
+                    </div>
+                  </Show>
                 </section>
               )}
             </For>
@@ -68,7 +84,9 @@ export function App() {
                 )}
               </Show>
             </div>
-            <Plane mark={active()?.mark} />
+            <div class="plane-side">
+              <Plane mark={active()?.mark} />
+            </div>
           </aside>
         </div>
 

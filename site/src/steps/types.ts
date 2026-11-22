@@ -2,30 +2,36 @@
 export type PlaneMark = "plane" | "zeros" | "trivial" | "pole" | "line";
 
 /** One part of a Lean snippet that has its own explanation. */
-export type Piece = {
-  id: string;
+export type Piece<Id extends string = string> = {
+  id: Id;
   title: string;
   meaning: string;
   mark?: PlaneMark;
 };
 
 /** Plain text, or text that belongs to a piece. */
-export type Token = string | { piece: string; text: string };
+export type Token<Id extends string = string> = string | { piece: Id; text: string };
 
-export type Snippet = {
+export type Snippet<Id extends string = string> = {
   heading: string;
   intro: string;
   /** Where the Lean text comes from. */
   source: string;
-  tokens: Token[];
+  tokens: Token<Id>[];
 };
 
-export type Step = {
+export type Step<Id extends string = string> = {
   number: number;
   of: number;
   title: string;
   summary: string;
-  snippets: Snippet[];
-  pieces: Piece[];
+  snippets: Snippet<NoInfer<Id>>[];
+  pieces: Piece<Id>[];
   next: string;
 };
+
+/**
+ * Checks a step at compile time: the ids come from `pieces`, and a token that
+ * names another id is a type error.
+ */
+export const defineStep = <const Id extends string>(step: Step<Id>): Step => step;
