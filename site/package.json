@@ -6,7 +6,8 @@
     "dev": "vite",
     "typecheck": "tsc --noEmit",
     "build": "tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "share": "vite build --watch & vite preview --host 127.0.0.1 --port 4319 --strictPort"
   },
   "dependencies": {
     "@solidjs/web": "^2.0.3",
