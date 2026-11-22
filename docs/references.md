@@ -56,7 +56,7 @@ Inspection: abstract only. One definition was read, `RiemannHypothesis`; the res
 
 Inspection depth: abstract.
 
-Inspection: abstract only, relative to the whole library: twelve files read, out of 175,187 that the repository's README reports. Eleven are attached here as texts; the twelfth, `Main.lean`, is attached to reference 3. The notes that quote the files list them. The repository says this commit is the submission exactly as published. The files were first fetched from the mirror tamnd/riemann-lean and are byte-identical to this commit. Two files outside `src/` are also attached: `lake-manifest.json` at the same commit, read for the Mathlib pin, and the repository's README at the later commit 2dea99006976a5104032e495d7513dee40fbb5ca, read in part. The repository's challenge file `src/Challenge.lean` at that later commit is attached too.
+Inspection: abstract only, relative to the whole library: twelve files read, out of 175,187 that the repository's README reports. Eleven are attached here as texts; the twelfth, `Main.lean`, is attached to reference 3. The notes that quote the files list them. The repository says this commit is the submission exactly as published. The files were first fetched from the mirror tamnd/riemann-lean and are byte-identical to this commit. Two files outside `src/` are also attached: `lake-manifest.json` at the same commit, read for the Mathlib pin, and the repository's README at the later commit 2dea99006976a5104032e495d7513dee40fbb5ca, read in part. The repository's challenge file `src/Challenge.lean` at that later commit is attached too and was read in full; it is not part of the submission and not in the count of twelve.
 
 ## Reference 8
 
