@@ -38,9 +38,9 @@ Inspection: abstract only. Read from the saved copy: the section "The route of t
 
 [5] Andrew V. Sutherland. **Overview of the verification of the Lean proof of the generalized Riemann hypothesis**. Web page, MIT. [Original](https://math.mit.edu/~drew/grh/). Accessed 22 November 2026, Asia/Tokyo.
 
-Inspection depth: metadata.
+Inspection depth: abstract.
 
-Inspection: metadata only. The page is saved and not read; the title here is a description, not the page's own title.
+Inspection: abstract only. Read from the saved text: the table of checks, the section "What was verified" with the five statements and the scope, and the first lines on arithmetic consequences. The rest is not read. The title here is a description, not the page's own title.
 
 ## Reference 6
 
@@ -56,4 +56,12 @@ Inspection: abstract only. One definition was read, `RiemannHypothesis`; the res
 
 Inspection depth: abstract.
 
-Inspection: abstract only, relative to the whole library: twelve files read, out of 175,187 that the repository's README reports. Eleven are attached here as texts; the twelfth, `Main.lean`, is attached to reference 3. The notes that quote the files list them. The repository says this commit is the submission exactly as published. The files were first fetched from the mirror tamnd/riemann-lean and are byte-identical to this commit. Two files outside `src/` are also attached: `lake-manifest.json` at the same commit, read for the Mathlib pin, and the repository's README at the later commit 2dea99006976a5104032e495d7513dee40fbb5ca, read in part.
+Inspection: abstract only, relative to the whole library: twelve files read, out of 175,187 that the repository's README reports. Eleven are attached here as texts; the twelfth, `Main.lean`, is attached to reference 3. The notes that quote the files list them. The repository says this commit is the submission exactly as published. The files were first fetched from the mirror tamnd/riemann-lean and are byte-identical to this commit. Two files outside `src/` are also attached: `lake-manifest.json` at the same commit, read for the Mathlib pin, and the repository's README at the later commit 2dea99006976a5104032e495d7513dee40fbb5ca, read in part. The repository's challenge file `src/Challenge.lean` at that later commit is attached too.
+
+## Reference 8
+
+[8] Mathlib contributors. **Mathlib at the commit the library builds against, files read by this project**. Lean source files in leanprover-community/mathlib4, commit 0df444a360eaa60ab8c11dca51a86af692955474. [Original](https://github.com/leanprover-community/mathlib4/tree/0df444a360eaa60ab8c11dca51a86af692955474/Mathlib). Accessed 22 November 2026, Asia/Tokyo.
+
+Inspection depth: abstract.
+
+Inspection: abstract only. Three files are saved and attached: `NumberTheory/LSeries/RiemannZeta.lean`, `NumberTheory/LSeries/DirichletContinuation.lean` and `NumberTheory/DirichletCharacter/Basic.lean`. Read in them: the definitions `RiemannHypothesis`, `DirichletCharacter.LFunction` and `IsPrimitive`, and the statements of `LFunction_modOne_eq` and `LFunction_eq_LSeries`. The proofs and the rest of the files are not read.

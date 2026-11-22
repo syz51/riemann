@@ -28,7 +28,7 @@ theorem riemannHypothesis : RiemannHypothesis := rhOfAll
 
 The name `RiemannHypothesis` here is Mathlib's definition. The evidence is `RhOfRight.lean` (level 2): it imports only Mathlib, and it proves a theorem whose conclusion is `RiemannHypothesis`. Lean allows one declaration for each full name, so the library cannot hold a second top-level `RiemannHypothesis`.
 
-One limit: reference [6](../references.md#reference-6) is the Mathlib file at its latest commit. The library's `lake-manifest.json` pins Mathlib at commit `0df444a360eaa60ab8c11dca51a86af692955474`. We have not compared the definition at that commit.
+One limit: reference [6](../references.md#reference-6) is the Mathlib file at its latest commit. The library's `lake-manifest.json` pins Mathlib at commit `0df444a360eaa60ab8c11dca51a86af692955474`. The definition has the same text at that commit [8](../references.md#reference-8).
 
 ## Level 1: `rhOfAll`
 
