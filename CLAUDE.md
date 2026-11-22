@@ -1,0 +1,9 @@
+# Working rules for this repository
+
+The owner set these rules on 22 November 2026. They take precedence over the global defaults for delegation and review.
+
+- **Purpose.** This is the owner's study project: first understand the proof, then try to simplify it.
+- **Parallel work.** Work mostly in one thread. Start a parallel agent only when the owner asks, or for a tool the session lacks, such as a page fetch.
+- **Review.** Run the `reviewer` agent only on a commit that holds finished content, such as a completed note. Do not run it on small changes: configuration, registry entries, drafts or work in progress.
+- **Simplification.** When a step of the argument looks longer than it needs to be, record it in `docs/notes/simplifications.md` with the reason and the Lean declarations it concerns.
+- **Reading.** Never download or read the Lean library in bulk. Fetch single files from the pinned mirror.
