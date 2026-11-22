@@ -49,3 +49,11 @@ Inspection: metadata only. The page is saved and not read; the title here is a d
 Inspection depth: metadata.
 
 Inspection: metadata only. The file is saved and not read. The commit is the latest that changed this file, not the Mathlib version the library builds against.
+
+## Reference 7
+
+[7] Levent Alpöge and Claude. **The Lean library of the proof, files read by this project**. Files under `lean/src/` in the mirror tamnd/riemann-lean, commit af705e0d9a5904326eb0693310e36d9484df7f8f. [Original](https://github.com/tamnd/riemann-lean/tree/af705e0d9a5904326eb0693310e36d9484df7f8f/lean/src). Accessed 22 November 2026, Asia/Tokyo.
+
+Inspection depth: abstract.
+
+Inspection: abstract only, relative to the whole library: eleven files read, out of 175,187 that one mirror reports. The files read are attached as texts and listed in the notes that quote them. The mirror says it holds the release without change; that claim is not checked here.
