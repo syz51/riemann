@@ -32,7 +32,7 @@ Inspection: the file read in full: two imports and five theorems. Its imports, `
 
 Inspection depth: abstract.
 
-Inspection: abstract only. The table of checks was read through a fetch agent's summary; the route of the proof is not read yet. A third-party reading aid, not an authority on the proof.
+Inspection: abstract only. Read from the saved copy: the section "The route of the proof" with its seven steps, the two isolated implications and the table of fourteen components, and the lines on axioms. The table of checks was read through a fetch agent's summary. The guide (a PDF) and the ledger of runs are not read. A third-party reading aid, not an authority on the proof.
 
 ## Reference 5
 
