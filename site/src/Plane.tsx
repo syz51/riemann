@@ -4,9 +4,9 @@ import type { PlaneMark } from "./steps/types";
 // The picture shows real parts from -8.25 to 4.25 and imaginary parts from -40
 // to 40. The vertical scale is compressed, so that the first zeros fit.
 const WIDTH = 500;
-const HEIGHT = 400;
+const HEIGHT = 300;
 const x = (re: number) => 30 + (re + 7.5) * 40;
-const y = (im: number) => HEIGHT / 2 - im * 5;
+const y = (im: number) => HEIGHT / 2 - im * 3.75;
 
 // Imaginary parts of the first five zeros above the real axis, to two decimals.
 const ZERO_HEIGHTS = [14.13, 21.02, 25.01, 30.42, 32.94];
@@ -84,11 +84,9 @@ export function Plane(props: { mark: PlaneMark | undefined }) {
         </g>
       </svg>
       <figcaption>
-        Filled points are zeros of zeta: the trivial zeros −2, −4, −6 on the
-        real axis, and the first five zeros above the axis with their mirror
-        images. The open point is s = 1. The shaded band is the critical
-        strip, between real part 0 and real part 1. The vertical scale is
-        compressed.
+        Filled points are zeros of zeta. The open point is s = 1. The shaded
+        band is the critical strip, from real part 0 to real part 1. The
+        vertical scale is compressed.
       </figcaption>
     </figure>
   );

@@ -55,8 +55,11 @@ main {
 }
 
 header.site {
-  padding-top: 1.5rem;
-  padding-bottom: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
   border-bottom: 1px solid var(--border);
   font-family: var(--sans);
   font-size: 0.9rem;
@@ -79,8 +82,8 @@ a {
 }
 
 main {
-  padding-top: 2.5rem;
-  padding-bottom: 4rem;
+  padding-top: 1.25rem;
+  padding-bottom: 1.5rem;
 }
 
 .count {
@@ -92,15 +95,15 @@ main {
 
 h1 {
   margin: 0.25rem 0 0.5rem;
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-size: clamp(1.5rem, 3vw, 1.9rem);
   line-height: 1.15;
   font-weight: 600;
 }
 
 .summary {
-  margin: 0 0 2.5rem;
-  max-width: 40rem;
-  font-size: 1.2rem;
+  margin: 0 0 1.25rem;
+  max-width: 44rem;
+  font-size: 1.05rem;
   color: var(--muted);
 }
 
@@ -123,7 +126,7 @@ p {
 }
 
 .reading section + section {
-  margin-top: 2.25rem;
+  margin-top: 1.25rem;
 }
 
 .reading p {
@@ -149,14 +152,14 @@ figcaption {
 
 .lean pre {
   margin: 0;
-  padding: 1rem 1.1rem;
+  padding: 0.7rem 1rem;
   overflow-x: auto;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 8px;
   font-family: var(--mono);
   font-size: 0.9rem;
-  line-height: 2.1;
+  line-height: 1.9;
 }
 
 .lean code {
@@ -202,8 +205,8 @@ figcaption {
 }
 
 .explanation {
-  min-height: 15rem;
-  margin-bottom: 1.25rem;
+  min-height: 12.5rem;
+  margin-bottom: 0.9rem;
   padding: 1rem 1.1rem;
   background: var(--surface);
   border: 1px solid var(--border);
@@ -307,10 +310,8 @@ figcaption {
   margin-top: 1.25rem;
 }
 
-.next {
-  max-width: 40rem;
-  margin-top: 3rem;
-  padding-top: 1.5rem;
+.reading .next {
+  padding-top: 1rem;
   border-top: 1px solid var(--border);
 }
 

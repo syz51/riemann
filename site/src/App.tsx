@@ -63,6 +63,10 @@ export function App() {
                 </section>
               )}
             </For>
+            <section class="next">
+              <h2>Next</h2>
+              <p>{step.next}</p>
+            </section>
           </div>
 
           <aside class="side">
@@ -89,11 +93,6 @@ export function App() {
             </div>
           </aside>
         </div>
-
-        <section class="next">
-          <h2>Next</h2>
-          <p>{step.next}</p>
-        </section>
       </main>
     </>
   );
