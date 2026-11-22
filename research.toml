@@ -1,0 +1,109 @@
+# Research factory configuration. Each tool reads its own table; see
+# https://github.com/syz51/research-factory/blob/main/docs/interfaces.md
+
+[project]
+name = "riemann"
+timezone = "Asia/Tokyo"
+state_dir = ".research"
+
+[lab]
+lessons_dir = "lessons"
+recurrence = 3
+# Agent-session findings for `lab retro`: run `agentprof scan --out .research/agentprof` first.
+# Do not also list agentprof under [[lab.checks]]. `lab evaluate` measures agentprof lessons per
+# session from the sessions.jsonl next to this file (override with agent_sessions).
+# agent_findings = ".research/agentprof/findings.jsonl"
+
+# How `lab evaluate` decides whether a lesson helped (these are the defaults).
+# [lab.evaluate]
+# min_sessions = 10     # session groups, or check-run intervals, needed on each side of the adoption date
+# alpha = 0.05          # two-sided; each direction is tested at alpha/2
+# baseline_days = 90    # compare with this many days before adoption; 0 = all earlier sessions
+
+# `lab loop` runs these commands, evaluates every lesson, and sends each new or changed signal
+# (rf.signal/1 JSON on stdin) to `notify`. Hooks start it with `lab loop --background --if-older 15`.
+# [lab.loop]
+# measure = [["agentprof", "scan", "--out", ".research/agentprof", "--timezone", "Asia/Tokyo"]]
+# notify = ["sh", "scripts/notify.sh"]
+# renotify_hours = 24
+# home = "~/projects/demo"   # only this checkout runs the loop, not a clone or copy of it
+
+# Each check prints rf.finding/1 JSON Lines and exits 0 (no errors), 1 (errors) or 2 (failed).
+# Names must be unique. After the first `lab check`, accept the existing backlog with
+# `lab baseline set --note "<why>"` so that `lab check --new-only` fails only on new errors.
+# Each run records each checker's version: the first line `version` prints (default:
+# `<program> --version` for a bare program name that is not an interpreter; [] for none).
+# `lab check --at <commit>` replays past commits; `uncommitted_inputs` lists files no commit
+# holds, such as git-ignored source texts, which a replay then reads from the work tree.
+# [[lab.checks]]
+# name = "references"
+# run = ["papers", "registry", "check", "--format", "jsonl"]
+#
+# [[lab.checks]]
+# name = "claims"
+# run = ["claimcheck", "check", "docs", "--format", "jsonl"]
+#
+# [[lab.checks]]
+# name = "sources"
+# run = ["prov", "manifest", "verify", "sources/manifest.jsonl", "--format", "jsonl"]
+
+# The research archive: a short start page, records with optional YAML front matter, indexes
+# generated from it, and append-only files sealed against edits. `lab archive update` writes the
+# indexes and seals. Archive model 2 (`model = 2` with `seal = "git"`, `task_from`, `board_export`
+# and `write_indexes = false`; docs/interfaces.md "Archive model 2") makes git the seal, has each
+# record name its board task and kind, and ends a record with `lab archive done`.
+# Check the archive with the other checks:
+# [[lab.checks]]
+# name = "archive"
+# run = ["lab", "archive", "check", "--format", "jsonl"]
+#
+# [lab.archive]
+# start = "docs/research/START.md"
+# seal_manifest = "docs/research/.seal.json"     # default: <state_dir>/lab/archive-seal.json
+# sealed = ["docs/research/history/[0-9]*.md", "docs/research/log/*.md"]
+# links = ["docs/research/**/*.md"]
+# links_exclude = ["docs/research/followups/*/inputs/**"]
+# current_pages = ["docs/research/START.md"]
+#
+# [[lab.archive.index]]
+# name = "history"
+# output = "docs/research/history/INDEX.md"
+# title = "History reports"
+# intro = "One line per session report, newest first."
+# include = ["docs/research/history/[0-9]*.md"]
+# id_from = '^(\d+[a-z]?)-'
+# id_prefix = "H"
+# trim_leading_zeros = true
+# sort = "id-desc"
+# require = ["id", "title", "date"]
+#
+# [[lab.archive.index]]
+# name = "decisions"
+# output = "docs/research/decisions/INDEX.md"
+# title = "Decisions"
+# include = ["docs/research/decisions/D*.md"]
+# id_from = '^(D\d+)-'
+# group_by = "status"
+# require = ["id", "title", "status"]
+#
+# [[lab.archive.budget]]
+# path = "docs/research/START.md"
+# max_bytes = 8192
+# severity = "error"
+
+[papers]
+catalogue = "docs/references.md"
+registry = "docs/references.jsonl"
+
+[claimcheck]
+registry = "docs/references.jsonl"
+paths = ["docs"]
+exclude = ["docs/references.md"]
+
+[[lab.checks]]
+name = "references"
+run = ["papers", "registry", "check", "--format", "jsonl"]
+
+[[lab.checks]]
+name = "claims"
+run = ["claimcheck", "check", "--format", "jsonl"]

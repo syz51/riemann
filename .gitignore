@@ -1,0 +1,4 @@
+.research/
+# Source PDFs, extracted text and fetched Lean files stay out of git.
+sources/
+.DS_Store
