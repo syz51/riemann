@@ -1,6 +1,11 @@
 # riemann
 
-Notes on reading Levent Alpöge's Lean 4 proof of the Riemann hypothesis, released on 20 November 2026.
+Notes on reading Levent Alpöge's Lean 4 proof of the Riemann hypothesis.
+
+The facts on this page come from two sources, read on 22 November 2026. Neither is in the reference registry yet, so no check covers this page.
+
+- [The Lean and Mathlib joint statement](https://leanprover-community.github.io/blog/posts/riemann-hypothesis/) gives the release date, 20 November 2026, and the checkers that accepted the proof: Lean's official kernel, `con-leche` and `con-ron`.
+- Public mirrors of the archive report its size as about 17 million lines. This number is reported, not counted here.
 
 ## Goal
 

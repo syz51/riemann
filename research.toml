@@ -35,14 +35,7 @@ recurrence = 3
 # `<program> --version` for a bare program name that is not an interpreter; [] for none).
 # `lab check --at <commit>` replays past commits; `uncommitted_inputs` lists files no commit
 # holds, such as git-ignored source texts, which a replay then reads from the work tree.
-# [[lab.checks]]
-# name = "references"
-# run = ["papers", "registry", "check", "--format", "jsonl"]
-#
-# [[lab.checks]]
-# name = "claims"
-# run = ["claimcheck", "check", "docs", "--format", "jsonl"]
-#
+# The live `references` and `claims` checks are at the end of this file.
 # [[lab.checks]]
 # name = "sources"
 # run = ["prov", "manifest", "verify", "sources/manifest.jsonl", "--format", "jsonl"]

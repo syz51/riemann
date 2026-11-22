@@ -2,3 +2,5 @@
 # Source PDFs, extracted text and fetched Lean files stay out of git.
 sources/
 .DS_Store
+# The lock that `papers registry build` takes on the registry.
+docs/references.jsonl.lock
