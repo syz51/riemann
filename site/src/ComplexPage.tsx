@@ -21,9 +21,14 @@ const CUBIC: Part[] = [
     text: prose`In the 1500s, del Ferro and later Tartaglia found a formula for each equation of the form $x^3 = px + q$. The sign ∛ is the cube root: the number whose third power is the number under the sign. Cardano published the formula in 1545.`,
   },
   {
-    title: "The formula goes wrong",
+    title: "Why the formula is right",
+    equation: tex`(u + v)^3 = u^3 + v^3 + 3uv\,(u + v)`,
+    text: prose`Write $x = u + v$. By the line above, $x^3 = px + q$ holds when $3uv = p$ and $u^3 + v^3 = q$. The formula finds such $u$ and $v$: their third powers are $q/2 + \sqrt{w}$ and $q/2 - \sqrt{w}$. So the formula had a proof. But the proof takes the square root of $w$, so it holds only when $w$ is not negative.`,
+  },
+  {
+    title: "The proof stops here",
     equation: tex`x = \sqrt[3]{2 + \sqrt{-121}} + \sqrt[3]{2 - \sqrt{-121}}`,
-    text: prose`Here $p = 15$ and $q = 4$. So $w = 2^2 - 5^3 = 4 - 125 = -121$. The formula asks for the square root of $-121$. No number of that time had a negative square. But the equation has the answer 4, so the formula cannot be simply wrong.`,
+    text: prose`Here $p = 15$ and $q = 4$. So $w = 2^2 - 5^3 = 4 - 125 = -121$. The formula asks for the square root of $-121$. No number of that time had a negative square, so the proof says nothing here. Cardano avoided this case in his book. But the equation has the answer 4.`,
   },
   {
     title: "Bombelli calculates anyway",
@@ -33,7 +38,7 @@ const CUBIC: Part[] = [
   {
     title: "The impossible parts cancel",
     equation: tex`x = \left(2 + \sqrt{-1}\right) + \left(2 - \sqrt{-1}\right) = 4`,
-    text: prose`The two pieces with $\sqrt{-1}$ cancel, and the plain answer 4 is left. The formula was right. The road to a real answer went through numbers that did not exist yet. That is why they were defined.`,
+    text: prose`The two pieces with $\sqrt{-1}$ cancel, and the plain answer 4 is left. So the formula gives the right answer, if $\sqrt{-1}$ may follow the usual rules of arithmetic. Nobody could say why it may, and Bombelli himself doubted the result at first. The road to a real answer went through numbers that did not exist yet. That is why they were defined.`,
   },
 ];
 

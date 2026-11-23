@@ -11,6 +11,21 @@ The record behind the site page "Why complex numbers exist". Step 1 says "for ev
 - For x³ = 15x + 4, the formula gives x = ∛(2 + √−121) + ∛(2 − √−121). Bombelli saw that x = 4 is a solution, set the first cube root equal to a + b√−1, and found a = 2 and b = 1. So x = (2 + √−1) + (2 − √−1) = 4. His book *L'Algebra* is from 1572 [9](../references.md#reference-9).
 - Own check of the arithmetic: 4³ = 64 = 15 · 4 + 4. (2 + i)³ = 8 + 12i + 6i² + i³ = 8 + 12i − 6 − i = 2 + 11i, and 11i = √−121.
 
+## Why the formula was trusted, and where it was doubted
+
+The owner asked on 23 November 2026: how were people sure that the formula is correct, and did nobody doubt it when it gave √−121?
+
+- The derivation: put x = u + v into x³ = px + q. Since (u + v)³ = u³ + v³ + 3uv(u + v), the equation holds when 3uv = p and u³ + v³ = q. Then the sum and the product of the two cubes u³ and v³ are known, and a quadratic equation gives them [9](../references.md#reference-9), item 5.
+- Own check that the formula gives such u and v: with u³ = q/2 + √w and v³ = q/2 − √w, the sum is q, and the product is (q/2)² − w = (p/3)³, so uv = p/3.
+- Own check with a positive w: for x³ = 6x + 9, w = 4.5² − 2³ = 12.25 and √w = 3.5. The cubes are 8 and 1, so x = 2 + 1 = 3, and 27 = 18 + 9.
+- Tartaglia told Cardano the formula "but not the proof", and Cardano "was able to reconstruct the proof" [9](../references.md#reference-9), item 4. So the formula had a proof in 1545.
+- The derivation takes the square root of w. When w is negative it had no meaning then, so the proof did not cover that case. This is our reading of the derivation, not a quotation.
+- The case with a negative w has the name casus irreducibilis. "Cardano avoids discussing this case in Ars Magna" [9](../references.md#reference-9), item 5.
+- Cardano came back to it in 1570, in the book "De aliza regula", "devoted to the “irreducible case” of the cubic equation". That work "did not give solutions to the irreducible case" [16](../references.md#reference-16).
+- So people did doubt. Bombelli wrote of his own calculation: "At first, the thing seemed to me to be based more on sophism than on truth, but I searched until I found the proof" [9](../references.md#reference-9), item 7.
+- What the calculation of Bombelli shows, by our own check: with the one rule that the square of √−1 is −1, u = 2 + √−1 and v = 2 − √−1 give uv = 4 + 1 = 5 = p/3 and u³ + v³ = (2 + 11√−1) + (2 − 11√−1) = 4 = q. So the two conditions of the derivation hold, and x = u + v = 4 is the known solution.
+- That is a proof only if √−1 follows the usual rules of arithmetic. A foundation for that came with Wessel in 1797 (see the dates below).
+
 ## The history in dates
 
 - 1545: Cardano, *Ars Magna*. It also has the problem "divide 10 in two parts, the product of which is 40", with the answer 5 + √−15 and 5 − √−15, and the words "putting aside the mental tortures involved" [9](../references.md#reference-9).
@@ -29,5 +44,7 @@ The record behind the site page "Why complex numbers exist". Step 1 says "for ev
 
 ## Not checked
 
-- Sources disagree on how far Cardano himself treated the case with a negative number under the root. The page says only that he published the formula.
+- Sources disagree on how far Cardano himself treated the case with a negative number under the root. Reference 9 says he avoids it in *Ars Magna*, and Reference 16 says his work of 1570 gave no solutions for it. A recreational paper (Ekert, arXiv 0806.0485, read in part, not in the registry) says that Cardano "figured out how to solve" the case. The page follows References 9 and 16.
+- The kind of proof in *Ars Magna* (it is often described as geometric, with a cube cut in pieces) is not confirmed from a source that we read. Cardano's own text is not read.
+- Which exact words of Cardano belong to the cubic case and which to the problem of chapter 37 is not checked.
 - The picture rule "multiplying by i is a quarter turn" follows from the rule of Wessel above: i has length 1 and angle 90°. No separate source.
