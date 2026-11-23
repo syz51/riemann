@@ -29,7 +29,7 @@ Do not write Solid code from memory of version 1 or of React.
 - Lean text is verbatim. Added line breaks are allowed, and the snippet's `source` line must say so.
 - `src/LeanBlock.tsx` renders a snippet. `src/leanColours.ts` colours keywords, types and numbers with one small pattern; it adds no dependency, so the page stays small. Add a word to the pattern when a new step quotes it. `src/Plane.tsx` draws the complex plane. `src/StepPage.tsx` owns the state of a step: the hovered piece, the focused piece and the pinned piece.
 - `src/App.tsx` holds the header and selects the page from the address after `#` (`#/` is the step, `#/complex-numbers` the background page). Hash addresses need no server rules, so the build works on GitHub Pages under a sub-path.
-- A background page (`src/ComplexPage.tsx`) explains a prerequisite. Its record is a note in `docs/notes/`, and every historical fact on the page links to its source. `src/MultiplyPlane.tsx` is its picture with points that the reader moves; `src/complex.ts` holds the arithmetic.
+- A background page (`src/ComplexPage.tsx`) explains a prerequisite. Its record is a note in `docs/notes/`, and every section names its sources in one line under its content; a link on each fact is noise when most facts share a source. `src/MultiplyPlane.tsx` is its picture with points that the reader moves; `src/complex.ts` holds the arithmetic.
 
 ## Rules for the content
 

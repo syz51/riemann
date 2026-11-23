@@ -36,46 +36,38 @@ const CUBIC: { title: string; equation: string; text: string }[] = [
   },
 ];
 
-const TIMELINE: { year: string; text: string; source: string }[] = [
+const TIMELINE: { year: string; text: string }[] = [
   {
     year: "1545",
     text: "Cardano publishes the formula for cubic equations in his book Ars Magna. The same book splits 10 into two parts with product 40. The parts are 5 + √−15 and 5 − √−15, and Cardano writes of “the mental tortures involved”.",
-    source: MERINO,
   },
   {
     year: "1572",
     text: "Bombelli's book L'Algebra works through x³ = 15x + 4. He writes that the thing at first seemed “based more on sophism than on truth”.",
-    source: MERINO,
   },
   {
     year: "1637",
     text: "Descartes coins the word “imaginary” for such roots. He means that no quantity corresponds to them. The word is still in use.",
-    source: MERINO,
   },
   {
     year: "1700s",
     text: "Euler introduces the letter i for √−1.",
-    source: MERINO,
   },
   {
     year: "1797",
     text: "Wessel's paper is read to the Royal Danish Academy. It treats the numbers as arrows in the plane. To multiply two arrows, add their angles and multiply their lengths. The paper is in Danish, and nobody notices it until 1897.",
-    source: MERINO,
   },
   {
     year: "1806",
     text: "Argand, a bookkeeper in Paris, prints the same picture in a small pamphlet. His name is not on the title page.",
-    source: MERINO,
   },
   {
     year: "1831",
     text: "Gauss publishes the picture of the plane and introduces the name “complex number”.",
-    source: MERINO,
   },
   {
     year: "1859",
     text: "Riemann shows that the zeta function extends to the whole plane, except for the point 1.",
-    source: ELKIES,
   },
 ];
 
@@ -151,16 +143,16 @@ export function ComplexPage() {
             {(entry) => (
               <li>
                 <span class="year">{entry.year}</span>
-                <span>
-                  {entry.text}{" "}
-                  <a class="cite" href={entry.source}>
-                    Source
-                  </a>
-                </span>
+                <span>{entry.text}</span>
               </li>
             )}
           </For>
         </ol>
+        <p class="sources">
+          Source: <a href={MERINO}>Merino, A Short History of Complex Numbers</a>,
+          items 4 to 15. For 1859:{" "}
+          <a href={ELKIES}>Elkies, Math 229 notes on the zeta function</a>.
+        </p>
       </section>
 
       <section>

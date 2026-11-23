@@ -381,15 +381,11 @@ h3 {
   font-weight: 600;
 }
 
-.sources,
-.cite {
+.sources {
+  margin-top: 0.75rem;
   font-family: var(--sans);
   font-size: 0.8rem;
   color: var(--muted);
-}
-
-.sources {
-  margin-top: 0.75rem;
 }
 
 .article button {
