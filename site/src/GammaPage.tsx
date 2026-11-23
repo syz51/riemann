@@ -169,26 +169,6 @@ export function GammaPage() {
           Source: <a href={MATHLIB_REFLECTION}>Mathlib, theorem Gamma_mul_Gamma_one_sub</a>.
         </p>
       </section>
-
-      <section>
-        <h2>What we did not check</h2>
-        <ul>
-          <li>We read the statements of Mathlib, not their proofs, and we compiled nothing.</li>
-          <li>
-            We read sections 1, 2 and 12 to 17 of Euler's paper, in translation, not the Latin.
-          </li>
-          <li>
-            We did not read Legendre's paper for 1810, so the first use of the letter Γ can be
-            earlier than the book of 1811.
-          </li>
-          <li>We did not read the work of Bohr and Mollerup, only Mathlib's statement.</li>
-          <li>
-            Mathlib's integral for Γ is written in another form than Euler's. We read no statement
-            that the two forms are equal.
-          </li>
-          <li>We did not look up where Euler gave the reflection formula.</li>
-        </ul>
-      </section>
     </main>
   );
 }
