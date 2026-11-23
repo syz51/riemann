@@ -13,7 +13,8 @@ Every task reads the Lean library from one repository at one commit:
 - Repository: `github.com/leanprover-community/riemann-hypothesis`, the Lean community's copy, at commit `40e56bab026552e089d7afcfeff08d2defb9c005`. The repository's README says that this first commit is the submitted Lean source exactly as published [7](docs/references.md#reference-7).
 - Later commits on its `main` branch hold cleanup and simplification work by other people. Read them to see what is already simplified, not as the original.
 - The main theorems are in `src/Main.lean` [3](docs/references.md#reference-3).
-- The proof map is the README of `github.com/nasqret/riemann-rev`, commit `d53b3804bd013df4cf9af3b4087728148c90c9bd` [4](docs/references.md#reference-4).
+- The route of the proof is in `docs/notes/00-route.md`. It comes from our own reading of the Lean source.
+- Other people's guides are an index only, never evidence. An example is `github.com/nasqret/riemann-rev` [4](docs/references.md#reference-4): it tells us which file to open, and a statement counts only after we read the Lean declaration.
 
 The project first read twelve files from another mirror, `github.com/tamnd/riemann-lean`. All twelve are byte-identical to the files at the commit above (compared by SHA-256 on 22 November 2026).
 

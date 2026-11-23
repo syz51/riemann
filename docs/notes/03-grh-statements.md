@@ -7,7 +7,7 @@
 - All four definitions use Mathlib terms only. The library adds no definition of its own to them.
 - One is the Riemann hypothesis written out again. Three are forms of the generalized Riemann hypothesis for Dirichlet L-functions.
 - The three forms are the usual statement and two variants of it. The classical argument shows that they agree; the note explains why below.
-- The joint statement of the Lean and Mathlib maintainers certifies the Riemann hypothesis statement only [2](../references.md#reference-2). The checks that cover all five theorems are Sutherland's [5](../references.md#reference-5) and the reading project's [4](../references.md#reference-4).
+- The joint statement of the Lean and Mathlib maintainers certifies the Riemann hypothesis statement only [2](../references.md#reference-2). The checks that cover all five theorems are Sutherland's [5](../references.md#reference-5).
 - "Generalized" here means Dirichlet L-functions only. Other families of L-functions are not covered [5](../references.md#reference-5).
 
 ## The four definitions
@@ -76,7 +76,6 @@ The danger for a formal proof is a theorem whose statement does not say what its
 | Sutherland, con-ron in compare mode | All five theorems | The same result | [5](../references.md#reference-5) |
 | Sutherland, lake comparator | All five theorems | Listed as running: statement comparison and axiom check passed in one run, kernel stages in progress | [5](../references.md#reference-5) |
 | Sutherland, axioms of the five theorems | All five theorems | Only `propext`, `Classical.choice`, `Quot.sound` | [5](../references.md#reference-5) |
-| Reading project, comparison with the challenge | All five theorems | "All five canonical statements matched" | [4](../references.md#reference-4) |
 
 We ran none of these checks. Two things we did compare ourselves:
 
@@ -88,4 +87,4 @@ We ran none of these checks. Two things we did compare ourselves:
 - The challenge file has the same definitions as the library's own `Statements.lean`. So the comparison shows that the proofs prove these statements. It does not show that the statements are the right mathematics. That rests on reading them, as this note does, and on Mathlib's definitions of `riemannZeta` and `LFunction`, which we did not read below their statements.
 - Sutherland describes one more check that does not depend on Mathlib's definition of zeta: the proof combined with a formalization of Robin's and Lagarias's criteria [5](../references.md#reference-5). We have not read that part.
 - The scope is Dirichlet L-functions. Sutherland states that Dedekind zeta functions, Hecke L-functions and automorphic L-functions in general are not among the checked statements [5](../references.md#reference-5).
-- Early news reports named one more check of the statement, by Elliot Glazer. The joint statement [2](../references.md#reference-2), the dashboard [4](../references.md#reference-4) and Sutherland's overview [5](../references.md#reference-5) do not contain that name, so this note does not cover it.
+- Early news reports named one more check of the statement, by Elliot Glazer. The joint statement [2](../references.md#reference-2) and Sutherland's overview [5](../references.md#reference-5) do not contain that name, so this note does not cover it.

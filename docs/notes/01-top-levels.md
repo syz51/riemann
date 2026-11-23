@@ -1,6 +1,6 @@
-# The top three levels of the proof
+# The top levels of the proof
 
-This note traces the main theorem back three levels. Every Lean statement is copied from the pinned repository [7](../references.md#reference-7). The plain-word lines are our reading. A line marked "guess" interprets a name whose definition we have not read.
+This note traces the main theorem back four levels. Every Lean statement is copied from the pinned repository [7](../references.md#reference-7). The plain-word lines are our reading. A line marked "guess" interprets a name whose definition we have not read.
 
 ## Result in short
 
@@ -106,7 +106,7 @@ Guesses from the names, not checked:
 - `LLC` stands for the local Langlands correspondence.
 - `VWin` is a statement that some comparison "wins", one case per character.
 
-`EveryCharacter.lean` holds a theorem with the same conclusion. Guess: `every_character_of_literature_of_vWin` uses it. We have not read the file that would show the link, `EveryCharacterOfLiteratureOfVWin.lean`, so `plugAll` is not confirmed as part of the route.
+`EveryCharacter.lean` holds a theorem with the same conclusion, `plugAll`. It is not confirmed as part of the route: the proof term of level 4 below does not name it.
 
 ```lean
 theorem UpperTheory.Top.plugAll (hG : GlobalTheory.GLq.Green) (hV : UpperTheory.Top.VWin)
@@ -115,6 +115,28 @@ theorem UpperTheory.Top.plugAll (hG : GlobalTheory.GLq.Green) (hV : UpperTheory.
 ```
 
 In plain words: three inputs (`Green`, `VWin`, and a package `Hyps`) go into `plugWin`, and the lemma `imprimitive` turns the result into `EveryCharacter`. Guess: `plugWin` gives the statement for primitive characters, and `imprimitive` extends it to all characters.
+
+## Level 4: `every_character_of_literature_of_vWin`
+
+File `Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean`. We read its last theorem and lines 215 to 262, not the whole file of 814 lines.
+
+```lean
+theorem UpperTheory.LiteratureTheorems.every_character_of_literature_of_vWin (O : _root_.UpperTheory.LiteratureTheorems.OpenLiteratureStatements) (hV : UpperTheory.Top.VWin) : UpperTheory.EveryCharacter :=
+  _root_.UpperTheory.Lit.every_character_of_theta_integrals_local_matching …
+```
+
+In plain words: a package `O` and the statement `VWin` imply `EveryCharacter`. The proof term is one call of `UpperTheory.Lit.every_character_of_theta_integrals_local_matching`. Its arguments are `hV` and a long list of theorems with names such as `published_results_eigen O` and `ar_degree_of_literature O`. We have not opened that declaration, so the trace stops here.
+
+The package `O` has three fields:
+
+```lean
+structure UpperTheory.LiteratureTheorems.OpenLiteratureStatements : Prop where
+  caraianiLocalGlobalDual : _root_.UpperTheory.One.M.Row
+  localLanglandsExists : _root_.UpperTheory.Zero.LLC.RecTExists
+  galoisRepOfPolarizedPairLit : _root_.UpperTheory.One.M.Row
+```
+
+Level 3 builds this package as `⟨h, UpperTheory.Zero.LLC.recTExists, h⟩`, where `h` is the `Row0b` input. So the first and third fields receive the same term.
 
 ## How readable are the statements?
 
@@ -133,7 +155,8 @@ What we know about them:
 
 - `everyCharacter` itself takes no hypothesis. That fact alone does not show that the lemmas below it are proved: a lemma can still rest on an added axiom.
 - Inside the library, some of these propositions are passed as hypotheses. For example, `CorGKOf.lean` has `corGK_of (hH : UpperTheory.V.Af.HypothesesH') : U3.CorGK`. So such a lemma is conditional, and a later theorem must supply the hypothesis.
-- The dashboard reports that the main theorems rest on only the three standard axioms of Lean (`propext`, `Classical.choice`, `Quot.sound`) [4](../references.md#reference-4). If that report is right, no such proposition is left as an assumption. We have not run this check ourselves.
+- In the lines that we read (215 to 262 of `EveryCharacterOfLiteratureOfVWin.lean`), each theorem named `…_of_literature` takes the package `O` and returns a proposition. Several ignore `O` and return a term that needs no hypothesis. An example is `global_artin_reciprocity_of_literature O`, whose proof term is `GlobalTheory.globalArtinReciprocity_holds`. So in these lines the word "literature" names a result that the library proves. It does not mark an assumption. These lines hold 22 theorems, and 17 of them carry `_of_literature` in the name. We did not read the rest of the file.
+- Sutherland reports an axiom check that he ran [5](../references.md#reference-5). His table has the row "#print axioms for the five theorems in Main.lean | pass | propext, Classical.choice, Quot.sound only", and the row "No axioms declared outside Lean core | pass | 15 axioms in the environment, all in Init". If that report is right, no such proposition is left as an assumption. We have not run this check ourselves.
 
 ## Simplification candidates seen here
 
@@ -155,3 +178,4 @@ All from `src/` of the pinned repository:
 - `Development/AutomorphicArithmetic/CharacterBoxes/ClaimStrip.lean` (declaration names, and the proofs of `strip` and `zeta`)
 - `Development/AutomorphicArithmetic/CharacterBoxes/HalfPlane.lean`
 - `Development/AutomorphicArithmetic/AutomorphicVarieties/SmallClassNumbers/CorGKOf.lean` (not on the path to `rhOfAll`)
+- `Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean` (lines 215 to 262 and the last theorem only)

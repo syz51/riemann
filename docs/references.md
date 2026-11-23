@@ -32,7 +32,7 @@ Inspection: the file read in full: two imports and five theorems. Its imports, `
 
 Inspection depth: abstract.
 
-Inspection: abstract only. Read from the saved copy: the section "The route of the proof" with its seven steps, the two isolated implications and the table of fourteen components, and the lines on axioms. The table of checks was read through a fetch agent's summary. The guide (a PDF) and the ledger of runs are not read. A third-party reading aid, not an authority on the proof.
+Inspection: abstract only. Read from the saved copy: the section "The route of the proof" with its seven steps, the two isolated implications and the table of fourteen components, and the lines on axioms. The table of checks was read through a fetch agent's summary. The guide (a PDF) and the ledger of runs are not read. A third-party reading aid, not an authority on the proof. The notes use it as an index of file paths and declaration names only, never as evidence.
 
 ## Reference 5
 
@@ -56,7 +56,7 @@ Inspection: abstract only. One definition was read, `RiemannHypothesis`; the res
 
 Inspection depth: abstract.
 
-Inspection: abstract only, relative to the whole library: fifteen files read, out of 175,187 that the repository's README reports. Fourteen are attached here as texts; the fifteenth, `Main.lean`, is attached to reference 3. Three of the fourteen were fetched on 23 November 2026 from this repository directly: `ZeroFreeAllOfTopG.lean` and `ZeroFreeOfRpowWindow.lean`, read in full, and `EveryCharacterOfLiteratureOfVWin.lean`, of which only the last theorem was read. The notes that quote the files list them. The repository says this commit is the submission exactly as published. The files were first fetched from the mirror tamnd/riemann-lean and are byte-identical to this commit. Two files outside `src/` are also attached: `lake-manifest.json` at the same commit, read for the Mathlib pin, and the repository's README at the later commit 2dea99006976a5104032e495d7513dee40fbb5ca, read in part. The repository's challenge file `src/Challenge.lean` at that later commit is attached too and was read in full; it is not part of the submission and not in the count of fifteen.
+Inspection: abstract only, relative to the whole library: fifteen files read, out of 175,187 that the repository's README reports. Fourteen are attached here as texts; the fifteenth, `Main.lean`, is attached to reference 3. Three of the fourteen were fetched on 23 November 2026 from this repository directly: `ZeroFreeAllOfTopG.lean` and `ZeroFreeOfRpowWindow.lean`, read in full, and `EveryCharacterOfLiteratureOfVWin.lean`, of which only lines 215 to 262 and the last theorem were read. The notes that quote the files list them. The repository says this commit is the submission exactly as published. The files were first fetched from the mirror tamnd/riemann-lean and are byte-identical to this commit. Two files outside `src/` are also attached: `lake-manifest.json` at the same commit, read for the Mathlib pin, and the repository's README at the later commit 2dea99006976a5104032e495d7513dee40fbb5ca, read in part. The repository's challenge file `src/Challenge.lean` at that later commit is attached too and was read in full; it is not part of the submission and not in the count of fifteen.
 
 ## Reference 8
 
