@@ -10,9 +10,15 @@ export function Stepper(props: { parts: Part[] }) {
 
   return (
     <div class="stepper">
-      {/* Every part is on the page, one upon the other, and only one shows. So the box has
-          the height of the tallest part, and nothing moves when the part changes. */}
-      <div class="parts" aria-live="polite">
+      {/* A change of visibility is not a change of content, so a screen reader gets the
+          new part's number and title from this line. */}
+      <p class="sr-only" aria-live="polite">
+        Part {index() + 1} of {props.parts.length}: {props.parts[index()]?.title}
+      </p>
+      {/* Every part is on the page, one upon the other, and only one shows. The parts share
+          their rows, so each row has the height of its tallest content in any part, and
+          nothing moves when the part changes. */}
+      <div class="parts">
         <For each={props.parts}>
           {(part, at) => (
             <div class={at() === index() ? "part current" : "part"}>

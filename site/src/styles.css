@@ -537,9 +537,18 @@ h3 {
   margin: 0;
 }
 
+/* A block, not a flex box: a wide equation must keep its scroll from the left edge. */
 .stepper .part .equation {
-  display: flex;
-  align-items: center;
+  align-content: center;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 .equation {
