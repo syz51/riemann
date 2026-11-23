@@ -23,12 +23,12 @@ const CUBIC: Part[] = [
   {
     title: "Why the formula is right",
     equation: tex`(u + v)^3 = u^3 + v^3 + 3uv\,(u + v)`,
-    text: prose`Write $x = u + v$. By the line above, $x^3 = px + q$ holds when $3uv = p$ and $u^3 + v^3 = q$. The formula finds such $u$ and $v$: their third powers are $q/2 + \sqrt{w}$ and $q/2 - \sqrt{w}$. So the formula had a proof. But the proof takes the square root of $w$, so it holds only when $w$ is not negative.`,
+    text: prose`Write $x = u + v$. By the line above, $x^3 = px + q$ holds when $3uv = p$ and $u^3 + v^3 = q$. The formula finds such $u$ and $v$. Their third powers are $q/2 + \sqrt{w}$ and $q/2 - \sqrt{w}$: the sum is $q$, and the product is $(p/3)^3$, so $uv = p/3$. This is the argument in the words of today; Cardano had a proof in 1545. The argument takes the square root of $w$, so it needs a $w$ that is not negative.`,
   },
   {
     title: "The proof stops here",
     equation: tex`x = \sqrt[3]{2 + \sqrt{-121}} + \sqrt[3]{2 - \sqrt{-121}}`,
-    text: prose`Here $p = 15$ and $q = 4$. So $w = 2^2 - 5^3 = 4 - 125 = -121$. The formula asks for the square root of $-121$. No number of that time had a negative square, so the proof says nothing here. Cardano avoided this case in his book. But the equation has the answer 4.`,
+    text: prose`Here $p = 15$ and $q = 4$. So $w = 2^2 - 5^3 = 4 - 125 = -121$. The formula asks for the square root of $-121$. No number of that time had a negative square, so the argument of part 3 stops. Cardano avoided this case in his book. But the equation has the answer 4.`,
   },
   {
     title: "Bombelli calculates anyway",
@@ -38,7 +38,7 @@ const CUBIC: Part[] = [
   {
     title: "The impossible parts cancel",
     equation: tex`x = \left(2 + \sqrt{-1}\right) + \left(2 - \sqrt{-1}\right) = 4`,
-    text: prose`The two pieces with $\sqrt{-1}$ cancel, and the plain answer 4 is left. So the formula gives the right answer, if $\sqrt{-1}$ may follow the usual rules of arithmetic. Nobody could say why it may, and Bombelli himself doubted the result at first. The road to a real answer went through numbers that did not exist yet. That is why they were defined.`,
+    text: prose`The two pieces with $\sqrt{-1}$ cancel, and the plain answer 4 is left. So the formula gives the right answer, if $\sqrt{-1}$ may follow the usual rules of arithmetic. Bombelli himself doubted the result at first, and a foundation for these rules came only in 1797. The road to a real answer went through numbers that did not exist yet. That is why they were defined.`,
   },
 ];
 

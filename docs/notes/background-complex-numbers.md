@@ -21,7 +21,7 @@ The owner asked on 23 November 2026: how were people sure that the formula is co
 - Tartaglia told Cardano the formula "but not the proof", and Cardano "was able to reconstruct the proof" [9](../references.md#reference-9), item 4. So the formula had a proof in 1545.
 - The derivation takes the square root of w. When w is negative it had no meaning then, so the proof did not cover that case. This is our reading of the derivation, not a quotation.
 - The case with a negative w has the name casus irreducibilis. "Cardano avoids discussing this case in Ars Magna" [9](../references.md#reference-9), item 5.
-- Cardano came back to it in 1570, in the book "De aliza regula", "devoted to the “irreducible case” of the cubic equation". That work "did not give solutions to the irreducible case" [16](../references.md#reference-16).
+- Cardano came back to it in 1570. Reference 16 says that "in some cases he used imaginary numbers", and that in 1570, "in a new edition of the *Ars magna*", he added a section "De aliza regula", "devoted to the “irreducible case” of the cubic equation, in which Cardano’s rule is extended to imaginary numbers". The same source says that this work "did not give solutions to the irreducible case" [16](../references.md#reference-16). Its own bibliography lists "De aliza regula liber" as a work of Basel, 1570; whether it is a section or a separate book is not checked.
 - So people did doubt. Bombelli wrote of his own calculation: "At first, the thing seemed to me to be based more on sophism than on truth, but I searched until I found the proof" [9](../references.md#reference-9), item 7.
 - What the calculation of Bombelli shows, by our own check: with the one rule that the square of √−1 is −1, u = 2 + √−1 and v = 2 − √−1 give uv = 4 + 1 = 5 = p/3 and u³ + v³ = (2 + 11√−1) + (2 − 11√−1) = 4 = q. So the two conditions of the derivation hold, and x = u + v = 4 is the known solution.
 - That is a proof only if √−1 follows the usual rules of arithmetic. A foundation for that came with Wessel in 1797 (see the dates below).
@@ -44,7 +44,7 @@ The owner asked on 23 November 2026: how were people sure that the formula is co
 
 ## Not checked
 
-- Sources disagree on how far Cardano himself treated the case with a negative number under the root. Reference 9 says he avoids it in *Ars Magna*, and Reference 16 says his work of 1570 gave no solutions for it. A recreational paper (Ekert, arXiv 0806.0485, read in part, not in the registry) says that Cardano "figured out how to solve" the case. The page follows References 9 and 16.
+- Sources disagree on how far Cardano himself treated the case with a negative number under the root. Reference 9 says he avoids it in *Ars Magna* of 1545. Reference 16 says that in 1570 he extended his rule to imaginary numbers but gave no solutions for the case. Reference 17 says that Cardano "figured out how to solve the so called casus irreducibilis" and "was not happy about the appearance of square roots of negative numbers". The page says only what Reference 9 says: that he avoided the case in the book of 1545.
 - The kind of proof in *Ars Magna* (it is often described as geometric, with a cube cut in pieces) is not confirmed from a source that we read. Cardano's own text is not read.
 - Which exact words of Cardano belong to the cubic case and which to the problem of chapter 37 is not checked.
 - The picture rule "multiplying by i is a quarter turn" follows from the rule of Wessel above: i has length 1 and angle 90°. No separate source.
