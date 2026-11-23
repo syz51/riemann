@@ -13,6 +13,13 @@ test("a formula becomes an inline math element between the pieces of text", () =
   expect(html).not.toContain('display="block"');
 });
 
+test("a formula and the marks after it are in one span that does not break", () => {
+  const html = proseToHtml("It is $x$, and ($y$). Then $z$ is next.");
+  expect(html).toMatch(/^It is <span class="nowrap"><math.*?<\/math>,<\/span> and \(/);
+  expect(html).toMatch(/<\/math>\)\.<\/span> Then <math/);
+  expect(html.endsWith("</math> is next.")).toBe(true);
+});
+
 test("an unclosed formula stops the build", () => {
   expect(() => proseToHtml("The term is $1/n^2 here.")).toThrow("not closed");
 });

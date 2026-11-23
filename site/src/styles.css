@@ -1000,3 +1000,8 @@ h3 {
     font-size: 17px;
   }
 }
+
+/* A formula in running text with the punctuation marks after it (src/prose.ts). */
+.nowrap {
+  white-space: nowrap;
+}
