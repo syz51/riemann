@@ -160,7 +160,7 @@ export function ZetaPage() {
         />
         <p
           class="equation"
-          innerHTML={tex`1 + \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \cdots \quad \text{never passes} \quad 2`}
+          innerHTML={tex`1 + \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \cdots \text{ never passes } 2`}
         />
         <p
           innerHTML={prose`So the question for each power is: do the terms shrink fast enough? For the squares they
