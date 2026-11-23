@@ -20,7 +20,9 @@ Do not write Solid code from memory of version 1 or of React.
 - Packages: `solid-js` and `@solidjs/web` at 2.x; the Vite plugin is `@solidjs/vite-plugin` (not `vite-plugin-solid`, which is for version 1).
 - `tsconfig.json`: `"jsx": "preserve"` and `"jsxImportSource": "@solidjs/web"`.
 - `vite.config.ts` sets `base: "./"`, so that the build works under a sub-path.
-- Commands, run in `site/` with bun only: `bun install`, `bun run dev`, `bun run build` (type-check, then build).
+- The toolchain is Vite+ (`vite-plus`, command `vp`). `vite.config.ts` imports `defineConfig` from `vite-plus` and holds the `lint`, `fmt` and `test` blocks. The package `vite` is an alias of `@voidzero-dev/vite-plus-core`.
+- Commands, run in `site/` with bun only: `bun install`, `bun run dev`, `bun run build`, `bun run verify` (`vp check`, `vp test`, `vp build`). `vp check --fix` formats the files. Vercel runs `bun run verify`, so a lint error or a failed test stops the deploy.
+- Tests are `src/**/*.test.ts` and import from `vite-plus/test`.
 
 ## Publishing
 
@@ -33,7 +35,8 @@ Do not write Solid code from memory of version 1 or of React.
 - The content comes from `docs/notes/`. The notes are the source; change a fact in the note first, then in the step file.
 - Lean text is verbatim. Added line breaks are allowed, and the snippet's `source` line must say so.
 - `src/LeanBlock.tsx` renders a snippet. `src/leanColours.ts` colours keywords, types and numbers with one small pattern; it adds no dependency, so the page stays small. Add a word to the pattern when a new step quotes it. `src/Plane.tsx` draws the complex plane. `src/StepPage.tsx` owns the state of a step: the hovered piece, the focused piece and the pinned piece.
-- `src/App.tsx` holds the header and selects the page from the address after `#` (`#/` is the step, `#/complex-numbers` and `#/zeta` the background pages). Hash addresses need no server rules, so the build works on GitHub Pages under a sub-path.
+- `src/App.tsx` holds the header and selects the page from the address after `#` (`#/` is the contents page, `#/step-1` the step, `#/complex-numbers` and `#/zeta` the background pages). Hash addresses need no server rules, so the build works on GitHub Pages under a sub-path.
+- `src/pages.ts` is the one list of all pages: each step, with the background pages that it needs. The contents page (`ContentsPage.tsx`) and the links at the foot of each page (`PageFoot.tsx`) come from it. A new page needs an entry there and a `<Match>` in `App.tsx`. The header holds one "Contents" link only: do not add a link per page there, because the list grows.
 - A background page (`src/ComplexPage.tsx`, `src/ZetaPage.tsx`) explains a prerequisite. Its record is a note in `docs/notes/`, and every section names its sources in one line under its content; a link on each fact is noise when most facts share a source. `src/MultiplyPlane.tsx` is its picture with points that the reader moves; `src/complex.ts` holds the arithmetic. `src/Stepper.tsx` shows one calculation a part at a time, on both background pages. `src/SumProduct.tsx` is the chart of the zeta page: a slider and a table carry the values, so the chart needs no hover.
 
 ## Rules for the content
@@ -45,8 +48,8 @@ Do not write Solid code from memory of version 1 or of React.
 
 ## Check a change
 
-1. `bun run build` in `site/`.
-2. `bunx vite preview --port <port>`, then the `headless-browser` skill with `--strict`: one wide shot and one shot at width 390, in both themes when colours changed. Stop the server after.
+1. `bun run verify` in `site/`.
+2. `vp preview --port <port>`, then the `headless-browser` skill with `--strict`: one wide shot and one shot at width 390, in both themes when colours changed. Stop the server after.
 
 ## Lessons
 

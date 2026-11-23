@@ -5,8 +5,7 @@ import { Stepper, type Part } from "./Stepper";
 // Source of the content: docs/notes/background-complex-numbers.md.
 // The copy at MIT. The author's own address at the University of Rhode Island
 // returned "not found" on 23 November 2026.
-const MERINO =
-  "https://math.mit.edu/~dunkel/Teach/18.04_2019S/historic/Merino_2006.pdf";
+const MERINO = "https://math.mit.edu/~dunkel/Teach/18.04_2019S/historic/Merino_2006.pdf";
 const ELKIES = "https://people.math.harvard.edu/~elkies/M229.09/zeta1.pdf";
 
 // The calculation of Bombelli.
@@ -80,30 +79,27 @@ export function ComplexPage() {
       <p class="count">Background for step 1</p>
       <h1>Why complex numbers exist</h1>
       <p class="summary">
-        Nobody wanted them. A correct formula for ordinary answers passed
-        through the square roots of negative numbers, and the answers came out
-        right.
+        Nobody wanted them. A correct formula for ordinary answers passed through the square roots
+        of negative numbers, and the answers came out right.
       </p>
 
       <section>
         <h2>The equation that forced the issue</h2>
         <p>
-          A common belief is that complex numbers were made to give the equation
-          x² = −1 a solution. The history is different. They came from equations
-          with a third power.
+          A common belief is that complex numbers were made to give the equation x² = −1 a solution.
+          The history is different. They came from equations with a third power.
         </p>
         <Stepper parts={CUBIC} />
         <p class="sources">
-          Source: <a href={MERINO}>Merino, A Short History of Complex Numbers</a>,
-          items 4 to 7.
+          Source: <a href={MERINO}>Merino, A Short History of Complex Numbers</a>, items 4 to 7.
         </p>
       </section>
 
       <section>
         <h2>From a trick to a point of the plane</h2>
         <p>
-          The new numbers worked, but for more than two hundred years they had
-          no satisfactory foundation. The answer was a picture.
+          The new numbers worked, but for more than two hundred years they had no satisfactory
+          foundation. The answer was a picture.
         </p>
         <ol class="timeline">
           <For each={TIMELINE}>
@@ -116,28 +112,25 @@ export function ComplexPage() {
           </For>
         </ol>
         <p class="sources">
-          Source: <a href={MERINO}>Merino, A Short History of Complex Numbers</a>,
-          items 4 to 8 and 11 to 15. For 1859:{" "}
-          <a href={ELKIES}>Elkies, Math 229 notes on the zeta function</a>.
+          Source: <a href={MERINO}>Merino, A Short History of Complex Numbers</a>, items 4 to 8 and
+          11 to 15. For 1859: <a href={ELKIES}>Elkies, Math 229 notes on the zeta function</a>.
         </p>
       </section>
 
       <section>
         <h2>The picture: turn and stretch</h2>
         <p>
-          A complex number is a point of the plane. Its real part says how far
-          right it is. Its imaginary part says how far up. The point also has a
-          length, its distance from zero, and an angle, measured from the right
-          half of the horizontal axis.
+          A complex number is a point of the plane. Its real part says how far right it is. Its
+          imaginary part says how far up. The point also has a length, its distance from zero, and
+          an angle, measured from the right half of the horizontal axis.
         </p>
         <p>
-          To add two numbers, add the parts. To multiply two numbers, multiply
-          the lengths and add the angles. This is the rule in Wessel's paper.
+          To add two numbers, add the parts. To multiply two numbers, multiply the lengths and add
+          the angles. This is the rule in Wessel's paper.
         </p>
         <MultiplyPlane />
         <p class="sources">
-          Source for the rule:{" "}
-          <a href={MERINO}>Merino, A Short History of Complex Numbers</a>, item
+          Source for the rule: <a href={MERINO}>Merino, A Short History of Complex Numbers</a>, item
           12. The numbers in the picture are computed on this page.
         </p>
       </section>
@@ -145,23 +138,17 @@ export function ComplexPage() {
       <section>
         <h2>Why the zeta function needs them</h2>
         <p>
-          Zeta starts as an endless sum. The sum works only where the real part
-          of s is above 1. In 1859, Riemann showed that zeta has a meaning on
-          the whole plane, except at the point 1.
+          Zeta starts as an endless sum. The sum works only where the real part of s is above 1. In
+          1859, Riemann showed that zeta has a meaning on the whole plane, except at the point 1.
         </p>
         <p>
-          Apart from the trivial zeros −2, −4, −6, and so on, every zero of zeta
-          has a real part from 0 to 1. So each zero that the hypothesis talks
-          about lies where the sum does not work. Without the plane, there is no
-          statement to prove.
+          Apart from the trivial zeros −2, −4, −6, and so on, every zero of zeta has a real part
+          from 0 to 1. So each zero that the hypothesis talks about lies where the sum does not
+          work. Without the plane, there is no statement to prove.
         </p>
         <p class="sources">
-          Source: <a href={ELKIES}>Elkies, Math 229 notes on the zeta function</a>,
-          the theorem marked “Riemann 1859”.
-        </p>
-        <p>
-          <a href="#/zeta">Read where the zeta function came from</a>, or{" "}
-          <a href="#/">go to step 1: what exactly was proved</a>.
+          Source: <a href={ELKIES}>Elkies, Math 229 notes on the zeta function</a>, the theorem
+          marked “Riemann 1859”.
         </p>
       </section>
     </main>

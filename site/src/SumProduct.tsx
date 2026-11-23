@@ -30,7 +30,7 @@ const isPrime = (n: number) => {
 const PRIMES = Array.from({ length: MAX }, (_, i) => i + 1).filter(isPrime);
 
 /** sums[n] and products[n] for n from 1 to MAX; index 0 is not used. */
-function series(s: number) {
+export function series(s: number) {
   const sums = [0];
   const products = [1];
   for (let n = 1; n <= MAX; n++) {
@@ -41,7 +41,7 @@ function series(s: number) {
 }
 
 /** The value that the sum approaches. For s = 1 there is none. */
-function limit(s: number): number | undefined {
+export function limit(s: number): number | undefined {
   if (s === 1) return undefined;
   const terms = 200_000;
   let sum = 0;
@@ -135,7 +135,13 @@ export function SumProduct() {
           {(tick) => (
             <>
               <line class="grid" x1={LEFT} x2={WIDTH - RIGHT} y1={y(tick)} y2={y(tick)} />
-              <text class="tick" x={LEFT - 8} y={y(tick)} dominant-baseline="central" text-anchor="end">
+              <text
+                class="tick"
+                x={LEFT - 8}
+                y={y(tick)}
+                dominant-baseline="central"
+                text-anchor="end"
+              >
                 {Number(tick.toFixed(2))}
               </text>
             </>
@@ -143,7 +149,13 @@ export function SumProduct() {
         </For>
         <For each={X_TICKS}>
           {(tick) => (
-            <text class="tick" x={x(tick)} y={HEIGHT - BOTTOM + 12} dominant-baseline="hanging" text-anchor="middle">
+            <text
+              class="tick"
+              x={x(tick)}
+              y={HEIGHT - BOTTOM + 12}
+              dominant-baseline="hanging"
+              text-anchor="middle"
+            >
               {tick}
             </text>
           )}
@@ -178,18 +190,18 @@ export function SumProduct() {
               Product over {used().length} {used().length === 1 ? "prime" : "primes"}
               <Show when={used().length > 0}>
                 {" "}
-                ({used().length > 4
+                (
+                {used().length > 4
                   ? `2, 3, 5, … , ${used()[used().length - 1]}`
-                  : used().join(", ")})
+                  : used().join(", ")}
+                )
               </Show>
             </th>
             <td>{digits(product())}</td>
           </tr>
           <tr>
             <th scope="row">The value that both approach</th>
-            <td>
-{limitText()}
-            </td>
+            <td>{limitText()}</td>
           </tr>
         </tbody>
       </table>

@@ -1,25 +1,19 @@
-import { createSignal, Match, Switch } from "solid-js";
+import { createSignal, Match, Show, Switch } from "solid-js";
 import { ComplexPage } from "./ComplexPage";
+import { ContentsPage } from "./ContentsPage";
+import { PageFoot } from "./PageFoot";
+import { CONTENTS, href, routeOf } from "./pages";
 import { StepPage } from "./StepPage";
 import { ZetaPage } from "./ZetaPage";
 
-type Route = "step" | "complex" | "zeta";
-
-// The address after "#" selects the page, so the built site needs no server
-// rules and works under any sub-path.
-const readRoute = (): Route => {
-  if (location.hash === "#/complex-numbers") return "complex";
-  if (location.hash === "#/zeta") return "zeta";
-  return "step";
-};
-
 export function App() {
-  const [route, setRoute] = createSignal(readRoute());
+  // The address after "#" selects the page, so the built site needs no server
+  // rules and works under any sub-path.
+  const [route, setRoute] = createSignal(routeOf(location.hash));
   window.addEventListener("hashchange", () => {
-    setRoute(readRoute());
+    setRoute(routeOf(location.hash));
     window.scrollTo(0, 0);
   });
-  const current = (page: Route) => (route() === page ? "page" : undefined);
 
   return (
     <>
@@ -31,27 +25,29 @@ export function App() {
             <a href="https://github.com/syz51/riemann">Notes and sources</a>
           </p>
         </div>
-        <nav aria-label="Pages">
-          <a href="#/" aria-current={current("step")}>
-            Step 1
-          </a>
-          <a href="#/complex-numbers" aria-current={current("complex")}>
-            Background: complex numbers
-          </a>
-          <a href="#/zeta" aria-current={current("zeta")}>
-            Background: the zeta function
+        {/* One link, whatever the number of pages: the list is on the contents page. */}
+        <nav aria-label="Site">
+          <a href={href(CONTENTS)} aria-current={route() === CONTENTS ? "page" : undefined}>
+            Contents
           </a>
         </nav>
       </header>
 
-      <Switch fallback={<StepPage />}>
-        <Match when={route() === "complex"}>
+      <Switch fallback={<ContentsPage />}>
+        <Match when={route() === "step-1"}>
+          <StepPage />
+        </Match>
+        <Match when={route() === "complex-numbers"}>
           <ComplexPage />
         </Match>
         <Match when={route() === "zeta"}>
           <ZetaPage />
         </Match>
       </Switch>
+
+      <Show when={route() !== CONTENTS}>
+        <PageFoot route={route()} />
+      </Show>
     </>
   );
 }

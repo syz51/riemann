@@ -10,9 +10,7 @@ export function StepPage() {
   const [focused, setFocused] = createSignal<string | null>(null);
   // The pointer wins over keyboard focus, and both win over the pinned piece.
   const activeId = createMemo(() => hovered() ?? focused() ?? pinned());
-  const active = createMemo(() =>
-    step.pieces.find((piece) => piece.id === activeId()),
-  );
+  const active = createMemo(() => step.pieces.find((piece) => piece.id === activeId()));
   const togglePin = (piece: string) => {
     if (pinned() === piece) {
       // A press that releases the pin also drops the focus state, so that the
@@ -32,10 +30,9 @@ export function StepPage() {
       <h1>{step.title}</h1>
       <p class="summary">{step.summary}</p>
       <p class="aside-link">
-        New to complex numbers? Read{" "}
-        <a href="#/complex-numbers">why complex numbers exist</a> first. New to
-        the zeta function? Read{" "}
-        <a href="#/zeta">where the zeta function came from</a>.
+        New to complex numbers? Read <a href="#/complex-numbers">why complex numbers exist</a>{" "}
+        first. New to the zeta function? Read <a href="#/zeta">where the zeta function came from</a>
+        .
       </p>
 
       <div class="columns">
@@ -73,8 +70,7 @@ export function StepPage() {
               when={active()}
               fallback={
                 <p class="hint">
-                  Point at a marked part of the Lean text, or press it to
-                  keep its explanation open.
+                  Point at a marked part of the Lean text, or press it to keep its explanation open.
                 </p>
               }
             >

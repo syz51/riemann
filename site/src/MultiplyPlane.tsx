@@ -45,8 +45,7 @@ const settle = (raw: Complex, limit: number): Complex | undefined => {
 function Name(props: { at: Complex; text: string }) {
   const out = () => 17 / (length(props.at) * UNIT || 1);
   // The name stays inside the picture when the point is at the edge.
-  const inside = (at: number, margin: number) =>
-    Math.min(SIZE - margin, Math.max(margin, at));
+  const inside = (at: number, margin: number) => Math.min(SIZE - margin, Math.max(margin, at));
   return (
     <text
       x={inside(px(props.at.re) + props.at.re * UNIT * out(), 24)}
@@ -95,9 +94,7 @@ function Handle(props: {
         const next = { re: props.value.re + by.re, im: props.value.im + by.im };
         // Zero is refused, so a step that would land on zero goes one step further.
         const onZero = length(next) < STEP / 2;
-        props.onMove(
-          onZero ? { re: next.re + by.re, im: next.im + by.im } : next,
-        );
+        props.onMove(onZero ? { re: next.re + by.re, im: next.im + by.im } : next);
       }}
     >
       <line x1={px(0)} y1={py(0)} x2={px(props.value.re)} y2={py(props.value.im)} />
@@ -163,12 +160,7 @@ export function MultiplyPlane() {
 
           <g class="product">
             <line x1={px(0)} y1={py(0)} x2={px(product().re)} y2={py(product().im)} />
-            <rect
-              x={px(product().re) - 6}
-              y={py(product().im) - 6}
-              width="12"
-              height="12"
-            />
+            <rect x={px(product().re) - 6} y={py(product().im) - 6} width="12" height="12" />
             <Name at={product()} text="z × w" />
           </g>
           <For each={order()}>
@@ -179,19 +171,14 @@ export function MultiplyPlane() {
                 value={handle.value()}
                 onMove={handle.onMove}
                 onRelease={() =>
-                  setOrder(
-                    handle === handles.z
-                      ? [handles.z, handles.w]
-                      : [handles.w, handles.z],
-                  )
+                  setOrder(handle === handles.z ? [handles.z, handles.w] : [handles.w, handles.z])
                 }
               />
             )}
           </For>
         </svg>
         <figcaption>
-          Drag z or w, or select a point and use the arrow keys. The square
-          point is the product.
+          Drag z or w, or select a point and use the arrow keys. The square point is the product.
         </figcaption>
       </figure>
 
@@ -261,13 +248,12 @@ export function MultiplyPlane() {
         </button>
         <Show when={!productFits()}>
           <p class="note">
-            Not possible now: in this picture, the length of z stays between{" "}
-            {STEP} and {Z_LIMIT}.
+            Not possible now: in this picture, the length of z stays between {STEP} and {Z_LIMIT}.
           </p>
         </Show>
         <p class="hint">
-          Set w to i and press this button two times. Two quarter turns make a
-          half turn, so z lands on −z. This is the rule i × i = −1 as a picture.
+          Set w to i and press this button two times. Two quarter turns make a half turn, so z lands
+          on −z. This is the rule i × i = −1 as a picture.
         </p>
       </div>
     </div>

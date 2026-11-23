@@ -25,6 +25,7 @@ Public address: <https://riemann-kappa.vercel.app>.
 
 - Run it: `cd site && bun install && bun run dev`.
 - Build it: `cd site && bun run build`. The result is in `site/dist/`.
+- Check it: `cd site && bun run verify`. This formats, lints, type-checks, tests and builds with Vite+ (`vp`).
 - Publish it: push to `main`. Vercel builds the site as `vercel.json` says and puts it at the public address. The install step names a bun version, because Vercel's own bun is older and cannot read `site/bun.lock`.
 
 ## Goal

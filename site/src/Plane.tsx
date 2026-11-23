@@ -17,8 +17,7 @@ const IM_TICKS = [-30, -20, -10, 10, 20, 30];
 
 /** The complex plane with the zeros of zeta, the point 1 and the critical line. */
 export function Plane(props: { mark: PlaneMark | undefined }) {
-  const on = (...marks: PlaneMark[]) =>
-    props.mark !== undefined && marks.includes(props.mark);
+  const on = (...marks: PlaneMark[]) => props.mark !== undefined && marks.includes(props.mark);
 
   return (
     <figure class="plane">
@@ -68,9 +67,7 @@ export function Plane(props: { mark: PlaneMark | undefined }) {
         </g>
 
         <g class={["zeros", { on: on("zeros") }]}>
-          <For each={NONTRIVIAL}>
-            {(im) => <circle cx={x(0.5)} cy={y(im)} r="4" />}
-          </For>
+          <For each={NONTRIVIAL}>{(im) => <circle cx={x(0.5)} cy={y(im)} r="4" />}</For>
         </g>
         <g class={["zeros", { on: on("zeros", "trivial") }]}>
           <For each={TRIVIAL}>{(re) => <circle cx={x(re)} cy={y(0)} r="4" />}</For>
@@ -84,9 +81,8 @@ export function Plane(props: { mark: PlaneMark | undefined }) {
         </g>
       </svg>
       <figcaption>
-        Filled points are zeros of zeta. The open point is s = 1. The shaded
-        band is the critical strip, from real part 0 to real part 1. The
-        vertical scale is compressed.
+        Filled points are zeros of zeta. The open point is s = 1. The shaded band is the critical
+        strip, from real part 0 to real part 1. The vertical scale is compressed.
       </figcaption>
     </figure>
   );

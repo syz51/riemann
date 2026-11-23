@@ -3,11 +3,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "typecheck": "tsc --noEmit",
-    "build": "tsc --noEmit && vite build",
-    "preview": "vite preview",
-    "share": "vite build --watch & vite preview --host 127.0.0.1 --port 4319 --strictPort"
+    "dev": "vp dev",
+    "build": "vp build",
+    "verify": "vp check && vp test && vp build",
+    "preview": "vp preview",
+    "share": "vp build --watch & vp preview --host 127.0.0.1 --port 4319 --strictPort"
   },
   "dependencies": {
     "@solidjs/web": "^2.0.3",
@@ -17,6 +17,11 @@
     "@solidjs/vite-plugin": "^3.0.1",
     "temml": "^0.14.0",
     "typescript": "^7.0.2",
-    "vite": "^8.3.8"
-  }
+    "vite": "npm:@voidzero-dev/vite-plus-core@8.3.8000",
+    "vite-plus": "1.7.0"
+  },
+  "overrides": {
+    "vite": "npm:@voidzero-dev/vite-plus-core@8.3.8000"
+  },
+  "packageManager": "bun@1.4.4"
 }

@@ -6,15 +6,13 @@ export const step1 = defineStep({
   number: 1,
   of: 4,
   title: "What exactly was proved",
-  summary:
-    "Every zero of the zeta function, apart from the trivial ones, has real part 1/2.",
+  summary: "Every zero of the zeta function, apart from the trivial ones, has real part 1/2.",
   snippets: [
     {
       heading: "The statement",
       intro:
         "This is the Riemann hypothesis as Lean reads it. It comes from Mathlib, the shared mathematics library of Lean. The author of the proof did not write it.",
-      source:
-        "Mathlib, Mathlib/NumberTheory/LSeries/RiemannZeta.lean. Line breaks added.",
+      source: "Mathlib, Mathlib/NumberTheory/LSeries/RiemannZeta.lean. Line breaks added.",
       tokens: [
         { piece: "def", text: "def RiemannHypothesis : Prop" },
         " :=\n  ",
@@ -31,8 +29,7 @@ export const step1 = defineStep({
     },
     {
       heading: "The proof, as the main file gives it",
-      intro:
-        "The pattern is: theorem, then a name, then the statement, then the proof.",
+      intro: "The pattern is: theorem, then a name, then the statement, then the proof.",
       source: "src/Main.lean of the proof library.",
       tokens: [
         "theorem ",
