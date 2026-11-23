@@ -22,6 +22,11 @@ Do not write Solid code from memory of version 1 or of React.
 - `vite.config.ts` sets `base: "./"`, so that the build works under a sub-path.
 - Commands, run in `site/` with bun only: `bun install`, `bun run dev`, `bun run build` (type-check, then build).
 
+## Publishing
+
+- The site is on Vercel at `https://riemann-kappa.vercel.app` (project `riemann`). The GitHub repository is connected, so a push to `main` deploys.
+- `vercel.json` at the repository root holds the install and build commands. Its install step runs `bunx bun@<version> install`, because the bun on Vercel's build machine was too old to read `site/bun.lock`. When the local bun writes a newer lockfile and the build on Vercel fails with "Unknown lockfile version", raise that version.
+
 ## Structure
 
 - `src/steps/stepN.ts` holds the content of one step as data: Lean snippets cut into tokens, and one explanation per marked piece. The types are in `src/steps/types.ts`.
