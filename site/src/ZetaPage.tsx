@@ -35,7 +35,7 @@ const SIEVE: Part[] = [
   {
     title: "Subtract: the multiples of 3 go",
     equation: tex`\left(1 - \frac{1}{2^2}\right) \left(1 - \frac{1}{3^2}\right) x = 1 + \frac{1}{5^2} + \frac{1}{7^2} + \cdots`,
-    text: "Take the sum of part 4 away from the sum of part 3. On the left, a sum minus 1/3² of itself is (1 − 1/3²) times the sum. On the right, the terms of 3, 9, 15 and so on leave. The numbers 1, 5, 7, 11 stay: no multiple of 2 or 3. The first one after 1 is 5, the next prime.",
+    text: "Take the sum of part 4 away from the sum of part 3. On the left, a sum minus 1/3² of itself is (1 − 1/3²) times the sum. On the right, the terms of 3, 9, 15 and so on leave. The numbers 1, 5, 7 and then 11, 13 stay: no multiple of 2 or 3. The first one after 1 is 5, the next prime.",
   },
   {
     title: "Go on with every prime",
@@ -224,7 +224,7 @@ export function ZetaPage() {
         />
         <p>
           There is one factor for each prime, and no other factor. The steps
-          need the sum to have a value: you cannot take a quarter of x away
+          need the sum to have a value: you cannot take x/2² away
           from x when x is not a number.
         </p>
         <p>

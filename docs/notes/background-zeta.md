@@ -20,6 +20,7 @@ The record behind the site page "Where the zeta function came from". Step 1 spea
 - The product is Theorem 8 of that paper: the product of 1/(1 − p^(−s)) over the primes p is equal to the sum of 1/n^s, for s > 1. "Euler only treats the case where s is a positive integer" [12](../references.md#reference-12).
 - Theorem 7 is the case s = 1. Euler's steps: from x = 1 + 1/2 + 1/3 + …, subtract x/2 to remove the even denominators, then a third of the rest to remove the multiples of 3, "and so on until all terms on the right-hand side are deleted". The proof of Theorem 8 "follows the same lines" [12](../references.md#reference-12).
 - The page shows these steps for the squares, not for s = 1. The arithmetic of the six parts is an own check. Dividing 1/n² by 4 gives 1/(2n)², so x/4 holds the terms of the even numbers, and (1 − 1/4)x = 1 + 1/9 + 1/25 + 1/49 + 1/81 + …. Dividing 1/n² by 9 gives 1/(3n)², so one ninth of that sum is 1/9 + 1/81 + 1/225 + 1/441 + …, the terms of 3, 9, 15, 21. The difference is (1 − 1/4)(1 − 1/9)x = 1 + 1/25 + 1/49 + 1/121 + …, the terms of 1, 5, 7, 11.
+- Since 23 November 2026 the stepper writes each term with its square shown, 1/2² and not 1/4, after the owner's question. The values and the arithmetic are the same; the form shows which whole number each term belongs to and which prime each factor belongs to. Part 5 shows the terms of 1, 5 and 7 only, so that the equation fits a narrow screen; its text names 11 and 13.
 - Theorem 19, the last of the paper, is the divergence of the sum of the reciprocals of the primes. As they stand, the statements of Theorems 7 and 19 "are unacceptable"; the strong form is due to Mertens in 1874 [12](../references.md#reference-12).
 - The divergence is "in some sense a wide generalization of the fact that the number of primes is infinite", which is Proposition 20 of Book IX of Euclid's *Elements* [11](../references.md#reference-11).
 - Euler, in a paper written in 1747 and published in 1751: the order of the primes is "a mystery which human mind will never be able to penetrate" [11](../references.md#reference-11).
@@ -27,7 +28,6 @@ The record behind the site page "Where the zeta function came from". Step 1 spea
 
 ## Bounded sums, and the primes against the squares
 
-- Since 23 November 2026 the stepper writes each term with its square shown, 1/2² and not 1/4, after the owner's question. The values and the arithmetic are the same; the form shows which whole number each term belongs to and which prime each factor belongs to.
 
 Added on 23 November 2026 after the owner's questions in chat.
 
