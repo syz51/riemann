@@ -12,12 +12,14 @@ Record for the page `site/src/GammaPage.tsx`. The owner asked on 23 November 202
   - Section 17: "let the circumference of this circle be p; the area will be = ¼p, so that ∫ dx √(−lx) gives ½√p". For diameter 1 the circumference is π, so the term of index 1/2 is √π/2.
   - Own arithmetic: √π/2 ≈ 0.8862. The area of a circle of diameter 1 is π/4, and its square root is √π/2, so sections 2 and 17 agree.
   - The catalogue record [20] gives the value as √(π/2). The paper does not say that; the record is wrong on this point.
+  - Sections 18 to 29 of Langton's translation [21](../references.md#reference-21): ratios of progressions where the logarithmic integral cancels (§18); parameters depending on n (§19); fractional-index terms of `1, 2, 6, 24, 120` expressed through quadratures of algebraic curves (§§20 to 23); iterated integrals (§§24 to 25); summary (§26); and fractional differentials of powers interpolated using `∫ dx (−lx)^e`, which Euler calls "more curious than useful" (§§27 to 29). Neither the letter Γ, nor the reflection formula, nor the `e^(−x)` integral form appears in these sections.
 
 ## The name Γ
 
+- Legendre's memoir *Recherches sur diverses sortes d'intégrales définies*, read on the BSB scan [25](../references.md#reference-25): the volume title page carries "ANNÉE 1809" and "AOUT, M. DCCC. X." (August of the year following 1809), and page 416 records "Lu le 13 novembre 1809". **Yes, this paper already uses the letter Γ.** On page 477 (section 53), for `∫ dx (log 1/x)^(a−1)` with `a` positive and less than 1, Legendre writes "Cette quantité étant simplement fonction de a, nous la désignerons par Γ (a)" and defines `Γ(a) = ∫ dx (log 1/x)^(a−1)` (equation (γ)).
 - Legendre, Exercices de calcul intégral, 1811, page 221 [22](../references.md#reference-22), read on the picture of the page: "j'ai cru qu'il me serait permis de donner plus spécialement le nom d'intégrales Eulériennes, à deux sortes de transcendantes". Of the second, ∫ dx (log 1/x)^(a−1) between x = 0 and x = 1: "Euler représente cette intégrale par le symbole [p/q], en supposant que a soit égal à la fraction rationnelle p/q; nous la représenterons plus généralement par Γ (a), et nous regarderons Γ (a) comme une fonction continue de a."
-- The next sentence, in the machine text of the scan only: he gives the theory as he gave it before "dans les Mémoires de l'Institut, pour l'année 1810". One word of that sentence is not legible in the machine text.
-- Own reading of the two sources: log(1/x) is −log x, so Legendre's integral is Euler's with the power a − 1 in place of n. So Γ(a) is Euler's term of index a − 1. This gives the shift: Γ(n + 1) = 1 · 2 ⋯ n.
+- The next sentence, in the machine text of the scan only: he gives the theory as he gave it before "dans les Mémoires de l'Institut, pour l'année 1810". One word of that sentence is not legible in the machine text. That refers to the memoir read in November and printed in August in the Institut volume above.
+- Own reading of the sources: log(1/x) is −log x, so Legendre's integral is Euler's with the power a − 1 in place of n. So Γ(a) is Euler's term of index a − 1. This gives the shift: Γ(n + 1) = 1 · 2 ⋯ n.
 
 ## The rules, from Mathlib
 
@@ -25,7 +27,7 @@ Record for the page `site/src/GammaPage.tsx`. The owner asked on 23 November 202
 - `Gamma_one : Gamma 1 = 1`. `Gamma_add_one (s : ℂ) (h2 : s ≠ 0) : Gamma (s + 1) = s * Gamma s`. `Gamma_nat_eq_factorial (n : ℕ) : Gamma (n + 1) = n !`.
 - `Real.Gamma_one_half_eq : Real.Gamma (1 / 2) = √π`, with the comment "The special-value formula `Γ(1/2) = √π`, which is equivalent to the Gaussian integral".
 - Own check: by `Gamma_add_one`, Γ(3/2) = (1/2) Γ(1/2) = √π/2. This is Euler's term of index 1/2. The two sources agree.
-- Not checked: that Mathlib's integral, with exp(−x) and x from 0 to infinity, equals Euler's integral with the logarithm. Mathlib calls its integral "Euler's integral"; we did not read a statement that links the two forms. The page says "an integral of Euler's kind" only.
+- Checked in Mathlib at commit 0df444a3 [8](../references.md#reference-8): searched all six files in `Analysis/SpecialFunctions/Gamma/` (`Basic.lean`, `Beta.lean`, `BohrMollerup.lean`, `Deligne.lean`, `Deriv.lean`, `Digamma.lean`) and `MeasureTheory/Integral/Gamma.lean`. Mathlib defines `Gamma` by `∫ x in Ioi 0, exp (-x) * x ^ (s - 1)` and proves power-exponential variants (`integral_rpow_mul_exp_neg_rpow`), with no statement equating `Gamma` to Euler's logarithmic integral `∫_0^1 (−log x)^(s − 1) dx`. Own calculus remark: the substitution `x = e^(−t)` turns one integral into the other, not checked in Lean. The page says "an integral of Euler's kind" only.
 
 ## Where Γ has no value
 
@@ -42,7 +44,8 @@ Record for the page `site/src/GammaPage.tsx`. The owner asked on 23 November 202
 
 ## The reflection formula
 
-- `Gamma_mul_Gamma_one_sub (z : ℂ) : Gamma z * Gamma (1 - z) = π / sin (π * z)`, with the comment "Euler's reflection formula". We did not look up where Euler gave it.
+- `Gamma_mul_Gamma_one_sub (z : ℂ) : Gamma z * Gamma (1 - z) = π / sin (π * z)`, in `Analysis/SpecialFunctions/Gamma/Beta.lean`, with the comment "Euler's reflection formula for the complex Gamma function" and no citation to a paper of Euler [8](../references.md#reference-8).
+- Euler, paper E421, *Novi Commentarii academiae scientiarum Petropolitanae* (Tom. XVI), Scholion on the scan [26](../references.md#reference-26): writing `[λ]` for `∫ dx (l 1/x)^λ`, Euler states the general theorem `[λ] · [−λ] = λ π / sin(λ π)` and derives it from his infinite-product formula for `[λ]` and `[−λ]` together with his infinite product for the sine. Own algebraic check: since `[λ] = Γ(λ + 1) = λ Γ(λ)` and `[−λ] = Γ(1 − λ)`, dividing by `λ` yields `Γ(λ) Γ(1 − λ) = π / sin(π λ)`.
 - The factor of the zeta symmetry contains Γ(s): `riemannZeta_one_sub`, in [background-zeta.md](background-zeta.md).
 
 ## The chart
@@ -53,8 +56,8 @@ Record for the page `site/src/GammaPage.tsx`. The owner asked on 23 November 202
 ## Not checked
 
 - The proofs in Mathlib; nothing is compiled.
-- Euler's Latin text, and sections 18 to 29 of the translation.
-- Legendre's paper in the Mémoires de l'Institut for 1810. So the first use of the letter Γ can be earlier than the book of 1811. The rest of the book is not read.
+- Euler's Latin text of E19, and sections 3 to 11 of Langton's translation (skimmed only).
+- The rest of Legendre's memoir in the Institut volume and the rest of his *Exercices de calcul intégral* (beyond the pages read above).
 - The work of Bohr and Mollerup.
-- The equality of Mathlib's integral and Euler's integral with the logarithm.
-- Where Euler gave the reflection formula.
+- A machine-checked Lean proof that Mathlib's `GammaIntegral` equals Euler's logarithmic integral: searched Mathlib at commit `0df444a3` and found no such theorem.
+- Whether Euler stated the reflection formula in an earlier work before E421.
