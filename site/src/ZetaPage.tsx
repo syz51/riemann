@@ -10,6 +10,8 @@ const PRIME_SUM =
   "https://en.wikipedia.org/wiki/Divergence_of_the_sum_of_the_reciprocals_of_the_primes";
 const MATHLIB_PIN =
   "https://github.com/leanprover-community/mathlib4/blob/0df444a360eaa60ab8c11dca51a86af692955474/Mathlib/NumberTheory/LSeries/RiemannZeta.lean";
+const MATHLIB_VALUES =
+  "https://github.com/leanprover-community/mathlib4/blob/0df444a360eaa60ab8c11dca51a86af692955474/Mathlib/NumberTheory/LSeries/HurwitzZetaValues.lean";
 const MATHLIB_CONJ =
   "https://github.com/leanprover-community/mathlib4/blob/90e6eec9fe53b02d431c90718e4a1d22d67a204e/Mathlib/NumberTheory/Harmonic/ZetaAsymp.lean#L454-L460";
 const ELKIES = "https://people.math.harvard.edu/~elkies/M229.09/zeta1.pdf";
@@ -270,10 +272,22 @@ export function ZetaPage() {
             at $1 - s$. He proved it for whole numbers and conjectured it for the rest.`}
         />
         <p
-          innerHTML={prose`The numbers $s$ and $1 - s$ are mirror images, with the mirror at $1/2$: 2 pairs with $-1$,
-            and 3 pairs with $-2$. The symmetry is a formula that ties the two values of a pair together. For
-            example, from the value at 2 it gives a value at $-1$. This is strange, because at $-1$ the
-            sum would be $1 + 2 + 3 + \cdots$, and that sum has no value. Euler worked with sums of
+          innerHTML={prose`The partner of a number $s$ is $1 - s$. The partner of 2 is $1 - 2 = -1$, and the
+            partner of 3 is $1 - 3 = -2$. The two numbers of a pair are at the same distance from $1/2$,
+            on opposite sides. So they are mirror images, with the mirror at $1/2$.`}
+        />
+        <p
+          innerHTML={prose`The symmetry does not say that the two values of a pair are equal. It says that they are
+            linked: the value at $1 - s$ is the value at $s$ times a known factor, and the factor
+            depends on $s$. Take the pair 2 and $-1$. The value at 2 is $\pi^2/6$, about 1.645. The
+            factor for $s = 2$ is $-1/(2\pi^2)$. The product is $-1/12$, and that is the value at
+            $-1$. One form of the function does have equal values: Riemann multiplied the function
+            by a certain factor, and the result has the same value at $s$ and at $1 - s$.`}
+        />
+        <p
+          innerHTML={prose`The value at $-1$ is strange, because at $-1$ the sum would be $1 + 2 + 3 + \cdots$, and
+            that sum has no value. The number $-1/12$ belongs to the function that has a meaning
+            on the whole plane, not to the sum. Euler worked with sums of
             alternating signs, such as $1 - 2 + 3 - 4 + \cdots$, and used a special way of summing
             to give them a meaning. In 1859, Riemann proved the symmetry for complex numbers $s$ as well.`}
         />
@@ -322,7 +336,10 @@ export function ZetaPage() {
           sum works and for the symmetry that Riemann proved.{" "}
           <a href={MATHLIB_CONJ}>Mathlib, theorem riemannZeta_conj</a>, for the second symmetry.{" "}
           <a href={MATHLIB_PIN}>Mathlib at the commit the proof builds against</a>, four statements,
-          for the mirrored pairs of zeros; the steps are in the project note.
+          for the mirrored pairs of zeros and, in the theorem riemannZeta_one_sub, for the factor
+          that links the two values of a pair; the steps are in the project note.{" "}
+          <a href={MATHLIB_VALUES}>Mathlib, values of the function</a>, for the values at 2 and at
+          −1.
         </p>
       </section>
 
