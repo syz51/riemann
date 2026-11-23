@@ -56,7 +56,7 @@ Inspection: abstract only. One definition was read, `RiemannHypothesis`; the res
 
 Inspection depth: abstract.
 
-Inspection: abstract only, relative to the whole library: fifteen files read, out of 175,187 that the repository's README reports. Fourteen are attached here as texts; the fifteenth, `Main.lean`, is attached to reference 3. Three of the fourteen were fetched on 23 November 2026 from this repository directly: `ZeroFreeAllOfTopG.lean` and `ZeroFreeOfRpowWindow.lean`, read in full, and `EveryCharacterOfLiteratureOfVWin.lean`, of which only lines 215 to 262 and the last theorem were read. The notes that quote the files list them. The repository says this commit is the submission exactly as published. The files were first fetched from the mirror tamnd/riemann-lean and are byte-identical to this commit. Two files outside `src/` are also attached: `lake-manifest.json` at the same commit, read for the Mathlib pin, and the repository's README at the later commit 2dea99006976a5104032e495d7513dee40fbb5ca, read in part. The repository's challenge file `src/Challenge.lean` at that later commit is attached too and was read in full; it is not part of the submission and not in the count of fifteen.
+Inspection: abstract only, relative to the whole library: twenty-five files read, out of 175,187 that the repository's README reports. Twenty-four are attached here as texts; the twenty-fifth, `Main.lean`, is attached to reference 3. Three were fetched directly from this repository on 23 November 2026 for [riemann-rev-guide.md](notes/riemann-rev-guide.md) and [00-route.md](notes/00-route.md): `ZeroFreeAllOfTopG.lean` and `ZeroFreeOfRpowWindow.lean`, read in full, and `EveryCharacterOfLiteratureOfVWin.lean`, of which only lines 215 to 262 and the last theorem were read. Ten more were fetched directly from this repository on 23 November 2026 for [02-stepanov.md](notes/02-stepanov.md): `KeyMinorDvd.lean`, `KeyOne.lean`, `Formalism/LatticeSlopes/Statement.lean`, `SlopeInequality.lean`, `Formalism/ThetaLiftIndependence/Statement.lean`, `FirstPrimeNeSecondPrime.lean`, `ChowlaSelbergPeriodStatement.lean`, `DesWin.lean`, and `TopShape.lean` (all nine read in full), and `PairRowIffQdRows.lean` (lines 1 to 80 read, including `RankVal`). The notes that quote the files list them. The repository says this commit is the submission exactly as published. The first twelve files were initially fetched from the mirror tamnd/riemann-lean and are byte-identical to this commit; the remaining thirteen were fetched directly from leanprover-community/riemann-hypothesis. Two files outside `src/` are also attached: `lake-manifest.json` at the same commit, read for the Mathlib pin, and the repository's README at the later commit 2dea99006976a5104032e495d7513dee40fbb5ca, read in part. The repository's challenge file `src/Challenge.lean` at that later commit is attached too and was read in full; it is not part of the submission and not in the count of twenty-five.
 
 ## Reference 8
 
@@ -177,3 +177,19 @@ Inspection: method level. Read: sections 1, 2 and 12 to 17 of the translation. T
 Inspection depth: abstract.
 
 Inspection: abstract only. Read: the picture of page 221 (leaf 228 of the scan), upper two thirds, which opens the second part, "Des intégrales Eulériennes", and has the sentence "nous la représenterons plus généralement par Γ (a), et nous regarderons Γ (a) comme une fonction continue de a". The next sentence, on the Mémoires de l'Institut for the year 1810, is read only in the machine text of the scan, where one word is not legible. The machine text prints the letter Γ as T or I, so it is not evidence for the letter; the picture is. The rest of the book is not read. A primary source.
+
+## Reference 23
+
+[23] Enrico Bombieri. **Counting points on curves over finite fields (d'après S. A. Stepanov)**. Lecture Notes in Mathematics 383, Springer-Verlag, 1974 (Séminaire Bourbaki, 25e année, 1972/73, Exposé 430, June 1973, pages 234 to 241). [Original](https://www.numdam.org/item/SB_1972-1973__15__234_0/). Accessed 23 November 2026, Asia/Tokyo.
+
+Inspection depth: full.
+
+Inspection: all eight content pages (pages 234 to 241) read in full from the NUMDAM scan (rendered to PNG and inspected visually; the embedded OCR text is attached). Because the embedded OCR text alters or drops several mathematical symbols, every formula cited in our notes was checked against the scanned page images. A primary exposition of Stepanov's method and Bombieri's derivation-free proof.
+
+## Reference 24
+
+[24] Machiel van Frankenhuijsen. **The Riemann Hypothesis for Function Fields over a Finite Field**. arXiv:0806.0044v2, June 2008. [Original](https://arxiv.org/abs/0806.0044). Accessed 23 November 2026, Asia/Tokyo.
+
+Inspection depth: method.
+
+Inspection: method level. Read Section 3 in full (pages 19 to 25: Lemma 3.1 on Diophantine approximation, Section 3.2 on the graph of Frobenius and Example 3.5, Sections 3.3 and 3.4 on Galois covers and Theorem 3.8) and the opening paragraph of Section 4. Sections 1, 2 and the rest of Section 4 are not read. A modern exposition of Bombieri's proof.
