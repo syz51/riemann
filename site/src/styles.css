@@ -40,6 +40,12 @@
   box-sizing: border-box;
 }
 
+/* A short page has no scroll bar and a long page has one. The reserved space
+   keeps the content at the same place on both. */
+html {
+  scrollbar-gutter: stable;
+}
+
 body {
   margin: 0;
   background: var(--page);
