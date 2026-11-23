@@ -12,6 +12,8 @@ const MATHLIB_PIN =
   "https://github.com/leanprover-community/mathlib4/blob/0df444a360eaa60ab8c11dca51a86af692955474/Mathlib/NumberTheory/LSeries/RiemannZeta.lean";
 const MATHLIB_VALUES =
   "https://github.com/leanprover-community/mathlib4/blob/0df444a360eaa60ab8c11dca51a86af692955474/Mathlib/NumberTheory/LSeries/HurwitzZetaValues.lean";
+const MATHLIB_BERNOULLI =
+  "https://github.com/leanprover-community/mathlib4/blob/0df444a360eaa60ab8c11dca51a86af692955474/Mathlib/NumberTheory/Bernoulli.lean#L209-L211";
 const MATHLIB_CONJ =
   "https://github.com/leanprover-community/mathlib4/blob/90e6eec9fe53b02d431c90718e4a1d22d67a204e/Mathlib/NumberTheory/Harmonic/ZetaAsymp.lean#L454-L460";
 const ELKIES = "https://people.math.harvard.edu/~elkies/M229.09/zeta1.pdf";
@@ -279,7 +281,8 @@ export function ZetaPage() {
         <p
           innerHTML={prose`The symmetry does not say that the two values of a pair are equal. It says that they are
             linked: the value at $1 - s$ is the value at $s$ times a known factor, and the factor
-            depends on $s$. Take the pair 2 and $-1$. The value at 2 is $\pi^2/6$, about 1.645. The
+            depends on $s$. This rule works for every $s$ except 1, 0, $-1$, $-2$ and so on. So it
+            gives the value at $-1$ from the value at 2, but not the other way. Take the pair 2 and $-1$. The value at 2 is $\pi^2/6$, about 1.645. The
             factor for $s = 2$ is $-1/(2\pi^2)$. The product is $-1/12$, and that is the value at
             $-1$. One form of the function does have equal values: Riemann multiplied the function
             by a certain factor, and the result has the same value at $s$ and at $1 - s$.`}
@@ -335,11 +338,11 @@ export function ZetaPage() {
           section 6. <a href={ELKIES}>Elkies, Math 229 notes on the zeta function</a>, for where the
           sum works and for the symmetry that Riemann proved.{" "}
           <a href={MATHLIB_CONJ}>Mathlib, theorem riemannZeta_conj</a>, for the second symmetry.{" "}
-          <a href={MATHLIB_PIN}>Mathlib at the commit the proof builds against</a>, four statements,
-          for the mirrored pairs of zeros and, in the theorem riemannZeta_one_sub, for the factor
-          that links the two values of a pair; the steps are in the project note.{" "}
+          <a href={MATHLIB_PIN}>Mathlib at the commit the proof builds against</a>: four statements
+          for the mirrored pairs of zeros, and the theorem riemannZeta_one_sub for the factor that
+          links the two values of a pair. The steps are in the project note.{" "}
           <a href={MATHLIB_VALUES}>Mathlib, values of the function</a>, for the values at 2 and at
-          −1.
+          −1; the value at −1 also uses <a href={MATHLIB_BERNOULLI}>the theorem bernoulli_two</a>.
         </p>
       </section>
 
