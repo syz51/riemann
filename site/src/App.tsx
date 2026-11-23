@@ -45,9 +45,7 @@ export function App() {
         </Match>
       </Switch>
 
-      <Show when={route() !== CONTENTS}>
-        <PageFoot route={route()} />
-      </Show>
+      <Show when={route() || undefined}>{(page) => <PageFoot route={page()} />}</Show>
     </>
   );
 }

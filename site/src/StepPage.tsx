@@ -1,5 +1,6 @@
 import { createMemo, createSignal, For, Show } from "solid-js";
 import { LeanBlock } from "./LeanBlock";
+import { href } from "./pages";
 import { Plane } from "./Plane";
 import { step1 as step } from "./steps/step1";
 
@@ -30,9 +31,9 @@ export function StepPage() {
       <h1>{step.title}</h1>
       <p class="summary">{step.summary}</p>
       <p class="aside-link">
-        New to complex numbers? Read <a href="#/complex-numbers">why complex numbers exist</a>{" "}
-        first. New to the zeta function? Read <a href="#/zeta">where the zeta function came from</a>
-        .
+        New to complex numbers? Read <a href={href("complex-numbers")}>why complex numbers exist</a>{" "}
+        first. New to the zeta function? Read{" "}
+        <a href={href("zeta")}>where the zeta function came from</a>.
       </p>
 
       <div class="columns">

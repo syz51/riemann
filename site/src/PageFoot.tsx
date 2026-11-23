@@ -1,8 +1,8 @@
 import { Show } from "solid-js";
-import { CONTENTS, href, READING_ORDER } from "./pages";
+import { CONTENTS, href, type PageRoute, READING_ORDER } from "./pages";
 
 /** The links at the foot of a page: the page before, the page after, and the contents. */
-export function PageFoot(props: { route: string }) {
+export function PageFoot(props: { route: PageRoute }) {
   const index = () => READING_ORDER.findIndex((page) => page.route === props.route);
   const previous = () => READING_ORDER[index() - 1];
   const next = () => READING_ORDER[index() + 1];
