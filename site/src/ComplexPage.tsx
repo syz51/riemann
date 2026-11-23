@@ -13,27 +13,27 @@ const ELKIES = "https://people.math.harvard.edu/~elkies/M229.09/zeta1.pdf";
 const CUBIC: Part[] = [
   {
     title: "An equation with a plain answer",
-    equation: "x³ = 15x + 4",
+    equation: tex`x^3 = 15x + 4`,
     text: "Try x = 4. The left side is 4 × 4 × 4 = 64. The right side is 60 + 4 = 64. So 4 is a solution, and nothing strange has happened yet.",
   },
   {
     title: "A formula for every such equation",
-    equation: "x = ∛(q/2 + √w) + ∛(q/2 − √w),   w = (q/2)² − (p/3)³",
+    equation: tex`\begin{gathered} x = \sqrt[3]{\frac{q}{2} + \sqrt{w}} + \sqrt[3]{\frac{q}{2} - \sqrt{w}} \\ w = \left(\frac{q}{2}\right)^2 - \left(\frac{p}{3}\right)^3 \end{gathered}`,
     text: "In the 1500s, del Ferro and later Tartaglia found a formula for each equation of the form x³ = px + q. The sign ∛ is the cube root: the number whose third power is the number under the sign. Cardano published the formula in 1545.",
   },
   {
     title: "The formula goes wrong",
-    equation: "x = ∛(2 + √−121) + ∛(2 − √−121)",
+    equation: tex`x = \sqrt[3]{2 + \sqrt{-121}} + \sqrt[3]{2 - \sqrt{-121}}`,
     text: "Here p = 15 and q = 4. So w = 2² − 5³ = 4 − 125 = −121. The formula asks for the square root of −121. No number of that time had a negative square. But the equation has the answer 4, so the formula cannot be simply wrong.",
   },
   {
     title: "Bombelli calculates anyway",
-    equation: "(2 + √−1)³ = 2 + 11√−1 = 2 + √−121",
+    equation: tex`\left(2 + \sqrt{-1}\right)^3 = 2 + 11\sqrt{-1} = 2 + \sqrt{-121}`,
     text: "Bombelli treated √−1 as a number with one rule: its square is −1. With that rule, the third power of 2 + √−1 is 8 + 12√−1 − 6 − √−1, which is 2 + 11√−1. So the first cube root is 2 + √−1. In the same way, the second is 2 − √−1.",
   },
   {
     title: "The impossible parts cancel",
-    equation: "x = (2 + √−1) + (2 − √−1) = 4",
+    equation: tex`x = \left(2 + \sqrt{-1}\right) + \left(2 - \sqrt{-1}\right) = 4`,
     text: "The two pieces with √−1 cancel, and the plain answer 4 is left. The formula was right. The road to a real answer went through numbers that did not exist yet. That is why they were defined.",
   },
 ];

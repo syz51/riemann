@@ -14,32 +14,32 @@ const ELKIES = "https://people.math.harvard.edu/~elkies/M229.09/zeta1.pdf";
 const SIEVE: Part[] = [
   {
     title: "Start with the sum over all whole numbers",
-    equation: "x = 1 + 1/4 + 1/9 + 1/16 + 1/25 + 1/36 + …",
+    equation: tex`x = 1 + \frac{1}{4} + \frac{1}{9} + \frac{1}{16} + \frac{1}{25} + \frac{1}{36} + \cdots`,
     text: "Call the sum x. It has one term for each whole number n, and the term is 1 divided by n × n. The example uses squares. The same steps work for each higher power.",
   },
   {
     title: "Divide every term by 4",
-    equation: "x/4 = 1/4 + 1/16 + 1/36 + 1/64 + …",
+    equation: tex`\frac{x}{4} = \frac{1}{4} + \frac{1}{16} + \frac{1}{36} + \frac{1}{64} + \cdots`,
     text: "The number 4 is the square of 2. The term of n is 1 divided by n × n. Divide it by 4, and it is 1 divided by 2n × 2n, the term of 2n. So the new terms belong to 2, 4, 6, 8 and so on. These are exactly the terms of the even numbers in x.",
   },
   {
     title: "Subtract: the even numbers go",
-    equation: "(1 − 1/4) x = 1 + 1/9 + 1/25 + 1/49 + 1/81 + …",
+    equation: tex`\left(1 - \frac{1}{4}\right) x = 1 + \frac{1}{9} + \frac{1}{25} + \frac{1}{49} + \frac{1}{81} + \cdots`,
     text: "Take x/4 away from x. On the left, x minus a quarter of x is (1 − 1/4) times x. On the right, each term of an even number leaves. The terms of the odd numbers 1, 3, 5, 7, 9 stay.",
   },
   {
     title: "Divide the new sum by 9",
-    equation: "(1 − 1/4) x / 9 = 1/9 + 1/81 + 1/225 + 1/441 + …",
+    equation: tex`\frac{1}{9} \left(1 - \frac{1}{4}\right) x = \frac{1}{9} + \frac{1}{81} + \frac{1}{225} + \frac{1}{441} + \cdots`,
     text: "The number 9 is the square of 3. Divide the term of n by 9, and it is the term of 3n. So the terms of 1, 3, 5, 7 become the terms of 3, 9, 15, 21. These are exactly the terms of the multiples of 3 that are still in the sum.",
   },
   {
     title: "Subtract: the multiples of 3 go",
-    equation: "(1 − 1/4)(1 − 1/9) x = 1 + 1/25 + 1/49 + 1/121 + …",
+    equation: tex`\left(1 - \frac{1}{4}\right) \left(1 - \frac{1}{9}\right) x = 1 + \frac{1}{25} + \frac{1}{49} + \frac{1}{121} + \cdots`,
     text: "Take the sum of part 4 away from the sum of part 3. On the left, a sum minus one ninth of itself is (1 − 1/9) times the sum. On the right, the terms 1/9, 1/81, 1/225 and so on leave. The numbers 1, 5, 7, 11 stay: no multiple of 2 or 3. The first one after 1 is 5, the next prime.",
   },
   {
     title: "Go on with every prime",
-    equation: "(1 − 1/4)(1 − 1/9)(1 − 1/25) … x = 1",
+    equation: tex`\left(1 - \frac{1}{4}\right) \left(1 - \frac{1}{9}\right) \left(1 - \frac{1}{25}\right) \cdots \, x = 1`,
     text: "Every whole number above 1 is a multiple of some prime, so its term leaves at some step. Only the term 1 stays. So x is equal to 1 divided by all these factors. The sum over all whole numbers is a product over the primes only.",
   },
 ];
@@ -90,7 +90,7 @@ export function ZetaPage() {
       <section>
         <h2>A sum that nobody could finish</h2>
         <p>Add 1 divided by each square number, and never stop:</p>
-        <p class="equation">1 + 1/4 + 1/9 + 1/16 + 1/25 + …</p>
+        <p class="equation" innerHTML={tex`1 + \frac{1}{4} + \frac{1}{9} + \frac{1}{16} + \frac{1}{25} + \cdots`} />
         <p>
           The terms shrink fast, so the sum does not grow without limit. It
           comes closer and closer to one value. Before Euler, this was known.
@@ -126,7 +126,7 @@ export function ZetaPage() {
         <p>
           Now replace the squares by another power. Write s for the power:
         </p>
-        <p class="equation">ζ(s) = 1 + 1/2ˢ + 1/3ˢ + 1/4ˢ + 1/5ˢ + …</p>
+        <p class="equation" innerHTML={tex`\zeta(s) = 1 + \frac{1}{2^s} + \frac{1}{3^s} + \frac{1}{4^s} + \frac{1}{5^s} + \cdots`} />
         <p>
           Each choice of s gives one sum, and so one value. A rule that turns
           each number s into one value is a function. This function is the
@@ -160,7 +160,7 @@ export function ZetaPage() {
           of the distance that is left: 1 metre, then 1/2, then 1/4. You take
           endlessly many steps and never pass the wall.
         </p>
-        <p class="equation">1 + 1/2 + 1/4 + 1/8 + … never passes 2</p>
+        <p class="equation" innerHTML={tex`1 + \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \cdots \quad \text{never passes} \quad 2`} />
         <p>
           So the question for each power is: do the terms shrink fast enough?
           For the squares they do. Put the terms in blocks of 1, 2, 4, 8
@@ -215,9 +215,10 @@ export function ZetaPage() {
           divided by 2ˢ is the term of 2n. The result, for each power s above
           1:
         </p>
-        <p class="equation">
-          ζ(s) = 1/(1 − 1/2ˢ) × 1/(1 − 1/3ˢ) × 1/(1 − 1/5ˢ) × 1/(1 − 1/7ˢ) × …
-        </p>
+        <p
+          class="equation"
+          innerHTML={tex`\zeta(s) = \frac{1}{1 - \dfrac{1}{2^s}} \times \frac{1}{1 - \dfrac{1}{3^s}} \times \frac{1}{1 - \dfrac{1}{5^s}} \times \frac{1}{1 - \dfrac{1}{7^s}} \times \cdots`}
+        />
         <p>
           There is one factor for each prime, and no other factor. The steps
           need the sum to have a value: you cannot take a quarter of x away

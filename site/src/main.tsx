@@ -1,5 +1,6 @@
 import { render } from "@solidjs/web";
 import { App } from "./App";
+import "temml/dist/Temml-Local.css";
 import "./styles.css";
 
 const root = document.getElementById("root");
