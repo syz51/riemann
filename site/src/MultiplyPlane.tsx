@@ -1,4 +1,4 @@
-import { createMemo, createSignal, For } from "solid-js";
+import { createMemo, createSignal, For, Show } from "solid-js";
 import { angle, type Complex, format, length, multiply } from "./complex";
 
 // The picture shows real and imaginary parts from about -3.2 to 3.2. The point
@@ -44,10 +44,13 @@ const settle = (raw: Complex, limit: number): Complex | undefined => {
 /** The name of a point, placed on the side away from zero so that names do not sit on lines. */
 function Name(props: { at: Complex; text: string }) {
   const out = () => 17 / (length(props.at) * UNIT || 1);
+  // The name stays inside the picture when the point is at the edge.
+  const inside = (at: number, margin: number) =>
+    Math.min(SIZE - margin, Math.max(margin, at));
   return (
     <text
-      x={px(props.at.re) + props.at.re * UNIT * out()}
-      y={py(props.at.im) - props.at.im * UNIT * out()}
+      x={inside(px(props.at.re) + props.at.re * UNIT * out(), 24)}
+      y={inside(py(props.at.im) - props.at.im * UNIT * out(), 10)}
       text-anchor="middle"
       dominant-baseline="central"
     >
@@ -62,15 +65,15 @@ function Handle(props: {
   class: string;
   value: Complex;
   onMove: (raw: Complex) => void;
+  onRelease: () => void;
 }) {
   return (
     <g
       class={["handle", props.class]}
       tabindex="0"
-      role="slider"
-      aria-label={`Point ${props.name}. Arrow keys move it.`}
-      aria-valuenow={props.value.re}
-      aria-valuetext={format(props.value)}
+      role="application"
+      aria-roledescription="movable point"
+      aria-label={`Point ${props.name} at ${format(props.value)}. Arrow keys move it.`}
       onPointerDown={(event) => {
         event.currentTarget.setPointerCapture(event.pointerId);
       }}
@@ -84,11 +87,17 @@ function Handle(props: {
           im: (CENTRE - ((event.clientY - box.top) / box.height) * SIZE) / UNIT,
         });
       }}
+      onPointerUp={() => props.onRelease()}
       onKeyDown={(event) => {
         const by = ARROWS[event.key];
         if (!by) return;
         event.preventDefault();
-        props.onMove({ re: props.value.re + by.re, im: props.value.im + by.im });
+        const next = { re: props.value.re + by.re, im: props.value.im + by.im };
+        // Zero is refused, so a step that would land on zero goes one step further.
+        const onZero = length(next) < STEP / 2;
+        props.onMove(
+          onZero ? { re: next.re + by.re, im: next.im + by.im } : next,
+        );
       }}
     >
       <line x1={px(0)} y1={py(0)} x2={px(props.value.re)} y2={py(props.value.im)} />
@@ -104,8 +113,12 @@ export function MultiplyPlane() {
   const [z, setZ] = createSignal<Complex>({ re: 1.25, im: 0.5 });
   const [w, setW] = createSignal<Complex>({ re: 0, im: 1 });
   const product = createMemo(() => multiply(z(), w()));
-  const angleSum = createMemo(() => Math.round(angle(z())) + Math.round(angle(w())));
-  const productFits = createMemo(() => length(product()) <= Z_LIMIT + 1e-9);
+  const angleSum = createMemo(() => angle(z()) + angle(w()));
+  // z can move to the product only when the product is in the range of z.
+  const productFits = createMemo(() => {
+    const size = length(product());
+    return size >= STEP - 1e-9 && size <= Z_LIMIT + 1e-9;
+  });
   const moveZ = (raw: Complex) => {
     const next = settle(raw, Z_LIMIT);
     if (next) setZ(next);
@@ -114,6 +127,13 @@ export function MultiplyPlane() {
     const next = settle(raw, W_LIMIT);
     if (next) setW(next);
   };
+  // The point that the reader did not move last is drawn on top. So when one
+  // point is dropped on the other, the next press takes the other one.
+  const handles = {
+    z: { name: "z", value: z, onMove: moveZ },
+    w: { name: "w", value: w, onMove: moveW },
+  };
+  const [order, setOrder] = createSignal([handles.w, handles.z]);
 
   return (
     <div class="multiply">
@@ -151,8 +171,23 @@ export function MultiplyPlane() {
             />
             <Name at={product()} text="z × w" />
           </g>
-          <Handle name="w" class="w" value={w()} onMove={moveW} />
-          <Handle name="z" class="z" value={z()} onMove={moveZ} />
+          <For each={order()}>
+            {(handle) => (
+              <Handle
+                name={handle.name}
+                class={handle.name}
+                value={handle.value()}
+                onMove={handle.onMove}
+                onRelease={() =>
+                  setOrder(
+                    handle === handles.z
+                      ? [handles.z, handles.w]
+                      : [handles.w, handles.z],
+                  )
+                }
+              />
+            )}
+          </For>
         </svg>
         <figcaption>
           Drag z or w, or select a point and use the arrow keys. The square
@@ -170,7 +205,7 @@ export function MultiplyPlane() {
               <th scope="col">Angle</th>
             </tr>
           </thead>
-          <tbody aria-live="polite">
+          <tbody>
             <For
               each={[
                 { name: "z", class: "z", value: z },
@@ -190,14 +225,16 @@ export function MultiplyPlane() {
           </tbody>
         </table>
         <p class="rule">
-          Lengths multiply: {length(z()).toFixed(2)} × {length(w()).toFixed(2)} ={" "}
+          Lengths multiply: {length(z()).toFixed(2)} × {length(w()).toFixed(2)} ≈{" "}
           {length(product()).toFixed(2)}.
           <br />
-          Angles add: {Math.round(angle(z()))}° + {Math.round(angle(w()))}° ={" "}
-          {angleSum()}°
+          Angles add: {Math.round(angle(z()))}° + {Math.round(angle(w()))}° ≈{" "}
+          {Math.round(angleSum())}°
           {angleSum() >= 360
-            ? `, which is the same direction as ${angleSum() - 360}°.`
+            ? `, which is the same direction as ${Math.round(angle(product()))}°.`
             : "."}
+          <br />
+          <span class="note">The values shown are rounded.</span>
         </p>
 
         <p class="label" id="w-presets">
@@ -215,11 +252,19 @@ export function MultiplyPlane() {
         <button
           type="button"
           class="again"
-          disabled={!productFits()}
-          onClick={() => setZ(product())}
+          aria-disabled={productFits() ? "false" : "true"}
+          onClick={() => {
+            if (productFits()) setZ(product());
+          }}
         >
           Move z to z × w
         </button>
+        <Show when={!productFits()}>
+          <p class="note">
+            Not possible now: in this picture, the length of z stays between{" "}
+            {STEP} and {Z_LIMIT}.
+          </p>
+        </Show>
         <p class="hint">
           Set w to i and press this button two times. Two quarter turns make a
           half turn, so z lands on −z. This is the rule i × i = −1 as a picture.

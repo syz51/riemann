@@ -54,4 +54,6 @@ Add a line here when Solid 2.0 or the toolchain behaves differently from what yo
 - Wrap step data in `defineStep` (`src/steps/types.ts`). It makes a token with an unknown piece id a type error.
 - A point that the reader drags in an SVG: capture the pointer on `pointerdown` (`event.currentTarget.setPointerCapture`), and in `pointermove` act only when `hasPointerCapture` is true. This needs no state and no `ref`. Give the point `touch-action: none`, `tabindex="0"` and arrow keys.
 - To click such a point in the headless browser, select its circle (`.handle.z .dot`). A click on the group aims at the middle of its box, which can be empty.
+- A button that can switch itself off while it has focus (a "Next" button on the last part) uses `aria-disabled` and a guard in the handler, not `disabled`. A disabled button drops the keyboard focus. The headless browser refuses to click a button with `aria-disabled="true"`.
+- Numbers shown rounded do not add or multiply exactly. Write "≈" and say that the values are rounded.
 - A page built by Vite does not load from `file://`. Serve `dist/` with `vite preview` to check it.

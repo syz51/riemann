@@ -15,7 +15,7 @@ const CUBIC: { title: string; equation: string; text: string }[] = [
   {
     title: "A formula for every such equation",
     equation: "x = ∛(q/2 + √w) + ∛(q/2 − √w),   w = (q/2)² − (p/3)³",
-    text: "In the 1500s, Italian mathematicians found a formula for each equation of the form x³ = px + q. The sign ∛ is the cube root: the number whose third power is the number under the sign. Cardano published the formula in 1545.",
+    text: "In the 1500s, del Ferro and later Tartaglia found a formula for each equation of the form x³ = px + q. The sign ∛ is the cube root: the number whose third power is the number under the sign. Cardano published the formula in 1545.",
   },
   {
     title: "The formula goes wrong",
@@ -95,15 +95,15 @@ function CubicSteps() {
       <div class="controls">
         <button
           type="button"
-          disabled={index() === 0}
-          onClick={() => setIndex(index() - 1)}
+          aria-disabled={index() === 0 ? "true" : "false"}
+          onClick={() => setIndex(Math.max(0, index() - 1))}
         >
           Back
         </button>
         <button
           type="button"
-          disabled={index() === CUBIC.length - 1}
-          onClick={() => setIndex(index() + 1)}
+          aria-disabled={index() === CUBIC.length - 1 ? "true" : "false"}
+          onClick={() => setIndex(Math.min(CUBIC.length - 1, index() + 1))}
         >
           Next part
         </button>
@@ -141,8 +141,8 @@ export function ComplexPage() {
       <section>
         <h2>From a trick to a point of the plane</h2>
         <p>
-          For more than two hundred years the new numbers worked, but nobody
-          could say what they were. The answer was a picture.
+          The new numbers worked, but for more than two hundred years they had
+          no satisfactory foundation. The answer was a picture.
         </p>
         <ol class="timeline">
           <For each={TIMELINE}>
