@@ -5,6 +5,10 @@ import { SumProduct } from "./SumProduct";
 // Source of the content: docs/notes/background-zeta.md.
 const PAPADOPOULOS = "https://arxiv.org/abs/1710.03982";
 const VIADER = "https://econ-papers.upf.edu/papers/776.pdf";
+const CONRAD =
+  "https://kconrad.math.uconn.edu/math3240s20/handouts/infinitudeofprimes.pdf";
+const PRIME_SUM =
+  "https://en.wikipedia.org/wiki/Divergence_of_the_sum_of_the_reciprocals_of_the_primes";
 const ELKIES = "https://people.math.harvard.edu/~elkies/M229.09/zeta1.pdf";
 
 const SIEVE: Part[] = [
@@ -149,6 +153,47 @@ export function ZetaPage() {
       </section>
 
       <section>
+        <h2>Why an endless sum can have a value</h2>
+        <p>
+          A sum with endlessly many terms does not always grow without limit.
+          Walk to a wall that is 2 metres away, and let each step cover half
+          of the distance that is left: 1 metre, then 1/2, then 1/4. You take
+          endlessly many steps and never pass the wall.
+        </p>
+        <p class="equation">1 + 1/2 + 1/4 + 1/8 + … never passes 2</p>
+        <p>
+          So the question for each power is: do the terms shrink fast enough?
+          For the squares they do. Put the terms in blocks of 1, 2, 4, 8
+          terms and so on. The two terms 1/4 + 1/9 are each at most 1/4, so
+          together at most 1/2. The four terms from 1/16 to 1/49 are each at
+          most 1/16, so together at most 1/4. The next eight are together at
+          most 1/8. The blocks are no larger than the steps to the wall, so
+          the sum never passes 2.
+        </p>
+        <p>
+          With no power, the terms are 1, 1/2, 1/3, 1/4 and so on, and the
+          same blocks give the opposite result. The two terms 1/3 + 1/4 are
+          each at least 1/4, so together at least 1/2. The four terms from
+          1/5 to 1/8 are each at least 1/8, so together at least 1/2 again.
+          Each block adds at least 1/2, and the blocks never end. This sum
+          grows without limit. Oresme proved this in the 14th century.
+        </p>
+        <p>
+          The power 1 is the border. For each power s above 1, the blocks
+          shrink and the sum has a value. This is why ζ(s), as a sum, is
+          defined for s above 1 only.
+        </p>
+        <p class="sources">
+          The block sums are arithmetic that you can check by hand. For
+          Oresme:{" "}
+          <a href={PRIME_SUM}>
+            Wikipedia, Divergence of the sum of the reciprocals of the primes
+          </a>
+          .
+        </p>
+      </section>
+
+      <section>
         <h2>The link to the primes</h2>
         <p>
           A prime is a whole number above 1 that only 1 and itself divide: 2,
@@ -158,19 +203,40 @@ export function ZetaPage() {
           never be able to penetrate”.
         </p>
         <p>
-          Ten years before, in 1737, he had found a door. The sum over all
-          whole numbers is equal to a product that has one factor for each
-          prime.
+          Ten years before, in 1737, he had found a door. The sum, which
+          has one term for each whole number, is equal to a product that has
+          one factor for each prime.
         </p>
         <Stepper parts={SIEVE} />
         <p>
-          Euler used the same steps on the sum 1 + 1/2 + 1/3 + 1/4 + …, which
-          grows without limit. From this he concluded that the sum over the
-          primes only, 1/2 + 1/3 + 1/5 + 1/7 + 1/11 + …, also grows without
-          limit. This says more than “there are infinitely many primes”,
-          which was known from Euclid. By the rules of today, his steps with
-          sums that have no value are not a proof. Mertens gave the exact
-          form of the result in 1874.
+          For another power s, divide by 2ˢ, then by 3ˢ, then by 5ˢ, in place
+          of 4, 9 and 25. The steps stay the same, because the term of n
+          divided by 2ˢ is the term of 2n. The result, for each power s above
+          1:
+        </p>
+        <p class="equation">
+          ζ(s) = 1/(1 − 1/2ˢ) × 1/(1 − 1/3ˢ) × 1/(1 − 1/5ˢ) × 1/(1 − 1/7ˢ) × …
+        </p>
+        <p>
+          There is one factor for each prime, and no other factor. The steps
+          need the sum to have a value: you cannot take a quarter of x away
+          from x when x is not a number.
+        </p>
+        <p>
+          Euler used the same steps also with no power, on the sum 1 + 1/2 +
+          1/3 + 1/4 + …, which grows without limit. From this he concluded
+          that the sum over the primes only, 1/2 + 1/3 + 1/5 + 1/7 + 1/11 +
+          …, also grows without limit. By the rules of today, his steps with
+          sums that have no value are not a proof. The result is true:
+          Mertens gave its exact form in 1874.
+        </p>
+        <p>
+          This says more than “there are infinitely many primes”, which was
+          known from Euclid. The squares show why. There are infinitely many
+          squares too, but the sum 1 + 1/4 + 1/9 + … has a value. The sum
+          1/2 + 1/3 + 1/5 + … has none. So both lists never end, but the
+          primes come more often than the squares. Euclid's result cannot
+          tell the two lists apart. Euler's result can.
         </p>
         <p class="sources">
           Sources:{" "}
@@ -178,9 +244,12 @@ export function ZetaPage() {
             Viader, Bibiloni and Paradís, On a series of Goldbach and Euler
           </a>
           , sections 1 and 7, for the 1737 paper and its steps.{" "}
-          <a href={PAPADOPOULOS}>Papadopoulos</a>, section 6, for the rest. The
-          source shows the steps for the sum 1 + 1/2 + 1/3 + …; the squares
-          here follow the same lines.
+          <a href={PAPADOPOULOS}>Papadopoulos</a>, section 6, for Euclid and
+          the words of Euler.{" "}
+          <a href={CONRAD}>Conrad, The infinitude of the primes</a>, section 3,
+          for the primes against the squares. The first source shows the
+          steps for the sum 1 + 1/2 + 1/3 + …; the squares here follow the
+          same lines.
         </p>
       </section>
 

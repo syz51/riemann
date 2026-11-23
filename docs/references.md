@@ -98,3 +98,19 @@ Inspection depth: abstract.
 
 Inspection: abstract only. Read: the abstract, the first page of section 1, and section 7, "Epilog", on Theorems 7, 8 and 19 of Euler's paper *Variae observationes circa series infinitas*. Sections 2 to 6, on the theorem of Goldbach and Euler, are not read. A secondary source on Euler's paper; the paper itself (Latin, printed 1744) is not read.
 
+## Reference 13
+
+[13] Keith Conrad. **The Infinitude of the Primes**. Course handout, Math 3240, University of Connecticut, spring 2020. [Original](https://kconrad.math.uconn.edu/math3240s20/handouts/infinitudeofprimes.pdf). Accessed 23 November 2026, Asia/Tokyo.
+
+Inspection depth: abstract.
+
+Inspection: abstract only. Read: the first lines of section 1 and the end of section 3, "Euler's proof", from equation (3.5) to the remark on the rate log(log N). The handout has no abstract. Sections 2 and 4 are not read. A teaching text, not a historical study.
+
+## Reference 14
+
+[14] Wikipedia contributors. **Divergence of the sum of the reciprocals of the primes**. Wikipedia, revision 1384062561. [Original](https://en.wikipedia.org/wiki/Divergence_of_the_sum_of_the_reciprocals_of_the_primes). Accessed 23 November 2026, Asia/Tokyo.
+
+Inspection depth: abstract.
+
+Inspection: abstract only. Read through a fetch agent, which returned quotes: the lead section and single sentences of the sections "The harmonic series" and "Proofs". The page has no sentence that compares the primes with the squares; a search summary had claimed one. A tertiary source, used for one date only.
+

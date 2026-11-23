@@ -25,6 +25,17 @@ The record behind the site page "Where the zeta function came from". Step 1 spea
 - Euler, in a paper written in 1747 and published in 1751: the order of the primes is "a mystery which human mind will never be able to penetrate" [11](../references.md#reference-11).
 - The product formula "was the starting point of Riemann's investigations" [11](../references.md#reference-11).
 
+## Bounded sums, and the primes against the squares
+
+Added on 23 November 2026 after the owner's questions in chat.
+
+- The page shows by blocks of 1, 2, 4, 8 terms that the sum of 1/n² is at most 1 + 1/2 + 1/4 + … = 2, and that each block of the sum of 1/n is at least 1/2. This is an own check: 1/4 + 1/9 ≤ 2/4; the four terms 1/16 to 1/49 are ≤ 4/16; 1/3 + 1/4 ≥ 2/4; the four terms 1/5 to 1/8 are ≥ 4/8. No source is cited for the block method.
+- The divergence of the sum of 1/n has a "14th-century proof" by Nicole Oresme [14](../references.md#reference-14). Whether Oresme used these blocks is not checked; the page only says that he proved the result.
+- "Since Σ 1/n = ∞ and Σ 1/p = ∞ while Σ 1/n² < ∞, the primes are 'more dense' among the positive integers than the squares" [13](../references.md#reference-13). The page says "the primes come more often than the squares".
+- Reference 13 dates Euler's proof to 1737 and its Theorem 7, and says that Euler knew the rate log(log N); both agree with reference 12.
+- The general product on the page, one factor 1/(1 − 1/pˢ) for each prime and s above 1, is Theorem 8 as reference 12 states it. The remark that the term of n divided by 2ˢ is the term of 2n is an own check: 2ˢ × nˢ = (2n)ˢ.
+- Correction of a chat answer: a search summary said that the Wikipedia page [14] states "there are more primes than squares". The page has no such sentence. The statement of reference 13 stands.
+
 ## From Euler to Riemann
 
 - In a paper written in 1749 and published in 1768, Euler found the functional equation, a relation between ζ(n) and ζ(1 − n). He proved it for every positive integer n and conjectured it for all n (Weil's comment) [11](../references.md#reference-11).
