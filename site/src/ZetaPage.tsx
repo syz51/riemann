@@ -295,9 +295,9 @@ export function ZetaPage() {
             where a piece of the rule has no value. The factor contains a function called $\Gamma$,
             and $\Gamma$ has no value at 0, $-1$, $-2$ and so on. At 1 the function itself has no
             finite value: it grows without limit near 1. Riemann's form with equal values has only
-            two such points, 0 and 1, and they are partners of each other. Euler met the same
-            thing. For $n = 1$ his rule gave 0 divided by 0. He took a limit, and the limit agreed
-            with the known value.`}
+            two such points, 0 and 1, and they are partners of each other. Euler met a related
+            thing, with a different cause. For $n = 1$ two parts of his rule are both 0, so the
+            rule gave 0 divided by 0. He took a limit, and the limit agreed with the known value.`}
         />
         <p
           innerHTML={prose`The value at $-1$ is strange, because at $-1$ the sum would be $1 + 2 + 3 + \cdots$, and
