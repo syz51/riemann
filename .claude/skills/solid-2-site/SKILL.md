@@ -27,7 +27,9 @@ Do not write Solid code from memory of version 1 or of React.
 - `src/steps/stepN.ts` holds the content of one step as data: Lean snippets cut into tokens, and one explanation per marked piece. The types are in `src/steps/types.ts`.
 - The content comes from `docs/notes/`. The notes are the source; change a fact in the note first, then in the step file.
 - Lean text is verbatim. Added line breaks are allowed, and the snippet's `source` line must say so.
-- `src/LeanBlock.tsx` renders a snippet. `src/leanColours.ts` colours keywords, types and numbers with one small pattern; it adds no dependency, so the page stays small. Add a word to the pattern when a new step quotes it. `src/Plane.tsx` draws the complex plane. `src/App.tsx` owns the state: the hovered piece, the focused piece and the pinned piece.
+- `src/LeanBlock.tsx` renders a snippet. `src/leanColours.ts` colours keywords, types and numbers with one small pattern; it adds no dependency, so the page stays small. Add a word to the pattern when a new step quotes it. `src/Plane.tsx` draws the complex plane. `src/StepPage.tsx` owns the state of a step: the hovered piece, the focused piece and the pinned piece.
+- `src/App.tsx` holds the header and selects the page from the address after `#` (`#/` is the step, `#/complex-numbers` the background page). Hash addresses need no server rules, so the build works on GitHub Pages under a sub-path.
+- A background page (`src/ComplexPage.tsx`) explains a prerequisite. Its record is a note in `docs/notes/`, and every historical fact on the page links to its source. `src/MultiplyPlane.tsx` is its picture with points that the reader moves; `src/complex.ts` holds the arithmetic.
 
 ## Rules for the content
 
@@ -50,4 +52,6 @@ Add a line here when Solid 2.0 or the toolchain behaves differently from what yo
 - In `<For>`, the default callback gets the raw item. A plain `typeof` test on it at the top of the callback is fine for static data.
 - Keep pointer hover and keyboard focus in separate signals. With one shared signal, a pointer that leaves one piece closes the explanation of the focused piece.
 - Wrap step data in `defineStep` (`src/steps/types.ts`). It makes a token with an unknown piece id a type error.
+- A point that the reader drags in an SVG: capture the pointer on `pointerdown` (`event.currentTarget.setPointerCapture`), and in `pointermove` act only when `hasPointerCapture` is true. This needs no state and no `ref`. Give the point `touch-action: none`, `tabindex="0"` and arrow keys.
+- To click such a point in the headless browser, select its circle (`.handle.z .dot`). A click on the group aims at the middle of its box, which can be empty.
 - A page built by Vite does not load from `file://`. Serve `dist/` with `vite preview` to check it.

@@ -65,3 +65,19 @@ Inspection: abstract only, relative to the whole library: twelve files read, out
 Inspection depth: abstract.
 
 Inspection: abstract only. Three files are saved and attached: `NumberTheory/LSeries/RiemannZeta.lean`, `NumberTheory/LSeries/DirichletContinuation.lean` and `NumberTheory/DirichletCharacter/Basic.lean`. Read in them: the definitions `RiemannHypothesis`, `DirichletCharacter.LFunction` and `IsPrimitive`, and the statements of `LFunction_modOne_eq` and `LFunction_eq_LSeries`. The proofs and the rest of the files are not read.
+
+## Reference 9
+
+[9] Orlando Merino. **A Short History of Complex Numbers**. Course notes, University of Rhode Island, January 2006. [Original](https://www.math.uri.edu/~merino/spring06/mth562/ShortHistoryComplexNumbers2006.pdf). [Copy read](https://math.mit.edu/~dunkel/Teach/18.04_2019S/historic/Merino_2006.pdf). Accessed 23 November 2026, Asia/Tokyo.
+
+Inspection depth: abstract.
+
+Inspection: abstract only. Read from the copy at MIT: the opening paragraph and items 4 to 8 and 11 to 15 (Cardano, Bombelli, Descartes, Euler, Wessel, Argand, Hamilton, Gauss). Items 1 to 3, 9, 10 and the bibliography are not read. A secondary source: course notes that cite the histories of Burton, Kline and others.
+
+## Reference 10
+
+[10] Noam D. Elkies. **Math 229: Introduction to Analytic Number Theory. The Riemann zeta function and its functional equation**. Course notes, Harvard University. [Original](https://people.math.harvard.edu/~elkies/M229.09/zeta1.pdf). Accessed 23 November 2026, Asia/Tokyo.
+
+Inspection depth: abstract.
+
+Inspection: abstract only. Read: the opening paragraphs and the statement of the theorem marked "Riemann 1859", with the lines on the pole at s = 1, the critical strip and the trivial zeros. The proofs and the exercises are not read.

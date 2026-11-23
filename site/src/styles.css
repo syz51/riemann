@@ -12,6 +12,7 @@
   --lean-keyword: #7a3e9d;
   --lean-type: #0f6b6b;
   --lean-number: #855600;
+  --product: #23703f;
   --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
   --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
@@ -31,6 +32,7 @@
     --lean-keyword: #c9a0e6;
     --lean-type: #6fc7c0;
     --lean-number: #e0b660;
+    --product: #8fd3a8;
   }
 }
 
@@ -55,6 +57,11 @@ main {
 }
 
 header.site {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
   padding-top: 1.5rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--border);
@@ -312,6 +319,305 @@ figcaption {
   border-top: 1px solid var(--border);
 }
 
+
+header.site nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+}
+
+header.site nav a {
+  padding: 0.15rem 0;
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+
+header.site nav a:hover {
+  color: var(--text);
+}
+
+header.site nav a[aria-current="page"] {
+  color: var(--text);
+  border-bottom-color: var(--accent);
+}
+
+.aside-link {
+  margin: -0.5rem 0 1.25rem;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* The background page: one reading column. */
+.article section {
+  max-width: 44rem;
+  margin-top: 2.25rem;
+}
+
+.article section:has(.multiply) {
+  max-width: none;
+}
+
+.article section:has(.multiply) > p {
+  max-width: 44rem;
+}
+
+.article h2 {
+  margin-bottom: 0.6rem;
+  font-size: 1.15rem;
+}
+
+h3 {
+  margin: 0.15rem 0 0.5rem;
+  font-family: var(--sans);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.sources,
+.cite {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.sources {
+  margin-top: 0.75rem;
+}
+
+.article button {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text);
+  font: 0.9rem var(--sans);
+  cursor: pointer;
+}
+
+.article button:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+.article button:disabled {
+  color: var(--muted);
+  cursor: default;
+  opacity: 0.6;
+}
+
+.article button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* The ring goes on the point, not on the box around the point and its line. */
+.handle:focus-visible {
+  outline: none;
+}
+
+.handle:focus-visible .dot {
+  stroke: var(--text);
+  stroke-width: 3;
+}
+
+.stepper {
+  padding: 1rem 1.1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
+}
+
+.stepper .part {
+  min-height: 15.5rem;
+}
+
+.equation {
+  margin: 0.75rem 0;
+  padding: 0.6rem 0.8rem;
+  overflow-x: auto;
+  background: var(--page);
+  border-radius: 6px;
+  font-size: 1.2rem;
+  white-space: nowrap;
+}
+
+.stepper .controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.timeline {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-left: 2px solid var(--border);
+}
+
+.timeline li {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  gap: 0.75rem;
+  padding: 0.4rem 0 0.4rem 1rem;
+}
+
+.timeline .year {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.9;
+}
+
+.multiply {
+  display: grid;
+  grid-template-columns: minmax(0, 24rem) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+  margin-top: 1rem;
+}
+
+.multiply svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  touch-action: pan-y;
+}
+
+.multiply .field {
+  fill: var(--surface);
+  stroke: var(--border);
+}
+
+.multiply .grid {
+  stroke: var(--border);
+  stroke-width: 0.5;
+}
+
+.multiply .axis {
+  stroke: var(--muted);
+  stroke-width: 1;
+}
+
+.multiply .tick {
+  fill: var(--muted);
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.multiply .handle {
+  cursor: grab;
+  touch-action: none;
+}
+
+.multiply .handle .grab {
+  fill: transparent;
+}
+
+.multiply svg line {
+  stroke-width: 2;
+}
+
+.multiply .z line {
+  stroke: var(--accent);
+}
+
+.multiply .z .dot,
+.multiply .z text {
+  fill: var(--accent);
+}
+
+.multiply .w line {
+  stroke: var(--mark);
+}
+
+.multiply .w .dot,
+.multiply .w text {
+  fill: var(--mark);
+}
+
+.multiply .product line {
+  stroke: var(--product);
+  stroke-dasharray: 5 4;
+}
+
+.multiply .product rect,
+.multiply .product text {
+  fill: var(--product);
+}
+
+.multiply .dot,
+.multiply .product rect {
+  stroke: var(--surface);
+  stroke-width: 1.5;
+}
+
+.multiply table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.multiply th,
+.multiply td {
+  padding: 0.35rem 0.5rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+.multiply thead th {
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.multiply tr.z th {
+  color: var(--accent);
+}
+
+.multiply tr.w th {
+  color: var(--mark);
+}
+
+.multiply tr.product th {
+  color: var(--product);
+}
+
+.multiply .rule {
+  margin: 0.9rem 0;
+}
+
+.multiply .label {
+  margin: 0 0 0.35rem;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.9rem;
+}
+
+.presets .value {
+  font-weight: 600;
+}
+
+.multiply .again {
+  margin-bottom: 0.6rem;
+}
+
+.multiply .hint {
+  font-size: 0.95rem;
+}
+
 @media (max-width: 52rem) {
   .columns {
     grid-template-columns: minmax(0, 1fr);
@@ -320,6 +626,15 @@ figcaption {
 
   .side {
     position: static;
+  }
+
+  .multiply {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
+  }
+
+  .equation {
+    font-size: 1rem;
   }
 
   /* The picture moves under the statement, next to the parts that mark it. */
