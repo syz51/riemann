@@ -2,13 +2,17 @@ import solid from "@solidjs/vite-plugin";
 import temml from "temml";
 import { defineConfig, type Plugin } from "vite";
 
-/** Replaces each tex`…` literal in the source by the MathML markup of its LaTeX. */
+/**
+ * Replaces each tex literal in the source by the MathML markup of its LaTeX.
+ * It works on the text of the file, so it also changes a tex literal inside a
+ * comment or a string: do not write one there.
+ */
 function tex(): Plugin {
   return {
     name: "tex-to-mathml",
     enforce: "pre",
     transform(code, id) {
-      if (!/\/src\/[^?]*\.tsx$/.test(id) || !code.includes("tex`")) return;
+      if (!/\/src\/[^?]*\.tsx?$/.test(id) || !code.includes("tex`")) return;
       return {
         code: code.replace(/\btex`((?:[^`\\]|\\.)*)`/gs, (_, source: string) =>
           // A LaTeX error stops the build.

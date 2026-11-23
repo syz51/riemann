@@ -450,6 +450,12 @@ h3 {
   white-space: nowrap;
 }
 
+/* A wide equation starts at the left edge, so the box can scroll to all of it. */
+.equation math.tml-display {
+  width: max-content;
+  min-width: 100%;
+}
+
 .stepper .controls {
   display: flex;
   gap: 0.5rem;

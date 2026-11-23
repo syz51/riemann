@@ -1,6 +1,6 @@
 import { createSignal } from "solid-js";
 
-/** `equation` is MathML markup, made by a tex`…` literal. */
+/** `equation` is MathML markup, made by a tex literal (see tex.d.ts). */
 export type Part = { title: string; equation: string; text: string };
 
 /** One calculation, shown one part at a time. */
