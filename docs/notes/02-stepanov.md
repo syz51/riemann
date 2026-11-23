@@ -146,7 +146,7 @@ theorem key_pow_dvd {A : Type} [CommRing A] (p : ℕ) (hp : p.Prime) (w : A) (hw
 
 In plain words: take a commutative ring `A`, a prime `p`, and an element `w` with `w^2 = p`. Suppose two `(k + 1) × (k + 1)` matrices `M` and `N'` satisfy the Frobenius-power congruence `M b a ^ (p ^ e) ≡ N' b a (mod p)`, and two vectors `u`, `u'` have every entry after index `0` divisible by `w`. Then `w` divides the `2 × 2` determinant (minor) formed from columns `0` and `c` of the vector `u' · N'` and the `p^e`-th power of `u · M`.
 
-We read the 20-line proof of `key_minor_dvd` (lines 138 to 155) [7](../references.md#reference-7): it maps into the quotient ring `A / (w)`. Since `w^2 = p`, both `w` and `p` become `0` there; all terms with `b ≠ 0` drop out; and `M 0 a ^ (p ^ e)` becomes `N' 0 a`, making the two products equal so their difference vanishes modulo `w`. The rest of the file (`kS_ord`, `kW_ord`, `key3Ord`, `key3At`, lines 62 to 226) applies `key_pow_dvd` and `key_minor_dvd` to multivariate polynomial rings over a discrete valuation ring `O` with `S.w ^ 2 = p` and Frobenius congruences `frobCong`, proving `CoarseMultiplicityOrderBound` and `CoarseMultiplicityBoundAtIdentity` (defined in `src/Formalism/SharpRestriction/GrowthBounds/CoarseMultiplicity/KeyOne.lean`, lines 114 to 131, read in full) [7](../references.md#reference-7).
+We read the 18-line proof of `key_minor_dvd` (lines 138 to 155) [7](../references.md#reference-7): it maps into the quotient ring `A / (w)`. Since `w^2 = p`, both `w` and `p` become `0` there; all terms with `b ≠ 0` drop out; and `M 0 a ^ (p ^ e)` becomes `N' 0 a`, making the two products equal so their difference vanishes modulo `w`. The rest of the file (`kS_ord`, `kW_ord`, `key3Ord`, `key3At`, lines 62 to 226) applies `key_pow_dvd` and `key_minor_dvd` to multivariate polynomial rings over a discrete valuation ring `O` with `S.w ^ 2 = p` and Frobenius congruences `frobCong`, proving `CoarseMultiplicityOrderBound` and `CoarseMultiplicityBoundAtIdentity` (defined in `src/Formalism/SharpRestriction/GrowthBounds/CoarseMultiplicity/KeyOne.lean`, lines 114 to 131, read in full) [7](../references.md#reference-7).
 
 ### 2. Chaining operators and preserving integrality (`chainOp`, `ChainInt`)
 
@@ -172,6 +172,12 @@ def ChainInt : Prop :=
     (∀ j i, D j * w j i ∈ S) → (∀ j a b, K j a b ∈ S) →
     ∀ f : ι 0 → R, (∀ i, f i ∈ S) → ∀ (m : ℕ) (y : ι m),
       (∏ j ∈ Finset.range m, D j) * chainOp w K m f y ∈ S
+```
+
+```lean
+def thetaLift (h : V →ₗ⋆[K] V →ₗ[K] K) (s : Finset (Submodule (NumberField.RingOfIntegers K) V))
+    (f : Submodule (NumberField.RingOfIntegers K) V → ℂ) (τ : ℂ) : ℂ :=
+  latLift h s f (fun L => Formalism.HermitianLatticesTheory.thetaL h L 0 τ)
 ```
 
 In plain words: `kerOp` applies one finite weighted kernel sum (such as a theta lift over a finite set of Hermitian lattice classes, weighted by `1 / |Aut L|`, as defined in `latWt` and `thetaLift` on lines 136 to 150 of the same file [7](../references.md#reference-7)), and `chainOp` iterates it `m` times. `ChainInt` states that if each step's kernel values lie in an integral subring `S` and each step's weights land in `S` once multiplied by a denominator `D j`, then after `m` steps the output lies in `S` once multiplied by `∏_{j < m} D j`.
@@ -255,7 +261,7 @@ theorem slopeInequality_of (h : SlopeLeMuMax.{v}) : SlopeInequality.{u, v} := by
 
 In plain words: if `φ : L → M` is an injective `ℤ`-linear map between Euclidean lattices with operator norm at most `C` (`‖φ(x)‖ ≤ C ‖x‖` for every `x ∈ L`), then `slope L ≤ muMax M + log C`. We read the entire proof of `slopeInequality_of`: it sets `N = range φ ≤ M`, establishes `rk N = rk L = r`, applies the Gram-determinant bound `gram_det_le` (extended from integer to real combinations by density of `ℚ`) to obtain `covol N ≤ C^r · covol L`, takes `−log` and divides by `r` to get `slope L ≤ slope N + log C`, and closes with `slope N ≤ muMax M` from `h : SlopeLeMuMax`.
 
-Why does this play the role of `# zeros ≤ # poles`? Our own explanation: if an injective map sends an integral lattice into a sublattice divisible by many primes (shrinking covolumes or inflating finite-place index), the left side grows with the logarithm of that divisibility, while the right side `muMax M + log C` caps it by the logarithm of the map's archimedean norm `C`.
+Why does this play the role of `# zeros ≤ # poles`? Our own explanation: if an injective map `φ : L → M` has image divisible by a large integer `d > 1` (that is, `φ(L) ⊆ d · M`), then `d · M` has covolume `d^r · covol M` and hence `muMax (d · M) = muMax M − log d` (equivalently, dividing `φ` by `d` gives an injective map `L → M` with operator norm `C / d`). Applying `SlopeInequality` then gives `slope L ≤ muMax M + log C − log d`, or `log d ≤ muMax M − slope L + log C`: the logarithm of the divisibility gained at finite places is bounded above by the logarithm of the map's archimedean norm `C` together with the lattice slopes.
 
 ### 5. The prime-sum side (`ASK`), the archimedean side (`MAIN`, `chowla_selberg_period`), and `TopG`
 
@@ -304,7 +310,7 @@ theorem _root_.GlobalTheory.T.chowla_selberg_period : ∀ (E : Type) [Field E] [
 
 In plain words: for a CM field `E`, a host `H` and the quadratic Kronecker character `χ` modulo `H.d`, there exists an elliptic curve object `Z` with nonzero `Z.z` and real period `x` equal to `γ + log(2π / √(H.d)) − L'(1, χ) / L(1, χ)`.
 
-Finally, we read two assembly theorems from the index's Component 9 — `topDesWin` in `src/Development/AutomorphicArithmetic/CharacterBoxes/DesWin.lean` (lines 11 to 22) and `shape_closed_link_n_of_green` in `src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/TopShape.lean` (line 33) [7](../references.md#reference-7):
+Finally, we read two assembly theorems from the index's Component 9 at commit `40e56bab026552e089d7afcfeff08d2defb9c005` — `topDesWin` in `src/Development/AutomorphicArithmetic/CharacterBoxes/DesWin.lean` (lines 11 to 22) and `shape_closed_link_n_of_green` in `src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/TopShape.lean` (line 33) [7](../references.md#reference-7):
 
 ```lean
 theorem topDesWin (𝒞 𝒞' ℰ : FamClass) (Cabs C0 eD eL : ℝ) (hEx : DesignExists (WithTw (WithSm 𝒞')) C0)
@@ -321,7 +327,11 @@ theorem topDesWin (𝒞 𝒞' ℰ : FamClass) (Cabs C0 eD eL : ℝ) (hEx : Desig
     (hGL : Closed (Des 𝒞 C0) fun Fm CH => TuSize Fm → DGamSize Fm → LinkGLOBAL Fm Cabs CH C0 eD eL) : FamilyClassConnected ℰ := by
 ```
 
-In `TopShape.lean`, `shape_closed_link_n_of_green` invokes `topDesWin` with `Cabs = 2`, `C0 = 3`, `eD = 2`, `eL = 0` to produce `TopG` (already read in [00-route.md](00-route.md), where `zeroFreeAll_of_topG` turns `TopG` into `ZeroFreeAll`) [7](../references.md#reference-7). Because we did not open the intermediate definitions (`LinkDIVt`, `LinkGLOBAL`, `HypV`, `Green`), these two files show only the outer interface of the assembly, not how `key_minor_dvd` and `slopeInequality_of` plug into it.
+```lean
+theorem UpperTheory.Top.shape_closed_link_n_of_green : GlobalTheory.GLq.Green → _root_.GlobalTheory.Fc.TopShapeAlt True True (fun 𝒞 => Closed 𝒞 fun Fm _ => LinkN Fm) UpperTheory.Top.TopG := by
+```
+
+In `TopShape.lean` (line 52), `shape_closed_link_n_of_green` applies `topDesWin` with `Cabs = 2`, `C0 = 3`, `eD = 2`, `eL = 0` to produce `TopG` (already read in [00-route.md](00-route.md), where `zeroFreeAll_of_topG` turns `TopG` into `ZeroFreeAll`) [7](../references.md#reference-7). Because we did not open the intermediate definitions (`LinkDIVt`, `LinkGLOBAL`, `HypV`, `Green`), these two files show only the outer interface of the assembly, not how `key_minor_dvd` and `slopeInequality_of` plug into it.
 
 ---
 
@@ -335,7 +345,7 @@ Everything in this section is our own judgement, comparing Bombieri's classical 
 | Auxiliary object | Nonzero rational function `f ∈ ker(δ)` on `C` [23](../references.md#reference-23) | Injective `ℤ`-linear map between Euclidean lattices built from an `m`-step chain `chainOp` (`ThetaLiftIndependence/Statement.lean`, `LatticeSlopes/Statement.lean`) [7](../references.md#reference-7) | New object |
 | Source of high multiplicity | `f` is a `p^μ`-th power in characteristic `p`, so vanishing forces order `≥ p^μ` [23](../references.md#reference-23) | Local Frobenius-congruence minor divisibility (`key_minor_dvd`, `key_pow_dvd`) iterated along `m` theta lifts (`ChainInt`) [1](../references.md#reference-1) [7](../references.md#reference-7) | New mechanism |
 | Global balancing inequality | `# zeros of f = # poles of f`, giving `ν_1 ≤ l + m q / p^μ + 1` [23](../references.md#reference-23) | Bost's slope inequality `slope L ≤ muMax M + log C` (`slopeInequality_of`), with archimedean periods (`chowla_selberg_period`) and norms (`RallisHyp`, `ChainScalar`) [7](../references.md#reference-7) | New over number fields |
-| Square-root optimization | `p^μ = q^{1/2}` balances `l p^μ` against `m q / p^μ` [23](../references.md#reference-23) | Chain length `R.m` between `√(s.x · s.delta1)` and `2 √(s.x · s.delta1)` (`RankVal`) [1](../references.md#reference-1) [7](../references.md#reference-7) | Direct match |
+| Square-root optimization | `p^μ = q^{1/2}` balances the two error scales `p^μ` and `q / p^μ` [23](../references.md#reference-23) [24](../references.md#reference-24) | Chain length `R.m` between `√(s.x · s.delta1)` and `2 √(s.x · s.delta1)` (`RankVal`) [1](../references.md#reference-1) [7](../references.md#reference-7) | Direct match |
 | Separating characters / symmetries | Galois cover `C' → C → P^1` with group `G`, running `δ_η` for each `η ∈ G` [23](../references.md#reference-23) | Finite Fourier sum over characters of `E0 × H` (`AskMainBalance`) [7](../references.md#reference-7) | Related tool, different purpose |
 | Turning upper bounds into RH | Upper bound alone fails (`ω_1 = q, ω_2 = 1`); Galois cover total `|G|(q + 1) + O(1)` yields lower bound too, then Diophantine approximation [23](../references.md#reference-23) [24](../references.md#reference-24) | Localized Landau theorem (`zeroFree_of_rpow_window`, [00-route.md](00-route.md)) turns a one-sided upper bound on sparse windows directly into `ZeroFree` [7](../references.md#reference-7) | Major divergence |
 
@@ -343,7 +353,7 @@ Everything in this section is our own judgement, comparing Bombieri's classical 
 
 1. **Upper bound from forced multiplicity.** Both arguments produce an upper bound on an arithmetic count (`ν_1(C)` versus `ASK`) by showing that a nonzero object must vanish to high order (or be divisible by high powers of primes) at the points or primes being counted, and weighing that divisibility against a global size bound [23](../references.md#reference-23) [7](../references.md#reference-7).
 2. **Frobenius congruence as the local engine.** Even in the number-field proof, `key_minor_dvd` and `key_pow_dvd` work by reducing modulo `w` (where `w^2 = p`) and using the Frobenius congruence `M b a ^ (p ^ e) = N' b a + p * T` so that `p`-th powers match shifted entries modulo `w` [7](../references.md#reference-7). That local algebraic step is visibly cousin to Bombieri's use of Frobenius on `C` [23](../references.md#reference-23).
-3. **Balancing two costs at the square root.** In Bombieri's Theorem 1, choosing `p^μ = q^{1/2}` balances the two terms `l` and `m q / p^μ` in equation (7) to give error `O(q^{1/2})` [23](../references.md#reference-23). In `RankVal`, the chain length `R.m` is likewise pinned at square-root scale `√(s.x · s.delta1)` [7](../references.md#reference-7), matching the author's description that each lift mimics multiplicity and `√X` lifts are taken for a prime sum of length `X` [1](../references.md#reference-1).
+3. **Balancing two costs at the square root.** In Bombieri's Theorem 1 (and van Frankenhuijsen's equation (3.8)), choosing `p^μ = q^{1/2}` balances the two error scales `p^μ` and `q / p^μ` to give error `O(q^{1/2})` [23](../references.md#reference-23) [24](../references.md#reference-24). In `RankVal`, the chain length `R.m` is likewise pinned at square-root scale `√(s.x · s.delta1)` [7](../references.md#reference-7), matching the author's description that each lift mimics multiplicity and `√X` lifts are taken for a prime sum of length `X` [1](../references.md#reference-1).
 
 ### What is new over the integers
 
@@ -354,13 +364,13 @@ Everything in this section is our own judgement, comparing Bombieri's classical 
 
 ### Verdict on the pairing in `00-route.md`
 
-Our own judgement: the weak pairing in [00-route.md](00-route.md) between timeline step 1 ("Stepanov determinant") and Step D4 of the index is **confirmed as an architectural kinship, not as a literal name match**. We found no declaration named after Stepanov, and the "10/6/26: Stepanov determinant" entry [1](../references.md#reference-1) reads like the starting idea (still visible locally in the `2 × 2` minor of `key_minor_dvd` and in determinant lemmas such as `DetChain` and `gram_det_le`), which in the finished Lean library is carried by the combination of `key_minor_dvd`, `chainOp`/`ChainInt`, `RankVal`, `slopeInequality_of`, `AskMainBalance` and `chowla_selberg_period` [7](../references.md#reference-7).
+Our own judgement: the weak pairing in [00-route.md](00-route.md) between timeline step 1 ("Stepanov determinant") and Step D4 of the index is **confirmed as an architectural kinship, not as a literal name match**. We found no declaration named after Stepanov, and the "10/6/26: Stepanov determinant" entry [1](../references.md#reference-1) reads like the starting idea (still visible locally in the `2 × 2` minor of `key_minor_dvd` and in the Gram determinant `gram_det_le`), which in the finished Lean library is carried by the combination of `key_minor_dvd`, `chainOp`/`ChainInt`, `RankVal`, `slopeInequality_of`, `AskMainBalance` and `chowla_selberg_period` [7](../references.md#reference-7).
 
 ---
 
 ## What we did not check
 
-- **Wiring into `Main.lean`.** We have not traced the proof terms connecting `key_minor_dvd`, `slopeInequality_of`, `ChainInt`, `RankVal`, `AskMainBalance`, `chowla_selberg_period`, and `topDesWin` to `TopG` or to level 4 (`every_character_of_literature_of_vWin` in [00-route.md](00-route.md)).
+- **Wiring into `Main.lean`.** We saw `shape_closed_link_n_of_green` invoke `topDesWin` to produce `TopG`, and `zeroFreeAll_of_topG` turn `TopG` into `ZeroFreeAll`, but we have not traced the proof terms connecting `key_minor_dvd`, `slopeInequality_of`, `ChainInt`, `RankVal`, `AskMainBalance`, and `chowla_selberg_period` into the hypotheses of `topDesWin`, nor have we traced `TopG` into level 4 (`every_character_of_literature_of_vWin` in [00-route.md](00-route.md)).
 - **Proofs of the proposition definitions.** We read the proofs of `key_minor_dvd`, `key_pow_dvd`, `kS_ord`, `kW_ord`, `slopeInequality_of`, `topDesWin` and `shape_closed_link_n_of_green`. We did not read the separate proof files that establish `ChainInt`, `LatSeeSaw`, `RallisHyp`, `ChainScalar`, `SlopeLeMuMax`, `AskMainBalance` or `exists_curve0_hasPeriod`.
 - **Definitions behind intermediate names.** We did not open the definitions of `Scale`, `Ranks` (including `s.delta1`), `kSkey`, `kWkey`, `liftSubst`, `InWjRg`, `LinkDIVt`, `LinkGLOBAL`, `HypV`, `Green`, `Row0b` or `VWin`.
 - **Earlier classical papers.** We did not read Stepanov's 1969 paper or W. M. Schmidt's book; our account of the classical method rests on Bombieri (1974), read in full [23](../references.md#reference-23), and van Frankenhuijsen (2008), Section 3 [24](../references.md#reference-24).
