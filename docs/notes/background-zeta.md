@@ -30,6 +30,8 @@ The record behind the site page "Where the zeta function came from". Step 1 spea
 Added on 23 November 2026 after the owner's questions in chat.
 
 - The page shows by blocks of 1, 2, 4, 8 terms that the sum of 1/n² is at most 1 + 1/2 + 1/4 + … = 2, and that each block of the sum of 1/n is at least 1/2. This is an own check: 1/4 + 1/9 ≤ 2/4; the four terms 1/16 to 1/49 are ≤ 4/16; 1/3 + 1/4 ≥ 2/4; the four terms 1/5 to 1/8 are ≥ 4/8. No source is cited for the block method.
+- For a general power s, an own check: the block that starts at 2^k has 2^k terms, each at most 1/2^(ks), so the block is at most (2/2^s)^k. For s above 1 the ratio 2/2^s is below 1, so the blocks are bounded by a geometric sum, and the sum of 1/n^s has a value. For s = 1 the ratio is 1. The page states this as "the blocks shrink".
+- The page calls the case s = 1 "no power", as the chart does, and says once that this is the power s = 1.
 - The divergence of the sum of 1/n has a "14th-century proof" by Nicole Oresme [14](../references.md#reference-14). Whether Oresme used these blocks is not checked; the page only says that he proved the result.
 - "Since Σ 1/n = ∞ and Σ 1/p = ∞ while Σ 1/n² < ∞, the primes are 'more dense' among the positive integers than the squares" [13](../references.md#reference-13). The page says "the primes come more often than the squares".
 - Reference 13 dates Euler's proof to 1737 and its Theorem 7, and says that Euler knew the rate log(log N); both agree with reference 12.

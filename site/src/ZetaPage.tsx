@@ -171,8 +171,9 @@ export function ZetaPage() {
           the sum never passes 2.
         </p>
         <p>
-          With no power, the terms are 1, 1/2, 1/3, 1/4 and so on, and the
-          same blocks give the opposite result. The two terms 1/3 + 1/4 are
+          With no power, which is the power s = 1, the terms are 1, 1/2,
+          1/3, 1/4 and so on. Blocks of the same sizes now give the opposite
+          result. Keep 1 and 1/2 as they are. The two terms 1/3 + 1/4 are
           each at least 1/4, so together at least 1/2. The four terms from
           1/5 to 1/8 are each at least 1/8, so together at least 1/2 again.
           Each block adds at least 1/2, and the blocks never end. This sum
@@ -243,7 +244,7 @@ export function ZetaPage() {
           <a href={VIADER}>
             Viader, Bibiloni and Paradís, On a series of Goldbach and Euler
           </a>
-          , sections 1 and 7, for the 1737 paper and its steps.{" "}
+          , sections 1 and 7, for the 1737 paper, its steps and Mertens.{" "}
           <a href={PAPADOPOULOS}>Papadopoulos</a>, section 6, for Euclid and
           the words of Euler.{" "}
           <a href={CONRAD}>Conrad, The infinitude of the primes</a>, section 3,
