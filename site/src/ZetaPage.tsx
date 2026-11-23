@@ -15,7 +15,7 @@ const MATHLIB_VALUES =
 const MATHLIB_BERNOULLI =
   "https://github.com/leanprover-community/mathlib4/blob/0df444a360eaa60ab8c11dca51a86af692955474/Mathlib/NumberTheory/Bernoulli.lean#L209-L211";
 const MATHLIB_GAMMA =
-  "https://github.com/leanprover-community/mathlib4/blob/0df444a360eaa60ab8c11dca51a86af692955474/Mathlib/Analysis/SpecialFunctions/Gamma/Basic.lean";
+  "https://github.com/leanprover-community/mathlib4/blob/0df444a360eaa60ab8c11dca51a86af692955474/Mathlib/Analysis/SpecialFunctions/Gamma/Basic.lean#L11-L21";
 const MATHLIB_CONJ =
   "https://github.com/leanprover-community/mathlib4/blob/90e6eec9fe53b02d431c90718e4a1d22d67a204e/Mathlib/NumberTheory/Harmonic/ZetaAsymp.lean#L454-L460";
 const EULER_E352 = "http://eulerarchive.maa.org/docs/translations/E352.pdf";
@@ -304,11 +304,11 @@ export function ZetaPage() {
           innerHTML={prose`The function $\Gamma$ (gamma) is not new, and it was not made for this proof. It extends
             the factorial $1 \cdot 2 \cdot 3 \cdots n$ to numbers that are not whole. Euler introduced
             it in a paper that he wrote in 1729, with a different notation. For a whole number
-            $n$ from 1 on, $\Gamma(n)$ is the product of the whole numbers below $n$: $\Gamma(5)$
-            is $1 \cdot 2 \cdot 3 \cdot 4 = 24$. For every $s$ except 0, $\Gamma(s + 1)$ is
-            $s$ times $\Gamma(s)$. At $s = 0$ this rule would need $\Gamma(1) = 1$ to be 0 times a
-            number, and no number does that. This is why $\Gamma$ has no value at 0, and in the
-            same way none at $-1$, $-2$ and so on.`}
+            $n$ above 1, $\Gamma(n)$ is the product of the whole numbers below $n$: $\Gamma(5)$
+            is $1 \cdot 2 \cdot 3 \cdot 4 = 24$. Also $\Gamma(1) = 1$. Where both values exist,
+            $\Gamma(s + 1)$ is $s$ times $\Gamma(s)$. The function has no value at 0, $-1$, $-2$
+            and so on. Our own remark, not from a source, on what goes wrong at 0: there the rule
+            would say that $\Gamma(1) = 1$ is 0 times a number, and no number does that.`}
         />
         <p
           innerHTML={prose`The value at $-1$ is strange, because at $-1$ the sum would be $1 + 2 + 3 + \cdots$, and
@@ -416,8 +416,8 @@ export function ZetaPage() {
           links the two values of a pair. The steps are in the project note.{" "}
           <a href={MATHLIB_VALUES}>Mathlib, values of the function</a>, for the values at 2 and at
           −1; the value at −1 also uses <a href={MATHLIB_BERNOULLI}>the theorem bernoulli_two</a>.{" "}
-          <a href={MATHLIB_GAMMA}>Mathlib, the file on the Gamma function</a>, for what Γ is and for
-          the points where it has no value.{" "}
+          <a href={MATHLIB_GAMMA}>Mathlib, the header of the file on the Gamma function</a>, for
+          what Γ is and for the points where it has no value.{" "}
           <a href={EULER_E19}>Euler Archive, record of paper E19</a>, for the year 1729. Elkies also
           gives the two special points of Riemann's form, and section 11 of Euler's paper gives the
           case n = 1.
