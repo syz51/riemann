@@ -150,7 +150,7 @@ export function ComplexPage() {
         </ol>
         <p class="sources">
           Source: <a href={MERINO}>Merino, A Short History of Complex Numbers</a>,
-          items 4 to 15. For 1859:{" "}
+          items 4 to 8 and 11 to 15. For 1859:{" "}
           <a href={ELKIES}>Elkies, Math 229 notes on the zeta function</a>.
         </p>
       </section>
