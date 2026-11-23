@@ -97,7 +97,9 @@ export function GammaPage() {
           Sources: <a href={MATHLIB_BASIC}>Mathlib, the file on the Gamma function</a>, the header
           and the theorems Gamma_one, Gamma_add_one and Gamma_nat_eq_factorial.{" "}
           <a href={MATHLIB_HALF}>Mathlib, theorem Gamma_one_half_eq</a>. We read the statements, not
-          the proofs.
+          the proofs. The check takes Mathlib's Γ to be the function of Euler and Legendre. Mathlib
+          calls its integral Euler's, but it has another form, and we read no statement that the two
+          forms are equal.
         </p>
       </section>
 
