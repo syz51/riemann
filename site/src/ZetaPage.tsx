@@ -14,33 +14,33 @@ const ELKIES = "https://people.math.harvard.edu/~elkies/M229.09/zeta1.pdf";
 const SIEVE: Part[] = [
   {
     title: "Start with the sum over all whole numbers",
-    equation: tex`x = 1 + \frac{1}{4} + \frac{1}{9} + \frac{1}{16} + \frac{1}{25} + \frac{1}{36} + \cdots`,
-    text: "Call the sum x. It has one term for each whole number n, and the term is 1 divided by n × n. The example uses squares. The same steps work for each higher power.",
+    equation: tex`x = 1 + \frac{1}{2^2} + \frac{1}{3^2} + \frac{1}{4^2} + \frac{1}{5^2} + \frac{1}{6^2} + \cdots`,
+    text: "Call the sum x. It has one term for each whole number n, and the term is 1 divided by n². So the terms are 1, 1/4, 1/9, 1/16 and so on. The example uses squares. The same steps work for each higher power.",
   },
   {
-    title: "Divide every term by 4",
-    equation: tex`\frac{x}{4} = \frac{1}{4} + \frac{1}{16} + \frac{1}{36} + \frac{1}{64} + \cdots`,
-    text: "The number 4 is the square of 2. The term of n is 1 divided by n × n. Divide it by 4, and it is 1 divided by 2n × 2n, the term of 2n. So the new terms belong to 2, 4, 6, 8 and so on. These are exactly the terms of the even numbers in x.",
+    title: "Divide every term by 2²",
+    equation: tex`\frac{x}{2^2} = \frac{1}{2^2} + \frac{1}{4^2} + \frac{1}{6^2} + \frac{1}{8^2} + \cdots`,
+    text: "The term of n is 1 divided by n². Divide it by 2², and it is 1 divided by (2n)², the term of 2n. So the new terms belong to 2, 4, 6, 8 and so on. These are exactly the terms of the even numbers in x.",
   },
   {
     title: "Subtract: the even numbers go",
-    equation: tex`\left(1 - \frac{1}{4}\right) x = 1 + \frac{1}{9} + \frac{1}{25} + \frac{1}{49} + \frac{1}{81} + \cdots`,
-    text: "Take x/4 away from x. On the left, x minus a quarter of x is (1 − 1/4) times x. On the right, each term of an even number leaves. The terms of the odd numbers 1, 3, 5, 7, 9 stay.",
+    equation: tex`\left(1 - \frac{1}{2^2}\right) x = 1 + \frac{1}{3^2} + \frac{1}{5^2} + \frac{1}{7^2} + \frac{1}{9^2} + \cdots`,
+    text: "Take the sum of part 2 away from x. On the left, x minus x/2² is (1 − 1/2²) times x. On the right, each term of an even number leaves. The terms of the odd numbers 1, 3, 5, 7, 9 stay.",
   },
   {
-    title: "Divide the new sum by 9",
-    equation: tex`\frac{1}{9} \left(1 - \frac{1}{4}\right) x = \frac{1}{9} + \frac{1}{81} + \frac{1}{225} + \frac{1}{441} + \cdots`,
-    text: "The number 9 is the square of 3. Divide the term of n by 9, and it is the term of 3n. So the terms of 1, 3, 5, 7 become the terms of 3, 9, 15, 21. These are exactly the terms of the multiples of 3 that are still in the sum.",
+    title: "Divide the new sum by 3²",
+    equation: tex`\frac{1}{3^2} \left(1 - \frac{1}{2^2}\right) x = \frac{1}{3^2} + \frac{1}{9^2} + \frac{1}{15^2} + \frac{1}{21^2} + \cdots`,
+    text: "Divide the term of n by 3², and it is the term of 3n. So the terms of 1, 3, 5, 7 become the terms of 3, 9, 15, 21. These are exactly the terms of the multiples of 3 that are still in the sum.",
   },
   {
     title: "Subtract: the multiples of 3 go",
-    equation: tex`\left(1 - \frac{1}{4}\right) \left(1 - \frac{1}{9}\right) x = 1 + \frac{1}{25} + \frac{1}{49} + \frac{1}{121} + \cdots`,
-    text: "Take the sum of part 4 away from the sum of part 3. On the left, a sum minus one ninth of itself is (1 − 1/9) times the sum. On the right, the terms 1/9, 1/81, 1/225 and so on leave. The numbers 1, 5, 7, 11 stay: no multiple of 2 or 3. The first one after 1 is 5, the next prime.",
+    equation: tex`\left(1 - \frac{1}{2^2}\right) \left(1 - \frac{1}{3^2}\right) x = 1 + \frac{1}{5^2} + \frac{1}{7^2} + \cdots`,
+    text: "Take the sum of part 4 away from the sum of part 3. On the left, a sum minus 1/3² of itself is (1 − 1/3²) times the sum. On the right, the terms of 3, 9, 15 and so on leave. The numbers 1, 5, 7, 11 stay: no multiple of 2 or 3. The first one after 1 is 5, the next prime.",
   },
   {
     title: "Go on with every prime",
-    equation: tex`\left(1 - \frac{1}{4}\right) \left(1 - \frac{1}{9}\right) \left(1 - \frac{1}{25}\right) \cdots \, x = 1`,
-    text: "Every whole number above 1 is a multiple of some prime, so its term leaves at some step. Only the term 1 stays. So x is equal to 1 divided by all these factors. The sum over all whole numbers is a product over the primes only.",
+    equation: tex`\left(1 - \frac{1}{2^2}\right) \left(1 - \frac{1}{3^2}\right) \left(1 - \frac{1}{5^2}\right) \cdots \, x = 1`,
+    text: "Every whole number above 1 is a multiple of some prime, so its term leaves at some step. Only the term 1 stays. So x is equal to 1 divided by all these factors: one factor for each prime 2, 3, 5, 7 and so on. The sum over all whole numbers is a product over the primes only.",
   },
 ];
 
@@ -89,8 +89,11 @@ export function ZetaPage() {
 
       <section>
         <h2>A sum that nobody could finish</h2>
-        <p>Add 1 divided by each square number, and never stop:</p>
-        <p class="equation" innerHTML={tex`1 + \frac{1}{4} + \frac{1}{9} + \frac{1}{16} + \frac{1}{25} + \cdots`} />
+        <p>
+          Add 1 divided by each square number, and never stop. The square of
+          2, written 2², is 2 × 2 = 4:
+        </p>
+        <p class="equation" innerHTML={tex`\begin{aligned} & 1 + \frac{1}{2^2} + \frac{1}{3^2} + \frac{1}{4^2} + \frac{1}{5^2} + \cdots \\ = \; & 1 + \frac{1}{4} + \frac{1}{9} + \frac{1}{16} + \frac{1}{25} + \cdots \end{aligned}`} />
         <p>
           The terms shrink fast, so the sum does not grow without limit. It
           comes closer and closer to one value. Before Euler, this was known.
@@ -211,7 +214,7 @@ export function ZetaPage() {
         <Stepper parts={SIEVE} />
         <p>
           For another power s, divide by 2ˢ, then by 3ˢ, then by 5ˢ, in place
-          of 4, 9 and 25. The steps stay the same, because the term of n
+          of 2², 3² and 5². The steps stay the same, because the term of n
           divided by 2ˢ is the term of 2n. The result, for each power s above
           1:
         </p>

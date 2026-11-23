@@ -27,6 +27,8 @@ The record behind the site page "Where the zeta function came from". Step 1 spea
 
 ## Bounded sums, and the primes against the squares
 
+- Since 23 November 2026 the stepper writes each term with its square shown, 1/2² and not 1/4, after the owner's question. The values and the arithmetic are the same; the form shows which whole number each term belongs to and which prime each factor belongs to.
+
 Added on 23 November 2026 after the owner's questions in chat.
 
 - The page shows by blocks of 1, 2, 4, 8 terms that the sum of 1/n² is at most 1 + 1/2 + 1/4 + … = 2, and that each block of the sum of 1/n is at least 1/2. This is an own check: 1/4 + 1/9 ≤ 2/4; the four terms 1/16 to 1/49 are ≤ 4/16; 1/3 + 1/4 ≥ 2/4; the four terms 1/5 to 1/8 are ≥ 4/8. No source is cited for the block method.
