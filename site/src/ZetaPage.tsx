@@ -312,12 +312,16 @@ export function ZetaPage() {
               He wrote that the word “sum” needs “a more extended meaning” here.`}
           />
           <li
-            innerHTML={prose`He already knew the shrinking sums for even $n$: each is a fraction times $\pi^n$.
-              Then he found that the growing sums contain the same fractions.`}
+            innerHTML={prose`He already knew the sums $1 + 1/2^n + 1/3^n + \cdots$ for even $n$: each is a
+              fraction times $\pi^n$. The shrinking sums follow from them. Then he found that the
+              growing sums with odd $m$ contain the same fractions, and that the growing sums
+              with even $m$ above 0 are 0.`}
           />
           <li
-            innerHTML={prose`So he divided each growing sum by the shrinking sum with the same fraction. The
-              fraction drops out. For $n = 2$ the result is $3/\pi^2$.`}
+            innerHTML={prose`So he divided the growing sum with power $m = n - 1$ by the shrinking sum with
+              power $n$. For even $n$ the fraction drops out. For $n = 2$ this is
+              $1 - 2 + 3 - \cdots$ divided by $1 - 1/2^2 + 1/3^2 - \cdots$, and the result is $3/\pi^2$.
+              For odd $n$ above 1 the growing sum is 0, so the result is 0.`}
           />
           <li
             innerHTML={prose`He wrote the results for $n = 2, 3, 4, 5, 6$ and so on as one rule times a number $N$.
