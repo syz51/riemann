@@ -58,7 +58,17 @@ Added on 23 November 2026 after the owner's questions in chat.
   - The second symmetry: ζ(conj s) = conj(ζ(s)) for every s, where conj changes the sign of the i part. Mathlib has it as the theorem `riemannZeta_conj (s : ℂ) : riemannZeta (conj s) = conj (riemannZeta s)`, with the reason "ζ has real Dirichlet coefficients" [18](../references.md#reference-18).
   - Own check: the two steps together send a + bi to 1 − (a − bi) = (1 − a) + bi. The height b stays and a becomes 1 − a. This is the flip across the line where the real part is 1/2, and the points with a = 1/2 stay in place.
   - So the value at a + bi is tied to the value at (1 − a) + bi: by the second symmetry to the value at a − bi, and by ξ(s) = ξ(1 − s) [10](../references.md#reference-10) from there to (1 − a) + bi.
-  - Not checked: that the zeros in the strip come in such mirrored pairs. It needs that the two factors in ξ, π^(−s/2) and Γ(s/2), are finite and never 0 there, and we have no source read for that.
+  - The zeros in the strip come in mirrored pairs. Checked on 23 November 2026 from four statements of Mathlib, read at the commit that the library of the proof builds against [8](../references.md#reference-8). In Mathlib, Λ is `completedRiemannZeta` and Γℝ(s) is π^(−s/2) Γ(s/2); every function here has a complex number as its value at every s.
+    1. `riemannZeta_def_of_ne_zero {s : ℂ} (hs : s ≠ 0) : riemannZeta s = completedRiemannZeta s / Gammaℝ s`.
+    2. `Gammaℝ_ne_zero_of_re_pos {s : ℂ} (hs : 0 < re s) : Gammaℝ s ≠ 0`.
+    3. `completedRiemannZeta_one_sub (s : ℂ) : completedRiemannZeta (1 - s) = completedRiemannZeta s`.
+    4. `riemannZeta_conj (s : ℂ) : riemannZeta (conj s) = conj (riemannZeta s)`.
+  - Own derivation. Take s with real part between 0 and 1, both ends excluded. Then s and 1 − s both have a positive real part, so neither is 0.
+    - By 1 and 2, ζ(s) is Λ(s) divided by a number that is not 0. So ζ(s) = 0 exactly when Λ(s) = 0. The same holds for 1 − s.
+    - By 3, Λ(1 − s) = Λ(s). So ζ(s) = 0 exactly when ζ(1 − s) = 0.
+    - By 4, ζ(conj s) is the conjugate of ζ(s), and a number is 0 exactly when its conjugate is 0. So ζ(s) = 0 exactly when ζ(conj s) = 0. This holds for every s.
+    - conj s is in the strip too. So ζ(s) = 0 exactly when ζ(1 − conj s) = 0. For s = a + bi, the point 1 − conj s is (1 − a) + bi, the mirror image across the line with real part 1/2.
+  - Limits: the four statements are machine-checked in Mathlib; we read the statements, not their proofs, and we did not compile them. The derivation from them is our own, on paper, not checked by Lean. It covers the open strip only.
 - "After Euler, the next substantial work on the zeta function was done more than a century later, by Riemann." Weil, in the history of number theory that he wrote, considers that after Euler the subject was dead and that Riemann resurrected it [11](../references.md#reference-11).
 - Riemann's paper *On the number of primes less than a given magnitude* is 8 pages long. He wrote it on the occasion of his election to the Berlin Academy on 11 August 1859; every new member was asked to report on recent research [11](../references.md#reference-11).
 - Riemann displays Euler's formula as his departure point, considers the function "as a function of a complex variable s", and denotes it by ζ(s) [11](../references.md#reference-11).
