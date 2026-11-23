@@ -168,7 +168,7 @@ Inspection: abstract only. Read: the whole record (English title, content summar
 
 Inspection depth: method.
 
-Inspection: method level. Read: sections 1, 2 and 12 to 17 of the translation. The summary and sections 3 to 11 and 16 are skimmed; sections 18 to 29 are not read. A primary source in translation; the Latin original is not read. Section 17 gives the term of index 1/2 as half the square root of the circumference p of a circle of diameter 1, which is √π/2; the catalogue record [20] gives √(π/2), which does not agree with the paper.
+Inspection: method level. Read: sections 1, 2 and 12 to 17 of the translation. The summary and sections 3 to 11 are skimmed; sections 18 to 29 are not read. A primary source in translation; the Latin original is not read. Section 17 gives the term of index 1/2 as half the square root of the circumference p of a circle of diameter 1, which is √π/2; the catalogue record [20] gives √(π/2), which does not agree with the paper.
 
 ## Reference 22
 

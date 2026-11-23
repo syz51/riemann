@@ -83,7 +83,7 @@ export function GammaPage() {
         <ul>
           <li innerHTML={prose`$\Gamma(1) = 1$.`} />
           <li
-            innerHTML={prose`$\Gamma(s + 1) = s \cdot \Gamma(s)$ for every $s$ except 0. One step to the right multiplies the value by $s$.`}
+            innerHTML={prose`$\Gamma(s + 1) = s \cdot \Gamma(s)$, where both values exist. One step to the right multiplies the value by $s$.`}
           />
           <li
             innerHTML={prose`$\Gamma(n + 1)$ is the factorial of $n$, for each whole number $n$ from 1. This follows from the two rules above.`}
@@ -104,7 +104,7 @@ export function GammaPage() {
       <section>
         <h2>The picture</h2>
         <p
-          innerHTML={prose`The chart shows $\Gamma(x)$ for a real number $x$. Move the slider, or press on the chart. The table shows the second rule at work: $x$ times $\Gamma(x)$ is always the same as $\Gamma(x + 1)$.`}
+          innerHTML={prose`The chart shows $\Gamma(x)$ for a real number $x$. Move the slider, or press on the chart. The table shows the second rule at work: $x$ times $\Gamma(x)$ is the same as $\Gamma(x + 1)$, wherever $\Gamma(x)$ has a value.`}
         />
         <GammaChart />
         <p
@@ -182,6 +182,11 @@ export function GammaPage() {
             earlier than the book of 1811.
           </li>
           <li>We did not read the work of Bohr and Mollerup, only Mathlib's statement.</li>
+          <li>
+            Mathlib's integral for Γ is written in another form than Euler's. We read no statement
+            that the two forms are equal.
+          </li>
+          <li>We did not look up where Euler gave the reflection formula.</li>
         </ul>
       </section>
     </main>

@@ -48,8 +48,7 @@ const CURVE = [...POLES.slice(1), X_MAX]
   .join("");
 
 const minus = (text: string) => text.replace("-", "−");
-const digits = (value: number) =>
-  minus(Math.abs(value) >= 1000 ? value.toFixed(0) : value.toFixed(4));
+const digits = (value: number) => minus(value.toFixed(4));
 const NONE = "No value";
 
 export function GammaChart() {
@@ -104,6 +103,7 @@ export function GammaChart() {
             : `the value is about ${show(value())}`
         }.`}
         onPointerDown={(event) => {
+          if (event.button !== 0) return;
           event.currentTarget.setPointerCapture(event.pointerId);
           choose(event);
         }}
