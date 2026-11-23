@@ -19,7 +19,7 @@ All quotations are from the README or the guide at the commit above [15](../refe
 - README: "A map of an announced proof and a record of who has checked what. It is not a proof, not a referee report and not an endorsement".
 - README: "The human-readable mathematics has not been written up yet".
 - README: "No human-readable proof exists so far; this repository is one attempt to map the formal one."
-- Guide, title: "Its architecture: the statements, the flow, and why each idea calls for the next".
+- Guide, subtitle: "Its architecture: the statements, the flow, and why each idea calls for the next".
 - Guide, page 10: "§§4–7 are read here from the Lean source and from the announcement, not re-derived."
 - `lean/Atlas/Architecture.lean`: "This file is a **map**, not a proof of the Riemann hypothesis."
 
@@ -38,7 +38,9 @@ The words "11 pages" and "shrink" do not occur in the README. The page count com
 | 7, The automorphic foundation | Galois representations of automorphic forms. | Described |
 | Last pages | Why each idea needs the next; what is machine-checked; notation. | Summary |
 
-Sections 4 to 7 hold the new arithmetic. By the guide's own count, the implication from the outcome of sections 4 and 6 to the theorem takes 1,421 of the 175,187 modules. The other modules belong to sections 4 to 7. The guide gives them about six pages and re-derives none of them.
+The rows for sections 5 to 7 come from the flow diagram on page 1 and the summary on page 10. We read pages 5 to 9 in parts only.
+
+Sections 4 to 7 hold the new arithmetic. By the guide's own count, the implication from the outcome of sections 4 and 6 to the theorem takes 1,421 of the 175,187 modules. The guide does not say how the other modules divide. Our own judgement: most of them serve the arithmetic of sections 4 to 7, because sections 1 to 3 are classical and short. The guide gives them about six pages and re-derives none of them.
 
 ## What the repository checks itself
 
@@ -48,7 +50,7 @@ Sections 4 to 7 hold the new arithmetic. By the guide's own count, the implicati
 
 ## What we compared with the pinned Lean source
 
-Source: `leanprover-community/riemann-hypothesis` at `40e56bab` [3](../references.md#reference-3). The guide links to the mirror `Deicyde/riemann-hypothesis` at the same commit hash.
+Source: `leanprover-community/riemann-hypothesis` at `40e56bab` [7](../references.md#reference-7). The three files are saved under `sources/lean/`. The README of `riemann-rev` links its declarations to the mirror `Deicyde/riemann-hypothesis` at the same commit hash; we took the file paths from those links.
 
 | Guide | Lean declaration, read at the pin | Result |
 | --- | --- | --- |
@@ -72,7 +74,7 @@ The same repository has two other texts. They are closer to "the proof on paper"
 - Deformalization 2, `digests/local-nilpotence/local-nilpotence.pdf`, 8 pages. It proves one input of the first note in full. It covers "13 of its 144 declarations" of one unit.
 - Both notes say: "That is a claim, and nothing here asserts that the hypothesis is proved."
 
-For scale: the exported proof has 1,484,733 declarations, by the repository's own record. The two notes cover 108 and 27 declarations in their concordances.
+For scale: the exported proof has 1,484,733 declarations, by the repository's own record. Each note has a concordance, a table that pairs its statements with Lean declarations. The README gives the sizes: "a concordance of 108 Lean declarations" for note 1 and "a concordance of 27 Lean declarations" for note 2. These counts include definitions and declarations of neighbouring files, so they are larger than the counts of theorems quoted above.
 
 ## Meaning for this project
 
