@@ -1,0 +1,48 @@
+# Background: where the zeta function came from
+
+The record behind the site page "Where the zeta function came from". Step 1 speaks of the zeros of the zeta function; this note says what the function is, who made it, and why. Each fact names its source. The page holds the same facts.
+
+## The sum of the inverse squares
+
+- The series 1 + 1/4 + 1/9 + … was known to be convergent before Euler. The question of its exact value "can be traced back at least to" Mengoli's treatise of 1650 [11](../references.md#reference-11).
+- Wallis, Leibniz, Stirling, de Moivre, Goldbach and several Bernoullis worked on the problem [11](../references.md#reference-11).
+- The problem became widely known after Jakob Bernoulli asked it explicitly in 1689. In the same work, Bernoulli considered the series for an arbitrary rational number s [11](../references.md#reference-11).
+- Wallis gave a 3-digit approximation in 1655. Euler gave the 7-digit value 1.644934, in a paper presented in 1731; this needed much computing "because the series converges very slowly" [11](../references.md#reference-11).
+- In 1735, Euler, 28 years old, found ζ(2) = π²/6, and for each positive whole number ν the value ζ(2ν) = r π^(2ν), with r a rational number [11](../references.md#reference-11).
+- Euler wrote: "quite unexpectedly, I have found an elegant formula for ζ(2), depending upon the quadrature of the circle" (translation by Weil) [11](../references.md#reference-11).
+- The discovery "made him famous, perhaps for the first time, among mathematicians in all Europe". Johann Bernoulli exclaimed that "the most burning desire of his deceased older brother Jakob was now fulfilled" [11](../references.md#reference-11).
+- Euler tried through his life, without success, to find a formula for ζ(s) for s an odd integer [11](../references.md#reference-11).
+- The notation ζ(s) and the name "zeta function" first appear in Riemann's paper [11](../references.md#reference-11), footnote 46.
+
+## The product over the primes
+
+- Euler's paper *Variae observationes circa series infinitas* is of 1737 and was printed in 1744. It "contains the first printed version of Euler's product for Riemann's zeta function" [12](../references.md#reference-12).
+- The product is Theorem 8 of that paper: the product of 1/(1 − p^(−s)) over the primes p is equal to the sum of 1/n^s, for s > 1. "Euler only treats the case where s is a positive integer" [12](../references.md#reference-12).
+- Theorem 7 is the case s = 1. Euler's steps: from x = 1 + 1/2 + 1/3 + …, subtract x/2 to remove the even denominators, then a third of the rest to remove the multiples of 3, "and so on until all terms on the right-hand side are deleted". The proof of Theorem 8 "follows the same lines" [12](../references.md#reference-12).
+- The page shows these steps for the squares, not for s = 1. The arithmetic of the five parts is an own check: x/4 holds the terms of the even numbers; (1 − 1/4)x = 1 + 1/9 + 1/25 + …; then the multiples of 3 leave.
+- Theorem 19, the last of the paper, is the divergence of the sum of the reciprocals of the primes. As they stand, the statements of Theorems 7 and 19 "are unacceptable"; the strong form is due to Mertens in 1874 [12](../references.md#reference-12).
+- The divergence is "in some sense a wide generalization of the fact that the number of primes is infinite", which is Proposition 20 of Book IX of Euclid's *Elements* [11](../references.md#reference-11).
+- Euler, in a paper written in 1747 and published in 1751: the order of the primes is "a mystery which human mind will never be able to penetrate" [11](../references.md#reference-11).
+- The product formula "was the starting point of Riemann's investigations" [11](../references.md#reference-11).
+
+## From Euler to Riemann
+
+- In a paper written in 1749 and published in 1768, Euler found the functional equation, a relation between ζ(n) and ζ(1 − n). He proved it for every positive integer n and conjectured it for all n (Weil's comment) [11](../references.md#reference-11).
+- "After Euler, the next substantial work on the zeta function was done more than a century later, by Riemann." Weil considers that after Euler the subject was dead and that Riemann resurrected it [11](../references.md#reference-11).
+- Riemann's paper *On the number of primes less than a given magnitude* is 8 pages long. He wrote it on the occasion of his election to the Berlin Academy on 11 August 1859; every new member was asked to report on recent research [11](../references.md#reference-11).
+- Riemann displays Euler's formula as his departure point, considers the function "as a function of a complex variable s", and denotes it by ζ(s) [11](../references.md#reference-11).
+- He showed that the function extends to the complex plane except at the point 1, discovered the relation between its zeros and the distribution of the primes, and stated the conjecture now called the Riemann hypothesis [11](../references.md#reference-11).
+- The sum and the product converge where the real part of s is above 1 [10](../references.md#reference-10).
+- Hadamard and de la Vallée Poussin gave complete proofs of the prime number theorem in 1896; "the outlines of their proofs are based on his sketch" [11](../references.md#reference-11).
+
+## The chart on the page
+
+- The chart computes, for a power s of 1, 2, 3 or 4 and a number N up to 100, the sum of 1/n^s for n up to N and the product of 1/(1 − p^(−s)) for the primes p up to N. No source; the page computes the numbers.
+- The limit shown for s = 2, 3 and 4 is the sum of 200 000 terms plus the integral of the rest. For s = 2 it shows 1.6449, which agrees with Euler's 1.644934 above.
+- Own explanation, no source: the product over the primes up to N is the sum of 1/n^s over every n that has only these primes as factors. So the product is never below the sum of the first N terms.
+
+## Not checked
+
+- Euler's papers themselves are not read; all statements on them come from the two secondary sources.
+- The date of Euler's result on ζ(2): reference 11 gives 1735 (presented 5 December 1735). Other pages give 1734. The page uses 1735.
+- Reference 11 has three slips in the part read (see its catalogue entry). The page does not use them. For the exact statement of the hypothesis, the page points to step 1.

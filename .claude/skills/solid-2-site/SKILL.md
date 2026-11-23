@@ -33,8 +33,8 @@ Do not write Solid code from memory of version 1 or of React.
 - The content comes from `docs/notes/`. The notes are the source; change a fact in the note first, then in the step file.
 - Lean text is verbatim. Added line breaks are allowed, and the snippet's `source` line must say so.
 - `src/LeanBlock.tsx` renders a snippet. `src/leanColours.ts` colours keywords, types and numbers with one small pattern; it adds no dependency, so the page stays small. Add a word to the pattern when a new step quotes it. `src/Plane.tsx` draws the complex plane. `src/StepPage.tsx` owns the state of a step: the hovered piece, the focused piece and the pinned piece.
-- `src/App.tsx` holds the header and selects the page from the address after `#` (`#/` is the step, `#/complex-numbers` the background page). Hash addresses need no server rules, so the build works on GitHub Pages under a sub-path.
-- A background page (`src/ComplexPage.tsx`) explains a prerequisite. Its record is a note in `docs/notes/`, and every section names its sources in one line under its content; a link on each fact is noise when most facts share a source. `src/MultiplyPlane.tsx` is its picture with points that the reader moves; `src/complex.ts` holds the arithmetic.
+- `src/App.tsx` holds the header and selects the page from the address after `#` (`#/` is the step, `#/complex-numbers` and `#/zeta` the background pages). Hash addresses need no server rules, so the build works on GitHub Pages under a sub-path.
+- A background page (`src/ComplexPage.tsx`, `src/ZetaPage.tsx`) explains a prerequisite. Its record is a note in `docs/notes/`, and every section names its sources in one line under its content; a link on each fact is noise when most facts share a source. `src/MultiplyPlane.tsx` is its picture with points that the reader moves; `src/complex.ts` holds the arithmetic. `src/Stepper.tsx` shows one calculation a part at a time, on both background pages. `src/SumProduct.tsx` is the chart of the zeta page: a slider and a table carry the values, so the chart needs no hover.
 
 ## Rules for the content
 
@@ -62,3 +62,5 @@ Add a line here when Solid 2.0 or the toolchain behaves differently from what yo
 - A button that can switch itself off while it has focus (a "Next" button on the last part) uses `aria-disabled` and a guard in the handler, not `disabled`. A disabled button drops the keyboard focus. The headless browser refuses to click a button with `aria-disabled="true"`.
 - Numbers shown rounded do not add or multiply exactly. Write "≈" and say that the values are rounded.
 - A page built by Vite does not load from `file://`. Serve `dist/` with `vite preview` to check it.
+- Text inside an SVG scales with the picture. A chart drawn 600 units wide shows at half size on a phone, so raise the SVG's `font-size` in the narrow rules and check a shot at width 390.
+- A page fact comes from a source that was read, not from a search summary. Download the source to `sources/background/`, read the part, and record in `docs/references.md` which part was read and any slip found in it.

@@ -1,13 +1,17 @@
-import { createSignal, Show } from "solid-js";
+import { createSignal, Match, Switch } from "solid-js";
 import { ComplexPage } from "./ComplexPage";
 import { StepPage } from "./StepPage";
+import { ZetaPage } from "./ZetaPage";
 
-type Route = "step" | "complex";
+type Route = "step" | "complex" | "zeta";
 
 // The address after "#" selects the page, so the built site needs no server
 // rules and works under any sub-path.
-const readRoute = (): Route =>
-  location.hash === "#/complex-numbers" ? "complex" : "step";
+const readRoute = (): Route => {
+  if (location.hash === "#/complex-numbers") return "complex";
+  if (location.hash === "#/zeta") return "zeta";
+  return "step";
+};
 
 export function App() {
   const [route, setRoute] = createSignal(readRoute());
@@ -34,12 +38,20 @@ export function App() {
           <a href="#/complex-numbers" aria-current={current("complex")}>
             Background: complex numbers
           </a>
+          <a href="#/zeta" aria-current={current("zeta")}>
+            Background: the zeta function
+          </a>
         </nav>
       </header>
 
-      <Show when={route() === "complex"} fallback={<StepPage />}>
-        <ComplexPage />
-      </Show>
+      <Switch fallback={<StepPage />}>
+        <Match when={route() === "complex"}>
+          <ComplexPage />
+        </Match>
+        <Match when={route() === "zeta"}>
+          <ZetaPage />
+        </Match>
+      </Switch>
     </>
   );
 }

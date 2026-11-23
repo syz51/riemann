@@ -33,7 +33,9 @@ export function StepPage() {
       <p class="summary">{step.summary}</p>
       <p class="aside-link">
         New to complex numbers? Read{" "}
-        <a href="#/complex-numbers">why complex numbers exist</a> first.
+        <a href="#/complex-numbers">why complex numbers exist</a> first. New to
+        the zeta function? Read{" "}
+        <a href="#/zeta">where the zeta function came from</a>.
       </p>
 
       <div class="columns">

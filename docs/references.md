@@ -81,3 +81,20 @@ Inspection: abstract only. The link is a copy on a course page at MIT. The autho
 Inspection depth: abstract.
 
 Inspection: abstract only. Read: the opening paragraphs and the statement of the theorem marked "Riemann 1859", with the lines on the pole at s = 1, the critical strip and the trivial zeros. The proofs and the exercises are not read.
+
+## Reference 11
+
+[11] Athanase Papadopoulos. **Looking backward: From Euler to Riemann**. arXiv:1710.03982, October 2017. [Original](https://arxiv.org/abs/1710.03982). Accessed 23 November 2026, Asia/Tokyo.
+
+Inspection depth: abstract.
+
+Inspection: abstract only. Read: section 6, "The zeta function", from its start to the list of the ideas in Riemann's paper and the paragraph after it (pages 34 to 39), with footnotes 46 to 55. The other sections are not read. A secondary source: a survey that cites Weil's history of number theory for most of these facts. Three slips in the part read: it gives 25 April 1727 for the presentation of Euler's paper of 1737; it says that Riemann's function vanishes at the negative odd integers; it writes the line of the hypothesis as Im(s) = 1/2. The notes do not use these three statements.
+
+## Reference 12
+
+[12] Pelegrí Viader, Lluís Bibiloni and Jaume Paradís. **On a Series of Goldbach and Euler**. Economics Working Paper 776, Universitat Pompeu Fabra, June 2004. [Original](https://econ-papers.upf.edu/papers/776.pdf). Accessed 23 November 2026, Asia/Tokyo.
+
+Inspection depth: abstract.
+
+Inspection: abstract only. Read: the abstract, the first page of section 1, and section 7, "Epilog", on Theorems 7, 8 and 19 of Euler's paper *Variae observationes circa series infinitas*. Sections 2 to 6, on the theorem of Goldbach and Euler, are not read. A secondary source on Euler's paper; the paper itself (Latin, printed 1744) is not read.
+

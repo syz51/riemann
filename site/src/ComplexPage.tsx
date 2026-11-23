@@ -1,5 +1,6 @@
-import { createSignal, For } from "solid-js";
+import { For } from "solid-js";
 import { MultiplyPlane } from "./MultiplyPlane";
+import { Stepper, type Part } from "./Stepper";
 
 // Source of the content: docs/notes/background-complex-numbers.md.
 // The copy at MIT. The author's own address at the University of Rhode Island
@@ -8,7 +9,8 @@ const MERINO =
   "https://math.mit.edu/~dunkel/Teach/18.04_2019S/historic/Merino_2006.pdf";
 const ELKIES = "https://people.math.harvard.edu/~elkies/M229.09/zeta1.pdf";
 
-const CUBIC: { title: string; equation: string; text: string }[] = [
+// The calculation of Bombelli.
+const CUBIC: Part[] = [
   {
     title: "An equation with a plain answer",
     equation: "x³ = 15x + 4",
@@ -71,41 +73,6 @@ const TIMELINE: { year: string; text: string }[] = [
   },
 ];
 
-/** The calculation of Bombelli, one part at a time. */
-function CubicSteps() {
-  const [index, setIndex] = createSignal(0);
-  const part = () => CUBIC[index()]!;
-
-  return (
-    <div class="stepper">
-      <div class="part" aria-live="polite">
-        <p class="count">
-          Part {index() + 1} of {CUBIC.length}
-        </p>
-        <h3>{part().title}</h3>
-        <p class="equation">{part().equation}</p>
-        <p>{part().text}</p>
-      </div>
-      <div class="controls">
-        <button
-          type="button"
-          aria-disabled={index() === 0 ? "true" : "false"}
-          onClick={() => setIndex(Math.max(0, index() - 1))}
-        >
-          Back
-        </button>
-        <button
-          type="button"
-          aria-disabled={index() === CUBIC.length - 1 ? "true" : "false"}
-          onClick={() => setIndex(Math.min(CUBIC.length - 1, index() + 1))}
-        >
-          Next part
-        </button>
-      </div>
-    </div>
-  );
-}
-
 /** Background page: why complex numbers were defined, and why zeta needs them. */
 export function ComplexPage() {
   return (
@@ -125,7 +92,7 @@ export function ComplexPage() {
           x² = −1 a solution. The history is different. They came from equations
           with a third power.
         </p>
-        <CubicSteps />
+        <Stepper parts={CUBIC} />
         <p class="sources">
           Source: <a href={MERINO}>Merino, A Short History of Complex Numbers</a>,
           items 4 to 7.
@@ -193,7 +160,8 @@ export function ComplexPage() {
           the theorem marked “Riemann 1859”.
         </p>
         <p>
-          <a href="#/">Go to step 1: what exactly was proved</a>
+          <a href="#/zeta">Read where the zeta function came from</a>, or{" "}
+          <a href="#/">go to step 1: what exactly was proved</a>.
         </p>
       </section>
     </main>
