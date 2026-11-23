@@ -1,5 +1,6 @@
 import { createSignal, Match, Show, Switch } from "solid-js";
 import { ComplexPage } from "./ComplexPage";
+import { GammaPage } from "./GammaPage";
 import { ContentsPage } from "./ContentsPage";
 import { PageFoot } from "./PageFoot";
 import { CONTENTS, href, routeOf } from "./pages";
@@ -42,6 +43,9 @@ export function App() {
         </Match>
         <Match when={route() === "zeta"}>
           <ZetaPage />
+        </Match>
+        <Match when={route() === "gamma"}>
+          <GammaPage />
         </Match>
       </Switch>
 

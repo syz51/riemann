@@ -1,4 +1,5 @@
 import { For } from "solid-js";
+import { href } from "./pages";
 import { Stepper, type Part } from "./Stepper";
 import { SumProduct } from "./SumProduct";
 
@@ -305,11 +306,13 @@ export function ZetaPage() {
             the factorial $1 \cdot 2 \cdot 3 \cdots n$ to numbers that are not whole. Euler introduced
             it in a paper that he wrote in 1729, with a different notation. For a whole number
             $n$ above 1, $\Gamma(n)$ is the product of the whole numbers below $n$: $\Gamma(5)$
-            is $1 \cdot 2 \cdot 3 \cdot 4 = 24$. Also $\Gamma(1) = 1$. Where both values exist,
-            $\Gamma(s + 1)$ is $s$ times $\Gamma(s)$. The function has no value at 0, $-1$, $-2$
-            and so on. Our own remark, not from a source, on what goes wrong at 0: there the rule
-            would say that $\Gamma(1) = 1$ is 0 times a number, and no number does that.`}
+            is $1 \cdot 2 \cdot 3 \cdot 4 = 24$. The function has no value at 0, $-1$, $-2$
+            and so on.`}
         />
+        <p>
+          The page <a href={href("gamma")}>The Gamma function</a> has its history, its rules, a
+          chart, and the reason why it has no value at these points.
+        </p>
         <p
           innerHTML={prose`The value at $-1$ is strange, because at $-1$ the sum would be $1 + 2 + 3 + \cdots$, and
             that sum has no value. The number $-1/12$ belongs to the function that has a meaning

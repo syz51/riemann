@@ -1,7 +1,7 @@
 import { step1 } from "./steps/step1";
 
 /** The address of a page, after "#/". */
-export type PageRoute = "step-1" | "complex-numbers" | "zeta";
+export type PageRoute = "step-1" | "complex-numbers" | "zeta" | "gamma";
 
 /** The contents page has the empty route. */
 export const CONTENTS = "";
@@ -40,6 +40,12 @@ export const STEPS: StepEntry[] = [
         title: "Where the zeta function came from",
         summary:
           "It began as one sum that nobody could finish. Euler finished it and found that the answer knows about the primes.",
+      },
+      {
+        route: "gamma",
+        title: "The Gamma function",
+        summary:
+          "The symmetry of the zeta function uses it. It fills the gaps of the list 1, 2, 6, 24, 120, and Euler found it in 1729.",
       },
     ],
   },

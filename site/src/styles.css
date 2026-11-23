@@ -971,3 +971,32 @@ h3 {
     display: block;
   }
 }
+
+/* The chart of the Gamma page. It shares the frame, the slider and the table
+   of the chart above. */
+.gamma-chart svg {
+  touch-action: pan-y;
+  cursor: crosshair;
+}
+
+.gamma-chart svg .zero {
+  stroke: var(--muted);
+}
+
+.gamma-chart svg .direct {
+  fill: var(--text);
+}
+
+.legend li.point::before {
+  width: 0.6rem;
+  height: 0.6rem;
+  border: 0;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+@media (max-width: 52rem) {
+  .gamma-chart svg .direct {
+    font-size: 17px;
+  }
+}
