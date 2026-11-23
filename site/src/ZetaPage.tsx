@@ -16,6 +16,7 @@ const MATHLIB_BERNOULLI =
   "https://github.com/leanprover-community/mathlib4/blob/0df444a360eaa60ab8c11dca51a86af692955474/Mathlib/NumberTheory/Bernoulli.lean#L209-L211";
 const MATHLIB_CONJ =
   "https://github.com/leanprover-community/mathlib4/blob/90e6eec9fe53b02d431c90718e4a1d22d67a204e/Mathlib/NumberTheory/Harmonic/ZetaAsymp.lean#L454-L460";
+const EULER_E352 = "http://eulerarchive.maa.org/docs/translations/E352.pdf";
 const ELKIES = "https://people.math.harvard.edu/~elkies/M229.09/zeta1.pdf";
 
 const SIEVE: Part[] = [
@@ -294,6 +295,48 @@ export function ZetaPage() {
             alternating signs, such as $1 - 2 + 3 - 4 + \cdots$, and used a special way of summing
             to give them a meaning. In 1859, Riemann proved the symmetry for complex numbers $s$ as well.`}
         />
+        <h3>How Euler found it</h3>
+        <p>
+          Euler did not get the symmetry from a proof. He saw a pattern in numbers, guessed a rule,
+          and then tested the rule. The steps below follow his paper.
+        </p>
+        <ol>
+          <li
+            innerHTML={prose`He took two families of sums with alternating signs. One grows:
+              $1 - 2^m + 3^m - 4^m + \cdots$. The other shrinks: $1 - 1/2^n + 1/3^n - 1/4^n + \cdots$.`}
+          />
+          <li
+            innerHTML={prose`The growing sums have no value in the usual sense, and Euler said so. He gave them
+              one in this way: for small $x$, the sum $1 - 2x + 3x^2 - 4x^3 + \cdots$ is $1/(1 + x)^2$.
+              At $x = 1$ this formula gives $1/4$, so he took $1/4$ as the value of $1 - 2 + 3 - 4 + \cdots$.
+              He wrote that the word “sum” needs “a more extended meaning” here.`}
+          />
+          <li
+            innerHTML={prose`He already knew the shrinking sums for even $n$: each is a fraction times $\pi^n$.
+              Then he found that the growing sums contain the same fractions.`}
+          />
+          <li
+            innerHTML={prose`So he divided each growing sum by the shrinking sum with the same fraction. The
+              fraction drops out. For $n = 2$ the result is $3/\pi^2$.`}
+          />
+          <li
+            innerHTML={prose`He wrote the results for $n = 2, 3, 4, 5, 6$ and so on as one rule times a number $N$.
+              The values of $N$ were $+1, 0, -1, 0, +1$ and so on. He saw that $-\cos(n\pi/2)$ gives
+              exactly these values.`}
+          />
+          <li
+            innerHTML={prose`He then wrote: “I venture to propose the following conjecture”, that the rule holds for
+              every $n$. He called the conjecture bold.`}
+          />
+          <li
+            innerHTML={prose`He tested it. It held for $n = 1$ and $n = 0$. He showed that the negative whole
+              numbers follow from the positive ones. For $n = 1/2$ both sides are 1. For $n = 3/2$
+              he computed both sides to several decimal places, and they agreed.`}
+          />
+        </ol>
+        <p>
+          Euler stated that he had no single proof for every case. Riemann gave that proof in 1859.
+        </p>
         <p
           innerHTML={prose`For a complex number $s = a + bi$, the step from $s$ to $1 - s$ gives $(1 - a) - bi$. That
             is a half turn around the point $1/2$, not a flip across a line. The function has a
@@ -337,6 +380,10 @@ export function ZetaPage() {
           Sources: <a href={PAPADOPOULOS}>Papadopoulos, Looking backward: from Euler to Riemann</a>,
           section 6. <a href={ELKIES}>Elkies, Math 229 notes on the zeta function</a>, for where the
           sum works and for the symmetry that Riemann proved.{" "}
+          <a href={EULER_E352}>
+            Euler, Remarks on a beautiful relation between direct as well as reciprocal power series
+          </a>
+          , translated by Willis and Osler, sections 1 to 15, for how Euler found the symmetry.{" "}
           <a href={MATHLIB_CONJ}>Mathlib, theorem riemannZeta_conj</a>, for the second symmetry.{" "}
           <a href={MATHLIB_PIN}>Mathlib at the commit the proof builds against</a>: four statements
           for the mirrored pairs of zeros, and the theorem riemannZeta_one_sub for the factor that

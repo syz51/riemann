@@ -145,3 +145,11 @@ Inspection: abstract only. Read from the PDF: the abstract and the end of sectio
 Inspection depth: abstract.
 
 Inspection: abstract only. Read: the line of the file header on `riemannZeta_conj`, and the statement of the theorem with its comment (lines 454 to 460). The proof and the rest of the file are not read. The commit is the head of the `master` branch on the day of access, not the Mathlib version that the library of the proof builds against; we have not compiled it.
+
+## Reference 19
+
+[19] Leonhard Euler. **Remarks on a beautiful relation between direct as well as reciprocal power series (E352)**. Translation with notes by Lucas Willis and Thomas J. Osler, Rowan University, 1 August 2006. [Original](http://eulerarchive.maa.org/docs/translations/E352.pdf). Accessed 23 November 2026, Asia/Tokyo.
+
+Inspection depth: method.
+
+Inspection: method level. Read: the translators' introduction, sections 1 to 15 of the translated paper, and the translators' notes on sections 14 and 15. Sections 16 to 20 and the other notes are skimmed only. A primary source in translation; the French original (Mémoires de l'académie des sciences de Berlin 17, 1768, pages 83 to 106) is not read. The translators mark the errors that they found in Euler's digits.
