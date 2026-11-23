@@ -16,17 +16,22 @@ const SIEVE: Part[] = [
   {
     title: "Divide every term by 4",
     equation: "x/4 = 1/4 + 1/16 + 1/36 + 1/64 + …",
-    text: "The number 4 is the square of 2. So the new terms belong to 2, 4, 6, 8 and so on. These are exactly the terms of the even numbers in x.",
+    text: "The number 4 is the square of 2. The term of n is 1 divided by n × n. Divide it by 4, and it is 1 divided by 2n × 2n, the term of 2n. So the new terms belong to 2, 4, 6, 8 and so on. These are exactly the terms of the even numbers in x.",
   },
   {
     title: "Subtract: the even numbers go",
     equation: "(1 − 1/4) x = 1 + 1/9 + 1/25 + 1/49 + 1/81 + …",
-    text: "Take x/4 away from x. Each term of an even number leaves. The terms of the odd numbers stay.",
+    text: "Take x/4 away from x. On the left, x minus a quarter of x is (1 − 1/4) times x. On the right, each term of an even number leaves. The terms of the odd numbers 1, 3, 5, 7, 9 stay.",
   },
   {
-    title: "Do the same with 3",
+    title: "Divide the new sum by 9",
+    equation: "(1 − 1/4) x / 9 = 1/9 + 1/81 + 1/225 + 1/441 + …",
+    text: "The number 9 is the square of 3. Divide the term of n by 9, and it is the term of 3n. So the terms of 1, 3, 5, 7 become the terms of 3, 9, 15, 21. These are exactly the terms of the multiples of 3 that are still in the sum.",
+  },
+  {
+    title: "Subtract: the multiples of 3 go",
     equation: "(1 − 1/4)(1 − 1/9) x = 1 + 1/25 + 1/49 + 1/121 + …",
-    text: "Divide the new sum by 9, the square of 3, and subtract. Now each term of a multiple of 3 leaves too. The next number that is left is 5, the next prime.",
+    text: "Take the sum of part 4 away from the sum of part 3. On the left, a sum minus one ninth of itself is (1 − 1/9) times the sum. On the right, the terms 1/9, 1/81, 1/225 and so on leave. The numbers 1, 5, 7, 11 stay: no multiple of 2 or 3. The first one after 1 is 5, the next prime.",
   },
   {
     title: "Go on with every prime",
