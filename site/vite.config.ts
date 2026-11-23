@@ -1,6 +1,6 @@
 import solid from "@solidjs/vite-plugin";
 import { defineConfig, type Plugin } from "vite-plus";
-import { equationToHtml, proseToHtml } from "./src/prose";
+import { replaceLiterals } from "./src/prose";
 
 /**
  * Replaces each tex literal by the MathML markup of its LaTeX, and each prose
@@ -15,9 +15,8 @@ function tex(): Plugin {
     transform(code, id) {
       if (!/\/src\/[^?]*\.tsx?$/.test(id) || !/\b(?:tex|prose)`/.test(code)) return;
       return {
-        code: code.replace(/\b(tex|prose)`((?:[^`\\]|\\.)*)`/gs, (_, tag: string, source: string) =>
-          JSON.stringify(tag === "tex" ? equationToHtml(source) : proseToHtml(source)),
-        ),
+        code: replaceLiterals(code),
+        // Each line keeps its number, so no map is needed.
         map: null,
       };
     },

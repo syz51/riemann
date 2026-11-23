@@ -12,6 +12,7 @@ declare function tex(source: TemplateStringsArray): Markup;
 /**
  * Running text with formulas. A formula stands between two `$` signs and is
  * LaTeX; the build makes it inline MathML and escapes the text around it. The
- * same rules as for `tex` apply.
+ * same rules as for `tex` apply. The text outside the formulas takes no dollar
+ * sign and no backslash.
  */
 declare function prose(source: TemplateStringsArray): Markup;
