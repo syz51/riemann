@@ -5,8 +5,8 @@ import { createMemo, createSignal, For, Show } from "solid-js";
 const MAX = 100;
 const WIDTH = 600;
 const HEIGHT = 300;
-const LEFT = 44;
-const RIGHT = 16;
+const LEFT = 58;
+const RIGHT = 26;
 const TOP = 14;
 const BOTTOM = 38;
 const PLOT_W = WIDTH - LEFT - RIGHT;
@@ -80,6 +80,10 @@ export function SumProduct() {
   const product = () => data().products[count()]!;
   const used = () => PRIMES.filter((prime) => prime <= count());
   const digits = (value: number) => value.toFixed(4);
+  const limitText = () => {
+    const value = target();
+    return value === undefined ? "None. Both grow without limit." : digits(value);
+  };
 
   return (
     <div class="sumprod">
@@ -117,7 +121,7 @@ export function SumProduct() {
       <ul class="legend">
         <li class="sum">Sum over the whole numbers up to N</li>
         <li class="product">Product over the primes up to N</li>
-        <Show when={target() !== undefined}>
+        <Show when={target()}>
           <li class="target">The value that both approach</li>
         </Show>
       </ul>
@@ -131,7 +135,7 @@ export function SumProduct() {
           {(tick) => (
             <>
               <line class="grid" x1={LEFT} x2={WIDTH - RIGHT} y1={y(tick)} y2={y(tick)} />
-              <text class="tick" x={LEFT - 8} y={y(tick) + 4} text-anchor="end">
+              <text class="tick" x={LEFT - 8} y={y(tick)} dominant-baseline="central" text-anchor="end">
                 {Number(tick.toFixed(2))}
               </text>
             </>
@@ -139,7 +143,7 @@ export function SumProduct() {
         </For>
         <For each={X_TICKS}>
           {(tick) => (
-            <text class="tick" x={x(tick)} y={HEIGHT - BOTTOM + 18} text-anchor="middle">
+            <text class="tick" x={x(tick)} y={HEIGHT - BOTTOM + 12} dominant-baseline="hanging" text-anchor="middle">
               {tick}
             </text>
           )}
@@ -164,7 +168,9 @@ export function SumProduct() {
         <caption>The values at N = {count()}, rounded</caption>
         <tbody>
           <tr>
-            <th scope="row">Sum of the first {count()} terms</th>
+            <th scope="row">
+              {count() === 1 ? "The first term alone" : `Sum of the first ${count()} terms`}
+            </th>
             <td>{digits(sum())}</td>
           </tr>
           <tr>
@@ -182,9 +188,7 @@ export function SumProduct() {
           <tr>
             <th scope="row">The value that both approach</th>
             <td>
-              <Show when={target()} fallback="None. Both grow without limit.">
-                {(value) => digits(value())}
-              </Show>
+{limitText()}
             </td>
           </tr>
         </tbody>

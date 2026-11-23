@@ -10,7 +10,7 @@ The record behind the site page "Where the zeta function came from". Step 1 spea
 - Wallis gave a 3-digit approximation in 1655. Euler gave the 7-digit value 1.644934, in a paper presented in 1731; this needed much computing "because the series converges very slowly" [11](../references.md#reference-11).
 - In 1735, Euler, 28 years old, found ζ(2) = π²/6, and for each positive whole number ν the value ζ(2ν) = r π^(2ν), with r a rational number [11](../references.md#reference-11).
 - Euler wrote: "quite unexpectedly, I have found an elegant formula for ζ(2), depending upon the quadrature of the circle" (translation by Weil) [11](../references.md#reference-11).
-- The discovery "made him famous, perhaps for the first time, among mathematicians in all Europe". Johann Bernoulli exclaimed that "the most burning desire of his deceased older brother Jakob was now fulfilled" [11](../references.md#reference-11).
+- The discovery "made him famous, perhaps for the first time, among mathematicians in all Europe". His teacher Johann Bernoulli exclaimed that "the most burning desire of his deceased older brother Jakob was now fulfilled" [11](../references.md#reference-11).
 - Euler tried through his life, without success, to find a formula for ζ(s) for s an odd integer [11](../references.md#reference-11).
 - The notation ζ(s) and the name "zeta function" first appear in Riemann's paper [11](../references.md#reference-11), footnote 46.
 
@@ -28,7 +28,7 @@ The record behind the site page "Where the zeta function came from". Step 1 spea
 ## From Euler to Riemann
 
 - In a paper written in 1749 and published in 1768, Euler found the functional equation, a relation between ζ(n) and ζ(1 − n). He proved it for every positive integer n and conjectured it for all n (Weil's comment) [11](../references.md#reference-11).
-- "After Euler, the next substantial work on the zeta function was done more than a century later, by Riemann." Weil considers that after Euler the subject was dead and that Riemann resurrected it [11](../references.md#reference-11).
+- "After Euler, the next substantial work on the zeta function was done more than a century later, by Riemann." Weil, in the history of number theory that he wrote, considers that after Euler the subject was dead and that Riemann resurrected it [11](../references.md#reference-11).
 - Riemann's paper *On the number of primes less than a given magnitude* is 8 pages long. He wrote it on the occasion of his election to the Berlin Academy on 11 August 1859; every new member was asked to report on recent research [11](../references.md#reference-11).
 - Riemann displays Euler's formula as his departure point, considers the function "as a function of a complex variable s", and denotes it by ζ(s) [11](../references.md#reference-11).
 - He showed that the function extends to the complex plane except at the point 1, discovered the relation between its zeros and the distribution of the primes, and stated the conjecture now called the Riemann hypothesis [11](../references.md#reference-11).
@@ -39,7 +39,7 @@ The record behind the site page "Where the zeta function came from". Step 1 spea
 
 - The chart computes, for a power s of 1, 2, 3 or 4 and a number N up to 100, the sum of 1/n^s for n up to N and the product of 1/(1 − p^(−s)) for the primes p up to N. No source; the page computes the numbers.
 - The limit shown for s = 2, 3 and 4 is the sum of 200 000 terms plus the integral of the rest. For s = 2 it shows 1.6449, which agrees with Euler's 1.644934 above.
-- Own explanation, no source: the product over the primes up to N is the sum of 1/n^s over every n that has only these primes as factors. So the product is never below the sum of the first N terms.
+- Own explanation, no source: the product over the primes up to N is the sum of 1/n^s over every n that has only these primes as factors. So the product is never below the sum of the first N terms. At N = 1 both are 1; from N = 2 on, the product is above the sum.
 
 ## Not checked
 

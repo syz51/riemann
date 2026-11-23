@@ -794,7 +794,7 @@ h3 {
   /* The chart is drawn at 600 units wide, so its text needs larger units here.
      The slider above the chart already names N. */
   .sumprod svg {
-    font-size: 21px;
+    font-size: 19px;
   }
 
   .sumprod svg .title {

@@ -64,3 +64,4 @@ Add a line here when Solid 2.0 or the toolchain behaves differently from what yo
 - A page built by Vite does not load from `file://`. Serve `dist/` with `vite preview` to check it.
 - Text inside an SVG scales with the picture. A chart drawn 600 units wide shows at half size on a phone, so raise the SVG's `font-size` in the narrow rules and check a shot at width 390.
 - A page fact comes from a source that was read, not from a search summary. Download the source to `sources/background/`, read the part, and record in `docs/references.md` which part was read and any slip found in it.
+- The callback of `<Show>` runs one time. A plain value that it returns, such as `(v) => format(v())`, does not update when the value changes while `when` stays true. Read the signal in JSX or in an attribute instead. Check each control of a picture against the table beside it.

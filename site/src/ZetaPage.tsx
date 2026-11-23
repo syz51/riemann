@@ -188,7 +188,7 @@ export function ZetaPage() {
         </p>
         <SumProduct />
         <p>
-          The product is always ahead of the sum. The factors of the primes up
+          The product is never behind the sum, and from N = 2 on it is ahead. The factors of the primes up
           to N already hold every number that is built from these primes, also
           numbers above N. With “No power”, there is no value to come close
           to: both lines go up without limit, but more and more slowly.
@@ -205,8 +205,8 @@ export function ZetaPage() {
           In 1749, Euler found one more thing: a symmetry that links the value
           at s to the value at 1 − s. He proved it for whole numbers and
           conjectured it for the rest. After Euler, nobody did substantial
-          work on the function for more than a century. The historian Weil
-          wrote that the subject was dead, and that Riemann brought it back
+          work on the function for more than a century. The mathematician
+          Weil, in his history of number theory, wrote that the subject was dead, and that Riemann brought it back
           to life.
         </p>
         <p>
