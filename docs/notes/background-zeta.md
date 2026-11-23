@@ -43,6 +43,14 @@ Added on 23 November 2026 after the owner's questions in chat.
 ## From Euler to Riemann
 
 - In a paper written in 1749 and published in 1768, Euler found the functional equation, a relation between ζ(n) and ζ(1 − n). He proved it for every positive integer n and conjectured it for all n (Weil's comment) [11](../references.md#reference-11).
+- What the symmetry is, asked by the owner on 23 November 2026:
+  - Euler does not write the relation between ζ(n) and ζ(1 − n) itself; "it follows from a relation he writes, as pointed out by Weil" [11](../references.md#reference-11).
+  - The formula that Euler writes: (1 − 2ⁿ⁻¹ + 3ⁿ⁻¹ − 4ⁿ⁻¹ + …) / (1 − 2⁻ⁿ + 3⁻ⁿ − 4⁻ⁿ + …) = −(n − 1)! (2ⁿ − 1) / ((2ⁿ⁻¹ − 1) πⁿ) × cos(nπ/2) [11](../references.md#reference-11).
+  - Weil's comment: the left side is "formally the quotient" of ζ(1 − n) and ζ(n), "except that Euler had written alternating signs to make the series more tractable; the effect of this is merely to multiply ζ(n) by 1 − 2¹⁻ⁿ, and ζ(1 − n) by 1 − 2ⁿ" [11](../references.md#reference-11).
+  - The sum on top has no value in the usual sense. Euler proves the formula for every positive integer n "using the so-called Abel summation to give a meaning to the divergent series in the numerator" [11](../references.md#reference-11).
+  - Own remark: s and 1 − s have the sum 1, so they are mirror images about 1/2. For example 2 pairs with −1, and 3 pairs with −2.
+  - Own check for n = 2. The top is 1 − 2 + 3 − 4 + …. For x between 0 and 1, 1 − 2x + 3x² − 4x³ + … = 1/(1 + x)², which goes to 1/4 as x goes to 1. The bottom is 1 − 1/4 + 1/9 − … = (1 − 2⁻¹) × π²/6 = π²/12, by Weil's factor and Euler's value π²/6. The quotient is 3/π². The right side is −1 × 3 / (1 × π²) × cos(π) = 3/π². The two sides agree. That the limit as x goes to 1 is what "Abel summation" means is not looked up.
+  - Riemann, 1859: with ξ(s) = π^(−s/2) Γ(s/2) ζ(s), the function ξ extends to the whole plane except for poles at 0 and 1, and ξ(s) = ξ(1 − s) [10](../references.md#reference-10). So the symmetry holds for every s, and the function has a value at every point except 1.
 - "After Euler, the next substantial work on the zeta function was done more than a century later, by Riemann." Weil, in the history of number theory that he wrote, considers that after Euler the subject was dead and that Riemann resurrected it [11](../references.md#reference-11).
 - Riemann's paper *On the number of primes less than a given magnitude* is 8 pages long. He wrote it on the occasion of his election to the Berlin Academy on 11 August 1859; every new member was asked to report on recent research [11](../references.md#reference-11).
 - Riemann displays Euler's formula as his departure point, considers the function "as a function of a complex variable s", and denotes it by ζ(s) [11](../references.md#reference-11).

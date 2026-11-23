@@ -80,7 +80,7 @@ Inspection: abstract only. The link is a copy on a course page at MIT. The autho
 
 Inspection depth: abstract.
 
-Inspection: abstract only. Read: the opening paragraphs and the statement of the theorem marked "Riemann 1859", with the lines on the pole at s = 1, the critical strip and the trivial zeros. The proofs and the exercises are not read.
+Inspection: abstract only. Read: the opening paragraphs, the definition of ξ(s) before the theorem, and the statement of the theorem marked "Riemann 1859", with the lines on the pole at s = 1, the critical strip and the trivial zeros. The proofs and the exercises are not read.
 
 ## Reference 11
 

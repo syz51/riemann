@@ -263,11 +263,21 @@ export function ZetaPage() {
         <h2>A hundred years later: Riemann</h2>
         <p
           innerHTML={prose`In 1749, Euler found one more thing: a symmetry that links the value at $s$ to the value
-            at $1 - s$. He proved it for whole numbers and conjectured it for the rest. After Euler,
-            nobody did substantial work on the function for more than a century. The mathematician
-            Weil, in his history of number theory, wrote that the subject was dead, and that Riemann
-            brought it back to life.`}
+            at $1 - s$. He proved it for whole numbers and conjectured it for the rest.`}
         />
+        <p
+          innerHTML={prose`The numbers $s$ and $1 - s$ are mirror images, with the mirror at $1/2$: 2 pairs with $-1$,
+            and 3 pairs with $-2$. The symmetry is a formula. From the value of the function at one
+            number of a pair, it gives the value at the other. This is strange, because at $-1$ the
+            sum would be $1 + 2 + 3 + \cdots$, and that sum has no value. Euler worked with sums of
+            alternating signs, such as $1 - 2 + 3 - 4 + \cdots$, and used a special way of summing
+            to give them a meaning. In 1859, Riemann proved the symmetry for every $s$.`}
+        />
+        <p>
+          After Euler, nobody did substantial work on the function for more than a century. The
+          mathematician Weil, in his history of number theory, wrote that the subject was dead, and
+          that Riemann brought it back to life.
+        </p>
         <p>
           In 1859, Riemann was elected to the Berlin Academy. Each new member had to report on
           recent research. His report is 8 pages long, and its title is “On the number of primes
@@ -292,7 +302,7 @@ export function ZetaPage() {
         <p class="sources">
           Sources: <a href={PAPADOPOULOS}>Papadopoulos, Looking backward: from Euler to Riemann</a>,
           section 6. <a href={ELKIES}>Elkies, Math 229 notes on the zeta function</a>, for where the
-          sum works.
+          sum works and for the symmetry that Riemann proved.
         </p>
       </section>
 
