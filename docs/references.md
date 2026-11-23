@@ -68,7 +68,7 @@ Inspection: abstract only. Three files are saved and attached: `NumberTheory/LSe
 
 ## Reference 9
 
-[9] Orlando Merino. **A Short History of Complex Numbers**. Course notes, University of Rhode Island, January 2006. [Original](https://math.mit.edu/~dunkel/Teach/18.04_2019S/historic/Merino_2006.pdf). Accessed 23 November 2026, Asia/Tokyo.
+[9] Orlando Merino. **A Short History of Complex Numbers**. Course notes, University of Rhode Island, January 2006. [Original](https://math.mit.edu/~dunkel/Teach/18.04_2019S/historic/Merino_2006.pdf). This link is a copy at MIT, not the author's own address. Accessed 23 November 2026, Asia/Tokyo.
 
 Inspection depth: abstract.
 
