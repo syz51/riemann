@@ -91,9 +91,14 @@ export function ZetaPage() {
           Add 1 divided by each square number, and never stop. The square of 2, written 2², is 2 × 2
           = 4:
         </p>
+        {/* One line where it fits; two lines on a phone, so no side scroll is needed. */}
         <p
-          class="equation"
+          class="equation equation-one-line"
           innerHTML={tex`1 + \frac{1}{2^2} + \frac{1}{3^2} + \frac{1}{4^2} + \cdots = 1 + \frac{1}{4} + \frac{1}{9} + \frac{1}{16} + \cdots`}
+        />
+        <p
+          class="equation equation-two-lines"
+          innerHTML={tex`\begin{aligned} & 1 + \frac{1}{2^2} + \frac{1}{3^2} + \frac{1}{4^2} + \cdots \\ = \; & 1 + \frac{1}{4} + \frac{1}{9} + \frac{1}{16} + \cdots \end{aligned}`}
         />
         <p>
           The terms shrink fast, so the sum does not grow without limit. It comes closer and closer

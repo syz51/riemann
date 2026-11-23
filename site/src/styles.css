@@ -918,3 +918,18 @@ h3 {
     transition: none !important;
   }
 }
+
+/* The first equation of the zeta page: one line needs about 330px of column. */
+.equation-two-lines {
+  display: none;
+}
+
+@media (max-width: 380px) {
+  .equation-one-line {
+    display: none;
+  }
+
+  .equation-two-lines {
+    display: block;
+  }
+}
