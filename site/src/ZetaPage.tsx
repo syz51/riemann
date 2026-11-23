@@ -281,7 +281,9 @@ export function ZetaPage() {
             second symmetry: the value at $a - bi$ is the value at $a + bi$ with the sign of its
             $i$ part changed. The two symmetries together tie the value at $a + bi$ to the value at
             $(1 - a) + bi$. These two points have the same height $b$, and they are mirror images
-            across the line where the real part is $1/2$. That is the line of the hypothesis.`}
+            across the line where the real part is $1/2$. The Riemann hypothesis says
+            that every zero of the function lies on this line, apart from the known zeros at
+            $-2$, $-4$, $-6$ and so on.`}
         />
         <p>
           After Euler, nobody did substantial work on the function for more than a century. The
