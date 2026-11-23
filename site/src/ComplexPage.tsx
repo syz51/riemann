@@ -2,8 +2,10 @@ import { createSignal, For } from "solid-js";
 import { MultiplyPlane } from "./MultiplyPlane";
 
 // Source of the content: docs/notes/background-complex-numbers.md.
+// The copy at MIT. The author's own address at the University of Rhode Island
+// returned "not found" on 23 November 2026.
 const MERINO =
-  "https://www.math.uri.edu/~merino/spring06/mth562/ShortHistoryComplexNumbers2006.pdf";
+  "https://math.mit.edu/~dunkel/Teach/18.04_2019S/historic/Merino_2006.pdf";
 const ELKIES = "https://people.math.harvard.edu/~elkies/M229.09/zeta1.pdf";
 
 const CUBIC: { title: string; equation: string; text: string }[] = [

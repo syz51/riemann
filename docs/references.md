@@ -68,11 +68,11 @@ Inspection: abstract only. Three files are saved and attached: `NumberTheory/LSe
 
 ## Reference 9
 
-[9] Orlando Merino. **A Short History of Complex Numbers**. Course notes, University of Rhode Island, January 2006. [Original](https://www.math.uri.edu/~merino/spring06/mth562/ShortHistoryComplexNumbers2006.pdf). [Copy read](https://math.mit.edu/~dunkel/Teach/18.04_2019S/historic/Merino_2006.pdf). Accessed 23 November 2026, Asia/Tokyo.
+[9] Orlando Merino. **A Short History of Complex Numbers**. Course notes, University of Rhode Island, January 2006. [Original](https://math.mit.edu/~dunkel/Teach/18.04_2019S/historic/Merino_2006.pdf). Accessed 23 November 2026, Asia/Tokyo.
 
 Inspection depth: abstract.
 
-Inspection: abstract only. Read from the copy at MIT: the opening paragraph and items 4 to 8 and 11 to 15 (Cardano, Bombelli, Descartes, Euler, Wessel, Argand, Hamilton, Gauss). Items 1 to 3, 9, 10 and the bibliography are not read. A secondary source: course notes that cite the histories of Burton, Kline and others.
+Inspection: abstract only. The link is a copy on a course page at MIT. The author's own address, `https://www.math.uri.edu/~merino/spring06/mth562/ShortHistoryComplexNumbers2006.pdf`, returned "not found" on 23 November 2026. Read from the copy: the opening paragraph and items 4 to 8 and 11 to 15 (Cardano, Bombelli, Descartes, Euler, Wessel, Argand, Hamilton, Gauss). Items 1 to 3, 9, 10 and the bibliography are not read. A secondary source: course notes that cite the histories of Burton, Kline and others.
 
 ## Reference 10
 
