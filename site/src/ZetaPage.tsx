@@ -8,6 +8,8 @@ const VIADER = "https://econ-papers.upf.edu/papers/776.pdf";
 const CONRAD = "https://kconrad.math.uconn.edu/math3240s20/handouts/infinitudeofprimes.pdf";
 const PRIME_SUM =
   "https://en.wikipedia.org/wiki/Divergence_of_the_sum_of_the_reciprocals_of_the_primes";
+const MATHLIB_CONJ =
+  "https://github.com/leanprover-community/mathlib4/blob/90e6eec9fe53b02d431c90718e4a1d22d67a204e/Mathlib/NumberTheory/Harmonic/ZetaAsymp.lean#L454-L460";
 const ELKIES = "https://people.math.harvard.edu/~elkies/M229.09/zeta1.pdf";
 
 const SIEVE: Part[] = [
@@ -273,6 +275,14 @@ export function ZetaPage() {
             alternating signs, such as $1 - 2 + 3 - 4 + \cdots$, and used a special way of summing
             to give them a meaning. In 1859, Riemann proved the symmetry for complex numbers $s$ as well.`}
         />
+        <p
+          innerHTML={prose`For a complex number $s = a + bi$, the step from $s$ to $1 - s$ gives $(1 - a) - bi$. That
+            is a half turn around the point $1/2$, not a flip across a line. The function has a
+            second symmetry: the value at $a - bi$ is the value at $a + bi$ with the sign of its
+            $i$ part changed. The two symmetries together tie the value at $a + bi$ to the value at
+            $(1 - a) + bi$. These two points have the same height $b$, and they are mirror images
+            across the line where the real part is $1/2$. That is the line of the hypothesis.`}
+        />
         <p>
           After Euler, nobody did substantial work on the function for more than a century. The
           mathematician Weil, in his history of number theory, wrote that the subject was dead, and
@@ -302,7 +312,8 @@ export function ZetaPage() {
         <p class="sources">
           Sources: <a href={PAPADOPOULOS}>Papadopoulos, Looking backward: from Euler to Riemann</a>,
           section 6. <a href={ELKIES}>Elkies, Math 229 notes on the zeta function</a>, for where the
-          sum works and for the symmetry that Riemann proved.
+          sum works and for the symmetry that Riemann proved.{" "}
+          <a href={MATHLIB_CONJ}>Mathlib, theorem riemannZeta_conj</a>, for the second symmetry.
         </p>
       </section>
 
