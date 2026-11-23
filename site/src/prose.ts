@@ -12,6 +12,8 @@ export function equationToHtml(latex: string): string {
 
 /** The punctuation marks at the start of the text after a formula; they need no escape. */
 const MARKS_AFTER = /^[.,;:!?)"”]*/;
+/** The opening marks at the end of the text before a formula. */
+const MARKS_BEFORE = /[("“]*$/;
 
 const ESCAPES: Record<string, string> = { "&": "&amp;", "<": "&lt;", ">": "&gt;" };
 
@@ -21,8 +23,8 @@ const ESCAPES: Record<string, string> = { "&": "&amp;", "<": "&lt;", ">": "&gt;"
  * cannot hold a dollar sign or a backslash of its own.
  *
  * A browser may break the line between a formula and the punctuation mark
- * after it. So a formula and the marks that follow it go into one span that
- * does not break.
+ * after it, or after an opening bracket before it. So a formula and the marks
+ * next to it go into one span that does not break.
  */
 export function proseToHtml(source: string): string {
   const pieces = source.split("$");
@@ -31,13 +33,17 @@ export function proseToHtml(source: string): string {
     .map((piece, index) => {
       if (index % 2 === 1) {
         const math = temml.renderToString(piece, { displayMode: false, throwOnError: true });
-        const marks = MARKS_AFTER.exec(pieces[index + 1]!)![0];
-        return marks ? `<span class="nowrap">${math}${marks}</span>` : math;
+        // A mark that follows the formula before this one belongs to that formula.
+        const left = pieces[index - 1]!;
+        const before = MARKS_BEFORE.exec(index > 1 ? left.replace(MARKS_AFTER, "") : left)![0];
+        const after = MARKS_AFTER.exec(pieces[index + 1]!)![0];
+        return before || after ? `<span class="nowrap">${before}${math}${after}</span>` : math;
       }
       // The literal is read as raw text, so an escape such as \n would show on the page.
       if (piece.includes("\\")) throw new Error(`A backslash outside a formula in: ${source}`);
-      // The marks at the start went into the span of the formula before this piece.
-      const text = index > 0 ? piece.replace(MARKS_AFTER, "") : piece;
+      // The marks at the two ends went into the spans of the formulas next to this piece.
+      let text = index > 0 ? piece.replace(MARKS_AFTER, "") : piece;
+      if (index < pieces.length - 1) text = text.replace(MARKS_BEFORE, "");
       return text.replace(/[&<>]/g, (character) => ESCAPES[character]!);
     })
     .join("");

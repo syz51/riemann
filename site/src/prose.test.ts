@@ -15,9 +15,16 @@ test("a formula becomes an inline math element between the pieces of text", () =
 
 test("a formula and the marks after it are in one span that does not break", () => {
   const html = proseToHtml("It is $x$, and ($y$). Then $z$ is next.");
-  expect(html).toMatch(/^It is <span class="nowrap"><math.*?<\/math>,<\/span> and \(/);
+  expect(html).toMatch(
+    /^It is <span class="nowrap"><math.*?<\/math>,<\/span> and <span class="nowrap">\(<math/,
+  );
   expect(html).toMatch(/<\/math>\)\.<\/span> Then <math/);
   expect(html.endsWith("</math> is next.")).toBe(true);
+});
+
+test("a mark between two formulas shows one time", () => {
+  const text = proseToHtml('$x$"$y$').replace(/<[^>]*>/g, "");
+  expect(text.split('"').length).toBe(2);
 });
 
 test("an unclosed formula stops the build", () => {

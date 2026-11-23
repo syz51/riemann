@@ -24,11 +24,14 @@ export function trimRootGaps(container: Element) {
   const seen = new WeakSet<Element>();
   const run = () => {
     for (const root of container.querySelectorAll("msqrt")) {
-      if (seen.has(root)) continue;
+      // A root in a hidden part has no size yet; it waits for a later run.
+      if (seen.has(root) || root.getBoundingClientRect().width === 0) continue;
       seen.add(root);
       trim(root);
     }
   };
   new MutationObserver(run).observe(container, { childList: true, subtree: true });
+  // A change of the window width can show a part that was hidden.
+  window.addEventListener("resize", run);
   run();
 }
