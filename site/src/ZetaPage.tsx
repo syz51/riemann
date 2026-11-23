@@ -8,6 +8,8 @@ const VIADER = "https://econ-papers.upf.edu/papers/776.pdf";
 const CONRAD = "https://kconrad.math.uconn.edu/math3240s20/handouts/infinitudeofprimes.pdf";
 const PRIME_SUM =
   "https://en.wikipedia.org/wiki/Divergence_of_the_sum_of_the_reciprocals_of_the_primes";
+const MATHLIB_PIN =
+  "https://github.com/leanprover-community/mathlib4/blob/0df444a360eaa60ab8c11dca51a86af692955474/Mathlib/NumberTheory/LSeries/RiemannZeta.lean";
 const MATHLIB_CONJ =
   "https://github.com/leanprover-community/mathlib4/blob/90e6eec9fe53b02d431c90718e4a1d22d67a204e/Mathlib/NumberTheory/Harmonic/ZetaAsymp.lean#L454-L460";
 const ELKIES = "https://people.math.harvard.edu/~elkies/M229.09/zeta1.pdf";
@@ -281,11 +283,12 @@ export function ZetaPage() {
             second symmetry: the value at $a - bi$ is the value at $a + bi$ with the sign of its
             $i$ part changed. The two symmetries together tie the value at $a + bi$ to the value at
             $(1 - a) + bi$. These two points have the same height $b$, and they are mirror images
-            across the line where the real part is $1/2$. So in the strip
-            where the real part is between 0 and 1, the zeros come in mirrored pairs: if $a + bi$
+            across the line where the real part is $1/2$. The factor between
+            the function and its symmetric form is never 0 in the strip where the real part is
+            between 0 and 1. So in that strip the zeros come in mirrored pairs: if $a + bi$
             is a zero, then $(1 - a) + bi$ is a zero too. The Riemann hypothesis says that every
             zero of the function lies on the line itself, apart from the known zeros at $-2$,
-            $-4$, $-6$ and so on. Then each zero is its own mirror image.`}
+            $-4$, $-6$ and so on. Then each zero in the strip is its own mirror image.`}
         />
         <p>
           After Euler, nobody did substantial work on the function for more than a century. The
@@ -317,7 +320,9 @@ export function ZetaPage() {
           Sources: <a href={PAPADOPOULOS}>Papadopoulos, Looking backward: from Euler to Riemann</a>,
           section 6. <a href={ELKIES}>Elkies, Math 229 notes on the zeta function</a>, for where the
           sum works and for the symmetry that Riemann proved.{" "}
-          <a href={MATHLIB_CONJ}>Mathlib, theorem riemannZeta_conj</a>, for the second symmetry.
+          <a href={MATHLIB_CONJ}>Mathlib, theorem riemannZeta_conj</a>, for the second symmetry.{" "}
+          <a href={MATHLIB_PIN}>Mathlib at the commit the proof builds against</a>, four statements,
+          for the mirrored pairs of zeros; the steps are in the project note.
         </p>
       </section>
 
