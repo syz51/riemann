@@ -14,6 +14,8 @@ const MATHLIB_VALUES =
   "https://github.com/leanprover-community/mathlib4/blob/0df444a360eaa60ab8c11dca51a86af692955474/Mathlib/NumberTheory/LSeries/HurwitzZetaValues.lean";
 const MATHLIB_BERNOULLI =
   "https://github.com/leanprover-community/mathlib4/blob/0df444a360eaa60ab8c11dca51a86af692955474/Mathlib/NumberTheory/Bernoulli.lean#L209-L211";
+const MATHLIB_GAMMA =
+  "https://github.com/leanprover-community/mathlib4/blob/0df444a360eaa60ab8c11dca51a86af692955474/Mathlib/Analysis/SpecialFunctions/Gamma/Basic.lean#L343-L344";
 const MATHLIB_CONJ =
   "https://github.com/leanprover-community/mathlib4/blob/90e6eec9fe53b02d431c90718e4a1d22d67a204e/Mathlib/NumberTheory/Harmonic/ZetaAsymp.lean#L454-L460";
 const EULER_E352 = "http://eulerarchive.maa.org/docs/translations/E352.pdf";
@@ -289,6 +291,15 @@ export function ZetaPage() {
             by a certain factor, and the result has the same value at $s$ and at $1 - s$.`}
         />
         <p
+          innerHTML={prose`The exceptions do not mean that the symmetry is false at those points. They are points
+            where a piece of the rule has no value. The factor contains a function called $\Gamma$,
+            and $\Gamma$ has no value at 0, $-1$, $-2$ and so on. At 1 the function itself has no
+            finite value: it grows without limit near 1. Riemann's form with equal values has only
+            two such points, 0 and 1, and they are partners of each other. Euler met the same
+            thing. For $n = 1$ his rule gave 0 divided by 0. He took a limit, and the limit agreed
+            with the known value.`}
+        />
+        <p
           innerHTML={prose`The value at $-1$ is strange, because at $-1$ the sum would be $1 + 2 + 3 + \cdots$, and
             that sum has no value. The number $-1/12$ belongs to the function that has a meaning
             on the whole plane, not to the sum. Euler worked with sums of
@@ -393,7 +404,10 @@ export function ZetaPage() {
           for the mirrored pairs of zeros, and the theorem riemannZeta_one_sub for the factor that
           links the two values of a pair. The steps are in the project note.{" "}
           <a href={MATHLIB_VALUES}>Mathlib, values of the function</a>, for the values at 2 and at
-          −1; the value at −1 also uses <a href={MATHLIB_BERNOULLI}>the theorem bernoulli_two</a>.
+          −1; the value at −1 also uses <a href={MATHLIB_BERNOULLI}>the theorem bernoulli_two</a>.{" "}
+          <a href={MATHLIB_GAMMA}>Mathlib, the comment on Gamma_neg_nat_eq_zero</a>, for the points
+          where Γ has no value. Elkies also gives the two special points of Riemann's form, and
+          section 11 of Euler's paper gives the case n = 1.
         </p>
       </section>
 
