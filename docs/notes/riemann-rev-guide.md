@@ -2,7 +2,7 @@
 
 Question from the owner (23 November 2026): a repository says that it shrinks the proof to 11 pages. Is that claim valid, and is the short text equal to the Lean proof?
 
-Read: the repository `nasqret/riemann-rev` at commit `e9bdf8f4177403b66426f84b0ccbac15a4ad152a` [15](../references.md#reference-15). The saved text of the guide is `sources/dashboard/riemann-rev-guide-e9bdf8f.txt`. An earlier commit of the same repository is our Reference 4, the source of the seven-step route in [00-route.md](00-route.md).
+Read: the repository `nasqret/riemann-rev` at commit `e9bdf8f4177403b66426f84b0ccbac15a4ad152a` [15](../references.md#reference-15). The saved text of the guide is `sources/dashboard/riemann-rev-guide-e9bdf8f.txt`. An earlier commit of the same repository is our Reference 4. [00-route.md](00-route.md) keeps its seven-step outline as an index, not as evidence.
 
 ## Result in short
 
@@ -78,6 +78,6 @@ For scale: the exported proof has 1,484,733 declarations, by the repository's ow
 
 ## Meaning for this project
 
-- The guide is a good reading aid for the route. It is the long form of the dashboard that [00-route.md](00-route.md) already uses.
+- The guide is a reading aid for the route. It is the long form of the outline that [00-route.md](00-route.md) keeps as an index. We use both to find files, never as evidence.
 - The two notes show a method for our own goal: take one small cluster, write it as ordinary mathematics, and keep a table of the Lean declarations.
 - The guide is not a simplification of the proof. A simplification must still prove sections 4 to 7.

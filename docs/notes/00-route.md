@@ -14,7 +14,7 @@ This note gives the route of the proof in two parts.
 
 ## Result in short
 
-- We read the route from the main theorem down four levels. Each level names the declaration that the level above uses. The trace stops at two declarations that we have not opened.
+- We read the route from the main theorem down four levels. Each level names the declaration that the level above uses. The trace stops at three declarations that we have not opened.
 - Levels 0 to 2 are classical and short. Level 3 takes an input named `Row0b`. Its name and the name of the declaration that supplies it suggest Galois representations. We have not read its definition.
 - We read two more theorems that the index names, `zeroFreeAll_of_topG` and `zeroFree_of_rpow_window`. We have not confirmed that they are on the path from the main theorem.
 - The index and the timeline do not mention each other. Every pairing in Part 2 is our judgement, made from shared words and formulas.
@@ -102,7 +102,7 @@ The index says that D1, D2 and D3 are classical analysis and that the new arithm
 
 The step text is quoted from the saved text of the author's note [1](../references.md#reference-1). The note says that Claude wrote the timeline, and that the author paraphrases the parts he knows less well. Some formulas do not survive the text extraction; "…" marks a cut. The dates are not in order: steps 11 and 13 carry the earliest date, 10/6/26. So a step number is not a position in time.
 
-Every pairing is our judgement. "Strong" means that both outlines use the same named object or formula. "Weak" means that only the general idea matches. The declaration names are copied from the index. We opened three of them: `zeroFree_of_rpow_window` (step 6), `TopG` (step 10) and `every_character_of_literature_of_vWin` (step 18). The others are not opened.
+Every pairing is our judgement. "Strong" means that both outlines use the same named object or formula. "Weak" means that only the general idea matches. The declaration names are copied from the index. We opened four entries: `zeroFree_of_rpow_window` (step 6), `TopG` (step 10), `every_character_of_literature_of_vWin` (step 18), and the theorems of `Main.lean` (step 20). The others are not opened.
 
 | # | Date | Timeline step (quoted) | Counterpart in the index | Declaration names in the index | Pairing |
 | --- | --- | --- | --- | --- | --- |
@@ -142,12 +142,12 @@ Counts for this table: eleven timeline steps have a strong counterpart, six have
 
 - The reading goes down from the top by proof terms, one level at a time. The next declarations to open are the three where the trace stops, and the definitions of `Row0b` and `VWin`.
 - The index is a search aid for this work. When it names a declaration, we open the declaration and write what we read.
-- The Stepanov idea has no Lean declaration by that name in the index. The index suggests `key_minor_dvd` and `slopeInequality_of` as starting points. Both are not opened.
+- The Stepanov idea has no Lean declaration by that name in the index. Our weak pairing puts it with step D4 of the index, whose declaration names include `key_minor_dvd` and `slopeInequality_of`. The link to Stepanov is our judgement, not the index's. Both declarations are not opened.
 
 ## Limits of this note
 
-- The first-hand route covers levels 0 to 4. That is eight declarations, out of a library of 175,187 files.
+- The first-hand route covers levels 0 to 4. That is eight declarations in six files. The repository's README reports 175,187 files [7](../references.md#reference-7).
 - "Uses" lists the names in each proof term. It does not list what those names use in turn.
-- For the level 4 theorem we read the statement and the proof term, which is the last theorem of an 814-line file. We did not read the rest of that file.
+- The level 4 theorem is the last theorem of an 814-line file. We read its statement and proof term, and lines 215 to 262 of the file. We did not read the rest of that file.
 - We read the route section of the index and its table of fourteen components at commit `d53b3804bd013df4cf9af3b4087728148c90c9bd`. The index's links lead to `Deicyde/riemann-hypothesis` at the same commit hash as our pin, so its line ranges apply to our files.
 - A later version of the reading project has an 11-page guide. Our verdict on it is in [riemann-rev-guide.md](riemann-rev-guide.md).

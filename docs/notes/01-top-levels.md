@@ -8,6 +8,8 @@ This note traces the main theorem back four levels. Every Lean statement is copi
 - The proof does not treat the zeta function on its own. It proves one statement about all Dirichlet L-functions, and the Riemann hypothesis is the special case of modulus 1.
 - Levels 0 to 2 are classical mathematics with short proofs. A reader can check them by hand.
 - At level 3 the names become opaque (`Row0b`, `VWin`, `Green`). The hard part of the proof starts there.
+- Level 4 is one call of a declaration that we have not opened, `every_character_of_theta_integrals_local_matching`. The trace stops there.
+- Level 4 takes a package of three statements, `OpenLiteratureStatements`. Level 3 fills the first and third fields with the same term.
 
 ## Level 0: the target
 
@@ -149,14 +151,14 @@ So the method works, but below level 3 each name needs its definition before its
 
 ## Names that need care
 
-Several names contain `Literature`, `Hypotheses` or `published`, for example `every_character_of_literature_of_vWin` and `published_hypotheses_from_patching_alt`. We have not checked what these names record. One reading is that they formalize results from published papers.
+Several names contain `Literature`, `Hypotheses` or `published`, for example `every_character_of_literature_of_vWin` and `published_hypotheses_from_patching_alt`. We have not settled what these names record. One reading is that they formalize results from published papers.
 
 What we know about them:
 
 - `everyCharacter` itself takes no hypothesis. That fact alone does not show that the lemmas below it are proved: a lemma can still rest on an added axiom.
 - Inside the library, some of these propositions are passed as hypotheses. For example, `CorGKOf.lean` has `corGK_of (hH : UpperTheory.V.Af.HypothesesH') : U3.CorGK`. So such a lemma is conditional, and a later theorem must supply the hypothesis.
-- In the lines that we read (215 to 262 of `EveryCharacterOfLiteratureOfVWin.lean`), each theorem named `…_of_literature` takes the package `O` and returns a proposition. Several ignore `O` and return a term that needs no hypothesis. An example is `global_artin_reciprocity_of_literature O`, whose proof term is `GlobalTheory.globalArtinReciprocity_holds`. So in these lines the word "literature" names a result that the library proves. It does not mark an assumption. These lines hold 22 theorems, and 17 of them carry `_of_literature` in the name. We did not read the rest of the file.
-- Sutherland reports an axiom check that he ran [5](../references.md#reference-5). His table has the row "#print axioms for the five theorems in Main.lean | pass | propext, Classical.choice, Quot.sound only", and the row "No axioms declared outside Lean core | pass | 15 axioms in the environment, all in Init". If that report is right, no such proposition is left as an assumption. We have not run this check ourselves.
+- In the lines that we read (215 to 262 of `EveryCharacterOfLiteratureOfVWin.lean`), each theorem named `…_of_literature` takes the package `O` and returns a proposition. Several ignore `O` and return a term that needs no hypothesis. An example is `global_artin_reciprocity_of_literature O`, whose proof term is `GlobalTheory.globalArtinReciprocity_holds`. So in these lines the package `O` is not what carries the result. We have not opened the terms behind them, such as `globalArtinReciprocity_holds`, so we cannot say from our own reading that they are proved without an added axiom. These lines hold 22 theorems, and 17 of them carry `_of_literature` in the name. We did not read the rest of the file.
+- Sutherland reports an axiom check that he ran [5](../references.md#reference-5). His table has the row "#print axioms for the five theorems in Main.lean | pass | propext, Classical.choice, Quot.sound only ([audit.log](audit.log))", and the row "No axioms declared outside Lean core | pass | 15 axioms in the environment, all in Init". If that report is right, no such proposition is left as an assumption. We have not run this check ourselves.
 
 ## Simplification candidates seen here
 
