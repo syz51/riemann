@@ -1,4 +1,4 @@
-import { createSignal } from "solid-js";
+import { createSignal, For } from "solid-js";
 
 /** `equation` comes from a tex literal and `text` from a prose literal (see tex.d.ts). */
 export type Part = { title: string; equation: Markup; text: Markup };
@@ -7,17 +7,24 @@ export type Part = { title: string; equation: Markup; text: Markup };
 export function Stepper(props: { parts: Part[] }) {
   const [index, setIndex] = createSignal(0);
   const last = () => props.parts.length - 1;
-  const part = () => props.parts[index()]!;
 
   return (
     <div class="stepper">
-      <div class="part" aria-live="polite">
-        <p class="count">
-          Part {index() + 1} of {props.parts.length}
-        </p>
-        <h3>{part().title}</h3>
-        <p class="equation" innerHTML={part().equation} />
-        <p innerHTML={part().text} />
+      {/* Every part is on the page, one upon the other, and only one shows. So the box has
+          the height of the tallest part, and nothing moves when the part changes. */}
+      <div class="parts" aria-live="polite">
+        <For each={props.parts}>
+          {(part, at) => (
+            <div class={at() === index() ? "part current" : "part"}>
+              <p class="count">
+                Part {at() + 1} of {props.parts.length}
+              </p>
+              <h3>{part.title}</h3>
+              <p class="equation" innerHTML={part.equation} />
+              <p innerHTML={part.text} />
+            </div>
+          )}
+        </For>
       </div>
       <div class="controls">
         <button
