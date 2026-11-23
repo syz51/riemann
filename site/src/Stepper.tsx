@@ -1,7 +1,7 @@
 import { createSignal } from "solid-js";
 
-/** `equation` is MathML markup, made by a tex literal (see tex.d.ts). */
-export type Part = { title: string; equation: string; text: string };
+/** `equation` comes from a tex literal and `text` from a prose literal (see tex.d.ts). */
+export type Part = { title: string; equation: Markup; text: Markup };
 
 /** One calculation, shown one part at a time. */
 export function Stepper(props: { parts: Part[] }) {
@@ -17,7 +17,7 @@ export function Stepper(props: { parts: Part[] }) {
         </p>
         <h3>{part().title}</h3>
         <p class="equation" innerHTML={part().equation} />
-        <p>{part().text}</p>
+        <p innerHTML={part().text} />
       </div>
       <div class="controls">
         <button

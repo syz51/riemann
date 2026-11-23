@@ -13,62 +13,62 @@ const CUBIC: Part[] = [
   {
     title: "An equation with a plain answer",
     equation: tex`x^3 = 15x + 4`,
-    text: "Try x = 4. The left side is 4 × 4 × 4 = 64. The right side is 60 + 4 = 64. So 4 is a solution, and nothing strange has happened yet.",
+    text: prose`Try $x = 4$. The left side is $4 \times 4 \times 4 = 64$. The right side is $60 + 4 = 64$. So 4 is a solution, and nothing strange has happened yet.`,
   },
   {
     title: "A formula for every such equation",
     equation: tex`\begin{gathered} x = \sqrt[3]{\frac{q}{2} + \sqrt{w}} + \sqrt[3]{\frac{q}{2} - \sqrt{w}} \\ w = \left(\frac{q}{2}\right)^2 - \left(\frac{p}{3}\right)^3 \end{gathered}`,
-    text: "In the 1500s, del Ferro and later Tartaglia found a formula for each equation of the form x³ = px + q. The sign ∛ is the cube root: the number whose third power is the number under the sign. Cardano published the formula in 1545.",
+    text: prose`In the 1500s, del Ferro and later Tartaglia found a formula for each equation of the form $x^3 = px + q$. The sign ∛ is the cube root: the number whose third power is the number under the sign. Cardano published the formula in 1545.`,
   },
   {
     title: "The formula goes wrong",
     equation: tex`x = \sqrt[3]{2 + \sqrt{-121}} + \sqrt[3]{2 - \sqrt{-121}}`,
-    text: "Here p = 15 and q = 4. So w = 2² − 5³ = 4 − 125 = −121. The formula asks for the square root of −121. No number of that time had a negative square. But the equation has the answer 4, so the formula cannot be simply wrong.",
+    text: prose`Here $p = 15$ and $q = 4$. So $w = 2^2 - 5^3 = 4 - 125 = -121$. The formula asks for the square root of $-121$. No number of that time had a negative square. But the equation has the answer 4, so the formula cannot be simply wrong.`,
   },
   {
     title: "Bombelli calculates anyway",
     equation: tex`\left(2 + \sqrt{-1}\right)^3 = 2 + 11\sqrt{-1} = 2 + \sqrt{-121}`,
-    text: "Bombelli treated √−1 as a number with one rule: its square is −1. With that rule, the third power of 2 + √−1 is 8 + 12√−1 − 6 − √−1, which is 2 + 11√−1. So the first cube root is 2 + √−1. In the same way, the second is 2 − √−1.",
+    text: prose`Bombelli treated $\sqrt{-1}$ as a number with one rule: its square is $-1$. With that rule, the third power of $2 + \sqrt{-1}$ is $8 + 12\sqrt{-1} - 6 - \sqrt{-1}$, which is $2 + 11\sqrt{-1}$. So the first cube root is $2 + \sqrt{-1}$. In the same way, the second is $2 - \sqrt{-1}$.`,
   },
   {
     title: "The impossible parts cancel",
     equation: tex`x = \left(2 + \sqrt{-1}\right) + \left(2 - \sqrt{-1}\right) = 4`,
-    text: "The two pieces with √−1 cancel, and the plain answer 4 is left. The formula was right. The road to a real answer went through numbers that did not exist yet. That is why they were defined.",
+    text: prose`The two pieces with $\sqrt{-1}$ cancel, and the plain answer 4 is left. The formula was right. The road to a real answer went through numbers that did not exist yet. That is why they were defined.`,
   },
 ];
 
-const TIMELINE: { year: string; text: string }[] = [
+const TIMELINE: { year: string; text: Markup }[] = [
   {
     year: "1545",
-    text: "Cardano publishes the formula for cubic equations in his book Ars Magna. The same book splits 10 into two parts with product 40. The parts are 5 + √−15 and 5 − √−15, and Cardano writes of “the mental tortures involved”.",
+    text: prose`Cardano publishes the formula for cubic equations in his book Ars Magna. The same book splits 10 into two parts with product 40. The parts are $5 + \sqrt{-15}$ and $5 - \sqrt{-15}$, and Cardano writes of “the mental tortures involved”.`,
   },
   {
     year: "1572",
-    text: "Bombelli's book L'Algebra works through x³ = 15x + 4. He writes that the thing at first seemed “based more on sophism than on truth”.",
+    text: prose`Bombelli's book L'Algebra works through $x^3 = 15x + 4$. He writes that the thing at first seemed “based more on sophism than on truth”.`,
   },
   {
     year: "1637",
-    text: "Descartes coins the word “imaginary” for such roots. He means that no quantity corresponds to them. The word is still in use.",
+    text: prose`Descartes coins the word “imaginary” for such roots. He means that no quantity corresponds to them. The word is still in use.`,
   },
   {
     year: "1700s",
-    text: "Euler introduces the letter i for √−1.",
+    text: prose`Euler introduces the letter $i$ for $\sqrt{-1}$.`,
   },
   {
     year: "1797",
-    text: "Wessel's paper is read to the Royal Danish Academy. It treats the numbers as arrows in the plane. To multiply two arrows, add their angles and multiply their lengths. The paper is in Danish, and nobody notices it until 1897.",
+    text: prose`Wessel's paper is read to the Royal Danish Academy. It treats the numbers as arrows in the plane. To multiply two arrows, add their angles and multiply their lengths. The paper is in Danish, and nobody notices it until 1897.`,
   },
   {
     year: "1806",
-    text: "Argand, a bookkeeper in Paris, prints the same picture in a small pamphlet. His name is not on the title page.",
+    text: prose`Argand, a bookkeeper in Paris, prints the same picture in a small pamphlet. His name is not on the title page.`,
   },
   {
     year: "1831",
-    text: "Gauss publishes the picture of the plane and introduces the name “complex number”.",
+    text: prose`Gauss publishes the picture of the plane and introduces the name “complex number”.`,
   },
   {
     year: "1859",
-    text: "Riemann shows that the zeta function extends to the whole plane, except for the point 1.",
+    text: prose`Riemann shows that the zeta function extends to the whole plane, except for the point 1.`,
   },
 ];
 
@@ -85,10 +85,10 @@ export function ComplexPage() {
 
       <section>
         <h2>The equation that forced the issue</h2>
-        <p>
-          A common belief is that complex numbers were made to give the equation x² = −1 a solution.
-          The history is different. They came from equations with a third power.
-        </p>
+        <p
+          innerHTML={prose`A common belief is that complex numbers were made to give the equation $x^2 = -1$ a
+            solution. The history is different. They came from equations with a third power.`}
+        />
         <Stepper parts={CUBIC} />
         <p class="sources">
           Source: <a href={MERINO}>Merino, A Short History of Complex Numbers</a>, items 4 to 7.
@@ -106,7 +106,7 @@ export function ComplexPage() {
             {(entry) => (
               <li>
                 <span class="year">{entry.year}</span>
-                <span>{entry.text}</span>
+                <span innerHTML={entry.text} />
               </li>
             )}
           </For>
@@ -137,15 +137,16 @@ export function ComplexPage() {
 
       <section>
         <h2>Why the zeta function needs them</h2>
-        <p>
-          Zeta starts as an endless sum. The sum works only where the real part of s is above 1. In
-          1859, Riemann showed that zeta has a meaning on the whole plane, except at the point 1.
-        </p>
-        <p>
-          Apart from the trivial zeros −2, −4, −6, and so on, every zero of zeta has a real part
-          from 0 to 1. So each zero that the hypothesis talks about lies where the sum does not
-          work. Without the plane, there is no statement to prove.
-        </p>
+        <p
+          innerHTML={prose`Zeta starts as an endless sum. The sum works only where the real part of $s$ is above 1.
+            In 1859, Riemann showed that zeta has a meaning on the whole plane, except at the point
+            1.`}
+        />
+        <p
+          innerHTML={prose`Apart from the trivial zeros $-2$, $-4$, $-6$, and so on, every zero of zeta has a real
+            part from 0 to 1. So each zero that the hypothesis talks about lies where the sum does
+            not work. Without the plane, there is no statement to prove.`}
+        />
         <p class="sources">
           Source: <a href={ELKIES}>Elkies, Math 229 notes on the zeta function</a>, the theorem
           marked “Riemann 1859”.

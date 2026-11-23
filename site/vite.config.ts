@@ -1,22 +1,22 @@
 import solid from "@solidjs/vite-plugin";
-import temml from "temml";
 import { defineConfig, type Plugin } from "vite-plus";
+import { equationToHtml, proseToHtml } from "./src/prose";
 
 /**
- * Replaces each tex literal in the source by the MathML markup of its LaTeX.
- * It works on the text of the file, so it also changes a tex literal inside a
- * comment or a string: do not write one there.
+ * Replaces each tex literal by the MathML markup of its LaTeX, and each prose
+ * literal by the HTML of its text (see src/prose.ts). It works on the text of
+ * the file, so it also changes such a literal inside a comment or a string: do
+ * not write one there.
  */
 function tex(): Plugin {
   return {
     name: "tex-to-mathml",
     enforce: "pre",
     transform(code, id) {
-      if (!/\/src\/[^?]*\.tsx?$/.test(id) || !code.includes("tex`")) return;
+      if (!/\/src\/[^?]*\.tsx?$/.test(id) || !/\b(?:tex|prose)`/.test(code)) return;
       return {
-        code: code.replace(/\btex`((?:[^`\\]|\\.)*)`/gs, (_, source: string) =>
-          // A LaTeX error stops the build.
-          JSON.stringify(temml.renderToString(source, { displayMode: true, throwOnError: true })),
+        code: code.replace(/\b(tex|prose)`((?:[^`\\]|\\.)*)`/gs, (_, tag: string, source: string) =>
+          JSON.stringify(tag === "tex" ? equationToHtml(source) : proseToHtml(source)),
         ),
         map: null,
       };
