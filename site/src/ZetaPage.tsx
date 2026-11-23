@@ -93,7 +93,7 @@ export function ZetaPage() {
         </p>
         <p
           class="equation"
-          innerHTML={tex`\begin{aligned} & 1 + \frac{1}{2^2} + \frac{1}{3^2} + \frac{1}{4^2} + \frac{1}{5^2} + \cdots \\ = \; & 1 + \frac{1}{4} + \frac{1}{9} + \frac{1}{16} + \frac{1}{25} + \cdots \end{aligned}`}
+          innerHTML={tex`1 + \frac{1}{2^2} + \frac{1}{3^2} + \frac{1}{4^2} + \cdots = 1 + \frac{1}{4} + \frac{1}{9} + \frac{1}{16} + \cdots`}
         />
         <p>
           The terms shrink fast, so the sum does not grow without limit. It comes closer and closer
