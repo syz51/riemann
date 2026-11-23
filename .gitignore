@@ -8,6 +8,6 @@ docs/references.jsonl.lock
 # The explainer site
 node_modules/
 site/dist/
-.vercel/
 .vercel
 .env*
+!.env.example
