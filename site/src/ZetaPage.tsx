@@ -267,11 +267,11 @@ export function ZetaPage() {
         />
         <p
           innerHTML={prose`The numbers $s$ and $1 - s$ are mirror images, with the mirror at $1/2$: 2 pairs with $-1$,
-            and 3 pairs with $-2$. The symmetry is a formula. From the value of the function at one
-            number of a pair, it gives the value at the other. This is strange, because at $-1$ the
+            and 3 pairs with $-2$. The symmetry is a formula that ties the two values of a pair together. For
+            example, from the value at 2 it gives a value at $-1$. This is strange, because at $-1$ the
             sum would be $1 + 2 + 3 + \cdots$, and that sum has no value. Euler worked with sums of
             alternating signs, such as $1 - 2 + 3 - 4 + \cdots$, and used a special way of summing
-            to give them a meaning. In 1859, Riemann proved the symmetry for every $s$.`}
+            to give them a meaning. In 1859, Riemann proved the symmetry for complex numbers $s$ as well.`}
         />
         <p>
           After Euler, nobody did substantial work on the function for more than a century. The
