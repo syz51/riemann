@@ -4,6 +4,8 @@ import { href } from "./pages";
 // Source of the content: docs/notes/background-gamma.md.
 const EULER_E19 = "http://eulerarchive.maa.org/docs/translations/E019en.pdf";
 const EULER_E19_RECORD = "https://scholarlycommons.pacific.edu/euler-works/19/";
+const EULER_E421 = "http://eulerarchive.maa.org/docs/originals/E421.pdf";
+const LEGENDRE_1810 = "https://www.digitale-sammlungen.de/en/view/bsb10500481?page=599";
 const LEGENDRE = "https://archive.org/details/10053610bsb";
 const MATHLIB =
   "https://github.com/leanprover-community/mathlib4/blob/0df444a360eaa60ab8c11dca51a86af692955474/Mathlib/Analysis/SpecialFunctions";
@@ -61,17 +63,19 @@ export function GammaPage() {
       <section>
         <h2>The name, and a shift by 1</h2>
         <p
-          innerHTML={prose`Euler did not use the letter $\Gamma$. Legendre did, in a book of 1811. He gave the name "Eulerian integrals" to two integrals that Euler had studied, and he wrote of the second: "nous la représenterons plus généralement par $\Gamma(a)$". In English: we will represent it more generally by $\Gamma(a)$. He adds that he had given this theory before, in a paper for the year 1810. We did not read that paper, so we cannot say that 1811 is the first use.`}
+          innerHTML={prose`Euler did not use the letter $\Gamma$. Legendre did. In a memoir read to the Institut de France in November 1809 and printed in August 1810, he wrote of the integral $\int_0^1 (\ln(1/x))^{a - 1}\,dx$: "nous la désignerons par $\Gamma(a)$" — we will denote it by $\Gamma(a)$. In his book of 1811 he gave the name "Eulerian integrals" to two integrals that Euler had studied, and repeated the notation: "nous la représenterons plus généralement par $\Gamma(a)$".`}
         />
         <p
           innerHTML={prose`Legendre's integral is Euler's with the power $a - 1$ in place of $n$. So $\Gamma(a)$ is the term of index $a - 1$ in Euler's list. That is the reason for a shift that surprises every reader: $\Gamma(5)$ is not 120. It is 24, the product of the whole numbers below 5.`}
         />
         <div class="equation" innerHTML={tex`\Gamma(n + 1) = 1 \cdot 2 \cdot 3 \cdots n`} />
         <p class="sources">
-          Source: <a href={LEGENDRE}>Legendre, Exercices de calcul intégral</a>, Paris, 1811, page
-          221. We read the quotation on the picture of the page, and the sentence on 1810 in the
-          machine text of the scan, where one word is not clear. The comparison of the two integrals
-          is our own reading of the two sources.
+          Sources:{" "}
+          <a href={LEGENDRE_1810}>Legendre, Recherches sur diverses sortes d'intégrales définies</a>
+          , Mémoires de l'Institut (Année 1809, printed August 1810), page 477, section 53; and{" "}
+          <a href={LEGENDRE}>Legendre, Exercices de calcul intégral</a>, Paris, 1811, page 221. Both
+          quotations were read on the page scans. The comparison of the two integrals is our own
+          reading of Euler and Legendre.
         </p>
       </section>
 
@@ -98,8 +102,8 @@ export function GammaPage() {
           and the theorems Gamma_one, Gamma_add_one and Gamma_nat_eq_factorial.{" "}
           <a href={MATHLIB_HALF}>Mathlib, theorem Gamma_one_half_eq</a>. We read the statements, not
           the proofs. The check takes Mathlib's Γ to be the function of Euler and Legendre. Mathlib
-          calls its integral Euler's, but it has another form, and we read no statement that the two
-          forms are equal.
+          calls its integral Euler's, but it uses the exponential form, and we found no statement in
+          Mathlib at this commit equating the two forms.
         </p>
       </section>
 
@@ -165,10 +169,12 @@ export function GammaPage() {
         />
         <div class="equation" innerHTML={tex`\Gamma(s)\,\Gamma(1 - s) = \frac{\pi}{\sin(\pi s)}`} />
         <p
-          innerHTML={prose`Here $\sin$ is the sine, a function from the study of angles. This page does not need it further.`}
+          innerHTML={prose`Here $\sin$ is the sine, a function from the study of angles. Euler stated and derived this identity in his 1772 paper E421 (section 43), writing $[\lambda]\,[-\lambda] = \lambda\pi / \sin(\lambda\pi)$ in his bracket notation $[\lambda] = \Gamma(\lambda + 1)$. This page does not need it further.`}
         />
         <p class="sources">
-          Source: <a href={MATHLIB_REFLECTION}>Mathlib, theorem Gamma_mul_Gamma_one_sub</a>.
+          Sources: <a href={MATHLIB_REFLECTION}>Mathlib, theorem Gamma_mul_Gamma_one_sub</a>;{" "}
+          <a href={EULER_E421}>Euler, E421</a>, Novi Commentarii academiae scientiarum
+          Petropolitanae 16 (1772), pages 120 to 121, section 43 (read on the Latin scan).
         </p>
       </section>
     </main>
