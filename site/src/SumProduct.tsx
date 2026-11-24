@@ -15,10 +15,10 @@ const X_TICKS = [1, 25, 50, 75, 100];
 const Y_STEPS = [0.02, 0.05, 0.1, 0.2, 0.5, 1, 2];
 
 const POWERS: { s: number; label: string; term: string; termHtml: Markup }[] = [
-  { s: 2, label: "Squares", term: "1/n²", termHtml: prose`$1/n^2$` },
-  { s: 3, label: "Third powers", term: "1/n³", termHtml: prose`$1/n^3$` },
-  { s: 4, label: "Fourth powers", term: "1/n⁴", termHtml: prose`$1/n^4$` },
-  { s: 1, label: "No power", term: "1/n", termHtml: prose`$1/n$` },
+  { s: 2, label: "Squares", term: "1/n²", termHtml: prose`$\frac{1}{n^2}$` },
+  { s: 3, label: "Third powers", term: "1/n³", termHtml: prose`$\frac{1}{n^3}$` },
+  { s: 4, label: "Fourth powers", term: "1/n⁴", termHtml: prose`$\frac{1}{n^4}$` },
+  { s: 1, label: "No power", term: "1/n", termHtml: prose`$\frac{1}{n}$` },
 ];
 
 const isPrime = (n: number) => {

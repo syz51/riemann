@@ -23,7 +23,7 @@ const CUBIC: Part[] = [
   {
     title: "Why the formula is right",
     equation: tex`(u + v)^3 = u^3 + v^3 + 3uv\,(u + v)`,
-    text: prose`Write $x = u + v$. By the line above, $x^3 = px + q$ holds when $3uv = p$ and $u^3 + v^3 = q$. The formula finds such $u$ and $v$. Their third powers are $q/2 + \sqrt{w}$ and $q/2 - \sqrt{w}$: the sum is $q$, and the product is $(p/3)^3$, so $uv = p/3$. This is the argument in the words of today; Cardano had a proof in 1545. The argument takes the square root of $w$, so it needs a $w$ that is not negative.`,
+    text: prose`Write $x = u + v$. By the line above, $x^3 = px + q$ holds when $3uv = p$ and $u^3 + v^3 = q$. The formula finds such $u$ and $v$. Their third powers are $\frac{q}{2} + \sqrt{w}$ and $\frac{q}{2} - \sqrt{w}$: the sum is $q$, and the product is $\left(\frac{p}{3}\right)^3$, so $uv = \frac{p}{3}$. This is the argument in the words of today; Cardano had a proof in 1545. The argument takes the square root of $w$, so it needs a $w$ that is not negative.`,
   },
   {
     title: "The proof stops here",

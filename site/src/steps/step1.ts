@@ -6,7 +6,7 @@ export const step1 = defineStep({
   number: 1,
   of: 4,
   title: "What exactly was proved",
-  summary: prose`Every zero of the zeta function, apart from the trivial ones, has real part $1/2$.`,
+  summary: prose`Every zero of the zeta function, apart from the trivial ones, has real part $\frac{1}{2}$.`,
   snippets: [
     {
       heading: "The statement",
@@ -73,8 +73,8 @@ export const step1 = defineStep({
     },
     {
       id: "line",
-      title: prose`Conclusion: the real part of $s$ is $1/2$`,
-      meaning: prose`s.re is the real part of $s$. So $s$ is on the vertical line through $1/2$. This line is the critical line.`,
+      title: prose`Conclusion: the real part of $s$ is $\frac{1}{2}$`,
+      meaning: prose`s.re is the real part of $s$. So $s$ is on the vertical line through $\frac{1}{2}$. This line is the critical line.`,
       mark: "line",
     },
     {

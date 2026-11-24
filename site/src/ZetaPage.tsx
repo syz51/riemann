@@ -27,7 +27,7 @@ const SIEVE: Part[] = [
   {
     title: "Start with the sum over all whole numbers",
     equation: tex`x = 1 + \frac{1}{2^2} + \frac{1}{3^2} + \frac{1}{4^2} + \frac{1}{5^2} + \frac{1}{6^2} + \cdots`,
-    text: prose`Call the sum $x$. It has one term for each whole number $n$, and the term is 1 divided by $n^2$. So the terms are 1, $1/4$, $1/9$, $1/16$ and so on. The example uses squares. The same steps work for each higher power.`,
+    text: prose`Call the sum $x$. It has one term for each whole number $n$, and the term is 1 divided by $n^2$. So the terms are 1, $\frac{1}{4}$, $\frac{1}{9}$, $\frac{1}{16}$ and so on. The example uses squares. The same steps work for each higher power.`,
   },
   {
     title: "Divide every term by 2²",
@@ -38,7 +38,7 @@ const SIEVE: Part[] = [
   {
     title: "Subtract: the even numbers go",
     equation: tex`\left(1 - \frac{1}{2^2}\right) x = 1 + \frac{1}{3^2} + \frac{1}{5^2} + \frac{1}{7^2} + \frac{1}{9^2} + \cdots`,
-    text: prose`Take the sum of part 2 away from $x$. On the left, $x$ minus $x/2^2$ is $(1 - 1/2^2)$ times $x$. On the right, each term of an even number leaves. The terms of the odd numbers 1, 3, 5, 7, 9 stay.`,
+    text: prose`Take the sum of part 2 away from $x$. On the left, $x$ minus $\frac{x}{2^2}$ is $\left(1 - \frac{1}{2^2}\right)$ times $x$. On the right, each term of an even number leaves. The terms of the odd numbers 1, 3, 5, 7, 9 stay.`,
   },
   {
     title: "Divide the new sum by 3²",
@@ -49,7 +49,7 @@ const SIEVE: Part[] = [
   {
     title: "Subtract: the multiples of 3 go",
     equation: tex`\left(1 - \frac{1}{2^2}\right) \left(1 - \frac{1}{3^2}\right) x = 1 + \frac{1}{5^2} + \frac{1}{7^2} + \cdots`,
-    text: prose`Take the sum of part 4 away from the sum of part 3. On the left, a sum minus $1/3^2$ of itself is $(1 - 1/3^2)$ times the sum. On the right, the terms of 3, 9, 15 and so on leave. The numbers 1, 5, 7 and then 11, 13 stay: no multiple of 2 or 3. The first one after 1 is 5, the next prime.`,
+    text: prose`Take the sum of part 4 away from the sum of part 3. On the left, a sum minus $\frac{1}{3^2}$ of itself is $\left(1 - \frac{1}{3^2}\right)$ times the sum. On the right, the terms of 3, 9, 15 and so on leave. The numbers 1, 5, 7 and then 11, 13 stay: no multiple of 2 or 3. The first one after 1 is 5, the next prime.`,
   },
   {
     title: "Go on with every prime",
@@ -61,7 +61,7 @@ const SIEVE: Part[] = [
 const TIMELINE: { year: string; text: Markup }[] = [
   {
     year: "1650",
-    text: prose`Mengoli's book on endless sums. The question of the exact value of $1 + 1/4 + 1/9 + \cdots$ goes back at least to this book.`,
+    text: prose`Mengoli's book on endless sums. The question of the exact value of $1 + \frac{1}{4} + \frac{1}{9} + \cdots$ goes back at least to this book.`,
   },
   {
     year: "1689",
@@ -171,7 +171,7 @@ export function ZetaPage() {
         <p
           innerHTML={prose`A sum with endlessly many terms does not always grow without limit. Walk to a wall that
             is 2 metres away, and let each step cover half of the distance that is left: 1 metre,
-            then $1/2$, then $1/4$. You take endlessly many steps and never pass the wall.`}
+            then $\frac{1}{2}$, then $\frac{1}{4}$. You take endlessly many steps and never pass the wall.`}
         />
         <p
           class="equation"
@@ -179,17 +179,17 @@ export function ZetaPage() {
         />
         <p
           innerHTML={prose`So the question for each power is: do the terms shrink fast enough? For the squares they
-            do. Put the terms in blocks of 1, 2, 4, 8 terms and so on. The two terms $1/4 + 1/9$ are
-            each at most $1/4$, so together at most $1/2$. The four terms from $1/16$ to $1/49$ are
-            each at most $1/16$, so together at most $1/4$. The next eight are together at most
-            $1/8$. The blocks are no larger than the steps to the wall, so the sum never passes 2.`}
+            do. Put the terms in blocks of 1, 2, 4, 8 terms and so on. The two terms $\frac{1}{4} + \frac{1}{9}$ are
+            each at most $\frac{1}{4}$, so together at most $\frac{1}{2}$. The four terms from $\frac{1}{16}$ to $\frac{1}{49}$ are
+            each at most $\frac{1}{16}$, so together at most $\frac{1}{4}$. The next eight are together at most
+            $\frac{1}{8}$. The blocks are no larger than the steps to the wall, so the sum never passes 2.`}
         />
         <p
-          innerHTML={prose`With no power, which is the power $s = 1$, the terms are 1, $1/2$, $1/3$, $1/4$ and so
-            on. Blocks of the same sizes now give the opposite result. Keep 1 and $1/2$ as they are.
-            The two terms $1/3 + 1/4$ are each at least $1/4$, so together at least $1/2$. The four
-            terms from $1/5$ to $1/8$ are each at least $1/8$, so together at least $1/2$ again.
-            Each block adds at least $1/2$, and the blocks never end. This sum grows without limit.
+          innerHTML={prose`With no power, which is the power $s = 1$, the terms are 1, $\frac{1}{2}$, $\frac{1}{3}$, $\frac{1}{4}$ and so
+            on. Blocks of the same sizes now give the opposite result. Keep 1 and $\frac{1}{2}$ as they are.
+            The two terms $\frac{1}{3} + \frac{1}{4}$ are each at least $\frac{1}{4}$, so together at least $\frac{1}{2}$. The four
+            terms from $\frac{1}{5}$ to $\frac{1}{8}$ are each at least $\frac{1}{8}$, so together at least $\frac{1}{2}$ again.
+            Each block adds at least $\frac{1}{2}$, and the blocks never end. This sum grows without limit.
             Oresme proved this in the 14th century.`}
         />
         <p
@@ -226,19 +226,19 @@ export function ZetaPage() {
         />
         <p
           innerHTML={prose`There is one factor for each prime, and no other factor. The steps need the sum to have
-            a value: you cannot take $x/2^2$ away from $x$ when $x$ is not a number.`}
+            a value: you cannot take $\frac{x}{2^2}$ away from $x$ when $x$ is not a number.`}
         />
         <p
-          innerHTML={prose`Euler used the same steps also with no power, on the sum $1 + 1/2 + 1/3 + 1/4 + \cdots$,
+          innerHTML={prose`Euler used the same steps also with no power, on the sum $1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \cdots$,
             which grows without limit. From this he concluded that the sum over the primes only,
-            $1/2 + 1/3 + 1/5 + 1/7 + 1/11 + \cdots$, also grows without limit. By the rules of
+            $\frac{1}{2} + \frac{1}{3} + \frac{1}{5} + \frac{1}{7} + \frac{1}{11} + \cdots$, also grows without limit. By the rules of
             today, his steps with sums that have no value are not a proof. The result is true:
             Mertens gave its exact form in 1874.`}
         />
         <p
           innerHTML={prose`This says more than “there are infinitely many primes”, which was known from Euclid. The
-            squares show why. There are infinitely many squares too, but the sum $1 + 1/4 + 1/9 +
-            \cdots$ has a value. The sum $1/2 + 1/3 + 1/5 + \cdots$ has none. So both lists never
+            squares show why. There are infinitely many squares too, but the sum $1 + \frac{1}{4} + \frac{1}{9} +
+            \cdots$ has a value. The sum $\frac{1}{2} + \frac{1}{3} + \frac{1}{5} + \cdots$ has none. So both lists never
             end, but the primes come more often than the squares. Euclid's result cannot tell the
             two lists apart. Euler's result can.`}
         />
@@ -249,8 +249,8 @@ export function ZetaPage() {
           <a href={PAPADOPOULOS}>Papadopoulos</a>, section 6, for Euclid and the words of Euler.{" "}
           <a href={CONRAD}>Conrad, The infinitude of the primes</a>, section 3, for the primes
           against the squares. The first source shows the steps for the sum{" "}
-          <span innerHTML={prose`$1 + 1/2 + 1/3 + \cdots$`} />; the squares here follow the same
-          lines.
+          <span innerHTML={prose`$1 + \frac{1}{2} + \frac{1}{3} + \cdots$;`} /> the squares here
+          follow the same lines.
         </p>
       </section>
 
@@ -282,15 +282,15 @@ export function ZetaPage() {
         />
         <p
           innerHTML={prose`The partner of a number $s$ is $1 - s$. The partner of 2 is $1 - 2 = -1$, and the
-            partner of 3 is $1 - 3 = -2$. The two numbers of a pair are at the same distance from $1/2$,
-            on opposite sides. So they are mirror images, with the mirror at $1/2$.`}
+            partner of 3 is $1 - 3 = -2$. The two numbers of a pair are at the same distance from $\frac{1}{2}$,
+            on opposite sides. So they are mirror images, with the mirror at $\frac{1}{2}$.`}
         />
         <p
           innerHTML={prose`The symmetry does not say that the two values of a pair are equal. It says that they are
             linked: the value at $1 - s$ is the value at $s$ times a known factor, and the factor
             depends on $s$. This rule works for every $s$ except 1, 0, $-1$, $-2$ and so on. So it
-            gives the value at $-1$ from the value at 2, but not the other way. Take the pair 2 and $-1$. The value at 2 is $\pi^2/6$, about 1.645. The
-            factor for $s = 2$ is $-1/(2\pi^2)$. The product is $-1/12$, and that is the value at
+            gives the value at $-1$ from the value at 2, but not the other way. Take the pair 2 and $-1$. The value at 2 is $\frac{\pi^2}{6}$, about 1.645. The
+            factor for $s = 2$ is $-\frac{1}{2\pi^2}$. The product is $-\frac{1}{12}$, and that is the value at
             $-1$. One form of the function does have equal values: Riemann multiplied the function
             by a certain factor, and the result has the same value at $s$ and at $1 - s$.`}
         />
@@ -317,7 +317,7 @@ export function ZetaPage() {
         </p>
         <p
           innerHTML={prose`The value at $-1$ is strange, because at $-1$ the sum would be $1 + 2 + 3 + \cdots$, and
-            that sum has no value. The number $-1/12$ belongs to the function that has a meaning
+            that sum has no value. The number $-\frac{1}{12}$ belongs to the function that has a meaning
             on the whole plane, not to the sum. Euler worked with sums of
             alternating signs, such as $1 - 2 + 3 - 4 + \cdots$, and used a special way of summing
             to give them a meaning. In 1859, Riemann proved the symmetry for complex numbers $s$ as well.`}
@@ -330,16 +330,16 @@ export function ZetaPage() {
         <ol>
           <li
             innerHTML={prose`He took two families of sums with alternating signs. One grows:
-              $1 - 2^m + 3^m - 4^m + \cdots$. The other shrinks: $1 - 1/2^n + 1/3^n - 1/4^n + \cdots$.`}
+              $1 - 2^m + 3^m - 4^m + \cdots$. The other shrinks: $1 - \frac{1}{2^n} + \frac{1}{3^n} - \frac{1}{4^n} + \cdots$.`}
           />
           <li
             innerHTML={prose`The growing sums have no value in the usual sense, and Euler said so. He gave them
-              one in this way: for small $x$, the sum $1 - 2x + 3x^2 - 4x^3 + \cdots$ is $1/(1 + x)^2$.
-              At $x = 1$ this formula gives $1/4$, so he took $1/4$ as the value of $1 - 2 + 3 - 4 + \cdots$.
+              one in this way: for small $x$, the sum $1 - 2x + 3x^2 - 4x^3 + \cdots$ is $\frac{1}{(1 + x)^2}$.
+              At $x = 1$ this formula gives $\frac{1}{4}$, so he took $\frac{1}{4}$ as the value of $1 - 2 + 3 - 4 + \cdots$.
               He wrote that the word “sum” needs “a more extended meaning” here.`}
           />
           <li
-            innerHTML={prose`He already knew the sums $1 + 1/2^n + 1/3^n + \cdots$ for even $n$: each is a
+            innerHTML={prose`He already knew the sums $1 + \frac{1}{2^n} + \frac{1}{3^n} + \cdots$ for even $n$: each is a
               fraction times $\pi^n$. The shrinking sums follow from them. Then he found that the
               growing sums with odd $m$ contain the same fractions, and that the growing sums
               with even $m$ above 0 are 0.`}
@@ -347,12 +347,12 @@ export function ZetaPage() {
           <li
             innerHTML={prose`So he divided the growing sum with power $m = n - 1$ by the shrinking sum with
               power $n$. For even $n$ the fraction drops out. For $n = 2$ this is
-              $1 - 2 + 3 - \cdots$ divided by $1 - 1/2^2 + 1/3^2 - \cdots$, and the result is $3/\pi^2$.
+              $1 - 2 + 3 - \cdots$ divided by $1 - \frac{1}{2^2} + \frac{1}{3^2} - \cdots$, and the result is $\frac{3}{\pi^2}$.
               For odd $n$ above 1 the growing sum is 0, so the result is 0.`}
           />
           <li
             innerHTML={prose`He wrote the results for $n = 2, 3, 4, 5, 6$ and so on as one rule times a number $N$.
-              The values of $N$ were $+1, 0, -1, 0, +1$ and so on. He saw that $-\cos(n\pi/2)$ gives
+              The values of $N$ were $+1, 0, -1, 0, +1$ and so on. He saw that $-\cos\!\left(\frac{n\pi}{2}\right)$ gives
               exactly these values.`}
           />
           <li
@@ -361,7 +361,7 @@ export function ZetaPage() {
           />
           <li
             innerHTML={prose`He tested it. It held for $n = 1$ and $n = 0$. He showed that the negative whole
-              numbers follow from the positive ones. For $n = 1/2$ both sides are 1. For $n = 3/2$
+              numbers follow from the positive ones. For $n = \frac{1}{2}$ both sides are 1. For $n = \frac{3}{2}$
               he computed both sides to several decimal places, and they agreed.`}
           />
         </ol>
@@ -370,11 +370,11 @@ export function ZetaPage() {
         </p>
         <p
           innerHTML={prose`For a complex number $s = a + bi$, the step from $s$ to $1 - s$ gives $(1 - a) - bi$. That
-            is a half turn around the point $1/2$, not a flip across a line. The function has a
+            is a half turn around the point $\frac{1}{2}$, not a flip across a line. The function has a
             second symmetry: the value at $a - bi$ is the value at $a + bi$ with the sign of its
             $i$ part changed. The two symmetries together tie the value at $a + bi$ to the value at
             $(1 - a) + bi$. These two points have the same height $b$, and they are mirror images
-            across the line where the real part is $1/2$. The factor between
+            across the line where the real part is $\frac{1}{2}$. The factor between
             the function and its symmetric form is never 0 in the strip where the real part is
             between 0 and 1. So in that strip the zeros come in mirrored pairs: if $a + bi$
             is a zero, then $(1 - a) + bi$ is a zero too. The Riemann hypothesis says that every
