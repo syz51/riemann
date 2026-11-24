@@ -73,9 +73,11 @@ const RAW_MATH_GLYPHS = /[√∛²³⁴∀ℂℕΓζπ]/;
 
 test("site source files use stacked \\frac fractions and LaTeX math symbols in every prose/tex literal", () => {
   expect(Object.keys(SOURCES).length).toBeGreaterThan(5);
+  let literalsChecked = 0;
   const violations: string[] = [];
   for (const [file, text] of Object.entries(SOURCES)) {
     for (const match of text.matchAll(/\b(prose|tex)`((?:[^`\\]|\\.)*)`/gs)) {
+      literalsChecked++;
       const [, tag, body] = match;
       const line = text.slice(0, match.index).split("\n").length;
       if (tag === "tex") {
@@ -97,5 +99,6 @@ test("site source files use stacked \\frac fractions and LaTeX math symbols in e
       }
     }
   }
+  expect(literalsChecked).toBeGreaterThan(50);
   expect(violations).toEqual([]);
 });
