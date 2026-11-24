@@ -4,8 +4,8 @@ export type PlaneMark = "plane" | "zeros" | "trivial" | "pole" | "line";
 /** One part of a Lean snippet that has its own explanation. */
 export type Piece<Id extends string = string> = {
   id: Id;
-  title: string;
-  meaning: string;
+  title: Markup;
+  meaning: Markup;
   mark?: PlaneMark;
 };
 
@@ -24,7 +24,7 @@ export type Step<Id extends string = string> = {
   number: number;
   of: number;
   title: string;
-  summary: string;
+  summary: Markup;
   snippets: Snippet<NoInfer<Id>>[];
   pieces: Piece<Id>[];
   next: string;

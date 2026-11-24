@@ -1,11 +1,12 @@
-import { createSignal, Match, Show, Switch } from "solid-js";
-import { ComplexPage } from "./ComplexPage";
-import { GammaPage } from "./GammaPage";
+import { createSignal, lazy, Loading, Match, Show, Switch } from "solid-js";
 import { ContentsPage } from "./ContentsPage";
 import { PageFoot } from "./PageFoot";
 import { CONTENTS, href, routeOf } from "./pages";
-import { StepPage } from "./StepPage";
-import { ZetaPage } from "./ZetaPage";
+
+const StepPage = lazy(() => import("./StepPage").then((m) => ({ default: m.StepPage })));
+const ComplexPage = lazy(() => import("./ComplexPage").then((m) => ({ default: m.ComplexPage })));
+const ZetaPage = lazy(() => import("./ZetaPage").then((m) => ({ default: m.ZetaPage })));
+const GammaPage = lazy(() => import("./GammaPage").then((m) => ({ default: m.GammaPage })));
 
 export function App() {
   // The address after "#" selects the page, so the built site needs no server
@@ -34,20 +35,22 @@ export function App() {
         </nav>
       </header>
 
-      <Switch fallback={<ContentsPage />}>
-        <Match when={route() === "step-1"}>
-          <StepPage />
-        </Match>
-        <Match when={route() === "complex-numbers"}>
-          <ComplexPage />
-        </Match>
-        <Match when={route() === "zeta"}>
-          <ZetaPage />
-        </Match>
-        <Match when={route() === "gamma"}>
-          <GammaPage />
-        </Match>
-      </Switch>
+      <Loading fallback={null}>
+        <Switch fallback={<ContentsPage />}>
+          <Match when={route() === "step-1"}>
+            <StepPage />
+          </Match>
+          <Match when={route() === "complex-numbers"}>
+            <ComplexPage />
+          </Match>
+          <Match when={route() === "zeta"}>
+            <ZetaPage />
+          </Match>
+          <Match when={route() === "gamma"}>
+            <GammaPage />
+          </Match>
+        </Switch>
+      </Loading>
 
       <Show when={route() || undefined}>{(page) => <PageFoot route={page()} />}</Show>
     </>

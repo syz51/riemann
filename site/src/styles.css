@@ -561,10 +561,21 @@ h3 {
   white-space: nowrap;
 }
 
-/* A wide equation starts at the left edge, so the box can scroll to all of it. */
-.equation math.tml-display {
-  width: max-content;
+/* Match KaTeX's optical x-height to the serif prose without disturbing line height. */
+.katex {
+  font-size: 1.08em;
+}
+
+/* Display equations already sit inside .equation boxes with their own padding and scroll.
+   A wide equation starts at the left edge, so the box can scroll to all of it. */
+.equation .katex-display {
+  margin: 0;
+}
+
+.equation .katex-display > .katex {
+  display: inline-block;
   min-width: 100%;
+  white-space: nowrap;
 }
 
 .stepper .controls {

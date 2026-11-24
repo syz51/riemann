@@ -18,7 +18,7 @@ const CUBIC: Part[] = [
   {
     title: "A formula for every such equation",
     equation: tex`\begin{gathered} x = \sqrt[3]{\frac{q}{2} + \sqrt{w}} + \sqrt[3]{\frac{q}{2} - \sqrt{w}} \\ w = \left(\frac{q}{2}\right)^2 - \left(\frac{p}{3}\right)^3 \end{gathered}`,
-    text: prose`In the 1500s, del Ferro and later Tartaglia found a formula for each equation of the form $x^3 = px + q$. The sign ∛ is the cube root: the number whose third power is the number under the sign. Cardano published the formula in 1545.`,
+    text: prose`In the 1500s, del Ferro and later Tartaglia found a formula for each equation of the form $x^3 = px + q$. The sign $\sqrt[3]{\phantom{x}}$ is the cube root: the number whose third power is the number under the sign. Cardano published the formula in 1545.`,
   },
   {
     title: "Why the formula is right",

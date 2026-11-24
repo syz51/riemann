@@ -31,6 +31,7 @@ const SIEVE: Part[] = [
   },
   {
     title: "Divide every term by 2²",
+    titleHtml: prose`Divide every term by $2^2$`,
     equation: tex`\frac{x}{2^2} = \frac{1}{2^2} + \frac{1}{4^2} + \frac{1}{6^2} + \frac{1}{8^2} + \cdots`,
     text: prose`The term of $n$ is 1 divided by $n^2$. Divide it by $2^2$, and it is 1 divided by $(2n)^2$, the term of $2n$. So the new terms belong to 2, 4, 6, 8 and so on. These are exactly the terms of the even numbers in $x$.`,
   },
@@ -41,6 +42,7 @@ const SIEVE: Part[] = [
   },
   {
     title: "Divide the new sum by 3²",
+    titleHtml: prose`Divide the new sum by $3^2$`,
     equation: tex`\frac{1}{3^2} \left(1 - \frac{1}{2^2}\right) x = \frac{1}{3^2} + \frac{1}{9^2} + \frac{1}{15^2} + \frac{1}{21^2} + \cdots`,
     text: prose`Divide the term of $n$ by $3^2$, and it is the term of $3n$. So the terms of 1, 3, 5, 7 become the terms of 3, 9, 15, 21. These are exactly the terms of the multiples of 3 that are still in the sum.`,
   },
@@ -417,13 +419,14 @@ export function ZetaPage() {
           <a href={MATHLIB_PIN}>Mathlib at the commit the proof builds against</a>: four statements
           for the mirrored pairs of zeros, and the theorem riemannZeta_one_sub for the factor that
           links the two values of a pair. The steps are in the project note.{" "}
-          <a href={MATHLIB_VALUES}>Mathlib, values of the function</a>, for the values at 2 and at
-          −1; the value at −1 also uses <a href={MATHLIB_BERNOULLI}>the theorem bernoulli_two</a>.{" "}
+          <a href={MATHLIB_VALUES}>Mathlib, values of the function</a>, for the values at 2 and at{" "}
+          <span innerHTML={prose`$-1$`} />; the value at <span innerHTML={prose`$-1$`} /> also uses{" "}
+          <a href={MATHLIB_BERNOULLI}>the theorem bernoulli_two</a>.{" "}
           <a href={MATHLIB_GAMMA}>Mathlib, the header of the file on the Gamma function</a>, for
-          what Γ is and for the points where it has no value.{" "}
+          what <span innerHTML={prose`$\Gamma$`} /> is and for the points where it has no value.{" "}
           <a href={EULER_E19}>Euler Archive, record of paper E19</a>, for the year 1729. Elkies also
           gives the two special points of Riemann's form, and section 11 of Euler's paper gives the
-          case n = 1.
+          case <span innerHTML={prose`$n = 1$`} />.
         </p>
       </section>
 

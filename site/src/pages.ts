@@ -15,7 +15,7 @@ export type StepEntry = {
   route: PageRoute;
   number: number;
   title: string;
-  summary: string;
+  summary: Markup;
   background: Background[];
 };
 

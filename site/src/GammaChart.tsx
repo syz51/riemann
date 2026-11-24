@@ -75,7 +75,7 @@ export function GammaChart() {
     <div class="sumprod gamma-chart">
       <label class="slider">
         <span>
-          The number x = <strong>{atText()}</strong>
+          <span innerHTML={prose`The number $x =$`} /> <strong>{atText()}</strong>
         </span>
         <input
           type="range"
@@ -89,9 +89,9 @@ export function GammaChart() {
       </label>
 
       <ul class="legend">
-        <li class="sum">Γ(x)</li>
+        <li class="sum" innerHTML={prose`$\Gamma(x)$`} />
         <li class="point">Whole numbers: 1, 1, 2, 6, 24</li>
-        <li class="target">Γ has no value here</li>
+        <li class="target" innerHTML={prose`$\Gamma$ has no value here`} />
       </ul>
 
       <svg
@@ -178,18 +178,20 @@ export function GammaChart() {
       </svg>
 
       <table>
-        <caption>The values at x = {atText()}, rounded</caption>
+        <caption>
+          <span innerHTML={prose`The values at $x =$`} /> {atText()}, rounded
+        </caption>
         <tbody>
           <tr>
-            <th scope="row">Γ(x)</th>
+            <th scope="row" innerHTML={prose`$\Gamma(x)$`} />
             <td>{show(value())}</td>
           </tr>
           <tr>
-            <th scope="row">x times Γ(x)</th>
+            <th scope="row" innerHTML={prose`$x$ times $\Gamma(x)$`} />
             <td>{value() === undefined ? NONE : digits(at() * value()!)}</td>
           </tr>
           <tr>
-            <th scope="row">Γ(x + 1)</th>
+            <th scope="row" innerHTML={prose`$\Gamma(x + 1)$`} />
             <td>{show(next())}</td>
           </tr>
         </tbody>

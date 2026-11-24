@@ -80,10 +80,9 @@ export function Plane(props: { mark: PlaneMark | undefined }) {
           </text>
         </g>
       </svg>
-      <figcaption>
-        Filled points are zeros of zeta. The open point is s = 1. The shaded band is the critical
-        strip, from real part 0 to real part 1. The vertical scale is compressed.
-      </figcaption>
+      <figcaption
+        innerHTML={prose`Filled points are zeros of zeta. The open point is $s = 1$. The shaded band is the critical strip, from real part 0 to real part 1. The vertical scale is compressed.`}
+      />
     </figure>
   );
 }

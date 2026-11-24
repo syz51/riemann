@@ -3,14 +3,14 @@ import { defineConfig, type Plugin } from "vite-plus";
 import { replaceLiterals } from "./src/prose";
 
 /**
- * Replaces each tex literal by the MathML markup of its LaTeX, and each prose
+ * Replaces each tex literal by the KaTeX markup of its LaTeX, and each prose
  * literal by the HTML of its text (see src/prose.ts). It works on the text of
  * the file, so it also changes such a literal inside a comment or a string: do
  * not write one there.
  */
 function tex(): Plugin {
   return {
-    name: "tex-to-mathml",
+    name: "tex-to-katex",
     enforce: "pre",
     transform(code, id) {
       if (!/\/src\/[^?]*\.tsx?$/.test(id) || !/\b(?:tex|prose)`/.test(code)) return;

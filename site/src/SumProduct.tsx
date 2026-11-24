@@ -14,11 +14,11 @@ const PLOT_H = HEIGHT - TOP - BOTTOM;
 const X_TICKS = [1, 25, 50, 75, 100];
 const Y_STEPS = [0.02, 0.05, 0.1, 0.2, 0.5, 1, 2];
 
-const POWERS: { s: number; label: string; term: string }[] = [
-  { s: 2, label: "Squares", term: "1/n²" },
-  { s: 3, label: "Third powers", term: "1/n³" },
-  { s: 4, label: "Fourth powers", term: "1/n⁴" },
-  { s: 1, label: "No power", term: "1/n" },
+const POWERS: { s: number; label: string; term: string; termHtml: Markup }[] = [
+  { s: 2, label: "Squares", term: "1/n²", termHtml: prose`$1/n^2$` },
+  { s: 3, label: "Third powers", term: "1/n³", termHtml: prose`$1/n^3$` },
+  { s: 4, label: "Fourth powers", term: "1/n⁴", termHtml: prose`$1/n^4$` },
+  { s: 1, label: "No power", term: "1/n", termHtml: prose`$1/n$` },
 ];
 
 const isPrime = (n: number) => {
@@ -98,7 +98,7 @@ export function SumProduct() {
               aria-pressed={power() === choice ? "true" : "false"}
               onClick={() => setPower(choice)}
             >
-              <span class="value">{choice.term}</span> {choice.label}
+              <span class="value" innerHTML={choice.termHtml} /> {choice.label}
             </button>
           )}
         </For>
@@ -106,7 +106,7 @@ export function SumProduct() {
 
       <label class="slider">
         <span>
-          Count up to N = <strong>{count()}</strong>
+          <span innerHTML={prose`Count up to $N =$`} /> <strong>{count()}</strong>
         </span>
         <input
           type="range"
@@ -119,8 +119,8 @@ export function SumProduct() {
       </label>
 
       <ul class="legend">
-        <li class="sum">Sum over the whole numbers up to N</li>
-        <li class="product">Product over the primes up to N</li>
+        <li class="sum" innerHTML={prose`Sum over the whole numbers up to $N$`} />
+        <li class="product" innerHTML={prose`Product over the primes up to $N$`} />
         <Show when={target()}>
           <li class="target">The value that both approach</li>
         </Show>
@@ -177,7 +177,9 @@ export function SumProduct() {
       </svg>
 
       <table>
-        <caption>The values at N = {count()}, rounded</caption>
+        <caption>
+          <span innerHTML={prose`The values at $N =$`} /> {count()}, rounded
+        </caption>
         <tbody>
           <tr>
             <th scope="row">
