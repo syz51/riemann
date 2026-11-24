@@ -18,6 +18,18 @@ const MARKS_BEFORE = /[("“]*$/;
 const ESCAPES: Record<string, string> = { "&": "&amp;", "<": "&lt;", ">": "&gt;" };
 
 /**
+ * Render top-level inline fractions in display-style sizing (so numerators,
+ * denominators, and nested exponents like 1/2^n do not collapse to 50%
+ * scriptscriptstyle) while preserving script/scriptscript sizing when a
+ * fraction appears inside an exponent or subscript; CSS scales top-level
+ * inline `.mfrac` optically to fit running prose.
+ */
+const INLINE_MACROS = {
+  "\\frac":
+    "\\mathchoice{\\genfrac{}{}{}{0}{#1}{#2}}{\\genfrac{}{}{}{0}{#1}{#2}}{\\genfrac{}{}{}{2}{#1}{#2}}{\\genfrac{}{}{}{3}{#1}{#2}}",
+};
+
+/**
  * HTML of a piece of running text. A formula stands between two `$` signs and
  * becomes inline KaTeX (HTML + MathML). The text around the formulas is escaped.
  * The text cannot hold a dollar sign or a backslash of its own.
@@ -32,7 +44,11 @@ export function proseToHtml(source: string): string {
   return pieces
     .map((piece, index) => {
       if (index % 2 === 1) {
-        const math = katex.renderToString(piece, { displayMode: false, throwOnError: true });
+        const math = katex.renderToString(piece, {
+          displayMode: false,
+          throwOnError: true,
+          macros: { ...INLINE_MACROS },
+        });
         // A mark that follows the formula before this one belongs to that formula.
         const left = pieces[index - 1]!;
         const before = MARKS_BEFORE.exec(index > 1 ? left.replace(MARKS_AFTER, "") : left)![0];

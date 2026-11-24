@@ -12,6 +12,16 @@ test("a formula becomes inline KaTeX between the pieces of text", () => {
   expect(html).toContain("<mfrac>");
   expect(html).toContain("<msup>");
   expect(html).not.toContain("katex-display");
+  // Inline fractions use display-style sizing so nested exponents do not collapse to size1 (50%).
+  expect(html).not.toContain("size1");
+});
+
+test("a fraction inside an inline exponent keeps script-level sizing", () => {
+  const html = proseToHtml("factor $\\pi^{-\\frac{s}{2}}$ here");
+  expect(html).toContain("<msup>");
+  expect(html).toContain("<mfrac>");
+  // Unlike a top-level inline fraction, the script-level fraction must not be forced up to display size.
+  expect(html).toContain("reset-size3 size1");
 });
 
 test("a formula and the marks after it are in one span that does not break", () => {
