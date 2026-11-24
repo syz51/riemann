@@ -21,12 +21,12 @@ const ARROWS: Record<string, Complex | undefined> = {
   ArrowDown: { re: 0, im: -STEP },
 };
 
-const PRESETS: { label: string; effect: string; value: Complex }[] = [
-  { label: "i", effect: "quarter turn", value: { re: 0, im: 1 } },
-  { label: "−1", effect: "half turn", value: { re: -1, im: 0 } },
-  { label: "2", effect: "stretch", value: { re: 2, im: 0 } },
-  { label: "1 + i", effect: "turn and stretch", value: { re: 1, im: 1 } },
-  { label: "0.5", effect: "shrink", value: { re: 0.5, im: 0 } },
+const PRESETS: { label: Markup; effect: string; value: Complex }[] = [
+  { label: prose`$i$`, effect: "quarter turn", value: { re: 0, im: 1 } },
+  { label: prose`$-1$`, effect: "half turn", value: { re: -1, im: 0 } },
+  { label: prose`$2$`, effect: "stretch", value: { re: 2, im: 0 } },
+  { label: prose`$1 + i$`, effect: "turn and stretch", value: { re: 1, im: 1 } },
+  { label: prose`$0.5$`, effect: "shrink", value: { re: 0.5, im: 0 } },
 ];
 
 /** Moves a point to the grid and keeps it in range. Zero has no direction, so it is refused. */
@@ -177,9 +177,9 @@ export function MultiplyPlane() {
             )}
           </For>
         </svg>
-        <figcaption>
-          Drag z or w, or select a point and use the arrow keys. The square point is the product.
-        </figcaption>
+        <figcaption
+          innerHTML={prose`Drag $z$ or $w$, or select a point and use the arrow keys. The square point is the product.`}
+        />
       </figure>
 
       <div class="multiply-side">
@@ -195,14 +195,14 @@ export function MultiplyPlane() {
           <tbody>
             <For
               each={[
-                { name: "z", class: "z", value: z },
-                { name: "w", class: "w", value: w },
-                { name: "z × w", class: "product", value: product },
+                { name: prose`$z$`, class: "z", value: z },
+                { name: prose`$w$`, class: "w", value: w },
+                { name: prose`$z \times w$`, class: "product", value: product },
               ]}
             >
               {(row) => (
                 <tr class={row.class}>
-                  <th scope="row">{row.name}</th>
+                  <th scope="row" innerHTML={row.name} />
                   <td>{format(row.value())}</td>
                   <td>{length(row.value()).toFixed(2)}</td>
                   <td>{Math.round(angle(row.value()))}°</td>
@@ -224,14 +224,12 @@ export function MultiplyPlane() {
           <span class="note">The values shown are rounded.</span>
         </p>
 
-        <p class="label" id="w-presets">
-          Set w to
-        </p>
+        <p class="label" id="w-presets" innerHTML={prose`Set $w$ to`} />
         <div class="presets" role="group" aria-labelledby="w-presets">
           <For each={PRESETS}>
             {(preset) => (
               <button type="button" onClick={() => setW(preset.value)}>
-                <span class="value">{preset.label}</span> {preset.effect}
+                <span class="value" innerHTML={preset.label} /> {preset.effect}
               </button>
             )}
           </For>
@@ -243,18 +241,20 @@ export function MultiplyPlane() {
           onClick={() => {
             if (productFits()) setZ(product());
           }}
-        >
-          Move z to z × w
-        </button>
+          innerHTML={prose`Move $z$ to $z \times w$`}
+        />
         <Show when={!productFits()}>
           <p class="note">
-            Not possible now: in this picture, the length of z stays between {STEP} and {Z_LIMIT}.
+            <span
+              innerHTML={prose`Not possible now: in this picture, the length of $z$ stays between `}
+            />
+            {STEP} and {Z_LIMIT}.
           </p>
         </Show>
-        <p class="hint">
-          Set w to i and press this button two times. Two quarter turns make a half turn, so z lands
-          on −z. This is the rule i × i = −1 as a picture.
-        </p>
+        <p
+          class="hint"
+          innerHTML={prose`Set $w$ to $i$ and press this button two times. Two quarter turns make a half turn, so $z$ lands on $-z$. This is the rule $i \times i = -1$ as a picture.`}
+        />
       </div>
     </div>
   );

@@ -29,7 +29,7 @@ export function StepPage() {
         Step {step.number} of {step.of}
       </p>
       <h1>{step.title}</h1>
-      <p class="summary">{step.summary}</p>
+      <p class="summary" innerHTML={step.summary} />
       <p class="aside-link">
         New to complex numbers? Read <a href={href("complex-numbers")}>why complex numbers exist</a>{" "}
         first. New to the zeta function? Read{" "}
@@ -77,8 +77,8 @@ export function StepPage() {
             >
               {(piece) => (
                 <>
-                  <h2>{piece().title}</h2>
-                  <p>{piece().meaning}</p>
+                  <h2 innerHTML={piece().title} />
+                  <p innerHTML={piece().meaning} />
                 </>
               )}
             </Show>

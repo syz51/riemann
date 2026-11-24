@@ -18,7 +18,7 @@ export function ContentsPage() {
               <h2>
                 <a href={href(step.route)}>{step.title}</a>
               </h2>
-              <p>{step.summary}</p>
+              <p innerHTML={step.summary} />
               <Show when={step.background.length > 0}>
                 <h3>Background for this step</h3>
                 <ul>

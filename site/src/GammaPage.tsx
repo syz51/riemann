@@ -22,10 +22,10 @@ export function GammaPage() {
     <main class="article">
       <p class="count">Background for step 1</p>
       <h1>The Gamma function</h1>
-      <p class="summary">
-        The symmetry of the zeta function uses a function with the name Γ (gamma). It is 300 years
-        old. It began with one question: what comes between the terms of the list 1, 2, 6, 24, 120?
-      </p>
+      <p
+        class="summary"
+        innerHTML={prose`The symmetry of the zeta function uses a function with the name $\Gamma$ (gamma). It is 300 years old. It began with one question: what comes between the terms of the list 1, 2, 6, 24, 120?`}
+      />
 
       <section>
         <h2>A list with gaps</h2>
@@ -101,9 +101,10 @@ export function GammaPage() {
           Sources: <a href={MATHLIB_BASIC}>Mathlib, the file on the Gamma function</a>, the header
           and the theorems Gamma_one, Gamma_add_one and Gamma_nat_eq_factorial.{" "}
           <a href={MATHLIB_HALF}>Mathlib, theorem Gamma_one_half_eq</a>. We read the statements, not
-          the proofs. The check takes Mathlib's Γ to be the function of Euler and Legendre. Mathlib
-          calls its integral Euler's, but it uses the exponential form, and we found no statement in
-          Mathlib at this commit equating the two forms.
+          the proofs. The check takes Mathlib's <span innerHTML={prose`$\Gamma$`} /> to be the
+          function of Euler and Legendre. Mathlib calls its integral Euler's, but it uses the
+          exponential form, and we found no statement in Mathlib at this commit equating the two
+          forms.
         </p>
       </section>
 
@@ -123,7 +124,7 @@ export function GammaPage() {
       </section>
 
       <section>
-        <h2>Where Γ has no value</h2>
+        <h2 innerHTML={prose`Where $\Gamma$ has no value`} />
         <p
           innerHTML={prose`$\Gamma$ has no value at 0, $-1$, $-2$ and so on. Mathlib says so in words: at these points "the function is undefined, and we set it to be 0 by convention". The 0 is a filler that the library needs, because each of its functions must give some answer. It is not a value of the function.`}
         />
@@ -158,9 +159,9 @@ export function GammaPage() {
       <section>
         <h2>Where the zeta function uses it</h2>
         <p>
-          The symmetry of the zeta function links the value at <i>s</i> with the value at 1 −{" "}
-          <i>s</i>. The factor of that link contains Γ(<i>s</i>). So the rule of the symmetry has no
-          meaning where Γ has no value: at 0, −1, −2 and so on. The page{" "}
+          <span
+            innerHTML={prose`The symmetry of the zeta function links the value at $s$ with the value at $1 - s$. The factor of that link contains $\Gamma(s)$. So the rule of the symmetry has no meaning where $\Gamma$ has no value: at 0, $-1$, $-2$ and so on. The page `}
+          />
           <a href={href("zeta")}>Where the zeta function came from</a> gives the rule and its
           exceptions.
         </p>

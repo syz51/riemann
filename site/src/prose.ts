@@ -1,13 +1,13 @@
-import temml from "temml";
+import katex from "katex";
 
 /**
- * Build-time code: vite.config.ts uses it, and no page imports it, so Temml
+ * Build-time code: vite.config.ts uses it, and no page imports it, so KaTeX
  * does not reach the browser.
  */
 
-/** MathML markup of one display equation. A LaTeX error throws, which stops the build. */
+/** KaTeX HTML + MathML markup of one display equation. A LaTeX error throws, which stops the build. */
 export function equationToHtml(latex: string): string {
-  return temml.renderToString(latex, { displayMode: true, throwOnError: true });
+  return katex.renderToString(latex, { displayMode: true, throwOnError: true });
 }
 
 /** The punctuation marks at the start of the text after a formula; they need no escape. */
@@ -19,8 +19,8 @@ const ESCAPES: Record<string, string> = { "&": "&amp;", "<": "&lt;", ">": "&gt;"
 
 /**
  * HTML of a piece of running text. A formula stands between two `$` signs and
- * becomes inline MathML. The text around the formulas is escaped. The text
- * cannot hold a dollar sign or a backslash of its own.
+ * becomes inline KaTeX (HTML + MathML). The text around the formulas is escaped.
+ * The text cannot hold a dollar sign or a backslash of its own.
  *
  * A browser may break the line between a formula and the punctuation mark
  * after it, or after an opening bracket before it. So a formula and the marks
@@ -32,7 +32,7 @@ export function proseToHtml(source: string): string {
   return pieces
     .map((piece, index) => {
       if (index % 2 === 1) {
-        const math = temml.renderToString(piece, { displayMode: false, throwOnError: true });
+        const math = katex.renderToString(piece, { displayMode: false, throwOnError: true });
         // A mark that follows the formula before this one belongs to that formula.
         const left = pieces[index - 1]!;
         const before = MARKS_BEFORE.exec(index > 1 ? left.replace(MARKS_AFTER, "") : left)![0];

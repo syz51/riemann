@@ -1,7 +1,7 @@
-import { createSignal, For } from "solid-js";
+import { createSignal, For, Show } from "solid-js";
 
 /** `equation` comes from a tex literal and `text` from a prose literal (see tex.d.ts). */
-export type Part = { title: string; equation: Markup; text: Markup };
+export type Part = { title: string; titleHtml?: Markup; equation: Markup; text: Markup };
 
 /** One calculation, shown one part at a time. */
 export function Stepper(props: { parts: Part[] }) {
@@ -25,7 +25,9 @@ export function Stepper(props: { parts: Part[] }) {
               <p class="count">
                 Part {at() + 1} of {props.parts.length}
               </p>
-              <h3>{part.title}</h3>
+              <Show when={part.titleHtml} fallback={<h3>{part.title}</h3>}>
+                {(html) => <h3 innerHTML={html()} />}
+              </Show>
               <p class="equation" innerHTML={part.equation} />
               <p innerHTML={part.text} />
             </div>
