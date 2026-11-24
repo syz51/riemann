@@ -420,13 +420,13 @@ export function ZetaPage() {
           for the mirrored pairs of zeros, and the theorem riemannZeta_one_sub for the factor that
           links the two values of a pair. The steps are in the project note.{" "}
           <a href={MATHLIB_VALUES}>Mathlib, values of the function</a>, for the values at 2 and at{" "}
-          <span innerHTML={prose`$-1$`} />; the value at <span innerHTML={prose`$-1$`} /> also uses{" "}
+          <span innerHTML={prose`$-1$; the value at $-1$ also uses `} />
           <a href={MATHLIB_BERNOULLI}>the theorem bernoulli_two</a>.{" "}
           <a href={MATHLIB_GAMMA}>Mathlib, the header of the file on the Gamma function</a>, for
           what <span innerHTML={prose`$\Gamma$`} /> is and for the points where it has no value.{" "}
           <a href={EULER_E19}>Euler Archive, record of paper E19</a>, for the year 1729. Elkies also
-          gives the two special points of Riemann's form, and section 11 of Euler's paper gives the
-          case <span innerHTML={prose`$n = 1$`} />.
+          gives the two special points of Riemann's form, and section 11 of Euler's paper gives the{" "}
+          <span innerHTML={prose`case $n = 1$.`} />
         </p>
       </section>
 
