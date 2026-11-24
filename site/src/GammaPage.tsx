@@ -30,13 +30,13 @@ export function GammaPage() {
       <section>
         <h2>A list with gaps</h2>
         <p
-          innerHTML={prose`Multiply the whole numbers from 1 up to $n$. For $n = 1, 2, 3, 4, 5$ the results are 1, 2, 6, 24 and 120. The result for $n$ has the name factorial of $n$. The list has a term for each whole number. Has it a term for $n = 1/2$? The product "from 1 up to a half" has no meaning, so the question needs a new idea.`}
+          innerHTML={prose`Multiply the whole numbers from 1 up to $n$. For $n = 1, 2, 3, 4, 5$ the results are 1, 2, 6, 24 and 120. The result for $n$ has the name factorial of $n$. The list has a term for each whole number. Has it a term for $n = \frac{1}{2}$? The product "from 1 up to a half" has no meaning, so the question needs a new idea.`}
         />
         <p
           innerHTML={prose`Euler answered it in a paper that he wrote in 1729. His first sentence says where the question came from: he was "prompted by those results concerning series which the celebrated Goldbach has communicated to the Society", and he looked for "a general expression which would give all the terms" of the list. He found an endless product that gives the list at the whole numbers and also has a value between them.`}
         />
         <p
-          innerHTML={prose`Then he calculated the term for $n = 1/2$. He found that it "is equal to the square root of the circle whose diameter = 1". The circle here means its area, which is $\pi/4$. So the term is $\sqrt{\pi}/2$, about 0.8862. The number $\pi$ belongs to circles, and the list is about products of whole numbers. Nothing in the question suggested a circle.`}
+          innerHTML={prose`Then he calculated the term for $n = \frac{1}{2}$. He found that it "is equal to the square root of the circle whose diameter = 1". The circle here means its area, which is $\frac{\pi}{4}$. So the term is $\frac{\sqrt{\pi}}{2}$, about 0.8862. The number $\pi$ belongs to circles, and the list is about products of whole numbers. Nothing in the question suggested a circle.`}
         />
         <p class="sources">
           Sources: <a href={EULER_E19}>Euler, On transcendental progressions</a>, translated by
@@ -63,7 +63,7 @@ export function GammaPage() {
       <section>
         <h2>The name, and a shift by 1</h2>
         <p
-          innerHTML={prose`Euler did not use the letter $\Gamma$. Legendre did. In a memoir read to the Institut de France in November 1809 and printed in August 1810, he wrote of the integral $\int_0^1 (\ln(1/x))^{a - 1}\,dx$: "nous la désignerons par $\Gamma(a)$" — we will denote it by $\Gamma(a)$. In his book of 1811 he gave the name "Eulerian integrals" to two integrals that Euler had studied, and repeated the notation: "nous la représenterons plus généralement par $\Gamma(a)$".`}
+          innerHTML={prose`Euler did not use the letter $\Gamma$. Legendre did. In a memoir read to the Institut de France in November 1809 and printed in August 1810, he wrote of the integral $\int_0^1 \bigl(\ln\frac{1}{x}\bigr)^{a - 1}\,dx$: "nous la désignerons par $\Gamma(a)$" — we will denote it by $\Gamma(a)$. In his book of 1811 he gave the name "Eulerian integrals" to two integrals that Euler had studied, and repeated the notation: "nous la représenterons plus généralement par $\Gamma(a)$".`}
         />
         <p
           innerHTML={prose`Legendre's integral is Euler's with the power $a - 1$ in place of $n$. So $\Gamma(a)$ is the term of index $a - 1$ in Euler's list. That is the reason for a shift that surprises every reader: $\Gamma(5)$ is not 120. It is 24, the product of the whole numbers below 5.`}
@@ -92,10 +92,10 @@ export function GammaPage() {
           <li
             innerHTML={prose`$\Gamma(n + 1)$ is the factorial of $n$, for each whole number $n$ from 1. This follows from the two rules above.`}
           />
-          <li innerHTML={prose`$\Gamma(1/2) = \sqrt{\pi}$.`} />
+          <li innerHTML={prose`$\Gamma\!\left(\frac{1}{2}\right) = \sqrt{\pi}$.`} />
         </ul>
         <p
-          innerHTML={prose`Our own check against Euler: by the second rule, $\Gamma(3/2)$ is $1/2$ times $\Gamma(1/2)$, which is $\sqrt{\pi}/2$. And $\Gamma(3/2)$ is the term of index $1/2$ in Euler's list. Euler found the same value in 1729.`}
+          innerHTML={prose`Our own check against Euler: by the second rule, $\Gamma\!\left(\frac{3}{2}\right)$ is $\frac{1}{2}$ times $\Gamma\!\left(\frac{1}{2}\right)$, which is $\frac{\sqrt{\pi}}{2}$. And $\Gamma\!\left(\frac{3}{2}\right)$ is the term of index $\frac{1}{2}$ in Euler's list. Euler found the same value in 1729.`}
         />
         <p class="sources">
           Sources: <a href={MATHLIB_BASIC}>Mathlib, the file on the Gamma function</a>, the header
@@ -129,10 +129,10 @@ export function GammaPage() {
           innerHTML={prose`$\Gamma$ has no value at 0, $-1$, $-2$ and so on. Mathlib says so in words: at these points "the function is undefined, and we set it to be 0 by convention". The 0 is a filler that the library needs, because each of its functions must give some answer. It is not a value of the function.`}
         />
         <p
-          innerHTML={prose`Mathlib also proves what happens near 0: when $s$ comes close to 0, the product $s \cdot \Gamma(s)$ comes close to 1. So $\Gamma(s)$ is close to $1/s$ there. One divided by a very small number is very large, so the values grow without limit, and no number can be the value at 0. Try 0.05 and $-0.05$ on the chart: the values are near 20 and near $-20$.`}
+          innerHTML={prose`Mathlib also proves what happens near 0: when $s$ comes close to 0, the product $s \cdot \Gamma(s)$ comes close to 1. So $\Gamma(s)$ is close to $\frac{1}{s}$ there. One divided by a very small number is very large, so the values grow without limit, and no number can be the value at 0. Try 0.05 and $-0.05$ on the chart: the values are near 20 and near $-20$.`}
         />
         <p
-          innerHTML={prose`For $-1$, $-2$ and the others we read only the statement that they have no value. The chart shows the same behaviour there. Our own remark on the reason: the rule gives $\Gamma(s) = \Gamma(s + 1)/s$, so a problem at 0 moves one step to the left each time.`}
+          innerHTML={prose`For $-1$, $-2$ and the others we read only the statement that they have no value. The chart shows the same behaviour there. Our own remark on the reason: the rule gives $\Gamma(s) = \frac{\Gamma(s + 1)}{s}$, so a problem at 0 moves one step to the left each time.`}
         />
         <p
           innerHTML={prose`At every other point $\Gamma$ has a value, and that value is never 0.`}
@@ -170,7 +170,7 @@ export function GammaPage() {
         />
         <div class="equation" innerHTML={tex`\Gamma(s)\,\Gamma(1 - s) = \frac{\pi}{\sin(\pi s)}`} />
         <p
-          innerHTML={prose`Here $\sin$ is the sine, a function from the study of angles. Euler stated and derived this identity in his 1772 paper E421 (section 43), writing $[\lambda]\,[-\lambda] = \lambda\pi / \sin(\lambda\pi)$ in his bracket notation $[\lambda] = \Gamma(\lambda + 1)$. This page does not need it further.`}
+          innerHTML={prose`Here $\sin$ is the sine, a function from the study of angles. Euler stated and derived this identity in his 1772 paper E421 (section 43), writing $[\lambda]\,[-\lambda] = \frac{\lambda\pi}{\sin(\lambda\pi)}$ in his bracket notation $[\lambda] = \Gamma(\lambda + 1)$. This page does not need it further.`}
         />
         <p class="sources">
           Sources: <a href={MATHLIB_REFLECTION}>Mathlib, theorem Gamma_mul_Gamma_one_sub</a>;{" "}

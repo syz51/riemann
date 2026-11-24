@@ -52,7 +52,7 @@ body {
   color: var(--text);
   font-family: var(--serif);
   font-size: 1.0625rem;
-  line-height: 1.6;
+  line-height: 1.75;
 }
 
 header.site,
@@ -739,6 +739,12 @@ h3 {
   flex-wrap: wrap;
   gap: 0.4rem;
   margin-bottom: 0.9rem;
+}
+
+.presets button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
 }
 
 .presets .value {

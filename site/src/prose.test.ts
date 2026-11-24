@@ -6,9 +6,10 @@ test("text without a formula is escaped and has no math element", () => {
 });
 
 test("a formula becomes inline KaTeX between the pieces of text", () => {
-  const html = proseToHtml("The term is $1/n^2$ here.");
+  const html = proseToHtml("The term is $\\frac{1}{n^2}$ here.");
   expect(html.startsWith('The term is <span class="katex">')).toBe(true);
   expect(html.endsWith("</span> here.")).toBe(true);
+  expect(html).toContain("<mfrac>");
   expect(html).toContain("<msup>");
   expect(html).not.toContain("katex-display");
 });
@@ -61,4 +62,40 @@ test("the plugin replaces a prose literal by inline markup and keeps the line co
   expect(out).not.toContain("katex-display");
   expect(out.split("\n").length).toBe(code.split("\n").length);
   expect(out.endsWith("const b = 1;")).toBe(true);
+});
+
+const SOURCES = import.meta.glob<string>(["./**/*.{ts,tsx}", "!./**/*.test.ts"], {
+  query: "?raw",
+  import: "default",
+  eager: true,
+});
+const RAW_MATH_GLYPHS = /[√∛²³⁴∀ℂℕΓζπ]/;
+
+test("site source files use stacked \\frac fractions and LaTeX math symbols in every prose/tex literal", () => {
+  expect(Object.keys(SOURCES).length).toBeGreaterThan(5);
+  const violations: string[] = [];
+  for (const [file, text] of Object.entries(SOURCES)) {
+    for (const match of text.matchAll(/\b(prose|tex)`((?:[^`\\]|\\.)*)`/gs)) {
+      const [, tag, body] = match;
+      const line = text.slice(0, match.index).split("\n").length;
+      if (tag === "tex") {
+        if (body!.includes("/")) violations.push(`${file}:${line} tex uses '/' instead of \\frac`);
+      } else {
+        const pieces = body!.split("$");
+        for (let i = 0; i < pieces.length; i++) {
+          if (i % 2 === 1 && pieces[i]!.includes("/")) {
+            violations.push(
+              `${file}:${line} inline formula uses '/' instead of \\frac: $${pieces[i]}$`,
+            );
+          }
+          if (i % 2 === 0 && RAW_MATH_GLYPHS.test(pieces[i]!)) {
+            violations.push(
+              `${file}:${line} prose text uses raw math glyph outside $...$: ${pieces[i]}`,
+            );
+          }
+        }
+      }
+    }
+  }
+  expect(violations).toEqual([]);
 });
