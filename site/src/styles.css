@@ -52,7 +52,7 @@ body {
   color: var(--text);
   font-family: var(--serif);
   font-size: 1.0625rem;
-  line-height: 1.75;
+  line-height: 1.65;
 }
 
 header.site,
@@ -566,8 +566,51 @@ h3 {
   font-size: 1.08em;
 }
 
+/* Top-level inline fractions compile in display style so nested exponents stay
+   legible; scale them slightly to harmonize with running text and give those
+   lines room, without changing container list items or script-level fractions. */
+.katex .mfrac {
+  font-size: 0.9em;
+}
+
+.katex .msupsub .mfrac {
+  font-size: 1em;
+}
+
+p:has(.katex .mfrac):not(.equation),
+li:not(:has(p)):has(.katex .mfrac) {
+  line-height: 2.05;
+}
+
+/* Keep nth-root indices (such as cube roots) legible instead of 50% scriptscriptstyle. */
+.katex .sqrt > .katex-root .katex-sizing.reset-size6.size1 {
+  font-size: 0.65em;
+}
+
+/* Compact UI labels (buttons and sources) need slightly larger inline math so
+   fractions and nested exponents stay comfortably readable. */
+.presets button .katex {
+  font-size: 1.15em;
+}
+
+.presets button .katex .mfrac {
+  font-size: 1em;
+}
+
+.sources .katex {
+  font-size: 1.12em;
+}
+
+.sources .katex .mfrac {
+  font-size: 0.95em;
+}
+
 /* Display equations already sit inside .equation boxes with their own padding and scroll.
    A wide equation starts at the left edge, so the box can scroll to all of it. */
+.equation .katex .mfrac {
+  font-size: 1em;
+}
+
 .equation .katex-display {
   margin: 0;
 }
@@ -594,6 +637,7 @@ h3 {
   display: grid;
   grid-template-columns: 3.5rem minmax(0, 1fr);
   gap: 0.75rem;
+  align-items: baseline;
   padding: 0.4rem 0 0.4rem 1rem;
 }
 
@@ -602,7 +646,6 @@ h3 {
   font-size: 0.9rem;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
-  line-height: 1.9;
 }
 
 .multiply {
