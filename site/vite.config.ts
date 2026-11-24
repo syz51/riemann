@@ -36,5 +36,9 @@ export default defineConfig({
     options: { typeAware: true, typeCheck: true },
   },
   fmt: { ignorePatterns: ["dist/**"] },
-  test: { include: ["src/**/*.test.ts"] },
+  test: {
+    include: ["src/**/*.test.ts"],
+    // Vitest 5.1's forks pool watchdog calls child.channel?.unref(), which Bun does not implement.
+    pool: "threads",
+  },
 });
