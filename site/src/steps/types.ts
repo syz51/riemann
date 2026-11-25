@@ -1,5 +1,14 @@
+import type { BackgroundRoute } from "../pages";
+
 /** What the picture of the complex plane marks for a piece. */
 export type PlaneMark = "plane" | "zeros" | "trivial" | "pole" | "line";
+
+/** Contextual link from a Lean piece to a standalone background explainer. */
+export type BackgroundLink = {
+  route: BackgroundRoute;
+  label: string;
+  note: string;
+};
 
 /** One part of a Lean snippet that has its own explanation. */
 export type Piece<Id extends string = string> = {
@@ -7,6 +16,7 @@ export type Piece<Id extends string = string> = {
   title: Markup;
   meaning: Markup;
   mark?: PlaneMark;
+  background?: BackgroundLink;
 };
 
 /** Plain text, or text that belongs to a piece. */

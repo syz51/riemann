@@ -1,17 +1,22 @@
-import { createMemo, createSignal, For, Show } from "solid-js";
+import { createMemo, createSignal, For, onSettled, Show } from "solid-js";
 import { LeanBlock } from "./LeanBlock";
 import { href } from "./pages";
 import { Plane } from "./Plane";
 import { step1 as step } from "./steps/step1";
 
-/** One step of the walk-through: Lean text, its explanations and the picture. */
+/** One step of the walk-through: Lean text, contextual background links, and the picture. */
 export function StepPage() {
   const [hovered, setHovered] = createSignal<string | null>(null);
   const [pinned, setPinned] = createSignal<string | null>(null);
   const [focused, setFocused] = createSignal<string | null>(null);
-  // The pointer wins over keyboard focus, and both win over the pinned piece.
+
+  // Live hover and keyboard focus preview any token freely; leaving or blurring
+  // returns to the pinned token so a reader can pin a token and follow its
+  // background link in the explanation panel by pointer or keyboard.
   const activeId = createMemo(() => hovered() ?? focused() ?? pinned());
   const active = createMemo(() => step.pieces.find((piece) => piece.id === activeId()));
+  const pinnedPiece = createMemo(() => step.pieces.find((piece) => piece.id === pinned()));
+
   const togglePin = (piece: string) => {
     if (pinned() === piece) {
       // A press that releases the pin also drops the focus state, so that the
@@ -23,6 +28,14 @@ export function StepPage() {
     }
   };
 
+  onSettled(() => {
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && pinned() !== null) setPinned(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  });
+
   return (
     <main>
       <p class="count">
@@ -30,11 +43,6 @@ export function StepPage() {
       </p>
       <h1>{step.title}</h1>
       <p class="summary" innerHTML={step.summary} />
-      <p class="aside-link">
-        New to complex numbers? Read <a href={href("complex-numbers")}>why complex numbers exist</a>{" "}
-        first. New to the zeta function? Read{" "}
-        <a href={href("zeta")}>where the zeta function came from</a>.
-      </p>
 
       <div class="columns">
         <div class="reading">
@@ -71,7 +79,8 @@ export function StepPage() {
               when={active()}
               fallback={
                 <p class="hint">
-                  Point at a marked part of the Lean text, or press it to keep its explanation open.
+                  Point at a marked part of the Lean text to preview it, or press it to pin its
+                  explanation and follow any linked background page.
                 </p>
               }
             >
@@ -79,6 +88,28 @@ export function StepPage() {
                 <>
                   <h2 innerHTML={piece().title} />
                   <p innerHTML={piece().meaning} />
+                  <Show when={piece().background}>
+                    {(bg) => (
+                      <a class="deeper-link" href={href(bg().route)}>
+                        <span class="deeper-title">{bg().label} →</span>
+                        <span class="deeper-note">{bg().note}</span>
+                      </a>
+                    )}
+                  </Show>
+                  <Show
+                    when={
+                      piece().id !== pinned() && !piece().background
+                        ? pinnedPiece()?.background
+                        : undefined
+                    }
+                  >
+                    {(bg) => (
+                      <a class="deeper-link pinned-shortcut" href={href(bg().route)}>
+                        <span class="deeper-title">Pinned: {bg().label} →</span>
+                        <span class="deeper-note">{bg().note}</span>
+                      </a>
+                    )}
+                  </Show>
                 </>
               )}
             </Show>
