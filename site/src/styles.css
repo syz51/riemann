@@ -1029,7 +1029,8 @@ h3 {
   margin-top: 0.75rem;
 }
 
-.aside-details .aside-body > :last-child {
+.aside-details .aside-body > :last-child,
+.aside-details .aside-body li > :last-child {
   margin-bottom: 0;
 }
 

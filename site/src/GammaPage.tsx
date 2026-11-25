@@ -162,7 +162,7 @@ export function GammaPage() {
         />
         <div class="equation" innerHTML={tex`\Gamma(s) = \int_0^\infty e^{-t} t^{s - 1}\,dt`} />
         <p
-          innerHTML={prose`Mathlib calls this "Euler's integral", but it is the exact same shifted function as Legendre's $\Gamma(s)$: substituting $x = e^{-t}$ turns $\int_0^1 (-\ln x)^{s - 1}\,dx$ identically into $\int_0^\infty e^{-t} t^{s - 1}\,dt$. To extend $\Gamma(s)$ to the left of 0 — where the integral no longer converges — Mathlib uses the recurrence rule $\Gamma(s + 1) = s \cdot \Gamma(s)$ in reverse, stepping backwards by 1. Together, Mathlib proves these rules:`}
+          innerHTML={prose`Mathlib calls this "Euler's integral", but it is the exact same shifted function as Legendre's $\Gamma(s)$: substituting $x = e^{-t}$ turns $\int_0^1 (-\ln x)^{s - 1}\,dx$ identically into $\int_0^\infty e^{-t} t^{s - 1}\,dt$. To extend $\Gamma(s)$ to points at and to the left of 0 ($\operatorname{Re}(s) \le 0$) — where the integral no longer converges — Mathlib uses the recurrence rule $\Gamma(s + 1) = s \cdot \Gamma(s)$ in reverse, stepping backwards by 1. Together, Mathlib proves these rules:`}
         />
         <ul>
           <li innerHTML={prose`$\Gamma(1) = 1$.`} />
@@ -236,7 +236,7 @@ export function GammaPage() {
               <li>
                 <strong innerHTML={prose`The domino chain at $-1$, $-2$, $-3$, $\dots$:`} />{" "}
                 <span
-                  innerHTML={prose`stepping one unit left from 0 gives $\Gamma(-1) = \frac{\Gamma(0)}{-1}$, so the blow-up at 0 copies itself to $-1$ (and dividing by $-1$ flips the sign, which is why the curve switches sides on the chart). Stepping left again gives $\Gamma(-2) = \frac{\Gamma(-1)}{-2}$, flipping sign again, and so on for every negative whole number.`}
+                  innerHTML={prose`for $s$ near $-1$, the shifted point $s + 1$ is near 0, so $\Gamma(s) = \frac{\Gamma(s + 1)}{s}$ copies the blow-up near 0 to $-1$ and divides by $s \approx -1$ (flipping the sign, which is why the curve switches sides on the chart). Likewise, for $s$ near $-2$, $s + 1$ is near $-1$, so dividing by $s \approx -2$ passes the blow-up to $-2$ and flips the sign again — and so on for every negative whole number.`}
                 />
               </li>
               <li>
@@ -251,7 +251,7 @@ export function GammaPage() {
                   innerHTML={tex`\Gamma\!\left(-\frac{1}{2}\right) = \frac{\Gamma\!\left(\dfrac{1}{2}\right)}{-\dfrac{1}{2}} = -2\sqrt{\pi} \approx -3.54`}
                 />
                 <p
-                  innerHTML={prose`Starting from any non-integer left of 0, stepping right by 1 eventually lands safely in the region $\operatorname{Re}(s) > 0$ where the integral converges. Only 0, $-1$, $-2$, $\dots$ collide with 0 along the way.`}
+                  innerHTML={prose`Starting from any point with $\operatorname{Re}(s) \le 0$ other than 0, $-1$, $-2$, $\dots$, stepping right by 1 eventually lands safely in the region $\operatorname{Re}(s) > 0$ where the integral converges. Only 0, $-1$, $-2$, $\dots$ collide with 0 along the way.`}
                 />
               </li>
             </ol>
