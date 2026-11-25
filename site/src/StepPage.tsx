@@ -15,7 +15,6 @@ export function StepPage() {
   // background link in the explanation panel by pointer or keyboard.
   const activeId = createMemo(() => hovered() ?? focused() ?? pinned());
   const active = createMemo(() => step.pieces.find((piece) => piece.id === activeId()));
-  const pinnedPiece = createMemo(() => step.pieces.find((piece) => piece.id === pinned()));
 
   const togglePin = (piece: string) => {
     if (pinned() === piece) {
@@ -92,20 +91,6 @@ export function StepPage() {
                     {(bg) => (
                       <a class="deeper-link" href={href(bg().route)}>
                         <span class="deeper-title">{bg().label} →</span>
-                        <span class="deeper-note">{bg().note}</span>
-                      </a>
-                    )}
-                  </Show>
-                  <Show
-                    when={
-                      piece().id !== pinned() && !piece().background
-                        ? pinnedPiece()?.background
-                        : undefined
-                    }
-                  >
-                    {(bg) => (
-                      <a class="deeper-link pinned-shortcut" href={href(bg().route)}>
-                        <span class="deeper-title">Pinned: {bg().label} →</span>
                         <span class="deeper-note">{bg().note}</span>
                       </a>
                     )}
