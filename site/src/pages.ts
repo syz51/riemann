@@ -40,11 +40,10 @@ export type UpcomingStep = {
 export type BackgroundEntry = {
   route: BackgroundRoute;
   title: string;
-  shortTitle: string;
   summary: Markup;
   /** The step or earlier background page where this concept branches off. */
   from: StepRoute | BackgroundRoute;
-  /** Short provenance label for the Background catalog. */
+  /** Short provenance label for the Background catalog and article kicker. */
   originLabel: string;
 };
 
@@ -92,7 +91,6 @@ export const BACKGROUNDS: BackgroundEntry[] = [
   {
     route: "complex-numbers",
     title: "Why complex numbers exist",
-    shortTitle: "Complex numbers",
     summary: prose`Nobody wanted them. A correct formula for ordinary answers passed through the square roots of negative numbers.`,
     from: "step-1",
     originLabel: "From Step 1",
@@ -100,7 +98,6 @@ export const BACKGROUNDS: BackgroundEntry[] = [
   {
     route: "zeta",
     title: "Where the zeta function came from",
-    shortTitle: "The zeta function",
     summary: prose`It began as one sum that nobody could finish. Euler finished it and found that the answer knows about the primes.`,
     from: "step-1",
     originLabel: "From Step 1",
@@ -108,7 +105,6 @@ export const BACKGROUNDS: BackgroundEntry[] = [
   {
     route: "gamma",
     title: "The Gamma function",
-    shortTitle: "The Gamma function",
     summary: prose`The symmetry of the zeta function uses $\Gamma$. It fills the gaps of the list 1, 2, 6, 24, 120, and Euler found it in 1729.`,
     from: "zeta",
     originLabel: "From the zeta function",
@@ -162,35 +158,8 @@ export const parentLinkOf = (route: BackgroundRoute): Link | undefined => {
   return undefined;
 };
 
-/** The ordered ancestor trail for a background page, starting from The Proof. */
-export const trailOf = (route: BackgroundRoute): Link[] => {
-  const chain: Link[] = [];
-  let cursor: StepRoute | BackgroundRoute | undefined = backgroundOf(route)?.from;
-  const seen = new Set<Route>();
-  while (cursor && !seen.has(cursor)) {
-    seen.add(cursor);
-    const step = STEPS.find((s) => s.route === cursor);
-    if (step) {
-      chain.unshift({ route: step.route, label: `Step ${step.number}` });
-      break;
-    }
-    const bg = BACKGROUNDS.find((b) => b.route === cursor);
-    if (!bg) break;
-    chain.unshift({ route: bg.route, label: bg.shortTitle });
-    cursor = bg.from;
-  }
-  return [{ route: CONTENTS, label: "The Proof" }, ...chain];
-};
-
-/** The root proof step that a background page ultimately branches from. */
-export const rootStepOf = (route: BackgroundRoute): StepEntry | undefined => {
-  let cursor: StepRoute | BackgroundRoute | undefined = backgroundOf(route)?.from;
-  const seen = new Set<Route>();
-  while (cursor && !seen.has(cursor)) {
-    seen.add(cursor);
-    const step = STEPS.find((s) => s.route === cursor);
-    if (step) return step;
-    cursor = BACKGROUNDS.find((b) => b.route === cursor)?.from;
-  }
-  return undefined;
+/** Kicker line shown above a background article title, derived from pages.ts. */
+export const backgroundKicker = (route: BackgroundRoute): string => {
+  const origin = backgroundOf(route)?.originLabel;
+  return origin ? `Background · ${origin}` : "Background";
 };

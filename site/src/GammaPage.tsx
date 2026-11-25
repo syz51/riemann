@@ -1,6 +1,5 @@
-import { ContextTrail } from "./ContextTrail";
 import { GammaChart } from "./GammaChart";
-import { href } from "./pages";
+import { backgroundKicker, href } from "./pages";
 
 // Source of the content: docs/notes/background-gamma.md.
 const EULER_E19 = "https://scholarlycommons.pacific.edu/euler-works/19/";
@@ -25,7 +24,7 @@ const MATHLIB_UNIQUE = `${MATHLIB}/Gamma/BohrMollerup.lean#L305-L309`;
 export function GammaPage() {
   return (
     <main class="article">
-      <ContextTrail route="gamma" />
+      <p class="kicker">{backgroundKicker("gamma")}</p>
       <h1>The Gamma function</h1>
       <p
         class="summary"

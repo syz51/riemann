@@ -198,7 +198,7 @@ a {
 }
 
 main {
-  padding-top: 1.25rem;
+  padding-top: 2rem;
   padding-bottom: 1.5rem;
 }
 
@@ -210,7 +210,7 @@ main {
 }
 
 h1 {
-  margin: 0.25rem 0 0.5rem;
+  margin: 0 0 0.6rem;
   font-size: clamp(1.5rem, 3vw, 1.9rem);
   line-height: 1.15;
   font-weight: 600;
@@ -491,6 +491,7 @@ figcaption {
 header.site nav a {
   padding: 0.15rem 0;
   color: var(--muted);
+  font-weight: 500;
   text-decoration: none;
   border-bottom: 2px solid transparent;
 }
@@ -502,7 +503,6 @@ header.site nav a:hover {
 header.site nav a.active,
 header.site nav a[aria-current="page"] {
   color: var(--text);
-  font-weight: 600;
   border-bottom-color: var(--accent);
 }
 
@@ -522,7 +522,7 @@ header.site nav a[aria-current="page"] {
   grid-template-columns: minmax(0, 1.4fr) minmax(13rem, 17rem);
   gap: 1.5rem 2.5rem;
   align-items: center;
-  padding: 1.25rem 0 1.75rem;
+  padding: 0 0 1.75rem;
   border-bottom: 1px solid var(--border);
 }
 
@@ -778,61 +778,6 @@ a.spine-card:focus-visible {
   margin: 0;
   font-size: 0.96rem;
   color: var(--muted);
-}
-
-/* Breadcrumb trail on background pages, linking back into the proof. */
-.context-trail {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem 1.25rem;
-  max-width: 44rem;
-  margin-bottom: 1.15rem;
-  padding: 0.55rem 0.85rem;
-  border: 1px solid var(--border);
-  border-radius: 7px;
-  background: var(--surface);
-  font-family: var(--sans);
-  font-size: 0.82rem;
-  color: var(--muted);
-}
-
-.context-trail ol {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.35rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.context-trail li + li::before {
-  content: "›";
-  margin-right: 0.35rem;
-  color: var(--muted);
-}
-
-.context-trail li[aria-current="page"] {
-  color: var(--text);
-  font-weight: 600;
-}
-
-.context-trail a {
-  color: var(--muted);
-  text-decoration: none;
-}
-
-.context-trail a:hover {
-  color: var(--accent);
-  text-decoration: underline;
-}
-
-.context-trail .trail-return {
-  color: var(--accent);
-  font-weight: 600;
-  white-space: nowrap;
 }
 
 /* Background catalog page. */

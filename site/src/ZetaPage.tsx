@@ -1,6 +1,5 @@
 import { For } from "solid-js";
-import { ContextTrail } from "./ContextTrail";
-import { href } from "./pages";
+import { backgroundKicker, href } from "./pages";
 import { Stepper, type Part } from "./Stepper";
 import { SumProduct } from "./SumProduct";
 
@@ -94,7 +93,7 @@ const TIMELINE: { year: string; text: Markup }[] = [
 export function ZetaPage() {
   return (
     <main class="article">
-      <ContextTrail route="zeta" />
+      <p class="kicker">{backgroundKicker("zeta")}</p>
       <h1>Where the zeta function came from</h1>
       <p class="summary">
         It began as one sum that nobody could finish. Euler finished it, asked the same question for
