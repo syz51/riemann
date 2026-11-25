@@ -148,11 +148,11 @@ Inspection: abstract only. Read: the line of the file header on `riemannZeta_con
 
 ## Reference 19
 
-[19] Leonhard Euler. **Remarks on a beautiful relation between direct as well as reciprocal power series (E352)**. Translation with notes by Lucas Willis and Thomas J. Osler, Rowan University, 1 August 2006. [Original](http://eulerarchive.maa.org/docs/translations/E352.pdf). Accessed 23 November 2026, Asia/Tokyo.
+[19] Leonhard Euler. **Remarks on a beautiful relation between direct as well as reciprocal power series (E352)**. Translation with notes by Lucas Willis and Thomas J. Osler, Rowan University, 1 August 2006. [Original](https://scholarlycommons.pacific.edu/euler-works/352/). Accessed 23 November 2026, Asia/Tokyo.
 
 Inspection depth: method.
 
-Inspection: method level. Read: the translators' introduction, sections 1 to 15 of the translated paper, and the translators' notes on sections 14 and 15. Sections 16 to 20 and the other notes are skimmed only. A primary source in translation; the French original (Mémoires de l'académie des sciences de Berlin 17, 1768, pages 83 to 106) is not read. The translators mark the errors that they found in Euler's digits.
+Inspection: method level. Read: the translators' introduction, sections 1 to 15 of the translated paper, and the translators' notes on sections 14 and 15 (from the Euler Archive PDF `http://eulerarchive.maa.org/docs/translations/E352.pdf`; the site links the official HTTPS Euler Archive page at University of the Pacific, which hosts the same translation). Sections 16 to 20 and the other notes are skimmed only. A primary source in translation; the French original (Mémoires de l'académie des sciences de Berlin 17, 1768, pages 83 to 106) is not read. The translators mark the errors that they found in Euler's digits.
 
 ## Reference 20
 
@@ -168,7 +168,7 @@ Inspection: abstract only. Read: the whole record (English title, content summar
 
 Inspection depth: full.
 
-Inspection: full translation read (summary and sections 1 to 29 of Langton's translation: §§1, 2, 12–17 read 23 November 2026; §§18–29 read 24 November 2026; §§3–11 read 26 November 2026). A primary source in translation; the Latin original is not read. Sections 3 to 13 show how Euler moved from the Beta integral $\int_0^1 x^e(1 - x)^n\,dx$ via $e = \frac{f}{g}$, the substitution $x \mapsto x^{\frac{g}{f + g}}$, and the limit $\frac{1 - x^z}{z} \to -\ln x$ ($z \to 0$) to $\int_0^1 (-\ln x)^n\,dx$. Section 17 gives the term of index $\frac{1}{2}$ as half the square root of the circumference $p$ of a circle of diameter $1$, which is $\frac{\sqrt{\pi}}{2}$; the catalogue record [20] gives $\sqrt{\frac{\pi}{2}}$, which does not agree with the paper. Sections 18 to 29 treat ratios of progressions, algebraic-curve quadratures for fractional indices, iterated integrals, and fractional differentials, without introducing the letter $\Gamma$ or the reflection formula.
+Inspection: full translation read (summary and sections 1 to 29 of Langton's translation from the Euler Archive PDF; the site links the official HTTPS Euler Archive page at `https://scholarlycommons.pacific.edu/euler-works/19/` [20], which hosts the same translation: §§1, 2, 12–17 read 23 November 2026; §§18–29 read 24 November 2026; §§3–11 read 26 November 2026). A primary source in translation; the Latin original is not read. Sections 3 to 13 show how Euler moved from the Beta integral $\int_0^1 x^e(1 - x)^n\,dx$ via $e = \frac{f}{g}$, the substitution $x \mapsto x^{\frac{g}{f + g}}$, and the limit $\frac{1 - x^z}{z} \to -\ln x$ ($z \to 0$) to $\int_0^1 (-\ln x)^n\,dx$. Section 17 gives the term of index $\frac{1}{2}$ as half the square root of the circumference $p$ of a circle of diameter $1$, which is $\frac{\sqrt{\pi}}{2}$; the catalogue record [20] gives $\sqrt{\frac{\pi}{2}}$, which does not agree with the paper. Sections 18 to 29 treat ratios of progressions, algebraic-curve quadratures for fractional indices, iterated integrals, and fractional differentials, without introducing the letter $\Gamma$ or the reflection formula.
 
 ## Reference 22
 
@@ -204,11 +204,11 @@ Inspection: abstract only. Read visually on the BSB scan images: title page (lea
 
 ## Reference 26
 
-[26] Leonhard Euler. **Evolutio formulae integralis ∫ x^(f−1) dx (lx)^(m/n) integratione a valore x = 0 ad x = 1 extensa (E421)**. Novi Commentarii academiae scientiarum Petropolitanae, volume 16, 1772, pages 91 to 139. Original Latin scan from the Euler Archive. [Original](http://eulerarchive.maa.org/docs/originals/E421.pdf). Accessed 24 November 2026, Asia/Tokyo.
+[26] Leonhard Euler. **Evolutio formulae integralis ∫ x^(f−1) dx (lx)^(m/n) integratione a valore x = 0 ad x = 1 extensa (E421)**. Novi Commentarii academiae scientiarum Petropolitanae, volume 16, 1772, pages 91 to 139. Original Latin scan from the Euler Archive. [Original](https://scholarlycommons.pacific.edu/euler-works/421/). Accessed 24 November 2026, Asia/Tokyo.
 
 Inspection depth: abstract.
 
-Inspection: abstract only. Read visually on the scan: page 91 (title page, PDF page 1) and Scholion section 43 on pages 120 to 121 (PDF pages 30 to 31), which states `[λ] · [−λ] = λ π / sin(λ π)` and derives it from Euler's infinite products. Pages 122, 124 and 126 skimmed; the rest of the paper is not read. A primary source.
+Inspection: abstract only. Read visually on the Euler Archive Latin scan (`http://eulerarchive.maa.org/docs/originals/E421.pdf`; the site links the official HTTPS Euler Archive page at University of the Pacific): page 91 (title page, PDF page 1) and Scholion section 43 on pages 120 to 121 (PDF pages 30 to 31), which states `[λ] · [−λ] = λ π / sin(λ π)` and derives it from Euler's infinite products. Pages 122, 124 and 126 skimmed; the rest of the paper is not read. A primary source.
 
 ## Reference 27
 
@@ -228,11 +228,11 @@ Inspection: abstract only. Read the header (`St.-Pétersbourg ce 6 octobre 1729`
 
 ## Reference 29
 
-[29] Detlef Gronau. **Why is the gamma function so as it is?**. *Teaching Mathematics and Computer Science*, volume 1, issue 1, 2003, pages 43 to 53. [Original](https://ojs.lib.unideb.hu/tmcs/article/download/14684/12586). Accessed 26 November 2026, Asia/Tokyo.
+[29] Detlef Gronau. **Why is the gamma function so as it is?**. *Teaching Mathematics and Computer Science*, volume 1, issue 1, 2003, pages 43 to 53. [Original](https://doi.org/10.5485/TMCS.2003.0008). Accessed 26 November 2026, Asia/Tokyo.
 
 Inspection depth: full.
 
-Inspection: all 11 pages read directly from the journal PDF. Covers Daniel Bernoulli's October 6, 1729 letter (pp. 45–46, eqs. (5)–(6), including his numerical slip at $x = \frac{3}{2}, A = 8$ and faster numerical convergence than Euler's product), Euler's October 13, 1729 letter (pp. 46–47, eqs. (7)–(8)), Wallis's algebraic integral (p. 49), and Euler's own parameter shift between E19 (1729/1730) and *Institutionum calculi integralis* Vol. I (1768, caput IX, p. 240) from which Legendre's $\Gamma(a) = \int_0^1 \left(\ln \frac{1}{x}\right)^{a - 1}\,dx$ followed (pp. 51–52). A scholarly secondary source.
+Inspection: all 11 pages read directly from the journal PDF (`https://ojs.lib.unideb.hu/tmcs/article/download/14684/12586`; canonical HTTPS DOI links to the official article page). Covers Daniel Bernoulli's October 6, 1729 letter (pp. 45–46, eqs. (5)–(6), including his numerical slip at $x = \frac{3}{2}, A = 8$ and faster numerical convergence than Euler's product), Euler's October 13, 1729 letter (pp. 46–47, eqs. (7)–(8)), Wallis's algebraic integral (p. 49), and Euler's own parameter shift between E19 (1729/1730) and *Institutionum calculi integralis* Vol. I (1768, caput IX, p. 240) from which Legendre's $\Gamma(a) = \int_0^1 \left(\ln \frac{1}{x}\right)^{a - 1}\,dx$ followed (pp. 51–52). A scholarly secondary source.
 
 ## Reference 30
 
@@ -268,8 +268,24 @@ Inspection: all three pages read directly. Traces Euler's integration-by-parts d
 
 ## Reference 34
 
-[34] Johan Wästlund. **An elementary proof of Wallis' product formula for pi**. Linköping Studies in Mathematics No. 2, February 2005. [Original](https://liu.diva-portal.org/smash/get/diva2:375184/FULLTEXT01). Accessed 26 November 2026, Asia/Tokyo.
+[34] Johan Wästlund. **An elementary proof of Wallis' product formula for pi**. Linköping Studies in Mathematics No. 2, February 2005. [Original](https://liu.diva-portal.org/smash/record.jsf?pid=diva2%3A375184). Accessed 26 November 2026, Asia/Tokyo.
 
 Inspection depth: abstract.
 
-Inspection: abstract only. Read page 1 confirming that most modern textbook proofs of Wallis's product evaluate a definite integral such as $\int_0^{\frac{\pi}{2}} (\sin x)^n\,dx$, without naming a first author. The rest of the paper is not read. A scholarly secondary source.
+Inspection: abstract only. Read page 1 of the PDF (`https://liu.diva-portal.org/smash/get/diva2:375184/FULLTEXT01`; this record links the fast-loading DiVA landing page) confirming that most modern textbook proofs of Wallis's product evaluate a definite integral such as $\int_0^{\frac{\pi}{2}} (\sin x)^n\,dx$, without naming a first author. The rest of the paper is not read. A scholarly secondary source.
+
+## Reference 35
+
+[35] Susan Addington and David Dennis. **Wallis's table of characteristic ratios**. Quadrivium, 2009 (updated 28 January 2018). [Original](https://www.quadrivium.info/GGB/WallisTable.html). Accessed 26 November 2026, Asia/Tokyo.
+
+Inspection depth: full.
+
+Inspection: full page read directly over HTTPS. Explains Wallis's 1656 interpolation table with columns $p$ and rows $q$, notes that the integer entries are Pascal's triangle $\binom{p + q}{p}$ and that $p = q = \frac{1}{2}$ corresponds to the quarter circle, and notes Newton's discovery of the binomial series from reading Wallis. Slip noted: the prose describes the table entry as "area under the curve to the area of the circumscribed unit square", whereas the binomial entries $\binom{p + q}{p} \ge 1$ are the reciprocal ratio (square divided by area under the curve), as verified against Stedall [32]. A teaching exposition.
+
+## Reference 36
+
+[36] Robin Whitty. **Theorem of the Day: Wallis's Product**. Theorem of the Day, one-page summary sheet. [Original](https://www.theoremoftheday.org/Binomial/WallisProduct/TotDWallis.pdf). Accessed 26 November 2026, Asia/Tokyo.
+
+Inspection depth: full.
+
+Inspection: full one-page PDF read directly over HTTPS. Confirms Wallis derived his product in Proposition 191 of *Arithmetica Infinitorum* (1656) via his method of interpolation and cites Jacqueline Stedall's 2004 Springer translation. A teaching summary sheet.

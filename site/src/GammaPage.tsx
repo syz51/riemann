@@ -3,14 +3,11 @@ import { GammaChart } from "./GammaChart";
 import { href } from "./pages";
 
 // Source of the content: docs/notes/background-gamma.md.
-const EULER_E19 = "http://eulerarchive.maa.org/docs/translations/E019en.pdf";
-const EULER_E19_RECORD = "https://scholarlycommons.pacific.edu/euler-works/19/";
-const EULER_LETTER_1729 = "http://eulerarchive.maa.org/correspondence/letters/OO0715.pdf";
-const BERNOULLI_LETTER_1729 =
-  "http://www.luschny.de/math/factorial/DanielBernoulliLetterToGoldbach-1729-10-06.jpg";
-const GRONAU_2003 = "https://ojs.lib.unideb.hu/tmcs/article/download/14684/12586";
-const STEDALL_WALLIS = "http://reparti.free.fr/grattan-guinness2005.pdf";
-const EULER_E421 = "http://eulerarchive.maa.org/docs/originals/E421.pdf";
+const EULER_E19 = "https://scholarlycommons.pacific.edu/euler-works/19/";
+const DAVIS_1959 = "https://people.math.osu.edu/gautam.42/S20/DavisGammaFunction.pdf";
+const GRONAU_2003 = "https://doi.org/10.5485/TMCS.2003.0008";
+const WALLIS_TABLE = "https://www.quadrivium.info/GGB/WallisTable.html";
+const EULER_E421 = "https://scholarlycommons.pacific.edu/euler-works/421/";
 const LEGENDRE_1810 = "https://www.digitale-sammlungen.de/en/view/bsb10500481?page=599";
 const LEGENDRE = "https://archive.org/details/10053610bsb";
 const MATHLIB =
@@ -80,14 +77,14 @@ export function GammaPage() {
           </div>
         </details>
         <p class="sources">
-          Sources: <a href={EULER_E19}>Euler, On transcendental progressions</a>, translated by
-          Langton, sections 1, 2 and 17. <a href={EULER_E19_RECORD}>Euler Archive, record of E19</a>
-          , for the year 1729. <a href={EULER_LETTER_1729}>Euler to Goldbach (13 Oct 1729)</a>,
-          pages 3 to 5;{" "}
-          <a href={BERNOULLI_LETTER_1729}>Daniel Bernoulli to Goldbach (6 Oct 1729)</a> and{" "}
-          <a href={GRONAU_2003}>Gronau (2003)</a>, pages 45 to 47. For Wallis's 1656 table
-          interpolation: <a href={STEDALL_WALLIS}>Stedall (2005)</a>, pages 25 to 31. The three-step
-          algebraic reconstruction and 0.8862 are our own.
+          Sources:{" "}
+          <a href={EULER_E19}>Euler, On transcendental progressions (E19, Euler Archive)</a>,
+          translated by Langton, sections 1, 2 and 17 (and catalogue record for the year 1729);{" "}
+          <a href={GRONAU_2003}>Gronau (2003)</a>, pages 45 to 47, for Daniel Bernoulli's October 6
+          and Euler's October 13, 1729 letters; <a href={DAVIS_1959}>Davis (1959)</a>, pages 852 to
+          853; and <a href={WALLIS_TABLE}>Addington and Dennis on Wallis's 1656 table</a> (with
+          Stedall in Grattan-Guinness, ed., Elsevier 2005, pages 25 to 31). The three-step algebraic
+          reconstruction and 0.8862 are our own.
         </p>
       </section>
 
@@ -100,9 +97,42 @@ export function GammaPage() {
         <p
           innerHTML={prose`The sign $\int$ is an integral: the area under a curve, here between $x = 0$ and $x = 1$. The sign $\ln$ is the natural logarithm. You do not need to compute integrals to read the rest of this page. The important point is that $n$ is now a power, and a power does not have to be a whole number. Euler checked the formula for $n = 3$ and got 6. He wrote that the formula is useful for the terms between the whole numbers.`}
         />
+        <details class="aside-details">
+          <summary>
+            <span>How did Euler turn the product into this integral?</span>
+          </summary>
+          <div class="aside-body">
+            <p
+              innerHTML={prose`Seeing a circle area in the $n = \frac{1}{2}$ term convinced Euler that no algebraic or exponential formula could express $n!$, so he looked for an integral whose value gives a fraction of factorials (E19 §§3–14):`}
+            />
+            <ol>
+              <li>
+                <p
+                  innerHTML={prose`Expanding $(1 - x)^n$ for a whole number $n$ and integrating term by term over $[0, 1]$ gave, for any positive exponent $e$:`}
+                />
+                <div
+                  class="equation"
+                  innerHTML={tex`\begin{aligned} &\int_0^1 x^e(1 - x)^n\,dx \\ &= \frac{1 \cdot 2 \cdots n}{(e + 1)(e + 2)\cdots(e + n + 1)} \end{aligned}`}
+                />
+              </li>
+              <li
+                innerHTML={prose`Writing $e = \frac{f}{g}$ (for positive numbers $f$ and $g$), scaling out $g$, and moving the last factor $f + (n + 1)g$ to the integral side leaves the denominator $(f + g)(f + 2g)\cdots(f + ng)$. Setting $f = 1$ and letting $g \to 0$ collapses that denominator to 1, leaving pure $1 \cdot 2 \cdots n$.`}
+              />
+              <li
+                innerHTML={prose`Under the substitution $x \mapsto x^{\frac{g}{f + g}}$, the integrand contains $\frac{1 - x^z}{z}$ with $z = \frac{g}{f + g} \to 0$, whose limit is $-\ln x$. That yields $\int_0^1 (-\ln x)^n\,dx$.`}
+              />
+            </ol>
+            <p
+              innerHTML={prose`To test $n = 3$, Euler wrote down the antiderivative $-x(\ln x)^3 + 3x(\ln x)^2 - 6x\ln x + 6x$. Every term vanishes as $x \to 0^+$, and at $x = 1$ (where $\ln 1 = 0$) only 6 remains.`}
+            />
+          </div>
+        </details>
         <p class="sources">
-          Source: <a href={EULER_E19}>Euler, On transcendental progressions</a>, sections 14 and 15.
-          Euler writes lx for the logarithm.
+          Source: <a href={EULER_E19}>Euler, On transcendental progressions (E19, Euler Archive)</a>
+          , sections 3 to 15 (Euler writes lx for the logarithm).{" "}
+          <span
+            innerHTML={prose`Our own Lean check (lean/RiemannChecks/EulerGamma.lean) verifies the $n = 3$ derivative and $x \to 0^+$ limit.`}
+          />
         </p>
       </section>
 
@@ -226,8 +256,9 @@ export function GammaPage() {
         />
         <p class="sources">
           Sources: <a href={MATHLIB_REFLECTION}>Mathlib, theorem Gamma_mul_Gamma_one_sub</a>;{" "}
-          <a href={EULER_E421}>Euler, E421</a>, Novi Commentarii academiae scientiarum
-          Petropolitanae 16 (1772), pages 120 to 121, section 43 (read on the Latin scan).
+          <a href={EULER_E421}>Euler, E421 (Euler Archive)</a>, Novi Commentarii academiae
+          scientiarum Petropolitanae 16 (1772), pages 120 to 121, section 43 (read on the Latin
+          scan).
         </p>
       </section>
     </main>

@@ -20,7 +20,7 @@ const MATHLIB_GAMMA =
   "https://github.com/leanprover-community/mathlib4/blob/0df444a360eaa60ab8c11dca51a86af692955474/Mathlib/Analysis/SpecialFunctions/Gamma/Basic.lean#L11-L21";
 const MATHLIB_CONJ =
   "https://github.com/leanprover-community/mathlib4/blob/90e6eec9fe53b02d431c90718e4a1d22d67a204e/Mathlib/NumberTheory/Harmonic/ZetaAsymp.lean#L454-L460";
-const EULER_E352 = "http://eulerarchive.maa.org/docs/translations/E352.pdf";
+const EULER_E352 = "https://scholarlycommons.pacific.edu/euler-works/352/";
 const EULER_E19 = "https://scholarlycommons.pacific.edu/euler-works/19/";
 const ELKIES = "https://people.math.harvard.edu/~elkies/M229.09/zeta1.pdf";
 
@@ -179,24 +179,23 @@ export function ZetaPage() {
           innerHTML={tex`1 + \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \cdots \; \text{ never passes } 2`}
         />
         <p
-          innerHTML={prose`So the question for each power is: do the terms shrink fast enough? For the squares they
-            do. Put the terms in blocks of 1, 2, 4, 8 terms and so on. The two terms $\frac{1}{4} + \frac{1}{9}$ are
-            each at most $\frac{1}{4}$, so together at most $\frac{1}{2}$. The four terms from $\frac{1}{16}$ to $\frac{1}{49}$ are
-            each at most $\frac{1}{16}$, so together at most $\frac{1}{4}$. The next eight are together at most
-            $\frac{1}{8}$. The blocks are no larger than the steps to the wall, so the sum never passes 2.`}
+          innerHTML={prose`So the question for each power is: do the terms shrink fast enough? The power 1 is the border. For the squares ($s = 2$) and every power $s$ above 1, the terms shrink fast enough for the sum to have a value. For $s = 1$ (no power), the sum $1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \cdots$ grows without limit — a result Oresme proved in the 14th century. This is why $\zeta(s)$, as a sum, is defined for $s$ above 1 only.`}
         />
-        <p
-          innerHTML={prose`With no power, which is the power $s = 1$, the terms are 1, $\frac{1}{2}$, $\frac{1}{3}$, $\frac{1}{4}$ and so
-            on. Blocks of the same sizes now give the opposite result. Keep 1 and $\frac{1}{2}$ as they are.
-            The two terms $\frac{1}{3} + \frac{1}{4}$ are each at least $\frac{1}{4}$, so together at least $\frac{1}{2}$. The four
-            terms from $\frac{1}{5}$ to $\frac{1}{8}$ are each at least $\frac{1}{8}$, so together at least $\frac{1}{2}$ again.
-            Each block adds at least $\frac{1}{2}$, and the blocks never end. This sum grows without limit.
-            Oresme proved this in the 14th century.`}
-        />
-        <p
-          innerHTML={prose`The power 1 is the border. For each power $s$ above 1, the blocks shrink and the sum has
-            a value. This is why $\zeta(s)$, as a sum, is defined for $s$ above 1 only.`}
-        />
+        <details class="aside-details">
+          <summary>
+            <span
+              innerHTML={prose`Check by hand: why $s = 2$ stops below 2, while $s = 1$ grows without limit`}
+            />
+          </summary>
+          <div class="aside-body">
+            <p
+              innerHTML={prose`For the squares ($s = 2$), put the terms in blocks of 1, 2, 4, 8 terms and so on. The two terms $\frac{1}{4} + \frac{1}{9}$ are each at most $\frac{1}{4}$, so together at most $\frac{1}{2}$. The four terms from $\frac{1}{16}$ to $\frac{1}{49}$ are each at most $\frac{1}{16}$, so together at most $\frac{1}{4}$. The next eight are together at most $\frac{1}{8}$. The blocks are no larger than the steps to the wall, so the sum never passes 2.`}
+            />
+            <p
+              innerHTML={prose`With no power ($s = 1$), the terms are 1, $\frac{1}{2}$, $\frac{1}{3}$, $\frac{1}{4}$ and so on. Blocks of the same sizes now give the opposite result. Keep 1 and $\frac{1}{2}$ as they are. The two terms $\frac{1}{3} + \frac{1}{4}$ are each at least $\frac{1}{4}$, so together at least $\frac{1}{2}$. The four terms from $\frac{1}{5}$ to $\frac{1}{8}$ are each at least $\frac{1}{8}$, so together at least $\frac{1}{2}$ again. Each block adds at least $\frac{1}{2}$, and the blocks never end, so this sum grows without limit.`}
+            />
+          </div>
+        </details>
         <p class="sources">
           The block sums are arithmetic that you can check by hand. For Oresme:{" "}
           <a href={PRIME_SUM}>Wikipedia, Divergence of the sum of the reciprocals of the primes</a>.
@@ -323,52 +322,59 @@ export function ZetaPage() {
             alternating signs, such as $1 - 2 + 3 - 4 + \cdots$, and used a special way of summing
             to give them a meaning. In 1859, Riemann proved the symmetry for complex numbers $s$ as well.`}
         />
-        <h3>How Euler found it</h3>
-        <p>
-          Euler did not get the symmetry from a proof. He saw a pattern in numbers, guessed a rule,
-          and then tested the rule. The steps below follow his paper.
-        </p>
-        <ol>
-          <li
-            innerHTML={prose`He took two families of sums with alternating signs. One grows:
-              $1 - 2^m + 3^m - 4^m + \cdots$. The other shrinks: $1 - \frac{1}{2^n} + \frac{1}{3^n} - \frac{1}{4^n} + \cdots$.`}
-          />
-          <li
-            innerHTML={prose`The growing sums have no value in the usual sense, and Euler said so. He gave them
-              one in this way: for small $x$, the sum $1 - 2x + 3x^2 - 4x^3 + \cdots$ is $\frac{1}{(1 + x)^2}$.
-              At $x = 1$ this formula gives $\frac{1}{4}$, so he took $\frac{1}{4}$ as the value of $1 - 2 + 3 - 4 + \cdots$.
-              He wrote that the word “sum” needs “a more extended meaning” here.`}
-          />
-          <li
-            innerHTML={prose`He already knew the sums $1 + \frac{1}{2^n} + \frac{1}{3^n} + \cdots$ for even $n$: each is a
-              fraction times $\pi^n$. The shrinking sums follow from them. Then he found that the
-              growing sums with odd $m$ contain the same fractions, and that the growing sums
-              with even $m$ above 0 are 0.`}
-          />
-          <li
-            innerHTML={prose`So he divided the growing sum with power $m = n - 1$ by the shrinking sum with
-              power $n$. For even $n$ the fraction drops out. For $n = 2$ this is
-              $1 - 2 + 3 - \cdots$ divided by $1 - \frac{1}{2^2} + \frac{1}{3^2} - \cdots$, and the result is $\frac{3}{\pi^2}$.
-              For odd $n$ above 1 the growing sum is 0, so the result is 0.`}
-          />
-          <li
-            innerHTML={prose`He wrote the results for $n = 2, 3, 4, 5, 6$ and so on as one rule times a number $N$.
-              The values of $N$ were $+1, 0, -1, 0, +1$ and so on. He saw that $-\cos\!\left(\frac{n\pi}{2}\right)$ gives
-              exactly these values.`}
-          />
-          <li
-            innerHTML={prose`He then wrote: “I venture to propose the following conjecture”, that the rule holds for
-              every $n$. He called the conjecture bold.`}
-          />
-          <li
-            innerHTML={prose`He tested it. It held for $n = 1$ and $n = 0$. He showed that the negative whole
-              numbers follow from the positive ones. For $n = \frac{1}{2}$ both sides are 1. For $n = \frac{3}{2}$
-              he computed both sides to several decimal places, and they agreed.`}
-          />
-        </ol>
-        <p>
-          Euler stated that he had no single proof for every case. Riemann gave that proof in 1859.
-        </p>
+        <details class="aside-details">
+          <summary>
+            <span>How did Euler guess the symmetry in 1749?</span>
+          </summary>
+          <div class="aside-body">
+            <p>
+              Euler did not get the symmetry from a proof. He saw a pattern in numbers, guessed a
+              rule, and then tested the rule. The steps below follow his paper.
+            </p>
+            <ol>
+              <li
+                innerHTML={prose`He took two families of sums with alternating signs. One grows:
+                  $1 - 2^m + 3^m - 4^m + \cdots$. The other shrinks: $1 - \frac{1}{2^n} + \frac{1}{3^n} - \frac{1}{4^n} + \cdots$.`}
+              />
+              <li
+                innerHTML={prose`The growing sums have no value in the usual sense, and Euler said so. He gave them
+                  one in this way: for small $x$, the sum $1 - 2x + 3x^2 - 4x^3 + \cdots$ is $\frac{1}{(1 + x)^2}$.
+                  At $x = 1$ this formula gives $\frac{1}{4}$, so he took $\frac{1}{4}$ as the value of $1 - 2 + 3 - 4 + \cdots$.
+                  He wrote that the word “sum” needs “a more extended meaning” here.`}
+              />
+              <li
+                innerHTML={prose`He already knew the sums $1 + \frac{1}{2^n} + \frac{1}{3^n} + \cdots$ for even $n$: each is a
+                  fraction times $\pi^n$. The shrinking sums follow from them. Then he found that the
+                  growing sums with odd $m$ contain the same fractions, and that the growing sums
+                  with even $m$ above 0 are 0.`}
+              />
+              <li
+                innerHTML={prose`So he divided the growing sum with power $m = n - 1$ by the shrinking sum with
+                  power $n$. For even $n$ the fraction drops out. For $n = 2$ this is
+                  $1 - 2 + 3 - \cdots$ divided by $1 - \frac{1}{2^2} + \frac{1}{3^2} - \cdots$, and the result is $\frac{3}{\pi^2}$.
+                  For odd $n$ above 1 the growing sum is 0, so the result is 0.`}
+              />
+              <li
+                innerHTML={prose`He wrote the results for $n = 2, 3, 4, 5, 6$ and so on as one rule times a number $N$.
+                  The values of $N$ were $+1, 0, -1, 0, +1$ and so on. He saw that $-\cos\!\left(\frac{n\pi}{2}\right)$ gives
+                  exactly these values.`}
+              />
+              <li
+                innerHTML={prose`He then wrote: “I venture to propose the following conjecture”, that the rule holds for
+                  every $n$. He called the conjecture bold.`}
+              />
+              <li
+                innerHTML={prose`He tested it. It held for $n = 1$ and $n = 0$. He showed that the negative whole
+                  numbers follow from the positive ones. For $n = \frac{1}{2}$ both sides are 1. For $n = \frac{3}{2}$
+                  he computed both sides to several decimal places, and they agreed.`}
+              />
+            </ol>
+            <p>
+              Euler stated that he had no single proof for every case. Riemann gave that proof in
+              1859.
+            </p>
+          </div>
+        </details>
         <p
           innerHTML={prose`For a complex number $s = a + bi$, the step from $s$ to $1 - s$ gives $(1 - a) - bi$. That
             is a half turn around the point $\frac{1}{2}$, not a flip across a line. The function has a
@@ -414,6 +420,7 @@ export function ZetaPage() {
           sum works and for the symmetry that Riemann proved.{" "}
           <a href={EULER_E352}>
             Euler, Remarks on a beautiful relation between direct as well as reciprocal power series
+            (E352, Euler Archive)
           </a>
           , translated by Willis and Osler, sections 1 to 15, for how Euler found the symmetry.{" "}
           <a href={MATHLIB_CONJ}>Mathlib, theorem riemannZeta_conj</a>, for the second symmetry.{" "}
