@@ -1,5 +1,8 @@
-import { createSignal, lazy, Loading, Match, onSettled, Show, Switch } from "solid-js";
+import { createSignal, Match, onSettled, Show, Switch } from "solid-js";
+import { BackgroundPage } from "./BackgroundPage";
+import { ComplexPage } from "./ComplexPage";
 import { ContentsPage } from "./ContentsPage";
+import { GammaPage } from "./GammaPage";
 import { PageFoot } from "./PageFoot";
 import {
   BACKGROUNDS,
@@ -10,14 +13,8 @@ import {
   isProofSection,
   routeOf,
 } from "./pages";
-
-const StepPage = lazy(() => import("./StepPage").then((m) => ({ default: m.StepPage })));
-const BackgroundPage = lazy(() =>
-  import("./BackgroundPage").then((m) => ({ default: m.BackgroundPage })),
-);
-const ComplexPage = lazy(() => import("./ComplexPage").then((m) => ({ default: m.ComplexPage })));
-const ZetaPage = lazy(() => import("./ZetaPage").then((m) => ({ default: m.ZetaPage })));
-const GammaPage = lazy(() => import("./GammaPage").then((m) => ({ default: m.GammaPage })));
+import { StepPage } from "./StepPage";
+import { ZetaPage } from "./ZetaPage";
 
 type Theme = "light" | "dark";
 const THEME_KEY = "riemann-theme";
@@ -105,25 +102,23 @@ export function App() {
         </nav>
       </header>
 
-      <Loading fallback={null}>
-        <Switch fallback={<ContentsPage />}>
-          <Match when={route() === "step-1"}>
-            <StepPage />
-          </Match>
-          <Match when={route() === CATALOG}>
-            <BackgroundPage />
-          </Match>
-          <Match when={route() === "complex-numbers"}>
-            <ComplexPage />
-          </Match>
-          <Match when={route() === "zeta"}>
-            <ZetaPage />
-          </Match>
-          <Match when={route() === "gamma"}>
-            <GammaPage />
-          </Match>
-        </Switch>
-      </Loading>
+      <Switch fallback={<ContentsPage />}>
+        <Match when={route() === "step-1"}>
+          <StepPage />
+        </Match>
+        <Match when={route() === CATALOG}>
+          <BackgroundPage />
+        </Match>
+        <Match when={route() === "complex-numbers"}>
+          <ComplexPage />
+        </Match>
+        <Match when={route() === "zeta"}>
+          <ZetaPage />
+        </Match>
+        <Match when={route() === "gamma"}>
+          <GammaPage />
+        </Match>
+      </Switch>
 
       <Show when={route() || undefined}>{(page) => <PageFoot route={page()} />}</Show>
     </>
