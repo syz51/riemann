@@ -132,129 +132,141 @@ export function MultiplyPlane() {
   };
   const [order, setOrder] = createSignal([handles.w, handles.z]);
 
+  const isPreset = (target: Complex) =>
+    Math.abs(w().re - target.re) < 1e-9 && Math.abs(w().im - target.im) < 1e-9;
+
   return (
     <div class="multiply">
-      <figure class="multiply-plane">
-        <svg
-          viewBox={`0 0 ${SIZE} ${SIZE}`}
-          role="group"
-          aria-label="The complex plane with three points: z, w and their product."
-        >
-          <rect class="field" x="1" y="1" width={SIZE - 2} height={SIZE - 2} rx="6" />
-          <For each={GRID}>
-            {(n) => (
-              <>
-                <line class="grid" x1={px(n)} y1="0" x2={px(n)} y2={SIZE} />
-                <line class="grid" x1="0" y1={py(n)} x2={SIZE} y2={py(n)} />
-              </>
-            )}
-          </For>
-          <line class="axis" x1="0" y1={py(0)} x2={SIZE} y2={py(0)} />
-          <line class="axis" x1={px(0)} y1="0" x2={px(0)} y2={SIZE} />
-          <text class="tick" x={px(1)} y={py(0) + 15} text-anchor="middle">
-            1
-          </text>
-          <text class="tick" x={px(0) - 7} y={py(1) + 14} text-anchor="end">
-            i
-          </text>
-
-          <g class="product">
-            <line x1={px(0)} y1={py(0)} x2={px(product().re)} y2={py(product().im)} />
-            <rect x={px(product().re) - 6} y={py(product().im) - 6} width="12" height="12" />
-            <Name at={product()} text="z × w" />
-          </g>
-          <For each={order()}>
-            {(handle) => (
-              <Handle
-                name={handle.name}
-                class={handle.name}
-                value={handle.value()}
-                onMove={handle.onMove}
-                onRelease={() =>
-                  setOrder(handle === handles.z ? [handles.z, handles.w] : [handles.w, handles.z])
-                }
-              />
-            )}
-          </For>
-        </svg>
-        <figcaption
-          innerHTML={prose`Drag $z$ or $w$, or select a point and use the arrow keys. The square point is the product.`}
-        />
-      </figure>
-
-      <div class="multiply-side">
-        <table>
-          <thead>
-            <tr>
-              <th scope="col">Point</th>
-              <th scope="col">Number</th>
-              <th scope="col">Length</th>
-              <th scope="col">Angle</th>
-            </tr>
-          </thead>
-          <tbody>
-            <For
-              each={[
-                { name: prose`$z$`, class: "z", value: z },
-                { name: prose`$w$`, class: "w", value: w },
-                { name: prose`$z \times w$`, class: "product", value: product },
-              ]}
-            >
-              {(row) => (
-                <tr class={row.class}>
-                  <th scope="row" innerHTML={row.name} />
-                  <td>{format(row.value())}</td>
-                  <td>{length(row.value()).toFixed(2)}</td>
-                  <td>{Math.round(angle(row.value()))}°</td>
-                </tr>
-              )}
-            </For>
-          </tbody>
-        </table>
-        <p class="rule">
-          Lengths multiply: {length(z()).toFixed(2)} × {length(w()).toFixed(2)} ≈{" "}
-          {length(product()).toFixed(2)}.
-          <br />
-          Angles add: {Math.round(angle(z()))}° + {Math.round(angle(w()))}° ≈{" "}
-          {Math.round(angleSum())}°
-          {angleSum() >= 360
-            ? `, which is the same direction as ${Math.round(angle(product()))}°.`
-            : "."}
-          <br />
-          <span class="note">The values shown are rounded.</span>
-        </p>
-
+      <div class="multiply-controls">
         <p class="label" id="w-presets" innerHTML={prose`Set $w$ to`} />
         <div class="presets" role="group" aria-labelledby="w-presets">
           <For each={PRESETS}>
             {(preset) => (
-              <button type="button" onClick={() => setW(preset.value)}>
+              <button
+                type="button"
+                aria-pressed={isPreset(preset.value) ? "true" : "false"}
+                onClick={() => setW(preset.value)}
+              >
                 <span class="value" innerHTML={preset.label} /> {preset.effect}
               </button>
             )}
           </For>
         </div>
-        <button
-          type="button"
-          class="again"
-          aria-disabled={productFits() ? "false" : "true"}
-          onClick={() => {
-            if (productFits()) setZ(product());
-          }}
-          innerHTML={prose`Move $z$ to $z \times w$`}
-        />
-        <Show when={!productFits()}>
-          <p class="note">
-            <span
-              innerHTML={prose`Not possible now: in this picture, the length of $z$ stays between `}
-            />
-            {STEP} and {Z_LIMIT}.
+      </div>
+
+      <div class="multiply-body">
+        <figure class="multiply-plane">
+          <svg
+            viewBox={`0 0 ${SIZE} ${SIZE}`}
+            role="group"
+            aria-label="The complex plane with three points: z, w and their product."
+          >
+            <rect class="field" x="1" y="1" width={SIZE - 2} height={SIZE - 2} rx="6" />
+            <For each={GRID}>
+              {(n) => (
+                <>
+                  <line class="grid" x1={px(n)} y1="0" x2={px(n)} y2={SIZE} />
+                  <line class="grid" x1="0" y1={py(n)} x2={SIZE} y2={py(n)} />
+                </>
+              )}
+            </For>
+            <line class="axis" x1="0" y1={py(0)} x2={SIZE} y2={py(0)} />
+            <line class="axis" x1={px(0)} y1="0" x2={px(0)} y2={SIZE} />
+            <text class="tick" x={px(1)} y={py(0) + 15} text-anchor="middle">
+              1
+            </text>
+            <text class="tick" x={px(0) - 7} y={py(1) + 14} text-anchor="end">
+              i
+            </text>
+
+            <g class="product">
+              <line x1={px(0)} y1={py(0)} x2={px(product().re)} y2={py(product().im)} />
+              <rect x={px(product().re) - 6} y={py(product().im) - 6} width="12" height="12" />
+              <Name at={product()} text="z × w" />
+            </g>
+            <For each={order()}>
+              {(handle) => (
+                <Handle
+                  name={handle.name}
+                  class={handle.name}
+                  value={handle.value()}
+                  onMove={handle.onMove}
+                  onRelease={() =>
+                    setOrder(handle === handles.z ? [handles.z, handles.w] : [handles.w, handles.z])
+                  }
+                />
+              )}
+            </For>
+          </svg>
+          <figcaption
+            innerHTML={prose`Drag $z$ or $w$, or select a point and use the arrow keys. The square point is the product.`}
+          />
+        </figure>
+
+        <div class="multiply-side">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Point</th>
+                <th scope="col">Number</th>
+                <th scope="col">Length</th>
+                <th scope="col">Angle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <For
+                each={[
+                  { name: prose`$z$`, class: "z", value: z },
+                  { name: prose`$w$`, class: "w", value: w },
+                  { name: prose`$z \times w$`, class: "product", value: product },
+                ]}
+              >
+                {(row) => (
+                  <tr class={row.class}>
+                    <th scope="row" innerHTML={row.name} />
+                    <td>{format(row.value())}</td>
+                    <td>{length(row.value()).toFixed(2)}</td>
+                    <td>{Math.round(angle(row.value()))}°</td>
+                  </tr>
+                )}
+              </For>
+            </tbody>
+          </table>
+          <p class="rule">
+            Lengths multiply: {length(z()).toFixed(2)} × {length(w()).toFixed(2)} ≈{" "}
+            {length(product()).toFixed(2)}.
+            <br />
+            Angles add: {Math.round(angle(z()))}° + {Math.round(angle(w()))}° ≈{" "}
+            {Math.round(angleSum())}°
+            {angleSum() >= 360
+              ? `, which is the same direction as ${Math.round(angle(product()))}°.`
+              : "."}
+            <br />
+            <span class="note">The values shown are rounded.</span>
           </p>
-        </Show>
-        <p
-          class="hint"
-          innerHTML={prose`Set $w$ to $i$ and press this button two times. Two quarter turns make a half turn, so $z$ lands on $-z$. This is the rule $i \times i = -1$ as a picture.`}
-        />
+
+          <button
+            type="button"
+            class="again"
+            aria-disabled={productFits() ? "false" : "true"}
+            onClick={() => {
+              if (productFits()) setZ(product());
+            }}
+            innerHTML={prose`Move $z$ to $z \times w$`}
+          />
+          <Show when={!productFits()}>
+            <p class="note">
+              <span
+                innerHTML={prose`Not possible now: in this picture, the length of $z$ stays between `}
+              />
+              {STEP} and {Z_LIMIT}.
+            </p>
+          </Show>
+          <p
+            class="hint"
+            innerHTML={prose`Set $w$ to $i$ and press this button two times. Two quarter turns make a half turn, so $z$ lands on $-z$. This is the rule $i \times i = -1$ as a picture.`}
+          />
+        </div>
       </div>
     </div>
   );

@@ -936,14 +936,6 @@ a.spine-card:focus-visible {
   margin-top: 2.25rem;
 }
 
-.article section:has(.multiply) {
-  max-width: none;
-}
-
-.article section:has(.multiply) > p {
-  max-width: 44rem;
-}
-
 .article ul {
   padding-left: 1.25rem;
 }
@@ -1299,11 +1291,28 @@ li:not(:has(p)):has(.katex .mfrac) {
 }
 
 .multiply {
+  margin: 1rem 0;
+  padding: 1rem 1.1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.multiply-controls {
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.9rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.multiply-controls .presets {
+  margin-bottom: 0;
+}
+
+.multiply-body {
   display: grid;
-  grid-template-columns: minmax(0, 24rem) minmax(0, 1fr);
-  gap: 2rem;
+  grid-template-columns: minmax(0, 18.5rem) minmax(0, 1fr);
+  gap: 1.25rem;
   align-items: start;
-  margin-top: 1rem;
 }
 
 .multiply svg {
@@ -1317,7 +1326,7 @@ li:not(:has(p)):has(.katex .mfrac) {
 }
 
 .multiply .field {
-  fill: var(--surface);
+  fill: var(--page);
   stroke: var(--border);
 }
 
@@ -1380,7 +1389,7 @@ li:not(:has(p)):has(.katex .mfrac) {
 
 .multiply .dot,
 .multiply .product rect {
-  stroke: var(--surface);
+  stroke: var(--page);
   stroke-width: 1.5;
 }
 
@@ -1388,15 +1397,26 @@ li:not(:has(p)):has(.katex .mfrac) {
   width: 100%;
   border-collapse: collapse;
   font-family: var(--sans);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-variant-numeric: tabular-nums;
 }
 
 .multiply th,
 .multiply td {
-  padding: 0.35rem 0.5rem;
+  padding: 0.3rem 0.35rem;
   border-bottom: 1px solid var(--border);
   text-align: left;
+  white-space: nowrap;
+}
+
+.multiply th:first-child,
+.multiply td:first-child {
+  padding-left: 0;
+}
+
+.multiply th:last-child,
+.multiply td:last-child {
+  padding-right: 0;
 }
 
 .multiply thead th {
@@ -1417,7 +1437,8 @@ li:not(:has(p)):has(.katex .mfrac) {
 }
 
 .multiply .rule {
-  margin: 0.9rem 0;
+  margin: 0.75rem 0;
+  font-size: 0.95rem;
 }
 
 .multiply .label {
@@ -1440,6 +1461,11 @@ li:not(:has(p)):has(.katex .mfrac) {
   gap: 0.35rem;
 }
 
+.presets button[aria-pressed="true"] {
+  border-color: var(--text);
+  background: var(--page);
+}
+
 .presets .value {
   font-weight: 600;
 }
@@ -1455,7 +1481,8 @@ li:not(:has(p)):has(.katex .mfrac) {
 }
 
 .multiply .hint {
-  font-size: 0.95rem;
+  margin-bottom: 0;
+  font-size: 0.9rem;
 }
 
 /* The chart of the sum and the product. */
@@ -1473,11 +1500,6 @@ li:not(:has(p)):has(.katex .mfrac) {
   margin: 0 0 0.35rem;
   font-size: 0.85rem;
   color: var(--muted);
-}
-
-.sumprod button[aria-pressed="true"] {
-  border-color: var(--text);
-  background: var(--page);
 }
 
 .slider {
@@ -1622,9 +1644,9 @@ li:not(:has(p)):has(.katex .mfrac) {
     position: static;
   }
 
-  .multiply {
+  .multiply-body {
     grid-template-columns: minmax(0, 1fr);
-    gap: 1.25rem;
+    gap: 1.1rem;
   }
 
   /* On narrow screens the stepper falls back to a compact top-bar single column. */
