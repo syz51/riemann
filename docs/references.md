@@ -166,9 +166,9 @@ Inspection: abstract only. Read: the whole record (English title, content summar
 
 [21] Leonhard Euler. **On transcendental progressions, that is, those whose general terms cannot be given algebraically (E19)**. Translated from the Latin by Stacy G. Langton, University of San Diego. Original in Commentarii academiae scientiarum Petropolitanae 5 (1730/1), 1738, pages 36 to 57. [Original](http://eulerarchive.maa.org/docs/translations/E019en.pdf). Accessed 23 November 2026, Asia/Tokyo.
 
-Inspection depth: method.
+Inspection depth: full.
 
-Inspection: method level. Read: sections 1, 2 and 12 to 29 of the translation (sections 18 to 29 read on 24 November 2026). The summary and sections 3 to 11 are skimmed. A primary source in translation; the Latin original is not read. Section 17 gives the term of index 1/2 as half the square root of the circumference p of a circle of diameter 1, which is √π/2; the catalogue record [20] gives √(π/2), which does not agree with the paper. Sections 18 to 29 treat ratios of progressions, algebraic-curve quadratures for fractional indices, iterated integrals, and fractional differentials, without introducing the letter Γ or the reflection formula.
+Inspection: full translation read (summary and sections 1 to 29 of Langton's translation: §§1, 2, 12–17 read 23 November 2026; §§18–29 read 24 November 2026; §§3–11 read 26 November 2026). A primary source in translation; the Latin original is not read. Sections 3 to 13 show how Euler moved from the Beta integral $\int_0^1 x^e(1 - x)^n\,dx$ via $e = \frac{f}{g}$, the substitution $x \mapsto x^{\frac{g}{f + g}}$, and the limit $\frac{1 - x^z}{z} \to -\ln x$ ($z \to 0$) to $\int_0^1 (-\ln x)^n\,dx$. Section 17 gives the term of index $\frac{1}{2}$ as half the square root of the circumference $p$ of a circle of diameter $1$, which is $\frac{\sqrt{\pi}}{2}$; the catalogue record [20] gives $\sqrt{\frac{\pi}{2}}$, which does not agree with the paper. Sections 18 to 29 treat ratios of progressions, algebraic-curve quadratures for fractional indices, iterated integrals, and fractional differentials, without introducing the letter $\Gamma$ or the reflection formula.
 
 ## Reference 22
 

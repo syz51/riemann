@@ -11,3 +11,6 @@ site/dist/
 .vercel
 .env*
 !.env.example
+
+# Lean build artifacts
+lean/.lake/
