@@ -13,6 +13,7 @@ const STEP = 0.25;
 const GRID = [-3, -2, -1, 1, 2, 3];
 const px = (re: number) => CENTRE + re * UNIT;
 const py = (im: number) => CENTRE - im * UNIT;
+const degrees = (deg: number) => Math.round(deg) % 360;
 
 const ARROWS: Record<string, Complex | undefined> = {
   ArrowLeft: { re: -STEP, im: 0 },
@@ -110,7 +111,7 @@ export function MultiplyPlane() {
   const [z, setZ] = createSignal<Complex>({ re: 1.25, im: 0.5 });
   const [w, setW] = createSignal<Complex>({ re: 0, im: 1 });
   const product = createMemo(() => multiply(z(), w()));
-  const angleSum = createMemo(() => angle(z()) + angle(w()));
+  const roundedAngleSum = createMemo(() => Math.round(angle(z()) + angle(w())));
   // z can move to the product only when the product is in the range of z.
   const productFits = createMemo(() => {
     const size = length(product());
@@ -226,7 +227,7 @@ export function MultiplyPlane() {
                     <th scope="row" innerHTML={row.name} />
                     <td>{format(row.value())}</td>
                     <td>{length(row.value()).toFixed(2)}</td>
-                    <td>{Math.round(angle(row.value()))}°</td>
+                    <td>{degrees(angle(row.value()))}°</td>
                   </tr>
                 )}
               </For>
@@ -236,32 +237,29 @@ export function MultiplyPlane() {
             Lengths multiply: {length(z()).toFixed(2)} × {length(w()).toFixed(2)} ≈{" "}
             {length(product()).toFixed(2)}.
             <br />
-            Angles add: {Math.round(angle(z()))}° + {Math.round(angle(w()))}° ≈{" "}
-            {Math.round(angleSum())}°
-            {angleSum() >= 360
-              ? `, which is the same direction as ${Math.round(angle(product()))}°.`
-              : "."}
+            Angles add: {degrees(angle(z()))}° + {degrees(angle(w()))}° ≈ {roundedAngleSum()}°
+            {roundedAngleSum() >= 360 ? ` (same as ${degrees(angle(product()))}°).` : "."}
             <br />
             <span class="note">The values shown are rounded.</span>
           </p>
 
-          <button
-            type="button"
-            class="again"
-            aria-disabled={productFits() ? "false" : "true"}
-            onClick={() => {
-              if (productFits()) setZ(product());
-            }}
-            innerHTML={prose`Move $z$ to $z \times w$`}
-          />
-          <Show when={!productFits()}>
-            <p class="note">
-              <span
-                innerHTML={prose`Not possible now: in this picture, the length of $z$ stays between `}
-              />
-              {STEP} and {Z_LIMIT}.
-            </p>
-          </Show>
+          <div class="multiply-action">
+            <button
+              type="button"
+              class="again"
+              aria-disabled={productFits() ? "false" : "true"}
+              onClick={() => {
+                if (productFits()) setZ(product());
+              }}
+              innerHTML={prose`Move $z$ to $z \times w$`}
+            />
+            <Show when={!productFits()}>
+              <p class="note">
+                <span innerHTML={prose`Not possible: length of $z$ stays between `} />
+                {STEP} and {Z_LIMIT}.
+              </p>
+            </Show>
+          </div>
           <p
             class="hint"
             innerHTML={prose`Set $w$ to $i$ and press this button two times. Two quarter turns make a half turn, so $z$ lands on $-z$. This is the rule $i \times i = -1$ as a picture.`}

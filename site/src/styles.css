@@ -1470,8 +1470,22 @@ li:not(:has(p)):has(.katex .mfrac) {
   font-weight: 600;
 }
 
+.multiply-action {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 2.35rem;
+  margin-bottom: 0.65rem;
+}
+
 .multiply .again {
-  margin-bottom: 0.6rem;
+  flex-shrink: 0;
+}
+
+.multiply-action .note {
+  flex: 1 1 11rem;
+  margin: 0;
+  line-height: 1.3;
 }
 
 .multiply .note {
@@ -1647,6 +1661,10 @@ li:not(:has(p)):has(.katex .mfrac) {
   .multiply-body {
     grid-template-columns: minmax(0, 1fr);
     gap: 1.1rem;
+  }
+
+  .multiply-action {
+    flex-wrap: wrap;
   }
 
   /* On narrow screens the stepper falls back to a compact top-bar single column. */
