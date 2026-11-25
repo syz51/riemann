@@ -144,9 +144,6 @@ export const isProofSection = (route: Route): boolean => route === CONTENTS || i
 export const isBackgroundSection = (route: Route): boolean =>
   route === CATALOG || isBackgroundRoute(route);
 
-export const stepOf = (route: StepRoute): StepEntry | undefined =>
-  STEPS.find((step) => step.route === route);
-
 export const backgroundOf = (route: BackgroundRoute): BackgroundEntry | undefined =>
   BACKGROUNDS.find((page) => page.route === route);
 

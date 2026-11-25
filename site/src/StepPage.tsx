@@ -1,4 +1,4 @@
-import { createMemo, createSignal, For, Show } from "solid-js";
+import { createMemo, createSignal, For, onSettled, Show } from "solid-js";
 import { LeanBlock } from "./LeanBlock";
 import { href } from "./pages";
 import { Plane } from "./Plane";
@@ -6,37 +6,35 @@ import { step1 as step } from "./steps/step1";
 
 /** One step of the walk-through: Lean text, contextual background links, and the picture. */
 export function StepPage() {
-  const [lastHovered, setLastHovered] = createSignal<string | null>(null);
+  const [hovered, setHovered] = createSignal<string | null>(null);
   const [pinned, setPinned] = createSignal<string | null>(null);
   const [focused, setFocused] = createSignal<string | null>(null);
 
-  // Keep the most recently inspected piece visible when moving the pointer or
-  // tabbing from a Lean token into the explanation card to follow a background link.
-  // A pinned piece holds its place until unpinned or another piece is pressed.
-  const activeId = createMemo(() => pinned() ?? focused() ?? lastHovered());
+  // Live hover and keyboard focus preview any token freely; leaving or blurring
+  // returns to the pinned token so a reader can pin a token and follow its
+  // background link in the explanation panel by pointer or keyboard.
+  const activeId = createMemo(() => hovered() ?? focused() ?? pinned());
   const active = createMemo(() => step.pieces.find((piece) => piece.id === activeId()));
-
-  const handleHover = (piece: string | null) => {
-    if (piece !== null) setLastHovered(piece);
-  };
-
-  const handleFocus = (piece: string | null) => {
-    setFocused(piece);
-    if (piece !== null) setLastHovered(piece);
-  };
+  const pinnedPiece = createMemo(() => step.pieces.find((piece) => piece.id === pinned()));
 
   const togglePin = (piece: string) => {
     if (pinned() === piece) {
-      // Pressing an already-pinned piece closes the explanation cleanly,
-      // including on touch screens where the button retains focus.
+      // A press that releases the pin also drops the focus state, so that the
+      // explanation closes on a touch screen, where the button keeps focus.
       setPinned(null);
       setFocused(null);
-      setLastHovered(null);
     } else {
       setPinned(piece);
-      setLastHovered(piece);
     }
   };
+
+  onSettled(() => {
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && pinned() !== null) setPinned(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  });
 
   return (
     <main>
@@ -57,8 +55,8 @@ export function StepPage() {
                   snippet={snippet}
                   active={activeId()}
                   pinned={pinned()}
-                  onHover={handleHover}
-                  onFocus={handleFocus}
+                  onHover={setHovered}
+                  onFocus={setFocused}
                   onPin={togglePin}
                 />
                 <Show when={index() === 0}>
@@ -81,8 +79,8 @@ export function StepPage() {
               when={active()}
               fallback={
                 <p class="hint">
-                  Point at a marked part of the Lean text to inspect it, or press it to pin its
-                  explanation and any linked background page.
+                  Point at a marked part of the Lean text to preview it, or press it to pin its
+                  explanation and follow any linked background page.
                 </p>
               }
             >
@@ -94,6 +92,20 @@ export function StepPage() {
                     {(bg) => (
                       <a class="deeper-link" href={href(bg().route)}>
                         <span class="deeper-title">{bg().label} →</span>
+                        <span class="deeper-note">{bg().note}</span>
+                      </a>
+                    )}
+                  </Show>
+                  <Show
+                    when={
+                      piece().id !== pinned() && !piece().background
+                        ? pinnedPiece()?.background
+                        : undefined
+                    }
+                  >
+                    {(bg) => (
+                      <a class="deeper-link pinned-shortcut" href={href(bg().route)}>
+                        <span class="deeper-title">Pinned: {bg().label} →</span>
                         <span class="deeper-note">{bg().note}</span>
                       </a>
                     )}

@@ -80,10 +80,18 @@ export function App() {
           </p>
         </div>
         <nav aria-label="Site">
-          <a href={href(CONTENTS)} aria-current={isProofSection(route()) ? "page" : undefined}>
+          <a
+            href={href(CONTENTS)}
+            class={{ active: isProofSection(route()) }}
+            aria-current={route() === CONTENTS ? "page" : undefined}
+          >
             The Proof
           </a>
-          <a href={href(CATALOG)} aria-current={isBackgroundSection(route()) ? "page" : undefined}>
+          <a
+            href={href(CATALOG)}
+            class={{ active: isBackgroundSection(route()) }}
+            aria-current={route() === CATALOG ? "page" : undefined}
+          >
             Background <span class="nav-count">{BACKGROUNDS.length}</span>
           </a>
           <button

@@ -1,44 +1,45 @@
 import { For } from "solid-js";
 import { href, STEP_COUNT, STEPS, UPCOMING_STEPS } from "./pages";
 
-/** Compact diagram of the critical strip and critical line for the proof home hero. */
+/** Compact to-scale diagram of the critical strip and critical line for the proof home hero. */
 function HeroPlane() {
+  // Uniform horizontal scale: 24 units per 1 on the real axis, with Re(s) = 0 at x = 124.
   return (
     <svg
       class="hero-plane"
-      viewBox="0 0 184 124"
+      viewBox="0 0 212 124"
       role="img"
-      aria-label="The complex plane with the critical strip from 0 to 1, the dashed critical line at real part one half, non-trivial zeros on that line, and trivial zeros at minus 2 and minus 4."
+      aria-label="The complex plane to uniform horizontal scale, with the critical strip from 0 to 1, the dashed critical line at real part one half, non-trivial zeros on that line, the pole at 1, and trivial zeros at minus 2 and minus 4."
     >
-      <rect class="hero-field" x="1" y="1" width="182" height="122" rx="7" />
-      <rect class="hero-strip" x="92" y="2" width="48" height="120" />
-      <line class="hero-axis" x1="12" y1="62" x2="172" y2="62" />
-      <line class="hero-axis" x1="92" y1="10" x2="92" y2="114" />
-      <line class="hero-line" x1="116" y1="10" x2="116" y2="114" />
-      <circle class="hero-zero" cx="116" cy="26" r="3.6" />
-      <circle class="hero-zero" cx="116" cy="43" r="3.6" />
-      <circle class="hero-zero" cx="116" cy="81" r="3.6" />
-      <circle class="hero-zero" cx="116" cy="98" r="3.6" />
-      <circle class="hero-trivial" cx="44" cy="62" r="2.7" />
-      <circle class="hero-trivial" cx="68" cy="62" r="2.7" />
-      <circle class="hero-pole" cx="140" cy="62" r="3.3" />
-      <text class="hero-label" x="121" y="22">
+      <rect class="hero-field" x="1" y="1" width="210" height="122" rx="7" />
+      <rect class="hero-strip" x="124" y="2" width="24" height="120" />
+      <line class="hero-axis" x1="12" y1="62" x2="200" y2="62" />
+      <line class="hero-axis" x1="124" y1="10" x2="124" y2="114" />
+      <line class="hero-line" x1="136" y1="10" x2="136" y2="114" />
+      <circle class="hero-zero" cx="136" cy="26" r="3.4" />
+      <circle class="hero-zero" cx="136" cy="43" r="3.4" />
+      <circle class="hero-zero" cx="136" cy="81" r="3.4" />
+      <circle class="hero-zero" cx="136" cy="98" r="3.4" />
+      <circle class="hero-trivial" cx="28" cy="62" r="2.7" />
+      <circle class="hero-trivial" cx="76" cy="62" r="2.7" />
+      <circle class="hero-pole" cx="148" cy="62" r="3.2" />
+      <text class="hero-label" x="145" y="22">
         Re(s) =
       </text>
-      <text class="hero-frac" x="165" y="17" text-anchor="middle">
+      <text class="hero-frac" x="189" y="17" text-anchor="middle">
         1
       </text>
-      <line class="hero-frac-bar" x1="161" y1="19.5" x2="169" y2="19.5" />
-      <text class="hero-frac" x="165" y="28" text-anchor="middle">
+      <line class="hero-frac-bar" x1="185" y1="19.5" x2="193" y2="19.5" />
+      <text class="hero-frac" x="189" y="28" text-anchor="middle">
         2
       </text>
-      <text class="hero-tick" x="44" y="76" text-anchor="middle">
+      <text class="hero-tick" x="28" y="76" text-anchor="middle">
         −4
       </text>
-      <text class="hero-tick" x="68" y="76" text-anchor="middle">
+      <text class="hero-tick" x="76" y="76" text-anchor="middle">
         −2
       </text>
-      <text class="hero-tick" x="140" y="76" text-anchor="middle">
+      <text class="hero-tick" x="148" y="76" text-anchor="middle">
         1
       </text>
     </svg>
@@ -106,7 +107,7 @@ export function ContentsPage() {
                   step.status === "Next in walk-through" ? "next-up" : "planned",
                 ]}
               >
-                <div class="spine-card upcoming" aria-disabled="true">
+                <div class="spine-card upcoming">
                   <div class="spine-meta">
                     <span class="spine-step">
                       Step {String(step.number).padStart(2, "0")} · {step.level}

@@ -312,10 +312,15 @@ figcaption {
     border-color 120ms;
 }
 
-.piece.active,
+.piece.active {
+  background: var(--accent-soft);
+  border-bottom-color: var(--accent);
+}
+
 .piece[aria-pressed="true"] {
   background: var(--accent-soft);
   border-bottom-color: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--accent);
 }
 
 .piece:focus-visible {
@@ -483,12 +488,14 @@ header.site nav a:hover {
   color: var(--text);
 }
 
+header.site nav a.active,
 header.site nav a[aria-current="page"] {
   color: var(--text);
   font-weight: 600;
   border-bottom-color: var(--accent);
 }
 
+header.site nav a.active .nav-count,
 header.site nav a[aria-current="page"] .nav-count {
   border-color: var(--accent);
   color: var(--text);
