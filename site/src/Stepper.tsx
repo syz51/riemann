@@ -53,7 +53,13 @@ export function Stepper(props: { parts: Part[] }) {
               <Show when={part().titleHtml} fallback={<h3>{part().title}</h3>}>
                 {(html) => <h3 innerHTML={html()} />}
               </Show>
-              <p ref={equationEl} class="equation" innerHTML={part().equation} />
+              <p
+                ref={(el) => {
+                  equationEl = el;
+                }}
+                class="equation"
+                innerHTML={part().equation}
+              />
               <p innerHTML={part().text} />
             </div>
           )}
