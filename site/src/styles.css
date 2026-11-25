@@ -92,21 +92,11 @@ header.site {
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem 2rem;
-  padding-top: 1.25rem;
-  padding-bottom: 1rem;
+  padding-top: 1.1rem;
+  padding-bottom: 0.9rem;
   border-bottom: 1px solid var(--border);
   font-family: var(--sans);
   font-size: 0.9rem;
-}
-
-header.site p {
-  margin: 0;
-}
-
-.site-identity {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
 }
 
 .brand {
@@ -144,13 +134,10 @@ header.site p {
 }
 
 .project {
+  font-size: 0.95rem;
   font-weight: 600;
+  letter-spacing: -0.01em;
   transition: color 120ms;
-}
-
-.about {
-  color: var(--muted);
-  font-size: 0.84rem;
 }
 
 header.site nav {
@@ -160,20 +147,30 @@ header.site nav {
   flex-wrap: wrap;
 }
 
+header.site nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.65rem;
+}
+
 .nav-count {
   display: inline-block;
-  margin-left: 0.25rem;
-  padding: 0.05rem 0.4rem;
+  margin-left: 0.35rem;
+  padding: 0.02rem 0.42rem;
   border-radius: 999px;
   background: var(--surface);
   border: 1px solid var(--border);
   font-size: 0.75rem;
+  line-height: 1.35;
   color: var(--muted);
   font-variant-numeric: tabular-nums;
 }
 
 .theme-toggle {
-  padding: 0.28rem 0.65rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.28rem 0.7rem;
   border: 1px solid var(--border);
   border-radius: 999px;
   background: var(--surface);
@@ -184,6 +181,19 @@ header.site nav {
   transition:
     border-color 120ms,
     color 120ms;
+}
+
+.site-credit {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 0.75rem 1.25rem 2rem;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.site-credit p {
+  margin: 0;
 }
 
 .theme-toggle:hover {

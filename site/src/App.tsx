@@ -66,16 +66,10 @@ export function App() {
   return (
     <>
       <header class="site">
-        <div class="site-identity">
-          <a class="brand" href={href(CONTENTS)}>
-            <span class="brand-mark" aria-hidden="true" />
-            <span class="project">The Riemann hypothesis, step by step</span>
-          </a>
-          <p class="about">
-            A reading of Alpöge's Lean proof.{" "}
-            <a href="https://github.com/syz51/riemann">Notes and sources</a>
-          </p>
-        </div>
+        <a class="brand" href={href(CONTENTS)}>
+          <span class="brand-mark" aria-hidden="true" />
+          <span class="project">The Riemann Hypothesis</span>
+        </a>
         <nav aria-label="Site">
           <a
             href={href(CONTENTS)}
@@ -94,10 +88,16 @@ export function App() {
           <button
             type="button"
             class="theme-toggle"
-            aria-label={theme() === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+            aria-label={
+              theme() === "dark"
+                ? "Color theme: dark. Switch to light theme"
+                : "Color theme: light. Switch to dark theme"
+            }
+            title={theme() === "dark" ? "Switch to light theme" : "Switch to dark theme"}
             onClick={toggleTheme}
           >
-            {theme() === "dark" ? "Light" : "Dark"}
+            <span aria-hidden="true">{theme() === "dark" ? "☾" : "☀"}</span>{" "}
+            <span>{theme() === "dark" ? "Dark" : "Light"}</span>
           </button>
         </nav>
       </header>
@@ -121,6 +121,12 @@ export function App() {
       </Switch>
 
       <Show when={route() || undefined}>{(page) => <PageFoot route={page()} />}</Show>
+      <footer class="site-credit">
+        <p>
+          A reading of Alpöge's Lean proof ·{" "}
+          <a href="https://github.com/syz51/riemann">Notes and sources on GitHub</a>
+        </p>
+      </footer>
     </>
   );
 }
