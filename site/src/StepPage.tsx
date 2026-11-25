@@ -12,7 +12,7 @@ export function StepPage() {
 
   // Live hover and keyboard focus preview any token freely; leaving or blurring
   // returns to the pinned token so a reader can pin a token and follow its
-  // background link in the explanation panel by pointer or keyboard.
+  // background link in the explanation panel.
   const activeId = createMemo(() => hovered() ?? focused() ?? pinned());
   const active = createMemo(() => step.pieces.find((piece) => piece.id === activeId()));
 
@@ -73,21 +73,27 @@ export function StepPage() {
         </div>
 
         <aside class="side">
+          {/* Stack the hint and every explanation in one grid cell (matching Stepper.tsx)
+              so the tallest piece sets the card height and the plane below never shifts. */}
           <div id="explanation" class="explanation" aria-live="polite">
-            <Show
-              when={active()}
-              fallback={
-                <p class="hint">
-                  Point at a marked part of the Lean text to preview it, or press it to pin its
-                  explanation and follow any linked background page.
-                </p>
-              }
+            <div
+              class={["explanation-slot", { current: activeId() === null }]}
+              aria-hidden={activeId() !== null ? "true" : undefined}
             >
+              <p class="hint">
+                Point at a marked part of the Lean text to preview it, or press it to pin its
+                explanation and follow any linked background page.
+              </p>
+            </div>
+            <For each={step.pieces}>
               {(piece) => (
-                <>
-                  <h2 innerHTML={piece().title} />
-                  <p innerHTML={piece().meaning} />
-                  <Show when={piece().background}>
+                <div
+                  class={["explanation-slot", { current: activeId() === piece.id }]}
+                  aria-hidden={activeId() !== piece.id ? "true" : undefined}
+                >
+                  <h2 innerHTML={piece.title} />
+                  <p innerHTML={piece.meaning} />
+                  <Show when={piece.background}>
                     {(bg) => (
                       <a class="deeper-link" href={href(bg().route)}>
                         <span class="deeper-title">{bg().label} →</span>
@@ -95,9 +101,9 @@ export function StepPage() {
                       </a>
                     )}
                   </Show>
-                </>
+                </div>
               )}
-            </Show>
+            </For>
           </div>
           <div class="plane-side">
             <Plane mark={active()?.mark} />
