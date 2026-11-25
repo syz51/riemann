@@ -339,13 +339,27 @@ figcaption {
 }
 
 .explanation {
-  min-height: 12.5rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
   margin-bottom: 0.9rem;
   padding: 1rem 1.1rem;
   background: var(--surface);
   border: 1px solid var(--border);
   border-left: 3px solid var(--accent);
   border-radius: 8px;
+}
+
+/* All piece explanations share one grid cell so the tallest one reserves space
+   and the complex plane below never shifts while hovering between tokens. */
+.explanation-slot {
+  grid-area: 1 / 1;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.explanation-slot.current {
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .explanation p {
@@ -1528,6 +1542,11 @@ li:not(:has(p)):has(.katex .mfrac) {
     margin: 0;
     overflow-y: auto;
     box-shadow: 0 6px 24px rgb(0 0 0 / 0.25);
+  }
+
+  /* In the fixed mobile drawer, only the active explanation sizes the overlay. */
+  .explanation-slot:not(.current) {
+    display: none;
   }
 }
 
