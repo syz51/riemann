@@ -1079,44 +1079,36 @@ h3 {
 
 .stepper {
   margin: 1rem 0;
-  padding: 1rem 1.1rem;
+  padding: 0.9rem 1.1rem 1.05rem;
   background: var(--surface);
   border: 1px solid var(--border);
   border-left: 3px solid var(--accent);
   border-radius: 8px;
 }
 
-/* The parts lie one upon the other in one grid. Each part takes its four rows from
-   that grid, so a row is as tall as the tallest count, title, equation or text of all
-   parts. Nothing moves when the part changes. */
-.stepper .parts {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: repeat(4, auto);
-  row-gap: 0.6rem;
-  margin-bottom: 0.9rem;
+/* Controls sit in a fixed top bar so buttons never shift between parts, while
+   the active part below sizes naturally without empty placeholder space. */
+.stepper-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.85rem;
+  border-bottom: 1px solid var(--border);
 }
 
-.stepper .part {
-  grid-area: 1 / 1 / span 4 / auto;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: subgrid;
-  /* A hidden part keeps its place, and no keyboard or screen reader reaches it. */
-  visibility: hidden;
+.stepper .part h3 {
+  margin: 0 0 0.55rem;
 }
 
-.stepper .part.current {
-  visibility: visible;
-}
-
-.stepper .part > * {
-  margin: 0;
-}
-
-/* A block, not a flex box: a wide equation must keep its scroll from the left edge. */
 .stepper .part .equation {
-  align-content: center;
+  margin: 0.6rem 0 0.75rem;
+}
+
+.stepper .part > :last-child {
+  margin-bottom: 0;
 }
 
 .sr-only {
