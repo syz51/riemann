@@ -73,8 +73,8 @@ export function StepPage() {
         </div>
 
         <aside class="side">
-          {/* Stack the hint and every explanation in one grid cell (matching Stepper.tsx)
-              so the tallest piece sets the card height and the plane below never shifts. */}
+          {/* Stack the hint and every explanation in one grid cell so the tallest
+              piece sets the card height and the plane below never shifts on hover. */}
           <div id="explanation" class="explanation" aria-live="polite">
             <div
               class={["explanation-slot", { current: activeId() === null }]}

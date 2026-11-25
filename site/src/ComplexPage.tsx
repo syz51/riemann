@@ -102,28 +102,6 @@ export function ComplexPage() {
       </section>
 
       <section>
-        <h2>From a trick to a point of the plane</h2>
-        <p>
-          The new numbers worked, but for more than two hundred years they had no satisfactory
-          foundation. The answer was a picture.
-        </p>
-        <ol class="timeline">
-          <For each={TIMELINE}>
-            {(entry) => (
-              <li>
-                <span class="year">{entry.year}</span>
-                <span innerHTML={entry.text} />
-              </li>
-            )}
-          </For>
-        </ol>
-        <p class="sources">
-          Source: <a href={MERINO}>Merino, A Short History of Complex Numbers</a>, items 4 to 8 and
-          11 to 15. For 1859: <a href={ELKIES}>Elkies, Math 229 notes on the zeta function</a>.
-        </p>
-      </section>
-
-      <section>
         <h2>The picture: turn and stretch</h2>
         <p>
           A complex number is a point of the plane. Its real part says how far right it is. Its
@@ -132,7 +110,8 @@ export function ComplexPage() {
         </p>
         <p>
           To add two numbers, add the parts. To multiply two numbers, multiply the lengths and add
-          the angles. This is the rule in Wessel's paper.
+          the angles. This is the rule in Wessel's 1797 paper, the first published geometric
+          foundation for complex numbers (see the dates below).
         </p>
         <MultiplyPlane />
         <p class="sources">
@@ -156,6 +135,28 @@ export function ComplexPage() {
         <p class="sources">
           Source: <a href={ELKIES}>Elkies, Math 229 notes on the zeta function</a>, the theorem
           marked “Riemann 1859”.
+        </p>
+      </section>
+
+      <section>
+        <h2>The dates in one list</h2>
+        <p>
+          The new numbers worked, but for more than two hundred years they had no satisfactory
+          foundation. The answer was a picture.
+        </p>
+        <ol class="timeline">
+          <For each={TIMELINE}>
+            {(entry) => (
+              <li>
+                <span class="year">{entry.year}</span>
+                <span innerHTML={entry.text} />
+              </li>
+            )}
+          </For>
+        </ol>
+        <p class="sources">
+          Source: <a href={MERINO}>Merino, A Short History of Complex Numbers</a>, items 4 to 8 and
+          11 to 15. For 1859: <a href={ELKIES}>Elkies, Math 229 notes on the zeta function</a>.
         </p>
       </section>
     </main>
