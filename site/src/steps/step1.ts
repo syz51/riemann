@@ -52,12 +52,22 @@ export const step1 = defineStep({
       title: prose`For every complex number $s$`,
       meaning: prose`The symbol $\forall$ means “for every”. $\mathbb{C}$ is the set of complex numbers. A complex number is a point of the plane: it has a real part (left to right) and an imaginary part (bottom to top).`,
       mark: "plane",
+      background: {
+        route: "complex-numbers",
+        label: "Why complex numbers exist",
+        note: "Background · how a cubic formula forced square roots of negative numbers",
+      },
     },
     {
       id: "zero",
       title: prose`First condition: $s$ is a zero`,
       meaning: prose`The zeta function is zero at $s$. The picture shows some of these points. The underscore means that the condition has no name of its own.`,
       mark: "zeros",
+      background: {
+        route: "zeta",
+        label: "Where the zeta function came from",
+        note: "Background · Euler's Basel sum, the prime product, and the symmetry",
+      },
     },
     {
       id: "trivial",
@@ -70,6 +80,11 @@ export const step1 = defineStep({
       title: prose`Third condition: $s$ is not 1`,
       meaning: prose`Zeta has a pole at 1: it grows without limit near that point, so it has no natural value there. A Lean function must give a value for every input, so Mathlib's zeta has a value at 1 by convention. This condition keeps that point out of the statement.`,
       mark: "pole",
+      background: {
+        route: "zeta",
+        label: "Where the zeta function came from",
+        note: "Background · why zeta grows without limit near 1 and extends across the plane",
+      },
     },
     {
       id: "line",
