@@ -116,7 +116,7 @@ export function GammaPage() {
                 />
               </li>
               <li
-                innerHTML={prose`Writing $e = \frac{f}{g}$ (for positive numbers $f$ and $g$) and scaling out $g$ turned the denominator into $(f + g)(f + 2g)\cdots(f + ng)$. Setting $f = 1$ and letting $g \to 0$ collapses that whole denominator to 1, leaving pure $1 \cdot 2 \cdots n$.`}
+                innerHTML={prose`Writing $e = \frac{f}{g}$ (for positive numbers $f$ and $g$), scaling out $g$, and moving the last factor $f + (n + 1)g$ to the integral side leaves the denominator $(f + g)(f + 2g)\cdots(f + ng)$. Setting $f = 1$ and letting $g \to 0$ collapses that denominator to 1, leaving pure $1 \cdot 2 \cdots n$.`}
               />
               <li
                 innerHTML={prose`Under the substitution $x \mapsto x^{\frac{g}{f + g}}$, the integrand contains $\frac{1 - x^z}{z}$ with $z = \frac{g}{f + g} \to 0$, whose limit is $-\ln x$. That yields $\int_0^1 (-\ln x)^n\,dx$.`}
