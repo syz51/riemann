@@ -4,15 +4,7 @@ import { ComplexPage } from "./ComplexPage";
 import { ContentsPage } from "./ContentsPage";
 import { GammaPage } from "./GammaPage";
 import { PageFoot } from "./PageFoot";
-import {
-  BACKGROUNDS,
-  CATALOG,
-  CONTENTS,
-  href,
-  isBackgroundSection,
-  isProofSection,
-  routeOf,
-} from "./pages";
+import { CATALOG, CONTENTS, href, isBackgroundSection, isProofSection, routeOf } from "./pages";
 import { StepPage } from "./StepPage";
 import { ZetaPage } from "./ZetaPage";
 
@@ -83,7 +75,7 @@ export function App() {
             class={{ active: isBackgroundSection(route()) }}
             aria-current={route() === CATALOG ? "page" : undefined}
           >
-            Background <span class="nav-count">{BACKGROUNDS.length}</span>
+            Background
           </a>
           <button
             type="button"
