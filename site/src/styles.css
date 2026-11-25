@@ -1308,11 +1308,6 @@ li:not(:has(p)):has(.katex .mfrac) {
   margin-bottom: 0;
 }
 
-.multiply button[aria-pressed="true"] {
-  border-color: var(--text);
-  background: var(--page);
-}
-
 .multiply-body {
   display: grid;
   grid-template-columns: minmax(0, 18.5rem) minmax(0, 1fr);
@@ -1466,6 +1461,11 @@ li:not(:has(p)):has(.katex .mfrac) {
   gap: 0.35rem;
 }
 
+.presets button[aria-pressed="true"] {
+  border-color: var(--text);
+  background: var(--page);
+}
+
 .presets .value {
   font-weight: 600;
 }
@@ -1500,11 +1500,6 @@ li:not(:has(p)):has(.katex .mfrac) {
   margin: 0 0 0.35rem;
   font-size: 0.85rem;
   color: var(--muted);
-}
-
-.sumprod button[aria-pressed="true"] {
-  border-color: var(--text);
-  background: var(--page);
 }
 
 .slider {
