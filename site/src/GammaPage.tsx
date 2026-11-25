@@ -158,11 +158,11 @@ export function GammaPage() {
       <section>
         <h2>The rules of today</h2>
         <p
-          innerHTML={prose`The proof of the Riemann hypothesis does not define $\Gamma$, $\zeta$, or the statement of the hypothesis itself: all three come directly from Mathlib, Lean's community mathematics library. For complex numbers with $\operatorname{Re}(s) > 0$, Mathlib defines $\Gamma(s)$ by the exponential integral`}
+          innerHTML={prose`The proof of the Riemann hypothesis does not define $\Gamma$, $\zeta$, or the statement of the hypothesis itself: all three come directly from Mathlib, Lean's community mathematics library. Where the real part of $s$ is above 0 (written $\operatorname{Re}(s) > 0$), the exponential integral converges, and Mathlib defines $\Gamma(s)$ by`}
         />
         <div class="equation" innerHTML={tex`\Gamma(s) = \int_0^\infty e^{-t} t^{s - 1}\,dt`} />
         <p
-          innerHTML={prose`Mathlib calls this "Euler's integral", but it is the exact same shifted function as Legendre's $\Gamma(s)$: substituting $x = e^{-t}$ turns $\int_0^1 (-\ln x)^{s - 1}\,dx$ identically into $\int_0^\infty e^{-t} t^{s - 1}\,dt$. Mathlib then extends $\Gamma(s)$ to the rest of the complex plane and proves these rules:`}
+          innerHTML={prose`Mathlib calls this "Euler's integral", but it is the exact same shifted function as Legendre's $\Gamma(s)$: substituting $x = e^{-t}$ turns $\int_0^1 (-\ln x)^{s - 1}\,dx$ identically into $\int_0^\infty e^{-t} t^{s - 1}\,dt$. To extend $\Gamma(s)$ to the left of 0 — where the integral no longer converges — Mathlib uses the recurrence rule $\Gamma(s + 1) = s \cdot \Gamma(s)$ in reverse, stepping backwards by 1. Together, Mathlib proves these rules:`}
         />
         <ul>
           <li innerHTML={prose`$\Gamma(1) = 1$.`} />
@@ -211,19 +211,61 @@ export function GammaPage() {
           innerHTML={prose`$\Gamma$ has no value at 0, $-1$, $-2$ and so on. Mathlib says so in words: at these points "the function is undefined, and we set it to be 0 by convention". The 0 is a filler that the library needs, because each of its functions must give some answer. It is not a value of the function.`}
         />
         <p
-          innerHTML={prose`Mathlib also proves what happens near 0: when $s$ comes close to 0, the product $s \cdot \Gamma(s)$ comes close to 1. So $\Gamma(s)$ is close to $\frac{1}{s}$ there. One divided by a very small number is very large, so the values grow without limit, and no number can be the value at 0. Try 0.05 and $-0.05$ on the chart: the values are near 20 and near $-20$.`}
+          innerHTML={prose`Near 0, Mathlib proves that $s \cdot \Gamma(s)$ comes close to 1, so $\Gamma(s)$ behaves like $\frac{1}{s}$ there: it shoots up to $+\infty$ on the right and plunges to $-\infty$ on the left (try 0.05 and $-0.05$ on the chart: about 19.47 and $-20.63$). No finite number can fit at 0.`}
         />
         <p
-          innerHTML={prose`For $-1$, $-2$ and the others we read only the statement that they have no value. The chart shows the same behaviour there. Our own remark on the reason: the rule gives $\Gamma(s) = \frac{\Gamma(s + 1)}{s}$, so a problem at 0 moves one step to the left each time.`}
+          innerHTML={prose`At every other point — including negative fractions such as $-\frac{1}{2}$ — $\Gamma$ has a finite value, and that value is never 0.`}
         />
-        <p
-          innerHTML={prose`At every other point $\Gamma$ has a value, and that value is never 0.`}
-        />
+        <details class="aside-details">
+          <summary>
+            <span
+              innerHTML={prose`Why do 0, $-1$, $-2$, $\dots$ fail while negative fractions work?`}
+            />
+          </summary>
+          <div class="aside-body">
+            <p
+              innerHTML={prose`Everything follows from stepping backwards with the rule $\Gamma(s + 1) = s \cdot \Gamma(s)$, rearranged as $\Gamma(s) = \frac{\Gamma(s + 1)}{s}$:`}
+            />
+            <ol>
+              <li>
+                <strong>Why 0 fails:</strong>{" "}
+                <span
+                  innerHTML={prose`putting $s = 0$ into $\Gamma(s + 1) = s \cdot \Gamma(s)$ would require $\Gamma(1) = 0 \cdot \Gamma(0)$, that is, $1 = 0 \cdot \Gamma(0)$ — impossible for any finite number.`}
+                />
+              </li>
+              <li>
+                <strong innerHTML={prose`The domino chain at $-1$, $-2$, $-3$, $\dots$:`} />{" "}
+                <span
+                  innerHTML={prose`stepping one unit left from 0 gives $\Gamma(-1) = \frac{\Gamma(0)}{-1}$, so the blow-up at 0 copies itself to $-1$ (and dividing by $-1$ flips the sign, which is why the curve switches sides on the chart). Stepping left again gives $\Gamma(-2) = \frac{\Gamma(-1)}{-2}$, flipping sign again, and so on for every negative whole number.`}
+                />
+              </li>
+              <li>
+                <p>
+                  <strong>Why negative fractions are fine:</strong>{" "}
+                  <span
+                    innerHTML={prose`stepping backwards to $s = -\frac{1}{2}$ uses $\Gamma\!\left(\frac{1}{2}\right) = \sqrt{\pi}$ cleanly with no division by 0:`}
+                  />
+                </p>
+                <div
+                  class="equation"
+                  innerHTML={tex`\Gamma\!\left(-\frac{1}{2}\right) = \frac{\Gamma\!\left(\dfrac{1}{2}\right)}{-\dfrac{1}{2}} = -2\sqrt{\pi} \approx -3.54`}
+                />
+                <p
+                  innerHTML={prose`Starting from any non-integer left of 0, stepping right by 1 eventually lands safely in the region $\operatorname{Re}(s) > 0$ where the integral converges. Only 0, $-1$, $-2$, $\dots$ collide with 0 along the way.`}
+                />
+              </li>
+            </ol>
+          </div>
+        </details>
         <p class="sources">
           Sources: <a href={MATHLIB_BASIC}>Mathlib, the header of the file on the Gamma function</a>
-          . <a href={MATHLIB_ZERO}>Mathlib, theorem tendsto_self_mul_Gamma_nhds_zero</a>, for the
-          behaviour near 0. <a href={MATHLIB_NE_ZERO}>Mathlib, theorem Gamma_ne_zero</a>.{" "}
+          ; <a href={MATHLIB_ZERO}>Mathlib, theorem tendsto_self_mul_Gamma_nhds_zero</a>, for the
+          behaviour near 0; <a href={MATHLIB_NE_ZERO}>Mathlib, theorem Gamma_ne_zero</a>;{" "}
           <a href={MATHLIB_DIFF}>Mathlib, theorem differentiableAt_Gamma</a>, for the other points.
+          For <span innerHTML={prose`$-1$, $-2$, $\dots$`} /> we read only the Mathlib statement
+          that they have no value; the domino-step explanation and the{" "}
+          <span innerHTML={prose`$\Gamma\!\left(-\frac{1}{2}\right)$`} /> check are our own algebra
+          from the recurrence rule.
         </p>
       </section>
 
