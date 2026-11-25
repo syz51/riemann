@@ -76,7 +76,7 @@ export function PageFoot(props: { route: PageRoute }) {
             </p>
           )}
         </For>
-        <p class="foot-end">
+        <p>
           <span>All primers</span>
           <a href={href(CATALOG)}>Background catalog</a>
         </p>
