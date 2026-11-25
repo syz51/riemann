@@ -1,5 +1,4 @@
 import { For } from "solid-js";
-import { ContextTrail } from "./ContextTrail";
 import { MultiplyPlane } from "./MultiplyPlane";
 import { Stepper, type Part } from "./Stepper";
 
@@ -82,7 +81,7 @@ const TIMELINE: { year: string; text: Markup }[] = [
 export function ComplexPage() {
   return (
     <main class="article">
-      <ContextTrail route="complex-numbers" />
+      <p class="kicker">Background · From Step 1</p>
       <h1>Why complex numbers exist</h1>
       <p class="summary">
         Nobody wanted them. A correct formula for ordinary answers passed through the square roots

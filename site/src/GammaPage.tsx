@@ -1,4 +1,3 @@
-import { ContextTrail } from "./ContextTrail";
 import { GammaChart } from "./GammaChart";
 import { href } from "./pages";
 
@@ -25,7 +24,7 @@ const MATHLIB_UNIQUE = `${MATHLIB}/Gamma/BohrMollerup.lean#L305-L309`;
 export function GammaPage() {
   return (
     <main class="article">
-      <ContextTrail route="gamma" />
+      <p class="kicker">Background · From the zeta function</p>
       <h1>The Gamma function</h1>
       <p
         class="summary"

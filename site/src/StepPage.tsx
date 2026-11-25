@@ -37,7 +37,7 @@ export function StepPage() {
 
   return (
     <main>
-      <p class="count">
+      <p class="kicker">
         Step {step.number} of {step.of}
       </p>
       <h1>{step.title}</h1>
