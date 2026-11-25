@@ -1483,6 +1483,7 @@ li:not(:has(p)):has(.katex .mfrac) {
 }
 
 .multiply-action .note {
+  flex: 1 1 11rem;
   margin: 0;
   line-height: 1.3;
 }
