@@ -238,30 +238,28 @@ export function MultiplyPlane() {
             <br />
             Angles add: {Math.round(angle(z()))}° + {Math.round(angle(w()))}° ≈{" "}
             {Math.round(angleSum())}°
-            {angleSum() >= 360
-              ? `, which is the same direction as ${Math.round(angle(product()))}°.`
-              : "."}
+            {angleSum() >= 360 ? ` (same as ${Math.round(angle(product()))}°).` : "."}
             <br />
             <span class="note">The values shown are rounded.</span>
           </p>
 
-          <button
-            type="button"
-            class="again"
-            aria-disabled={productFits() ? "false" : "true"}
-            onClick={() => {
-              if (productFits()) setZ(product());
-            }}
-            innerHTML={prose`Move $z$ to $z \times w$`}
-          />
-          <Show when={!productFits()}>
-            <p class="note">
-              <span
-                innerHTML={prose`Not possible now: in this picture, the length of $z$ stays between `}
-              />
-              {STEP} and {Z_LIMIT}.
-            </p>
-          </Show>
+          <div class="multiply-action">
+            <button
+              type="button"
+              class="again"
+              aria-disabled={productFits() ? "false" : "true"}
+              onClick={() => {
+                if (productFits()) setZ(product());
+              }}
+              innerHTML={prose`Move $z$ to $z \times w$`}
+            />
+            <Show when={!productFits()}>
+              <p class="note">
+                <span innerHTML={prose`Not possible: length of $z$ stays between `} />
+                {STEP} and {Z_LIMIT}.
+              </p>
+            </Show>
+          </div>
           <p
             class="hint"
             innerHTML={prose`Set $w$ to $i$ and press this button two times. Two quarter turns make a half turn, so $z$ lands on $-z$. This is the rule $i \times i = -1$ as a picture.`}
