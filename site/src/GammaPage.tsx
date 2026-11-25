@@ -53,7 +53,7 @@ export function GammaPage() {
         />
         <div class="equation" innerHTML={tex`\int_0^1 (-\ln x)^n \, dx`} />
         <p
-          innerHTML={prose`The sign $\int$ is an integral: the area under a curve, here between $x = 0$ and $x = 1$. The sign $\ln$ is the natural logarithm. This page does not use either of them again. The important point is that $n$ is now a power, and a power does not have to be a whole number. Euler checked the formula for $n = 3$ and got 6. He wrote that the formula is useful for the terms between the whole numbers.`}
+          innerHTML={prose`The sign $\int$ is an integral: the area under a curve, here between $x = 0$ and $x = 1$. The sign $\ln$ is the natural logarithm. You do not need to compute integrals to read the rest of this page. The important point is that $n$ is now a power, and a power does not have to be a whole number. Euler checked the formula for $n = 3$ and got 6. He wrote that the formula is useful for the terms between the whole numbers.`}
         />
         <p class="sources">
           Source: <a href={EULER_E19}>Euler, On transcendental progressions</a>, sections 14 and 15.
