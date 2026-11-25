@@ -53,7 +53,7 @@ export function GammaPage() {
         />
         <div class="equation" innerHTML={tex`\int_0^1 (-\ln x)^n \, dx`} />
         <p
-          innerHTML={prose`The sign $\int$ is an integral: the area under a curve, here between $x = 0$ and $x = 1$. The sign $\ln$ is the natural logarithm. This page does not use either of them again. The important point is that $n$ is now a power, and a power does not have to be a whole number. Euler checked the formula for $n = 3$ and got 6. He wrote that the formula is useful for the terms between the whole numbers.`}
+          innerHTML={prose`The sign $\int$ is an integral: the area under a curve, here between $x = 0$ and $x = 1$. The sign $\ln$ is the natural logarithm. You do not need to compute integrals to read the rest of this page. The important point is that $n$ is now a power, and a power does not have to be a whole number. Euler checked the formula for $n = 3$ and got 6. He wrote that the formula is useful for the terms between the whole numbers.`}
         />
         <p class="sources">
           Source: <a href={EULER_E19}>Euler, On transcendental progressions</a>, sections 14 and 15.
@@ -102,10 +102,10 @@ export function GammaPage() {
           Sources: <a href={MATHLIB_BASIC}>Mathlib, the file on the Gamma function</a>, the header
           and the theorems Gamma_one, Gamma_add_one and Gamma_nat_eq_factorial.{" "}
           <a href={MATHLIB_HALF}>Mathlib, theorem Gamma_one_half_eq</a>. We read the statements, not
-          the proofs. The check takes Mathlib's <span innerHTML={prose`$\Gamma$`} /> to be the
-          function of Euler and Legendre. Mathlib calls its integral Euler's, but it uses the
-          exponential form, and we found no statement in Mathlib at this commit equating the two
-          forms.
+          the proofs.{" "}
+          <span
+            innerHTML={prose`Mathlib uses the exponential integral $\int_0^\infty e^{-t} t^{s - 1}\,dt$; our own Lean proof (lean/RiemannChecks/EulerGamma.lean) checks against Mathlib at this commit that substituting $x = e^{-t}$ turns Euler's logarithmic integral into Mathlib's $\Gamma(s)$ for $\operatorname{Re}(s) > 0$.`}
+          />
         </p>
       </section>
 

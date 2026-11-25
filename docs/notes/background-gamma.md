@@ -1,15 +1,16 @@
 # Background: the Gamma function
 
-Record for the page `site/src/GammaPage.tsx`. The owner asked on 23 November 2026 what Γ is, and then asked for more research and a page of its own. Each statement below names the source that was read. A remark of our own is marked "own". Statements of Mathlib are read at commit 0df444a3, the commit that the library of the proof builds against [8](../references.md#reference-8); the proofs are not read and nothing is compiled.
+Record for the page `site/src/GammaPage.tsx`. The owner asked on 23 November 2026 what $\Gamma$ is, and then asked for more research and a page of its own. Each statement below names the source that was read. A remark of our own is marked "own". Statements of Mathlib are read at commit `0df444a3`, the commit that the library of the proof builds against [8](../references.md#reference-8); Mathlib's internal proofs are not read, while our own bridge theorems in [lean/RiemannChecks/EulerGamma.lean](../../lean/RiemannChecks/EulerGamma.lean) are compiled against that Mathlib commit.
 
 ## Where it came from
 
 - Euler, paper E19, in Langton's translation [21](../references.md#reference-21). The year of writing, 1729, is from the catalogue record [20](../references.md#reference-20), not from the paper.
   - Section 1: "Recently, prompted by those results concerning series which the celebrated Goldbach has communicated to the Society, I was looking for a general expression which would give all the terms of the progression 1 + 1 · 2 + 1 · 2 · 3 + 1 · 2 · 3 · 4 + etc." He found an endless product.
-  - Section 2: with a product of Wallis for the area of the circle, "we can conclude that the term of index 1/2 is equal to the square root of the circle whose diameter = 1".
-  - Section 14: "the general term of the sequence 1, 2, 6, 24, 120, 720 etc. is ∫ dx (−lx)ⁿ". Check by Euler for n = 3: "what will remain is 6, which is the third term". The integral is taken from x = 0 to x = 1 (he puts x = 0, then x = 1).
+  - Section 2: with a product of Wallis for the area of the circle, "we can conclude that the term of index $\frac{1}{2}$ is equal to the square root of the circle whose diameter = 1".
+  - Sections 3 to 13 (read in full on 26 November 2026): seeing the circle area in §2 convinced Euler that no algebraic or exponential formula can express $n!$, so he sought definite integrals $\int_0^1 p(x, n)\,dx$ that are elementary for whole numbers $n$ and give curve quadratures for fractional $n$ (§§3–7). Expanding $(1 - x)^n$ by the binomial theorem in $\int_0^1 x^e(1 - x)^n\,dx$ gave $\frac{1 \cdot 2 \cdots n}{(e + 1)(e + 2)\cdots(e + n + 1)}$ (§§8–9). Setting $e = \frac{f}{g}$ and dividing by $g^n$ produced $\frac{f + (n + 1)g}{g^{n + 1}}\int_0^1 x^{\frac{f}{g}}(1 - x)^n\,dx = \frac{1 \cdot 2 \cdots n}{(f + g)(f + 2g)\cdots(f + ng)}$ (§10), illustrated on Wallis-type products and binomial coefficients (§11). To recover pure $1 \cdot 2 \cdots n$ by setting $f = 1, g = 0$ (§12), Euler substituted $x \mapsto x^{\frac{g}{f + g}}$ (preserving $0 \mapsto 0$ and $1 \mapsto 1$) and evaluated the indeterminate limit $\frac{1 - x^z}{z} \to -\ln x$ as $z \to 0$ by differentiating with respect to $z$ (§13), arriving directly at $\int_0^1 (-\ln x)^n\,dx$.
+  - Section 14: "the general term of the sequence 1, 2, 6, 24, 120, 720 etc. is" $\int_0^1 (-\ln x)^n\,dx$ (Langton's translation writes $\int dx\,(-lx)^n$, with the limits $x = 0$ to $x = 1$ stated in prose). Check by Euler for $n = 3$: he writes $-x(\ln x)^3 + 3x(\ln x)^2 - 6x\ln x + 6x$, notes "everything vanishes when $x = 0$", puts $x = 1$, and concludes "what will remain is 6, which is the third term".
   - Section 15: the method "is very useful for getting the terms of fractional index".
-  - Section 17: "let the circumference of this circle be p; the area will be = ¼p, so that ∫ dx √(−lx) gives ½√p". For diameter 1 the circumference is π, so the term of index 1/2 is √π/2.
+  - Section 17: "let the circumference of this circle be $p$" — the area is $\frac{1}{4}p$, so $\int_0^1 \sqrt{-\ln x}\,dx = \frac{1}{2}\sqrt{p}$ (Langton's translation writes $\int dx\sqrt{-lx}$ giving $\frac{1}{2}\sqrt{p}$). For diameter $1$ the circumference is $\pi$, so the term of index $\frac{1}{2}$ is $\frac{\sqrt{\pi}}{2}$.
   - Own arithmetic: √π/2 ≈ 0.8862. The area of a circle of diameter 1 is π/4, and its square root is √π/2, so sections 2 and 17 agree.
   - The catalogue record [20] gives the value as √(π/2). The paper does not say that; the record is wrong on this point.
   - Sections 18 to 29 of Langton's translation [21](../references.md#reference-21): ratios of progressions where the logarithmic integral cancels (§18); parameters depending on n (§19); fractional-index terms of `1, 2, 6, 24, 120` expressed through quadratures of algebraic curves (§§20 to 23); iterated integrals (§§24 to 25); summary (§26); and fractional differentials of powers interpolated using `∫ dx (−lx)^e`, which Euler calls "more curious than useful" (§§27 to 29). Neither the letter Γ, nor the reflection formula, nor the `e^(−x)` integral form appears in these sections.
@@ -27,7 +28,13 @@ Record for the page `site/src/GammaPage.tsx`. The owner asked on 23 November 202
 - `Gamma_one : Gamma 1 = 1`. `Gamma_add_one (s : ℂ) (h2 : s ≠ 0) : Gamma (s + 1) = s * Gamma s`. `Gamma_nat_eq_factorial (n : ℕ) : Gamma (n + 1) = n !`.
 - `Real.Gamma_one_half_eq : Real.Gamma (1 / 2) = √π`, with the comment "The special-value formula `Γ(1/2) = √π`, which is equivalent to the Gaussian integral".
 - Own check: by `Gamma_add_one`, Γ(3/2) = (1/2) Γ(1/2) = √π/2. This is Euler's term of index 1/2. The two sources agree.
-- Checked in Mathlib at commit 0df444a3 [8](../references.md#reference-8): searched all six files in `Analysis/SpecialFunctions/Gamma/` (`Basic.lean`, `Beta.lean`, `BohrMollerup.lean`, `Deligne.lean`, `Deriv.lean`, `Digamma.lean`) and `MeasureTheory/Integral/Gamma.lean`. Mathlib defines `Gamma` by `∫ x in Ioi 0, exp (-x) * x ^ (s - 1)` and proves power-exponential variants (`integral_rpow_mul_exp_neg_rpow`), with no statement equating `Gamma` to Euler's logarithmic integral `∫_0^1 (−log x)^(s − 1) dx`. Own calculus remark: the substitution `x = e^(−t)` turns one integral into the other, not checked in Lean. The page says "an integral of Euler's kind" only.
+- Checked in Mathlib at commit `0df444a3` [8](../references.md#reference-8): searched all six files in `Analysis/SpecialFunctions/Gamma/` (`Basic.lean`, `Beta.lean`, `BohrMollerup.lean`, `Deligne.lean`, `Deriv.lean`, `Digamma.lean`) and `MeasureTheory/Integral/Gamma.lean`. Mathlib defines `Gamma` by $\int_0^\infty e^{-x} x^{s - 1}\,dx$ and does not itself state the equivalence with Euler's logarithmic integral $\int_0^1 (-\ln x)^{s - 1}\,dx$.
+- Machine-checked in Lean 4 on 26 November 2026: [lean/RiemannChecks/EulerGamma.lean](../../lean/RiemannChecks/EulerGamma.lean) compiles against Lean `v4.33.1` and pinned Mathlib commit `0df444a360eaa60ab8c11dca51a86af692955474` (`lake build RiemannChecks`, 3,192 jobs, exit 0 on `roy-macbook-pro`), proving:
+  - `RiemannChecks.tendsto_mul_log_pow_zero`: $\lim_{x \to 0^+} x(\ln x)^k = 0$ for all $k \in \mathbb{N}$.
+  - `RiemannChecks.euler_n_three_deriv`: the derivative of Euler's §14 antiderivative $-x(\ln x)^3 + 3x(\ln x)^2 - 6x\ln x + 6x$ is $(-\ln x)^3$ for $x \neq 0$.
+  - `RiemannChecks.euler_log_integral_eq_Gamma`: via the change of variables $x = e^{-t}$, $\int_0^1 (-\ln x)^{s - 1}\,dx = \Gamma(s)$ for all $s \in \mathbb{C}$ with $\mathrm{Re}(s) > 0$.
+  - `RiemannChecks.euler_log_integral_nat` and `RiemannChecks.euler_log_integral_three`: $\int_0^1 (-\ln x)^n\,dx = n!$ for all $n \in \mathbb{N}$, and in particular $\int_0^1 (-\ln x)^3\,dx = 6$.
+  - `#print axioms` reports only `propext`, `Classical.choice`, and `Quot.sound` for every theorem above.
 
 ## Where Γ has no value
 
@@ -55,9 +62,8 @@ Record for the page `site/src/GammaPage.tsx`. The owner asked on 23 November 202
 
 ## Not checked
 
-- The proofs in Mathlib; nothing is compiled.
-- Euler's Latin text of E19, and sections 3 to 11 of Langton's translation (skimmed only).
+- The internal proofs in Mathlib (our own bridge theorems in `lean/RiemannChecks/EulerGamma.lean` are compiled and kernel-checked against Mathlib `0df444a3`).
+- Euler's Latin text of E19 (we read Langton's full English translation, sections 1 to 29).
 - The rest of Legendre's memoir in the Institut volume and the rest of his *Exercices de calcul intégral* (beyond the pages read above).
 - The work of Bohr and Mollerup.
-- A machine-checked Lean proof that Mathlib's `GammaIntegral` equals Euler's logarithmic integral: searched Mathlib at commit `0df444a3` and found no such theorem.
 - Whether Euler stated the reflection formula in an earlier work before E421.
