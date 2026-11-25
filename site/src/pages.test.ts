@@ -1,6 +1,7 @@
 import { expect, test } from "vite-plus/test";
 import {
   ALL_PAGE_ROUTES,
+  backgroundKicker,
   BACKGROUNDS,
   CATALOG,
   childrenOf,
@@ -9,10 +10,8 @@ import {
   isBackgroundSection,
   isProofSection,
   parentLinkOf,
-  rootStepOf,
   routeOf,
   STEPS,
-  trailOf,
 } from "./pages";
 
 test("the address of each page leads back to its route", () => {
@@ -42,11 +41,11 @@ test("proof and background sections partition all routes cleanly", () => {
   }
 });
 
-test("every background page traces back to a proof step", () => {
+test("every background page has a parent link and provenance kicker", () => {
   for (const page of BACKGROUNDS) {
     expect(parentLinkOf(page.route)).toBeDefined();
-    expect(rootStepOf(page.route)?.route).toBe("step-1");
+    expect(backgroundKicker(page.route)).toBe(`Background · ${page.originLabel}`);
   }
-  expect(trailOf("gamma").map((crumb) => crumb.route)).toEqual(["", "step-1", "zeta"]);
+  expect(parentLinkOf("gamma")?.route).toBe("zeta");
   expect(childrenOf("zeta").map((child) => child.route)).toEqual(["gamma"]);
 });
