@@ -94,9 +94,9 @@ Inspection: abstract only. Read: section 6, "The zeta function", from its start 
 
 [12] Pelegrí Viader, Lluís Bibiloni and Jaume Paradís. **On a Series of Goldbach and Euler**. Economics Working Paper 776, Universitat Pompeu Fabra, June 2004. [Original](https://econ-papers.upf.edu/papers/776.pdf). Accessed 23 November 2026, Asia/Tokyo.
 
-Inspection depth: abstract.
+Inspection depth: full.
 
-Inspection: abstract only. Read: the abstract, the first page of section 1, and section 7, "Epilog", on Theorems 7, 8 and 19 of Euler's paper *Variae observationes circa series infinitas*. Sections 2 to 6, on the theorem of Goldbach and Euler, are not read. A secondary source on Euler's paper; the paper itself (Latin, printed 1744) is not read.
+Inspection: all 1,007 lines read/verified (abstract, first page of section 1, and section 7 read 23 November 2026; full file scanned 26 November 2026 confirming zero mentions of E19, factorial interpolation, Wallis, 1729, or Daniel Bernoulli — the single `gamma` at line 338 is the Euler–Mascheroni constant $\gamma$, and all Bernoulli mentions refer to Jakob and Johann Bernoulli). Exclusively about the Goldbach–Euler series $\sum_{m, n \ge 2} \frac{1}{m^n - 1} = 1$ and Euler's 1737 paper E72 (*Variae observationes circa series infinitas*, printed 1744; Theorems 7, 8 and 19). A secondary source on Euler's paper; E72 itself (Latin) is not read.
 
 ## Reference 13
 
@@ -209,3 +209,67 @@ Inspection: abstract only. Read visually on the BSB scan images: title page (lea
 Inspection depth: abstract.
 
 Inspection: abstract only. Read visually on the scan: page 91 (title page, PDF page 1) and Scholion section 43 on pages 120 to 121 (PDF pages 30 to 31), which states `[λ] · [−λ] = λ π / sin(λ π)` and derives it from Euler's infinite products. Pages 122, 124 and 126 skimmed; the rest of the paper is not read. A primary source.
+
+## Reference 27
+
+[27] Leonhard Euler. **Lettre I: Euler à Goldbach (13 October 1729)**. Printed in P. H. Fuss, *Correspondance mathématique et physique de quelques célèbres géomètres du XVIIIème siècle*, Tome I, Saint Petersburg, 1843, pages 3 to 7. Scan from the Euler Archive (`OO0715.pdf`). [Original](http://eulerarchive.maa.org/correspondence/letters/OO0715.pdf). Accessed 26 November 2026, Asia/Tokyo.
+
+Inspection depth: method.
+
+Inspection: method level. Read pages 3 to 5 directly on the Euler Archive scan: Euler's infinite product for $m!$ (p. 3), his $n$-factor truncation $\frac{1 \cdot 2 \cdots n}{(1 + m)\cdots(n + m)}(n + 1)^m$ (p. 4), his stated foundation *"haec series $1, 2, 6, 24, \text{etc.}$ in infinitum continuata tandem evadit geometrica"* (p. 4), his remark that Daniel Bernoulli independently found nearly the same finite approximation (p. 4), and his $m = \frac{1}{2}$ evaluation giving $\frac{\sqrt{\pi}}{2} \approx 0.8862269$ (p. 5). The rest of the letter (pages 6 to 7) is not read. A primary source.
+
+## Reference 28
+
+[28] Daniel Bernoulli. **Lettre XLVII: D. Bernoulli à Goldbach (6 October 1729)**. Printed in P. H. Fuss, *Correspondance mathématique et physique de quelques célèbres géomètres du XVIIIème siècle*, Tome II, Saint Petersburg, 1843, pages 324 to 325. Public-domain scan of Lettre XLVII by Bruce Arnold hosted on Peter Luschny's factorial history page. [Original](http://www.luschny.de/math/factorial/DanielBernoulliLetterToGoldbach-1729-10-06.jpg). Accessed 26 November 2026, Asia/Tokyo.
+
+Inspection depth: abstract.
+
+Inspection: abstract only. Read the header (`St.-Pétersbourg ce 6 octobre 1729`) and postscript (*P.S.*) directly on the cropped scan: Bernoulli's factorial interpolation formula $\left(A + \frac{x}{2}\right)^{x - 1}\left(\frac{2}{1 + x}\cdot\frac{3}{2 + x}\cdots\frac{A}{A - 1 + x}\right)$ and his two numerical examples ($x = \frac{3}{2}, A = 8$ giving $1.3005$, and $x = 3, A = 16$ giving $6\frac{1}{204}$). The full bound-volume viewer of Fuss Tome II was not downloaded, so the printed page numbers 324 to 325 rely on Luschny's citation. A primary source.
+
+## Reference 29
+
+[29] Detlef Gronau. **Why is the gamma function so as it is?**. *Teaching Mathematics and Computer Science*, volume 1, issue 1, 2003, pages 43 to 53. [Original](https://ojs.lib.unideb.hu/tmcs/article/download/14684/12586). Accessed 26 November 2026, Asia/Tokyo.
+
+Inspection depth: full.
+
+Inspection: all 11 pages read directly from the journal PDF. Covers Daniel Bernoulli's October 6, 1729 letter (pp. 45–46, eqs. (5)–(6), including his numerical slip at $x = \frac{3}{2}, A = 8$ and faster numerical convergence than Euler's product), Euler's October 13, 1729 letter (pp. 46–47, eqs. (7)–(8)), Wallis's algebraic integral (p. 49), and Euler's own parameter shift between E19 (1729/1730) and *Institutionum calculi integralis* Vol. I (1768, caput IX, p. 240) from which Legendre's $\Gamma(a) = \int_0^1 \left(\ln \frac{1}{x}\right)^{a - 1}\,dx$ followed (pp. 51–52). A scholarly secondary source.
+
+## Reference 30
+
+[30] Philip J. Davis. **Leonhard Euler's Integral: A Historical Profile of the Gamma Function**. *The American Mathematical Monthly*, volume 66, number 10, December 1959, pages 849 to 869. Copy hosted at Ohio State University. [Original](https://people.math.osu.edu/gautam.42/S20/DavisGammaFunction.pdf). Accessed 26 November 2026, Asia/Tokyo.
+
+Inspection depth: abstract.
+
+Inspection: abstract only. Read pages 852 to 853 (PDF pages 3 to 4) on Euler's 1729 infinite product, finite truncation (eq. (3)), and the observation that Euler omitted the derivation scaffolding. The rest of the article is not read. A scholarly secondary source.
+
+## Reference 31
+
+[31] Ed Sandifer. **How Euler Did It: Gamma the Function**. MAA Online column, September 2007. [Original](http://eulerarchive.maa.org/hedi/HEDI-2007-09.pdf). Accessed 26 November 2026, Asia/Tokyo.
+
+Inspection depth: abstract.
+
+Inspection: abstract only. Read pages 1 to 2 on the brevity of Euler's October 1729 letter to Goldbach and on why grouping the factors as $\frac{k^{1 - n}(k + 1)^n}{k + n}$ makes the infinite product converge as written. The rest of the column is not read. A scholarly secondary source.
+
+## Reference 32
+
+[32] Jacqueline Stedall. **John Wallis, Arithmetica infinitorum (1656)**. Elsevier, 2005, Chapter 2 in I. Grattan-Guinness (ed.), *Landmark Writings in Western Mathematics 1640–1940*, pages 23 to 32. [Original](http://reparti.free.fr/grattan-guinness2005.pdf). Accessed 26 November 2026, Asia/Tokyo.
+
+Inspection depth: method.
+
+Inspection: method level. Read pages 25 to 31 directly: Wallis's discrete power-sum rules (Propositions 1, 19, 20, 39, 40), his interpolation table for $\left[\int_0^1 \left(1 - x^{\frac{1}{p}}\right)^q\,dx\right]^{-1}$, why $p = q = \frac{1}{2}$ yields $\square = \frac{4}{\pi}$, his half-integer row and decreasing consecutive-ratio squeeze yielding $\square = \frac{3 \times 3 \times 5 \times 5 \times 7 \times 7 \cdots}{2 \times 4 \times 4 \times 6 \times 6 \times 8 \cdots}$ in Proposition 191 (p. 27, eq. (7)), and Newton's 1664–1665 discovery of the general binomial theorem from reading Wallis's table (pp. 30–31). Wallis's 1656 Latin text itself was not opened directly. A scholarly secondary source.
+
+## Reference 33
+
+[33] Ed Sandifer. **How Euler Did It: Wallis's formula**. MAA Online column, November 2004. [Original](http://eulerarchive.maa.org/hedi/HEDI-2004-11.pdf). Accessed 26 November 2026, Asia/Tokyo.
+
+Inspection depth: full.
+
+Inspection: all three pages read directly. Traces Euler's integration-by-parts derivation of Wallis's product in *Institutiones calculi integralis* Vol. 1, Problem 43, §356 (1768; Sandifer's reference list prints `[E242]`, whereas Vol. 1 is Eneström E342) via $\int_0^1 \frac{x^{m - 1}\,dx}{\sqrt{1 - x^2}} = \frac{m + 1}{m} \int_0^1 \frac{x^{m + 1}\,dx}{\sqrt{1 - x^2}}$ and an informal infinite-$i$ ratio step, noting that rigorous limit/squeeze justification belonged to 19th-century analysis. A scholarly secondary source.
+
+## Reference 34
+
+[34] Johan Wästlund. **An elementary proof of Wallis' product formula for pi**. Linköping Studies in Mathematics No. 2, February 2005. [Original](https://liu.diva-portal.org/smash/get/diva2:375184/FULLTEXT01). Accessed 26 November 2026, Asia/Tokyo.
+
+Inspection depth: abstract.
+
+Inspection: abstract only. Read page 1 confirming that most modern textbook proofs of Wallis's product evaluate a definite integral such as $\int_0^{\frac{\pi}{2}} (\sin x)^n\,dx$, without naming a first author. The rest of the paper is not read. A scholarly secondary source.

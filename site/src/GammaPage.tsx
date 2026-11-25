@@ -5,11 +5,18 @@ import { href } from "./pages";
 // Source of the content: docs/notes/background-gamma.md.
 const EULER_E19 = "http://eulerarchive.maa.org/docs/translations/E019en.pdf";
 const EULER_E19_RECORD = "https://scholarlycommons.pacific.edu/euler-works/19/";
+const EULER_LETTER_1729 = "http://eulerarchive.maa.org/correspondence/letters/OO0715.pdf";
+const BERNOULLI_LETTER_1729 =
+  "http://www.luschny.de/math/factorial/DanielBernoulliLetterToGoldbach-1729-10-06.jpg";
+const GRONAU_2003 = "https://ojs.lib.unideb.hu/tmcs/article/download/14684/12586";
+const STEDALL_WALLIS = "http://reparti.free.fr/grattan-guinness2005.pdf";
 const EULER_E421 = "http://eulerarchive.maa.org/docs/originals/E421.pdf";
 const LEGENDRE_1810 = "https://www.digitale-sammlungen.de/en/view/bsb10500481?page=599";
 const LEGENDRE = "https://archive.org/details/10053610bsb";
 const MATHLIB =
   "https://github.com/leanprover-community/mathlib4/blob/0df444a360eaa60ab8c11dca51a86af692955474/Mathlib/Analysis/SpecialFunctions";
+const MATHLIB_RH =
+  "https://github.com/leanprover-community/mathlib4/blob/0df444a360eaa60ab8c11dca51a86af692955474/Mathlib/NumberTheory/LSeries/RiemannZeta.lean";
 const MATHLIB_BASIC = `${MATHLIB}/Gamma/Basic.lean#L11-L21`;
 const MATHLIB_HALF = `${MATHLIB}/Gaussian/GaussianIntegral.lean#L306-L307`;
 const MATHLIB_ZERO = `${MATHLIB}/Gamma/Deriv.lean#L94-L95`;
@@ -39,10 +46,48 @@ export function GammaPage() {
         <p
           innerHTML={prose`Then he calculated the term for $n = \frac{1}{2}$. He found that it "is equal to the square root of the circle whose diameter = 1". The circle here means its area, which is $\frac{\pi}{4}$. So the term is $\frac{\sqrt{\pi}}{2}$, about 0.8862. The number $\pi$ belongs to circles, and the list is about products of whole numbers. Nothing in the question suggested a circle.`}
         />
+        <details class="aside-details">
+          <summary>
+            <span
+              innerHTML={prose`How did Euler find the product, and where did $\pi$ come from?`}
+            />
+          </summary>
+          <div class="aside-body">
+            <p
+              innerHTML={prose`In both his October 13, 1729 letter to Goldbach and E19 §1, Euler states the guiding idea without printing the scratchwork: continued far out, the factorial list behaves like a geometric progression. Write $f(x)$ for the term of index $x$, and $N! = 1 \cdot 2 \cdots N$ for the factorial of a whole number $N$. Here is how that idea leads to his formula:`}
+            />
+            <ol>
+              <li
+                innerHTML={prose`Far out at a huge whole number $N$, consecutive factorial ratios $N + 1$, $N + 2$, $N + 3$ are nearly equal. A geometric progression with fixed ratio $N + 1$ multiplies by $(N + 1)^n$ over a fractional step $n$, so $f(N + n) \approx N!\,(N + 1)^n$.`}
+              />
+              <li
+                innerHTML={prose`On the other hand, applying the exact factorial rule $N$ times downward from $N + n$ to $n$ multiplies $f(n)$ by $(n + 1)(n + 2)\cdots(n + N)$, giving $f(N + n)$.`}
+              />
+              <li
+                innerHTML={prose`Setting both expressions equal gives Euler's finite approximation from his Goldbach letter, and writing $(N + 1)^n = \prod_{k = 1}^{N} \left(\frac{k + 1}{k}\right)^n$ folds it into his endless product:`}
+              />
+            </ol>
+            <div
+              class="equation"
+              innerHTML={tex`\begin{aligned} n! &= \lim_{N \to \infty} \frac{1 \cdot 2 \cdots N}{(1 + n)\cdots(N + n)}(N + 1)^n \\ &= \prod_{k = 1}^{\infty} \frac{k^{1 - n}(k + 1)^n}{k + n} \end{aligned}`}
+            />
+            <p
+              innerHTML={prose`Daniel Bernoulli independently sent Goldbach a closely related product one week earlier, on October 6, 1729.`}
+            />
+            <p
+              innerHTML={prose`Plugging $n = \frac{1}{2}$ into Euler's product yields the square root of $\frac{2 \cdot 4}{3 \cdot 3} \cdot \frac{4 \cdot 6}{5 \cdot 5} \cdot \frac{6 \cdot 8}{7 \cdot 7} \cdots$. Seventy-three years earlier, in 1656, John Wallis had shown — by interpolating a table of areas that forms Pascal's triangle — that this exact endless product equals $\frac{\pi}{4}$, the area of a circle of diameter 1.`}
+            />
+          </div>
+        </details>
         <p class="sources">
           Sources: <a href={EULER_E19}>Euler, On transcendental progressions</a>, translated by
           Langton, sections 1, 2 and 17. <a href={EULER_E19_RECORD}>Euler Archive, record of E19</a>
-          , for the year 1729. The number 0.8862 is our own arithmetic.
+          , for the year 1729. <a href={EULER_LETTER_1729}>Euler to Goldbach (13 Oct 1729)</a>,
+          pages 3 to 5;{" "}
+          <a href={BERNOULLI_LETTER_1729}>Daniel Bernoulli to Goldbach (6 Oct 1729)</a> and{" "}
+          <a href={GRONAU_2003}>Gronau (2003)</a>, pages 45 to 47. For Wallis's 1656 table
+          interpolation: <a href={STEDALL_WALLIS}>Stedall (2005)</a>, pages 25 to 31. The three-step
+          algebraic reconstruction and 0.8862 are our own.
         </p>
       </section>
 
@@ -67,23 +112,27 @@ export function GammaPage() {
           innerHTML={prose`Euler did not use the letter $\Gamma$. Legendre did. In a memoir read to the Institut de France in November 1809 and printed in August 1810, he wrote of the integral $\int_0^1 \bigl(\ln\frac{1}{x}\bigr)^{a - 1}\,dx$: "nous la désignerons par $\Gamma(a)$" — we will denote it by $\Gamma(a)$. In his book of 1811 he gave the name "Eulerian integrals" to two integrals that Euler had studied, and repeated the notation: "nous la représenterons plus généralement par $\Gamma(a)$".`}
         />
         <p
-          innerHTML={prose`Legendre's integral is Euler's with the power $a - 1$ in place of $n$. So $\Gamma(a)$ is the term of index $a - 1$ in Euler's list. That is the reason for a shift that surprises every reader: $\Gamma(5)$ is not 120. It is 24, the product of the whole numbers below 5.`}
+          innerHTML={prose`That shifted form matches Euler's 1729 integral with the power $a - 1$ in place of $n$, so $\Gamma(a)$ is the term of index $a - 1$ in Euler's list. (Euler himself had already introduced that parameter shift in his 1768 calculus textbook; Legendre gave it the symbol $\Gamma$ and made the convention standard.) That is the reason for a shift that surprises every reader: $\Gamma(5)$ is not 120. It is 24, the product of the whole numbers below 5.`}
         />
         <div class="equation" innerHTML={tex`\Gamma(n + 1) = 1 \cdot 2 \cdot 3 \cdots n`} />
         <p class="sources">
           Sources:{" "}
           <a href={LEGENDRE_1810}>Legendre, Recherches sur diverses sortes d'intégrales définies</a>
-          , Mémoires de l'Institut (Année 1809, printed August 1810), page 477, section 53; and{" "}
-          <a href={LEGENDRE}>Legendre, Exercices de calcul intégral</a>, Paris, 1811, page 221. Both
-          quotations were read on the page scans. The comparison of the two integrals is our own
-          reading of Euler and Legendre.
+          , Mémoires de l'Institut (Année 1809, printed August 1810), page 477, section 53;{" "}
+          <a href={LEGENDRE}>Legendre, Exercices de calcul intégral</a>, Paris, 1811, page 221; and{" "}
+          <a href={GRONAU_2003}>Gronau (2003)</a>, pages 51 to 52, for Euler's 1768 shift. Both
+          Legendre quotations were read on the page scans.
         </p>
       </section>
 
       <section>
         <h2>The rules of today</h2>
         <p
-          innerHTML={prose`The proof of the Riemann hypothesis builds on the library Mathlib. Mathlib defines $\Gamma$ by an integral of Euler's kind and proves these rules. In them, $s$ may also be a complex number.`}
+          innerHTML={prose`The proof of the Riemann hypothesis does not define $\Gamma$, $\zeta$, or the statement of the hypothesis itself: all three come directly from Mathlib, Lean's community mathematics library. For complex numbers with $\operatorname{Re}(s) > 0$, Mathlib defines $\Gamma(s)$ by the exponential integral`}
+        />
+        <div class="equation" innerHTML={tex`\Gamma(s) = \int_0^\infty e^{-t} t^{s - 1}\,dt`} />
+        <p
+          innerHTML={prose`Mathlib calls this "Euler's integral", but it is the exact same shifted function as Legendre's $\Gamma(s)$: substituting $x = e^{-t}$ turns $\int_0^1 (-\ln x)^{s - 1}\,dx$ identically into $\int_0^\infty e^{-t} t^{s - 1}\,dt$. Mathlib then extends $\Gamma(s)$ to the rest of the complex plane and proves these rules:`}
         />
         <ul>
           <li innerHTML={prose`$\Gamma(1) = 1$.`} />
@@ -100,11 +149,13 @@ export function GammaPage() {
         />
         <p class="sources">
           Sources: <a href={MATHLIB_BASIC}>Mathlib, the file on the Gamma function</a>, the header
-          and the theorems Gamma_one, Gamma_add_one and Gamma_nat_eq_factorial.{" "}
+          and the theorems Gamma_one, Gamma_add_one and Gamma_nat_eq_factorial;{" "}
+          <a href={MATHLIB_RH}>Mathlib, RiemannZeta.lean</a>, for the definitions of{" "}
+          <span innerHTML={prose`$\zeta$`} /> and RiemannHypothesis;{" "}
           <a href={MATHLIB_HALF}>Mathlib, theorem Gamma_one_half_eq</a>. We read the statements, not
-          the proofs.{" "}
+          the internal Mathlib proofs.{" "}
           <span
-            innerHTML={prose`Mathlib uses the exponential integral $\int_0^\infty e^{-t} t^{s - 1}\,dt$; our own Lean proof (lean/RiemannChecks/EulerGamma.lean) checks against Mathlib at this commit that substituting $x = e^{-t}$ turns Euler's logarithmic integral into Mathlib's $\Gamma(s)$ for $\operatorname{Re}(s) > 0$.`}
+            innerHTML={prose`Our own Lean proof (lean/RiemannChecks/EulerGamma.lean) checks against Mathlib at this commit that substituting $x = e^{-t}$ turns $\int_0^1 (-\ln x)^{s - 1}\,dx$ into Mathlib's $\Gamma(s)$ for $\operatorname{Re}(s) > 0$.`}
           />
         </p>
       </section>
