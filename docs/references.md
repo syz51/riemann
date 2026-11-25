@@ -212,7 +212,7 @@ Inspection: abstract only. Read visually on the scan: page 91 (title page, PDF p
 
 ## Reference 27
 
-[27] Leonhard Euler. **Lettre I: Euler à Goldbach (13 October 1729)**. Printed in P. H. Fuss, *Correspondance mathématique et physique de quelques célèbres géomètres du XVIIIème siècle*, Tome I, St. Petersburg, 1843, pages 3 to 7. Scan from the Euler Archive (`OO0715.pdf`). [Original](http://eulerarchive.maa.org/correspondence/letters/OO0715.pdf). Accessed 26 November 2026, Asia/Tokyo.
+[27] Leonhard Euler. **Lettre I: Euler à Goldbach (13 October 1729)**. Printed in P. H. Fuss, *Correspondance mathématique et physique de quelques célèbres géomètres du XVIIIème siècle*, Tome I, Saint Petersburg, 1843, pages 3 to 7. Scan from the Euler Archive (`OO0715.pdf`). [Original](http://eulerarchive.maa.org/correspondence/letters/OO0715.pdf). Accessed 26 November 2026, Asia/Tokyo.
 
 Inspection depth: method.
 
@@ -220,7 +220,7 @@ Inspection: method level. Read pages 3 to 5 directly on the Euler Archive scan: 
 
 ## Reference 28
 
-[28] Daniel Bernoulli. **Lettre XLVII: D. Bernoulli à Goldbach (6 October 1729)**. Printed in P. H. Fuss, *Correspondance mathématique et physique de quelques célèbres géomètres du XVIIIème siècle*, Tome II, St. Petersburg, 1843, pages 324 to 325. Public-domain scan of Lettre XLVII by Bruce Arnold hosted on Peter Luschny's factorial history page. [Original](http://www.luschny.de/math/factorial/DanielBernoulliLetterToGoldbach-1729-10-06.jpg). Accessed 26 November 2026, Asia/Tokyo.
+[28] Daniel Bernoulli. **Lettre XLVII: D. Bernoulli à Goldbach (6 October 1729)**. Printed in P. H. Fuss, *Correspondance mathématique et physique de quelques célèbres géomètres du XVIIIème siècle*, Tome II, Saint Petersburg, 1843, pages 324 to 325. Public-domain scan of Lettre XLVII by Bruce Arnold hosted on Peter Luschny's factorial history page. [Original](http://www.luschny.de/math/factorial/DanielBernoulliLetterToGoldbach-1729-10-06.jpg). Accessed 26 November 2026, Asia/Tokyo.
 
 Inspection depth: abstract.
 
@@ -252,7 +252,7 @@ Inspection: abstract only. Read pages 1 to 2 on the brevity of Euler's October 1
 
 ## Reference 32
 
-[32] Jacqueline Stedall. **John Wallis, Arithmetica infinitorum (1656)**. Chapter 2 in I. Grattan-Guinness (ed.), *Landmark Writings in Western Mathematics 1640–1940*, Elsevier, 2005, pages 23 to 32. [Original](http://reparti.free.fr/grattan-guinness2005.pdf). Accessed 26 November 2026, Asia/Tokyo.
+[32] Jacqueline Stedall. **John Wallis, Arithmetica infinitorum (1656)**. Elsevier, 2005, Chapter 2 in I. Grattan-Guinness (ed.), *Landmark Writings in Western Mathematics 1640–1940*, pages 23 to 32. [Original](http://reparti.free.fr/grattan-guinness2005.pdf). Accessed 26 November 2026, Asia/Tokyo.
 
 Inspection depth: method.
 

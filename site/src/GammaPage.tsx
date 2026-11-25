@@ -54,7 +54,7 @@ export function GammaPage() {
           </summary>
           <div class="aside-body">
             <p
-              innerHTML={prose`In both his October 13, 1729 letter to Goldbach and E19 §1, Euler states the guiding idea without printing the scratchwork: continued far out, the factorial list behaves like a geometric progression. Here is how that idea leads to his formula:`}
+              innerHTML={prose`In both his October 13, 1729 letter to Goldbach and E19 §1, Euler states the guiding idea without printing the scratchwork: continued far out, the factorial list behaves like a geometric progression. Write $f(x)$ for the term of index $x$, and $N! = 1 \cdot 2 \cdots N$ for the factorial of a whole number $N$. Here is how that idea leads to his formula:`}
             />
             <ol>
               <li

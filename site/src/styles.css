@@ -1607,7 +1607,9 @@ li:not(:has(p)):has(.katex .mfrac) {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * {
+  *,
+  *::before,
+  *::after {
     transition: none !important;
   }
 }
