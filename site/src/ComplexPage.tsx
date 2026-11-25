@@ -110,13 +110,13 @@ export function ComplexPage() {
         </p>
         <p>
           To add two numbers, add the parts. To multiply two numbers, multiply the lengths and add
-          the angles. This is the geometric rule Wessel introduced in 1797 (and Argand and Gauss
-          later popularized).
+          the angles. This is the rule in Wessel's 1797 paper, the first published geometric
+          foundation for complex numbers (see the dates below).
         </p>
         <MultiplyPlane />
         <p class="sources">
-          Source for the rule: <a href={MERINO}>Merino, A Short History of Complex Numbers</a>,
-          items 12 to 14. The numbers in the picture are computed on this page.
+          Source for the rule: <a href={MERINO}>Merino, A Short History of Complex Numbers</a>, item
+          12. The numbers in the picture are computed on this page.
         </p>
       </section>
 
