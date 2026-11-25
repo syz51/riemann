@@ -1122,7 +1122,7 @@ h3 {
   border-radius: 6px;
   background: transparent;
   color: var(--muted);
-  font: 0.85rem/1.35 var(--sans);
+  font: 500 0.85rem / 1.35 var(--sans);
   text-align: left;
   transition:
     background-color 120ms,
@@ -1140,7 +1140,7 @@ h3 {
   border-color: var(--border);
   background: var(--page);
   color: var(--text);
-  font-weight: 600;
+  box-shadow: inset 2.5px 0 0 var(--accent);
 }
 
 .article button.stepper-step[aria-current="step"]:hover {
