@@ -50,26 +50,6 @@ export function GammaPage() {
         <p
           innerHTML={prose`Then he calculated the term for $n = \frac{1}{2}$. He found that it “is equal to the square root of the circle whose diameter = 1”. The circle here means its area, which is $\frac{\pi}{4}$. So the term is $\frac{\sqrt{\pi}}{2}$, about 0.8862. The number $\pi$ belongs to circles, and the list is about products of whole numbers. Nothing in the question suggested a circle.`}
         />
-        <p
-          innerHTML={prose`Today, the proof of the Riemann hypothesis does not define $\Gamma$, $\zeta$, or the statement of the hypothesis itself: all three come directly from Mathlib, Lean's community mathematics library. Where the real part of $s$ is above 0 (written $\operatorname{Re}(s) > 0$), Mathlib defines $\Gamma(s)$ by Euler's integral:`}
-        />
-        <div class="equation" innerHTML={tex`\Gamma(s) = \int_0^\infty e^{-t} t^{s - 1}\,dt`} />
-        <p
-          innerHTML={prose`The sign $\int$ is an integral: the area under a curve. You do not need to compute integrals to read the rest of this page. The important point is that $s$ sits in a power, and a power does not have to be a whole number. Because the power is $s - 1$, the values are shifted by 1 from the factorials — a shift that surprises every reader: $\Gamma(5)$ is not 120, it is 24, the product of the whole numbers below 5. For points at and to the left of 0 ($\operatorname{Re}(s) \le 0$), where the integral no longer converges, Mathlib uses the rule $\Gamma(s + 1) = s \cdot \Gamma(s)$ in reverse, stepping backwards by 1. Together, Mathlib proves these rules:`}
-        />
-        <ul>
-          <li innerHTML={prose`$\Gamma(1) = 1$.`} />
-          <li
-            innerHTML={prose`$\Gamma(s + 1) = s \cdot \Gamma(s)$, where both values exist. One step to the right multiplies the value by $s$.`}
-          />
-          <li
-            innerHTML={prose`$\Gamma(n + 1)$ is the factorial of $n$, for each whole number $n$ from 1. This follows from the two rules above.`}
-          />
-          <li innerHTML={prose`$\Gamma\!\left(\frac{1}{2}\right) = \sqrt{\pi}$.`} />
-        </ul>
-        <p
-          innerHTML={prose`Our own check against Euler: by the second rule, $\Gamma\!\left(\frac{3}{2}\right)$ is $\frac{1}{2}$ times $\Gamma\!\left(\frac{1}{2}\right)$, which is $\frac{\sqrt{\pi}}{2}$. And $\Gamma\!\left(\frac{3}{2}\right)$ is the term of index $\frac{1}{2}$ in Euler's list. Euler found the same value in 1729.`}
-        />
         <details class="aside-details">
           <summary>
             <span
@@ -126,6 +106,13 @@ export function GammaPage() {
             />
           </div>
         </details>
+        <p
+          innerHTML={prose`Today, the proof of the Riemann hypothesis does not define $\Gamma$, $\zeta$, or the statement of the hypothesis itself: all three come directly from Mathlib, Lean's community mathematics library. Where the real part of $s$ is above 0 (written $\operatorname{Re}(s) > 0$, where $\operatorname{Re}$ stands for “real part”), Mathlib defines $\Gamma(s)$ by Euler's integral:`}
+        />
+        <div class="equation" innerHTML={tex`\Gamma(s) = \int_0^\infty e^{-t} t^{s - 1}\,dt`} />
+        <p
+          innerHTML={prose`The sign $\int$ is an integral: the area under a curve. You do not need to compute integrals to read the rest of this page. The important point is that $s$ sits in a power, and a power does not have to be a whole number. Because the power is $s - 1$, the values are shifted by 1 from the factorials — a shift that surprises every reader: $\Gamma(5)$ is not 120, it is 24, the product of the whole numbers below 5.`}
+        />
         <details class="aside-details">
           <summary>
             <span innerHTML={prose`Why the letter $\Gamma$, and why the shift by 1?`} />
@@ -139,6 +126,22 @@ export function GammaPage() {
             />
           </div>
         </details>
+        <p
+          innerHTML={prose`For points at and to the left of 0 ($\operatorname{Re}(s) \le 0$), where the integral no longer converges, Mathlib uses the rule $\Gamma(s + 1) = s \cdot \Gamma(s)$ in reverse, stepping backwards by 1. Together, Mathlib proves these rules:`}
+        />
+        <ul>
+          <li innerHTML={prose`$\Gamma(1) = 1$.`} />
+          <li
+            innerHTML={prose`$\Gamma(s + 1) = s \cdot \Gamma(s)$, where both values exist. One step to the right multiplies the value by $s$.`}
+          />
+          <li
+            innerHTML={prose`$\Gamma(n + 1)$ is the factorial of $n$, for each whole number $n$ from 1. This follows from the two rules above.`}
+          />
+          <li innerHTML={prose`$\Gamma\!\left(\frac{1}{2}\right) = \sqrt{\pi}$.`} />
+        </ul>
+        <p
+          innerHTML={prose`Our own check against Euler: by the second rule, $\Gamma\!\left(\frac{3}{2}\right)$ is $\frac{1}{2}$ times $\Gamma\!\left(\frac{1}{2}\right)$, which is $\frac{\sqrt{\pi}}{2}$. And $\Gamma\!\left(\frac{3}{2}\right)$ is the term of index $\frac{1}{2}$ in Euler's list. Euler found the same value in 1729.`}
+        />
         <details class="aside-details">
           <summary>
             <span innerHTML={prose`Is $\Gamma$ the only smooth curve through the factorials?`} />

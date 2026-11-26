@@ -119,8 +119,11 @@ export function ComplexPage() {
           innerHTML={prose`The way out was to leave the line for the plane. In 1797, Wessel represented each number
             as an arrow starting at 0, given by its horizontal part (real) and vertical part
             (imaginary), or equivalently by its length and its angle from the right half of the
-            horizontal axis. To add two arrows, add their parts. To multiply them, multiply their
-            lengths and add their angles.`}
+            horizontal axis. For a complex number $s = a + bi$, mathematicians write
+            $\operatorname{Re}(s) = a$ for its real part (“$\operatorname{Re}$” stands for real,
+            how far left or right) and $\operatorname{Im}(s) = b$ for its imaginary part
+            (“$\operatorname{Im}$” stands for imaginary, how far up or down). To add two arrows,
+            add their parts. To multiply them, multiply their lengths and add their angles.`}
         />
         <p
           innerHTML={prose`Under that single rule, $\sqrt{-1}$ stops being a paradox: it is simply the arrow of
@@ -151,9 +154,9 @@ export function ComplexPage() {
             has zeros only at the trivial points $-2$, $-4$, $-6$ and so on: it equals $-\frac{1}{2}$
             at 0 and has no zeros anywhere on the positive real axis (including nowhere between 0
             and 1). Every single zero that the hypothesis talks about sits off the real line, inside
-            the strip where the real part of $s$ is between 0 and 1, with a nonzero imaginary part.
-            Without the complex plane, those zeros do not exist at all, and there is no hypothesis
-            to state.`}
+            the strip where the real part of $s$ is between 0 and 1 ($0 \le \operatorname{Re}(s) \le 1$),
+            with a nonzero imaginary part. Without the complex plane, those zeros do not exist at
+            all, and there is no hypothesis to state.`}
         />
         <p class="sources">
           Sources: <a href={ELKIES}>Elkies, Math 229 notes on the zeta function</a>, pages 1, 2 (the
