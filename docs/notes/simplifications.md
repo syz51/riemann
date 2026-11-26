@@ -1,5 +1,7 @@
 # Simplification candidates
 
+**Archived-release notice:** The entries below document candidates from the original 20 November 2026 17-million-line Lean release (`leanprover-community/riemann-hypothesis`, commit `40e56bab026552e089d7afcfeff08d2defb9c005`) [7](../references.md#reference-7). As of 26 November 2026, the project's primary pinned source is the shorter 25 November 2026 edition (`lsernau/grh-lean`, commit `72fead10`, `grh/`) [37](../references.md#reference-37), where the top-level proof in `grh/src/Main.lean` already drops these duplicate paths.
+
 Each entry names a place where the argument looks longer than it needs to be, the reason, and the Lean declarations it concerns. Statements come from the pinned repository [7](../references.md#reference-7). An entry is a candidate, not a checked simplification.
 
 ## 1. The Riemann hypothesis is derived three times

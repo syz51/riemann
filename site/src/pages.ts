@@ -32,7 +32,7 @@ export type UpcomingStep = {
   number: number;
   level: string;
   status: "Next in walk-through" | "Planned";
-  title: string;
+  title: Markup;
   summary: Markup;
 };
 
@@ -61,28 +61,28 @@ export const STEPS: StepEntry[] = [
   },
 ];
 
-// Planned top-level steps from docs/notes/01-top-levels.md.
+// Planned top-level steps following lsernau/grh-lean (commit 72fead10, grh/GUIDE.md).
 export const UPCOMING_STEPS: UpcomingStep[] = [
   {
     number: 2,
-    level: "Levels 1–2",
+    level: "Level 1",
     status: "Next in walk-through",
-    title: "rhOfAll and EveryCharacter",
-    summary: prose`The proof does not treat $\zeta$ alone: it proves non-vanishing for every Dirichlet $L$-function.`,
+    title: prose`New.grh and Dirichlet $L$-functions`,
+    summary: prose`The proof does not treat $\zeta$ alone: New.grh proves non-vanishing in $\operatorname{Re}(s) > \frac{1}{2}$ for every Dirichlet $L$-function.`,
   },
   {
     number: 3,
     level: "Level 2",
     status: "Planned",
-    title: "The mirror argument (rh_of_right)",
+    title: prose`The mirror argument (New.zeta_zeros_on_line)`,
     summary: prose`Why having no zeros with real part above $\frac{1}{2}$ forces every non-trivial zero onto the critical line.`,
   },
   {
     number: 4,
-    level: "Levels 3–4",
+    level: "Level 3",
     status: "Planned",
-    title: "Where the names turn opaque",
-    summary: prose`Row0b, VWin, and the boundary where classical analysis ends and the new arithmetic begins.`,
+    title: prose`Three main theorems and star_inequality`,
+    summary: prose`Short forms, enough forms, and long integral forms: how MainInequality and OneSidedBound yield New.grh.`,
   },
 ];
 

@@ -1,22 +1,20 @@
 # riemann
 
-Notes on reading Levent Alpöge's Lean 4 proof of the Riemann hypothesis.
+Notes on reading Levent Alpöge's Lean 4 proof of the Riemann hypothesis, focusing on the shorter edition released on 25 November 2026.
 
-- The proof was released on November 20, 2026, as a Lean library of 17 million lines [2](docs/references.md#reference-2).
-- The exported proof was checked by Lean's official kernel, the `con-leche` and `con-ron` checkers, and several independent checkers [2](docs/references.md#reference-2).
-- The author's note describes the work and lists 20 dated steps of the argument [1](docs/references.md#reference-1).
+- The original proof was released on 20 November 2026 as a Lean library of 17 million lines [2](docs/references.md#reference-2), accompanied by the author's note listing 20 dated steps of the argument [1](docs/references.md#reference-1).
+- On 25 November 2026, a shorter rewriting was released in `github.com/lsernau/grh-lean` [37](docs/references.md#reference-37), proving the same five theorems (Mathlib's `RiemannHypothesis` and four statements of RH and GRH for Dirichlet $L$-functions) in a readable edition (`grh/`, ~300,000 lines of code, 477,000 lines with comments/blanks, 803 files) and a compact edition (`grh-compact/`, ~76,000 lines, 794 files).
+- Both editions of the shorter proof passed sandboxed `lake build`, `#print axioms` (`propext`, `Classical.choice`, `Quot.sound` only), full kernel module replay, byte-identical exports, `nanoda`, `con-leche`, and `con-ron` (including `--compare` against `Challenge.lean`) on Andrew Sutherland's verification page (`shortgrh/`), while `lake comparator --paranoid` and standalone `lean4lean` on the readable edition were still running as of 26 November 2026 00:15 UTC [38](docs/references.md#reference-38).
 
 ## Pinned sources
 
-Every task reads the Lean library from one repository at one commit:
+Every new task reads the Lean library from one primary repository at one frozen commit:
 
-- Repository: `github.com/leanprover-community/riemann-hypothesis`, the Lean community's copy, at commit `40e56bab026552e089d7afcfeff08d2defb9c005`. The repository's README says that this first commit is the submitted Lean source exactly as published [7](docs/references.md#reference-7).
-- Later commits on its `main` branch hold cleanup and simplification work by other people. Read them to see what is already simplified, not as the original.
-- The main theorems are in `src/Main.lean` [3](docs/references.md#reference-3).
-- The route of the proof is in `docs/notes/00-route.md`. It comes from our own reading of the Lean source.
-- Other people's guides are an index only, never evidence. An example is `github.com/nasqret/riemann-rev` [4](docs/references.md#reference-4): it tells us which file to open, and a statement counts only after we read the Lean declaration.
-
-The project first read twelve files from another mirror, `github.com/tamnd/riemann-lean`. All twelve are byte-identical to the files at the commit above (compared by SHA-256 on 22 November 2026).
+- **Primary pinned repository:** `github.com/lsernau/grh-lean` at commit `72fead102f663d5c7a407964a13dc0cf9d977207`, readable edition (`grh/`, 803 files: `src/Lib` [495 files], `src/New` [306 files], `src/Main.lean`, `src/Statements.lean`, plus `GUIDE.md`, `CONTENTS.md`, `INDEX.md`, `REFERENCES.md`) [37](docs/references.md#reference-37). It builds on Lean `v4.35.0` and Mathlib commit `56a005855ea17e0b0958f73ec801ae140b0a1679` [37](docs/references.md#reference-37). The same commit also holds `grh-compact/` (~76,000 lines, 794 files) for optional side-by-side comparison [37](docs/references.md#reference-37).
+- **Secondary watch repository:** `github.com/leanprover-community/riemann-hypothesis`, whose `main` branch moved onto `lsernau/grh-lean`'s `grh/` on 25 November 2026 (preserving earlier cleanup on `alpoge` and the original 20 November release on `original`). Watch `main` for extra community simplifications while keeping `lsernau/grh-lean@72fead10` as the frozen pin.
+- **Archived original release (20 November 2026):** `github.com/leanprover-community/riemann-hypothesis` at commit `40e56bab026552e089d7afcfeff08d2defb9c005` (17M lines, Lean `v4.33.1`, Mathlib `0df444a3`) [7](docs/references.md#reference-7) [8](docs/references.md#reference-8). Earlier proof notes (`docs/notes/00-route.md` through `03-grh-statements.md`, `simplifications.md`, and `riemann-rev-guide.md`) record our reading of that archived release and carry a notice at the top.
+- The five main theorems are in `grh/src/Main.lean` and `grh/src/Statements.lean` [37](docs/references.md#reference-37).
+- Other people's guides are an index only, never evidence. An example is `github.com/nasqret/riemann-rev` [4](docs/references.md#reference-4) (for the 20 November release): it tells us which file to open, and a statement counts only after we read the Lean declaration.
 
 ## The explainer site
 

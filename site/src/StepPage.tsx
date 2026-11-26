@@ -68,7 +68,7 @@ export function StepPage() {
           </For>
           <section class="next">
             <h2>Next</h2>
-            <p>{step.next}</p>
+            <p innerHTML={step.next} />
           </section>
         </div>
 

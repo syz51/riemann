@@ -1,5 +1,7 @@
 # The four other statements of `Main.lean`
 
+**Archived-release notice:** This note was written against the original 20 November 2026 17-million-line Lean release (`leanprover-community/riemann-hypothesis`, commit `40e56bab026552e089d7afcfeff08d2defb9c005`) [7](../references.md#reference-7). As of 26 November 2026, the project's primary pinned source is the shorter 25 November 2026 edition (`lsernau/grh-lean`, commit `72fead10`, `grh/`) [37](../references.md#reference-37); its `grh/src/Statements.lean` keeps the exact same four definitions verbatim, and Sutherland's verification of the shorter edition is tracked separately in [38](../references.md#reference-38).
+
 `Main.lean` proves five theorems [3](../references.md#reference-3). The first has Mathlib's type `RiemannHypothesis`. This note reads the types of the other four: what each says, what it rests on, and who has checked it.
 
 ## Result in short

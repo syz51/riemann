@@ -121,7 +121,7 @@ export function ContentsPage() {
                       {step.status}
                     </span>
                   </div>
-                  <h3>{step.title}</h3>
+                  <h3 innerHTML={step.title} />
                   <p innerHTML={step.summary} />
                 </div>
               </li>
