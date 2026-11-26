@@ -289,3 +289,19 @@ Inspection: full page read directly over HTTPS. Explains Wallis's 1656 interpola
 Inspection depth: full.
 
 Inspection: full one-page PDF read directly over HTTPS. Confirms Wallis derived his product in Proposition 191 of *Arithmetica Infinitorum* (1656) via his method of interpolation and cites Jacqueline Stedall's 2004 Springer translation. A teaching summary sheet.
+
+## Reference 37
+
+[37] Levent Alpöge, Lucas Sernau and Claude. **GRH for Dirichlet L-functions, in Lean 4 (shorter edition)**. GitHub repository `lsernau/grh-lean`, commit `72fead102f663d5c7a407964a13dc0cf9d977207`, released 25 November 2026 (with Anthropic colleagues). [Original](https://github.com/lsernau/grh-lean/tree/72fead102f663d5c7a407964a13dc0cf9d977207). Accessed 26 November 2026, Asia/Tokyo.
+
+Inspection depth: method.
+
+Inspection: method level. Fetched and read directly from commit `72fead102f663d5c7a407964a13dc0cf9d977207` on 26 November 2026: top-level `README.md`, `grh/README.md`, `grh/lean-toolchain` (`leanprover/lean4:v4.35.0`), the `mathlib` entry of `grh/lake-manifest.json` (commit `56a005855ea17e0b0958f73ec801ae140b0a1679`), `grh/src/Main.lean` (all 22 lines, including `theorem riemannHypothesis : RiemannHypothesis := New.zeta_zeros_on_line New.grh`), `grh/src/Statements.lean` (all 16 lines), `grh/src/New/Main.lean` (all 65 lines: `New.zeros_on_line` and `New.zeta_zeros_on_line`), and `grh/GUIDE.md` (section 1 reading order, glossary, and section 3 sizes). The remaining 800 Lean files in `grh/` and `grh-compact/` were not read. Primary Lean source repository for the shorter edition.
+
+## Reference 38
+
+[38] Andrew V. Sutherland. **Verification files for the shorter Lean proof of RH and GRH**. MIT verification page for `lsernau/grh-lean` commit `72fead10` (last updated 26 November 2026, 00:15 UTC). [Original](https://math.mit.edu/~drew/shortgrh/). Accessed 26 November 2026, Asia/Tokyo.
+
+Inspection depth: full.
+
+Inspection: full page read directly over HTTPS on 26 November 2026. Records that both `grh/` (803 files, ~300,000 lines of code) and `grh-compact/` (794 files, ~76,000 lines of code) passed sandboxed `lake build` (9,852 and 9,843 jobs, no errors), `#print axioms` (`propext`, `Classical.choice`, `Quot.sound` only), full kernel module replay, byte-identical exports across two machines, `nanoda`, `con-leche`, and `con-ron` (including `--compare` against `Challenge.lean`), Lean default and paranoid kernels on the exports, and `lean4lean` on the compact edition; notes that as of 2026-11-26 00:15 UTC, `lake comparator --paranoid` (on both editions across two machines) and standalone `lean4lean` on the readable edition were still running. Independent third-party verification report.

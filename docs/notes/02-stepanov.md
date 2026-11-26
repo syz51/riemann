@@ -1,5 +1,7 @@
 # The Stepanov determinant step against the classical argument
 
+**Archived-release notice:** Part 2 of this note documents Lean declarations from the original 20 November 2026 17-million-line release (`leanprover-community/riemann-hypothesis`, commit `40e56bab026552e089d7afcfeff08d2defb9c005`) [7](../references.md#reference-7). As of 26 November 2026, the project's primary pinned source is the shorter 25 November 2026 edition (`lsernau/grh-lean`, commit `72fead10`, `grh/`) [37](../references.md#reference-37). Part 1 (Bombieri's classical Stepanov proof) is proof-independent.
+
 The author's note opens its 20-step timeline with "10/6/26: Stepanov determinant" and calls the proof "a descendant of Stepanov's" [1](../references.md#reference-1). This note has three parts:
 
 1. The classical Stepanov method for curves over finite fields, explained from scratch from Enrico Bombieri's 1974 Bourbaki exposition, read in full [23](../references.md#reference-23), with the Diophantine-approximation bridge and a genus-zero example from Machiel van Frankenhuijsen [24](../references.md#reference-24).

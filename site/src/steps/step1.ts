@@ -1,7 +1,7 @@
 import { defineStep } from "./types";
 
-// Source of the content: docs/notes/01-top-levels.md, "Level 0: the target", and
-// docs/notes/03-grh-statements.md for the reason behind `s ≠ 1`.
+// Source of the content: lsernau/grh-lean (commit 72fead10), grh/src/Main.lean and
+// grh/src/New/Main.lean, plus docs/notes/03-grh-statements.md for `s ≠ 1`.
 export const step1 = defineStep({
   number: 1,
   of: 4,
@@ -30,14 +30,16 @@ export const step1 = defineStep({
     {
       heading: "The proof, as the main file gives it",
       intro: "The pattern is: theorem, then a name, then the statement, then the proof.",
-      source: "src/Main.lean of the proof library.",
+      source: "grh/src/Main.lean of lsernau/grh-lean (commit 72fead10). Line break added.",
       tokens: [
         "theorem ",
         { piece: "name", text: "riemannHypothesis" },
         " : ",
         { piece: "statement", text: "RiemannHypothesis" },
-        " := ",
-        { piece: "proof", text: "rhOfAll" },
+        " :=\n  ",
+        { piece: "mirror", text: "New.zeta_zeros_on_line" },
+        " ",
+        { piece: "proof", text: "New.grh" },
       ],
     },
   ],
@@ -103,10 +105,21 @@ export const step1 = defineStep({
       meaning: prose`This is the name defined above. Mathlib had this definition before the proof existed. So the author could not change the statement to make it easier to prove.`,
     },
     {
+      id: "mirror",
+      title: prose`The mirror step: from half-plane to critical line`,
+      meaning: prose`New.zeta_zeros_on_line (in New/Main.lean) uses the symmetry of the completed zeta function under $s \mapsto 1 - s$. Once no zero lies to the right of $\frac{1}{2}$, none can lie to the left either, so every non-trivial zero has real part $\frac{1}{2}$.`,
+      mark: "line",
+      background: {
+        route: "zeta",
+        label: "Where the zeta function came from",
+        note: "Background · why the symmetry pairs up zeros across the critical line",
+      },
+    },
+    {
       id: "proof",
-      title: prose`The proof is one name`,
-      meaning: prose`The line says only that the proof is elsewhere, under the name rhOfAll. Lean checks that rhOfAll proves exactly this statement. Step 2 opens rhOfAll.`,
+      title: prose`The main theorem: non-vanishing for all Dirichlet $L$-functions`,
+      meaning: prose`New.grh proves that no Dirichlet $L$-function vanishes anywhere with real part above $\frac{1}{2}$ (the pole at 1 excepted). Lean checks that applying New.zeta_zeros_on_line to New.grh proves Mathlib's RiemannHypothesis. Step 2 opens New.grh.`,
     },
   ],
-  next: "Step 2 shows what rhOfAll is. The proof never works on zeta alone. It proves a larger statement about a whole family of functions, and zeta is one member.",
+  next: "Step 2 opens New.grh. The proof never works on zeta alone: it proves non-vanishing in the right half-plane for the whole family of Dirichlet L-functions, and zeta is the modulus-1 member.",
 });

@@ -1,5 +1,7 @@
 # The route of the proof
 
+**Archived-release notice:** This note documents the original 20 November 2026 17-million-line Lean release (`leanprover-community/riemann-hypothesis`, commit `40e56bab026552e089d7afcfeff08d2defb9c005`) [7](../references.md#reference-7). As of 26 November 2026, the project's primary pinned source is the shorter 25 November 2026 edition (`lsernau/grh-lean`, commit `72fead10`, `grh/`) [37](../references.md#reference-37).
+
 This note gives the route of the proof in two parts.
 
 - Part 1 is the route that we read ourselves in the Lean library at the pinned commit [7](../references.md#reference-7). Only this part is evidence.
