@@ -8,6 +8,8 @@ import { Stepper, type Part } from "./Stepper";
 // returned "not found" on 23 November 2026.
 const MERINO = "https://math.mit.edu/~dunkel/Teach/18.04_2019S/historic/Merino_2006.pdf";
 const ELKIES = "https://people.math.harvard.edu/~elkies/M229.09/zeta1.pdf";
+const MATHLIB_ZETA_ZERO =
+  "https://github.com/leanprover-community/mathlib4/blob/0df444a360eaa60ab8c11dca51a86af692955474/Mathlib/NumberTheory/LSeries/RiemannZeta.lean#L150-L152";
 
 // The calculation of Bombelli.
 const CUBIC: Part[] = [
@@ -92,8 +94,11 @@ export function ComplexPage() {
       <section>
         <h2>The equation that forced the issue</h2>
         <p
-          innerHTML={prose`A common belief is that complex numbers were made to give the equation $x^2 = -1$ a
-            solution. The history is different. They came from equations with a third power.`}
+          innerHTML={prose`A common belief is that complex numbers were invented just to force $x^2 = -1$ to have a
+            solution. If an equation had no ordinary answer, mathematicians of the 1500s simply
+            said it had none. What forced the issue was an equation with a third power that already
+            had a plain, ordinary answer — yet the general formula for finding it walked straight
+            through the square root of a negative number.`}
         />
         <Stepper parts={CUBIC} />
         <p class="sources">
@@ -103,38 +108,59 @@ export function ComplexPage() {
 
       <section>
         <h2>The picture: turn and stretch</h2>
-        <p>
-          A complex number is a point of the plane. Its real part says how far right it is. Its
-          imaginary part says how far up. The point also has a length, its distance from zero, and
-          an angle, measured from the right half of the horizontal axis.
-        </p>
-        <p>
-          To add two numbers, add the parts. To multiply two numbers, multiply the lengths and add
-          the angles. This is the rule in Wessel's 1797 paper, the first published geometric
-          foundation for complex numbers (see the dates below).
-        </p>
+        <p
+          innerHTML={prose`Bombelli's calculation produced the right answer, but for more than two centuries nobody
+            could say what kind of object $\sqrt{-1}$ actually was. On the ordinary number line,
+            multiplying by $-1$ reverses direction — a half turn of $180^\circ$. No step along the
+            line can be done twice to make a reversal, because positive times positive is positive
+            and negative times negative is positive too.`}
+        />
+        <p
+          innerHTML={prose`The way out was to leave the line for the plane. In 1797, Wessel represented each number
+            as an arrow starting at 0, given by its horizontal part (real) and vertical part
+            (imaginary), or equivalently by its length and its angle from the right half of the
+            horizontal axis. To add two arrows, add their parts. To multiply them, multiply their
+            lengths and add their angles.`}
+        />
+        <p
+          innerHTML={prose`Under that single rule, $\sqrt{-1}$ stops being a paradox: it is simply the arrow of
+            length 1 pointing straight up, at $90^\circ$. Multiplying by it turns any arrow a
+            quarter turn counterclockwise. Do it twice and you turn $180^\circ$, landing on $-1$.
+            That picture gave Bombelli's arithmetic a solid foundation (see the dates below).`}
+        />
         <MultiplyPlane />
         <p class="sources">
           Source for the rule: <a href={MERINO}>Merino, A Short History of Complex Numbers</a>, item
-          12. The numbers in the picture are computed on this page.
+          12. The numbers in the picture and the quarter-turn check are our own from Wessel's rule.
         </p>
       </section>
 
       <section>
         <h2>Why the zeta function needs them</h2>
         <p
-          innerHTML={prose`Zeta starts as an endless sum. The sum works only where the real part of $s$ is above 1.
-            In 1859, Riemann showed that zeta has a meaning on the whole plane, except at the point
-            1.`}
+          innerHTML={prose`For more than a century before Riemann, Euler studied the zeta sum using real powers $s$.
+            As an ordinary sum, $1 + \frac{1}{2^s} + \frac{1}{3^s} + \cdots$ converges only for $s$
+            above 1; at $s = 1$ it grows without limit, forming a barrier on the real line. In 1859
+            — after complex numbers had gained their geometric plane — Riemann let $s$ move off the
+            line into that plane. In two dimensions the point 1 is no longer a wall — it is a single
+            point you can walk around — and Riemann showed that $\zeta(s)$ extends smoothly to the
+            entire plane except at 1.`}
         />
         <p
-          innerHTML={prose`Apart from the trivial zeros $-2$, $-4$, $-6$, and so on, every zero of zeta has a real
-            part from 0 to 1. So each zero that the hypothesis talks about lies where the sum does
-            not work. Without the plane, there is no statement to prove.`}
+          innerHTML={prose`Why couldn't the Riemann hypothesis stay on the real line? On the real line, $\zeta(s)$
+            has zeros only at the trivial points $-2$, $-4$, $-6$ and so on: it equals $-\frac{1}{2}$
+            at 0 and has no zeros anywhere on the positive real axis (including nowhere between 0
+            and 1). Every single zero that the hypothesis talks about sits off the real line, inside
+            the strip where the real part of $s$ is between 0 and 1, with a nonzero imaginary part.
+            Without the complex plane, those zeros do not exist at all, and there is no hypothesis
+            to state.`}
         />
         <p class="sources">
-          Source: <a href={ELKIES}>Elkies, Math 229 notes on the zeta function</a>, the theorem
-          marked “Riemann 1859”.
+          Sources: <a href={ELKIES}>Elkies, Math 229 notes on the zeta function</a>, pages 1, 2 (the
+          theorem marked “Riemann 1859”) and 7 (no zeros on the positive real axis);{" "}
+          <a href={MATHLIB_ZETA_ZERO}>Mathlib, theorem riemannZeta_zero</a> (
+          <span innerHTML={prose`$\zeta(0) = -\frac{1}{2}$`} />
+          ).
         </p>
       </section>
 
