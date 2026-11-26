@@ -337,3 +337,11 @@ Inspection: abstract only relative to the full book. Read Chapters IX (§§143�
 Inspection depth: full.
 
 Inspection: all eight pages read directly from the arXiv PDF. Notes Euler's Beta-integral notation in E321 (§3, 1766) and E421 (§44, 1772), cites E421 §43 for Euler's reflection formula $[\lambda]\,[-\lambda] = \frac{\pi\lambda}{\sin(\pi\lambda)}$, cites E101 §240 and E562 §7 for the finite product for $\sin(n\phi)$, and proves that E421 §53 is equivalent to Gauss's multiplication formula. A scholarly secondary source.
+
+## Reference 43
+
+[43] Bernhard Riemann. **On the Number of Prime Numbers less than a Given Quantity (Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse)**. *Monatsberichte der Berliner Akademie*, November 1859. Translated from the German by David R. Wilkins, Trinity College Dublin, December 1998. [Original](https://www.maths.tcd.ie/pub/HistMath/People/Riemann/Zeta/EZeta.pdf). Accessed 26 November 2026, Asia/Tokyo.
+
+Inspection depth: method.
+
+Inspection: method level. Read PDF pages 1 to 4 directly (title page and translated pages 1 to 3): Riemann's opening from Euler's product, his first proof starting from $\int_0^\infty e^{-nx} x^{s - 1}\,dx = \frac{\Pi(s - 1)}{n^s}$ (where $\Pi(s - 1) = \Gamma(s)$) to get $\Pi(s - 1)\zeta(s) = \int_0^\infty \frac{x^{s - 1}}{e^x - 1}\,dx$ and deforming a contour around $(0, \infty)$ to pick up residues at $\pm 2\pi i n$, revealing that $\Pi\!\left(\frac{s}{2} - 1\right)\pi^{-\frac{s}{2}}\zeta(s)$ is symmetric under $s \leftrightarrow 1 - s$; and his second proof opening with the motivation *"This property of the function induced me to introduce, in place of $\Pi(s - 1)$, the integral $\Pi\!\left(\frac{s}{2} - 1\right)$ into the general term of the series $\sum \frac{1}{n^s}$, whereby one obtains a very convenient expression for the function $\zeta(s)$"*, giving $\psi(x) = \sum_{n = 1}^{\infty} e^{-n^2\pi x}$ and citing `(Jacobi, Fund. S. 184)` for $2\psi(x) + 1 = x^{-\frac{1}{2}}\!\left(2\psi\!\left(\frac{1}{x}\right) + 1\right)$. Translated pages 4 to 9 (PDF pages 5 to 10) and the 1859 German original scan are not read. A primary source in translation.

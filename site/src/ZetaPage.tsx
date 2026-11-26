@@ -22,6 +22,7 @@ const MATHLIB_CONJ =
 const EULER_E352 = "https://scholarlycommons.pacific.edu/euler-works/352/";
 const EULER_E19 = "https://scholarlycommons.pacific.edu/euler-works/19/";
 const ELKIES = "https://people.math.harvard.edu/~elkies/M229.09/zeta1.pdf";
+const RIEMANN_1859 = "https://www.maths.tcd.ie/pub/HistMath/People/Riemann/Zeta/EZeta.pdf";
 
 const SIEVE: Part[] = [
   {
@@ -169,9 +170,11 @@ export function ZetaPage() {
       <section>
         <h2>Why an endless sum can have a value</h2>
         <p
-          innerHTML={prose`A sum with endlessly many terms does not always grow without limit. Walk to a wall that
-            is 2 metres away, and let each step cover half of the distance that is left: 1 metre,
-            then $\frac{1}{2}$, then $\frac{1}{4}$. You take endlessly many steps and never pass the wall.`}
+          innerHTML={prose`Once you let the power $s$ vary, the first question is: for which powers does this
+            endless sum even add up to a finite number? A sum with endlessly many terms does not
+            always grow without limit. Walk to a wall that is 2 metres away, and let each step
+            cover half of the distance that is left: 1 metre, then $\frac{1}{2}$, then
+            $\frac{1}{4}$. You take endlessly many steps and never pass the wall.`}
         />
         <p
           class="equation"
@@ -274,52 +277,34 @@ export function ZetaPage() {
       </section>
 
       <section>
-        <h2>A hundred years later: Riemann</h2>
+        <h2>A clue Euler could not prove (1749)</h2>
         <p
-          innerHTML={prose`In 1749, Euler found one more thing: a symmetry that links the value at $s$ to the value
-            at $1 - s$. He proved it for whole numbers and conjectured it for the rest.`}
+          innerHTML={prose`Euler now knew $\zeta(s)$ for every even power $s = 2, 4, 6, \dots$ and had linked the
+            sum to the primes, yet every odd power $3, 5, 7, \dots$ still defeated him. Looking for
+            patterns across powers, in 1749 he compared his shrinking sums ($s > 1$) against growing
+            sums with alternating signs — and stumbled on a hidden symmetry that pairs each number
+            $s$ with $1 - s$.`}
         />
         <p
-          innerHTML={prose`The partner of a number $s$ is $1 - s$. The partner of 2 is $1 - 2 = -1$, and the
-            partner of 3 is $1 - 3 = -2$. The two numbers of a pair are at the same distance from $\frac{1}{2}$,
-            on opposite sides. So they are mirror images, with the mirror at $\frac{1}{2}$.`}
+          innerHTML={prose`The partner of 2 is $1 - 2 = -1$, and the partner of 3 is $1 - 3 = -2$. The two numbers
+            of a pair sit at the same distance from $\frac{1}{2}$, on opposite sides: mirror images
+            with the mirror at $\frac{1}{2}$.`}
         />
         <p
-          innerHTML={prose`The symmetry does not say that the two values of a pair are equal. It says that they are
-            linked: the value at $1 - s$ is the value at $s$ times a known factor, and the factor
-            depends on $s$. This rule works for every $s$ except 1, 0, $-1$, $-2$ and so on. So it
-            gives the value at $-1$ from the value at 2, but not the other way. Take the pair 2 and $-1$. The value at 2 is $\frac{\pi^2}{6}$, about 1.645. The
-            factor for $s = 2$ is $-\frac{1}{2\pi^2}$. The product is $-\frac{1}{12}$, and that is the value at
-            $-1$. One form of the function does have equal values: Riemann multiplied the function
-            by a certain factor, and the result has the same value at $s$ and at $1 - s$.`}
+          innerHTML={prose`The symmetry does not say that the two values of a pair are equal. It says they are
+            linked: the value at $1 - s$ equals the value at $s$ times a specific conversion factor
+            that depends on $s$. Take the pair 2 and $-1$. The value at 2 is $\frac{\pi^2}{6}$
+            (about 1.645), and the factor for $s = 2$ is $-\frac{1}{2\pi^2}$. Multiplying them
+            gives $-\frac{1}{12}$ as the partner value at $-1$.`}
         />
         <p
-          innerHTML={prose`The exceptions do not mean that the symmetry is false at those points. They are points
-            where a piece of the rule has no value. The factor contains a function called $\Gamma$,
-            and $\Gamma$ has no value at 0, $-1$, $-2$ and so on. At 1 the function itself has no
-            finite value: it grows without limit near 1. Riemann's form with equal values has only
-            two such points, 0 and 1, and they are partners of each other. Euler met a related
-            thing, with a different cause. For $n = 1$ two parts of his rule are both 0, so the
-            rule gave 0 divided by 0. He took a limit, and the limit agreed with the known value.`}
-        />
-        <p
-          innerHTML={prose`The function $\Gamma$ (gamma) is not new, and it was not made for this proof. It extends
-            the factorial $1 \cdot 2 \cdot 3 \cdots n$ to numbers that are not whole. Euler introduced
-            it in a paper that he wrote in 1729, with a different notation. For a whole number
-            $n$ above 1, $\Gamma(n)$ is the product of the whole numbers below $n$: $\Gamma(5)$
-            is $1 \cdot 2 \cdot 3 \cdot 4 = 24$. The function has no value at 0, $-1$, $-2$
-            and so on.`}
-        />
-        <p>
-          The page <a href={href("gamma")}>The Gamma function</a> has its history, its rules, a
-          chart, and the reason why it has no value at these points.
-        </p>
-        <p
-          innerHTML={prose`The value at $-1$ is strange, because at $-1$ the sum would be $1 + 2 + 3 + \cdots$, and
-            that sum has no value. The number $-\frac{1}{12}$ belongs to the function that has a meaning
-            on the whole plane, not to the sum. Euler worked with sums of
-            alternating signs, such as $1 - 2 + 3 - 4 + \cdots$, and used a special way of summing
-            to give them a meaning. In 1859, Riemann proved the symmetry for complex numbers $s$ as well.`}
+          innerHTML={prose`That result created a puzzle. At $s = -1$, the original sum would be $1 + 2 + 3 + \cdots$,
+            which grows without limit and has no sum in the usual sense. Euler worked instead with
+            alternating sums such as $1 - 2 + 3 - 4 + \cdots$, gave them a value through power-series
+            limits, proved his rule for whole numbers (handling $n = 1$ by a limit where two factors
+            vanished together to give 0 divided by 0), and boldly conjectured it for every $s$. He
+            tested it at $n = 0, \frac{1}{2}, \frac{3}{2}$, yet admitted he had no single proof for
+            all cases.`}
         />
         <details class="aside-details">
           <summary>
@@ -374,66 +359,101 @@ export function ZetaPage() {
             </p>
           </div>
         </details>
-        <p
-          innerHTML={prose`For a complex number $s = a + bi$, the step from $s$ to $1 - s$ gives $(1 - a) - bi$. That
-            is a half turn around the point $\frac{1}{2}$, not a flip across a line. The function has a
-            second symmetry: the value at $a - bi$ is the value at $a + bi$ with the sign of its
-            $i$ part changed. The two symmetries together tie the value at $a + bi$ to the value at
-            $(1 - a) + bi$. These two points have the same height $b$, and they are mirror images
-            across the line where the real part is $\frac{1}{2}$. The factor between
-            the function and its symmetric form is never 0 in the strip where the real part is
-            between 0 and 1. So in that strip the zeros come in mirrored pairs: if $a + bi$
-            is a zero, then $(1 - a) + bi$ is a zero too. The Riemann hypothesis says that every
-            zero of the function lies on the line itself, apart from the known zeros at $-2$,
-            $-4$, $-6$ and so on. Then each zero in the strip is its own mirror image.`}
-        />
+        <p class="sources">
+          Sources: <a href={PAPADOPOULOS}>Papadopoulos, Looking backward: from Euler to Riemann</a>,
+          section 6;{" "}
+          <a href={EULER_E352}>
+            Euler, Remarks on a beautiful relation between direct as well as reciprocal power series
+            (E352, Euler Archive)
+          </a>
+          , translated by Willis and Osler, sections 1 to 15 (including section 11 for{" "}
+          <span innerHTML={prose`$n = 1$`} />
+          ); <a href={MATHLIB_VALUES}>Mathlib, values of the function</a> and{" "}
+          <a href={MATHLIB_BERNOULLI}>the theorem bernoulli_two</a>, for the values at 2 and{" "}
+          <span innerHTML={prose`$-1$.`} />
+        </p>
+      </section>
+
+      <section>
+        <h2>A hundred years later: Riemann crosses the wall</h2>
         <p>
           After Euler, nobody did substantial work on the function for more than a century. The
           mathematician Weil, in his history of number theory, wrote that the subject was dead, and
-          that Riemann brought it back to life.
+          that Riemann brought it back to life. Two big questions remained open: how to give the
+          function a rigorous meaning past the wall at 1 where the sum fails, and how to turn
+          Euler's prime product into a way to count primes.
         </p>
         <p>
-          In 1859, Riemann was elected to the Berlin Academy. Each new member had to report on
-          recent research. His report is 8 pages long, and its title is “On the number of primes
-          less than a given magnitude”. It starts from Euler's formula: the sum on one side, the
-          product over the primes on the other.
+          In 1859, Riemann was elected to the Berlin Academy and submitted an 8-page report, “On the
+          number of primes less than a given magnitude”. It starts straight from Euler's prime
+          product, and changes three things:
         </p>
-        <p>Riemann changed three things.</p>
         <ul>
           <li
             innerHTML={prose`He let $s$ be a complex number, and gave the function the name $\zeta(s)$.`}
           />
           <li
-            innerHTML={prose`He showed that the function has a meaning on the whole plane, except at the point 1.
-              The sum alone works only where the real part of $s$ is above 1.`}
+            innerHTML={prose`He showed that $\zeta(s)$ extends smoothly to the whole complex plane except at 1, and
+              proved Euler's $s \leftrightarrow 1 - s$ symmetry for every complex $s$. That resolves
+              Euler's puzzle: $-\frac{1}{12}$ belongs to this extended function at $s = -1$, not to
+              the divergent sum $1 + 2 + 3 + \cdots$.`}
           />
           <li>
-            He found that the zeros of the function, the points where its value is 0, are tied to
-            how the primes are spread.
+            He discovered that the zeros of the function, the points where its value is 0, control
+            how the primes are spread — and conjectured where those zeros lie. That conjecture is
+            the Riemann hypothesis.
           </li>
         </ul>
-        <p>Then he conjectured where those zeros are. That conjecture is the Riemann hypothesis.</p>
+        <p
+          innerHTML={prose`Riemann's proof also explains why the raw conversion factor looks so asymmetric and leaves
+            out certain points. He found that multiplying $\zeta(s)$ by a companion factor built from
+            the function $\Gamma$ (gamma) produces a completed function whose values at $s$ and
+            $1 - s$ are literally equal, with only two bad points: 0 and 1 (partners of each other).
+            Moving $\Gamma$ onto one side puts $\Gamma(s)$ inside the conversion factor between
+            $\zeta(s)$ and $\zeta(1 - s)$, so that raw rule skips $s = 1$ (where $\zeta$ blows up)
+            and $s = 0, -1, -2, \dots$ (where $\Gamma$ has no value — which is why it gives the
+            value at $-1$ from 2, but cannot run backwards from $-1$ to 2). Those exceptions are
+            points where a piece of the rule has no value, not points where the symmetry fails.`}
+        />
+        <p
+          innerHTML={prose`The function $\Gamma$ was not invented for this proof. Euler had already created it in
+            1729 to extend the factorial $1 \cdot 2 \cdot 3 \cdots n$ between whole numbers (shifted
+            by 1 in modern notation, so $\Gamma(5) = 1 \cdot 2 \cdot 3 \cdot 4 = 24$, with no value
+            at 0, $-1$, $-2$ and so on).`}
+        />
+        <p>
+          The page <a href={href("gamma")}>The Gamma function</a> explains its history, why it has
+          no value at those points, and how Riemann used its integral to prove the symmetry of{" "}
+          <span innerHTML={prose`$\zeta(s)$.`} />
+        </p>
+        <p
+          innerHTML={prose`Finally, Riemann's complex symmetry explains why the Riemann hypothesis focuses on the
+            vertical line where the real part is $\frac{1}{2}$. For a complex number $s = a + bi$,
+            the partner $1 - s = (1 - a) - bi$ is a half turn around the point $\frac{1}{2}$, not a
+            flip across a line. Because $\zeta$ has real coefficients, it also obeys a second
+            symmetry: the value at $a - bi$ is the value at $a + bi$ with the sign of its $i$ part
+            flipped. Together, the two symmetries tie $a + bi$ to $(1 - a) + bi$ — two points at the
+            same height $b$, exact mirror images across the line $\operatorname{Re}(s) = \frac{1}{2}$.
+            Inside the strip where $0 < \operatorname{Re}(s) < 1$, the companion factor between
+            $\zeta$ and its completed form is never 0, so the zeros there come in mirrored pairs:
+            whenever $a + bi$ is a zero, $(1 - a) + bi$ is a zero too. The Riemann hypothesis says
+            that apart from the known zeros at $-2$, $-4$, $-6$ and so on, every zero sits right on
+            the mirror line $\operatorname{Re}(s) = \frac{1}{2}$, where it is its own mirror image.`}
+        />
         <p class="sources">
           Sources: <a href={PAPADOPOULOS}>Papadopoulos, Looking backward: from Euler to Riemann</a>,
-          section 6. <a href={ELKIES}>Elkies, Math 229 notes on the zeta function</a>, for where the
-          sum works and for the symmetry that Riemann proved.{" "}
-          <a href={EULER_E352}>
-            Euler, Remarks on a beautiful relation between direct as well as reciprocal power series
-            (E352, Euler Archive)
+          section 6;{" "}
+          <a href={RIEMANN_1859}>
+            Riemann, On the Number of Prime Numbers less than a Given Quantity (1859, Wilkins
+            translation)
           </a>
-          , translated by Willis and Osler, sections 1 to 15, for how Euler found the symmetry.{" "}
-          <a href={MATHLIB_CONJ}>Mathlib, theorem riemannZeta_conj</a>, for the second symmetry.{" "}
-          <a href={MATHLIB_PIN}>Mathlib at the commit the proof builds against</a>: four statements
-          for the mirrored pairs of zeros, and the theorem riemannZeta_one_sub for the factor that
-          links the two values of a pair. The steps are in the project note.{" "}
-          <a href={MATHLIB_VALUES}>Mathlib, values of the function</a>, for the values at 2 and at{" "}
-          <span innerHTML={prose`$-1$; the value at $-1$ also uses `} />
-          <a href={MATHLIB_BERNOULLI}>the theorem bernoulli_two</a>.{" "}
-          <a href={MATHLIB_GAMMA}>Mathlib, the header of the file on the Gamma function</a>, for
-          what <span innerHTML={prose`$\Gamma$`} /> is and for the points where it has no value.{" "}
-          <a href={EULER_E19}>Euler Archive, record of paper E19</a>, for the year 1729. Elkies also
-          gives the two special points of Riemann's form, and section 11 of Euler's paper gives the{" "}
-          <span innerHTML={prose`case $n = 1$.`} />
+          , pages 1 to 3; <a href={ELKIES}>Elkies, Math 229 notes on the zeta function</a>, for
+          where the sum works, the poles of the completed function at 0 and 1, and Riemann's
+          symmetry; <a href={MATHLIB_CONJ}>Mathlib, theorem riemannZeta_conj</a>, for the second
+          symmetry; <a href={MATHLIB_PIN}>Mathlib at the commit the proof builds against</a> (four
+          statements for the mirrored pairs of zeros, and riemannZeta_one_sub for the conversion
+          factor); <a href={MATHLIB_GAMMA}>Mathlib, the header of the file on the Gamma function</a>
+          ; and <a href={EULER_E19}>Euler Archive, record of paper E19</a>, for the year 1729.
         </p>
       </section>
 
