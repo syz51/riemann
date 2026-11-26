@@ -436,7 +436,8 @@ export function ZetaPage() {
             flip across a line. Because $\zeta$ has real coefficients, it also obeys a second
             symmetry: the value at $a - bi$ is the value at $a + bi$ with the sign of its $i$ part
             flipped. Together, the two symmetries tie $a + bi$ to $(1 - a) + bi$ — two points at the
-            same height $b$, exact mirror images across the line $\operatorname{Re}(s) = \frac{1}{2}$.
+            same height $b$, exact mirror images across the line $\operatorname{Re}(s) = \frac{1}{2}$
+            (here $\operatorname{Re}$ stands for “real part”, the left-to-right coordinate $a$).
             Inside the strip where $0 < \operatorname{Re}(s) < 1$, the companion factor between
             $\zeta$ and its completed form is never 0, so the zeros there come in mirrored pairs:
             whenever $a + bi$ is a zero, $(1 - a) + bi$ is a zero too. The Riemann hypothesis says
