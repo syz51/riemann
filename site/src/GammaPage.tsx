@@ -36,39 +36,68 @@ export function GammaPage() {
       <h1>The Gamma function</h1>
       <p
         class="summary"
-        innerHTML={prose`The symmetry of the zeta function uses a function with the name $\Gamma$ (gamma). It is 300 years old. It began with one question: what comes between the terms of the list 1, 2, 6, 24, 120?`}
+        innerHTML={prose`The symmetry of the zeta function uses a function called $\Gamma$ (gamma). It began with a simple question — what sits between the factorials 1, 2, 6, 24, 120? — and ended up turning $\zeta$'s power sums into exponentials with exact symmetry.`}
       />
 
       <section>
-        <h2>A list with gaps</h2>
+        <h2>What the Gamma function is</h2>
         <p
-          innerHTML={prose`Multiply the whole numbers from 1 up to $n$. For $n = 1, 2, 3, 4, 5$ the results are 1, 2, 6, 24 and 120. The result for $n$ has the name factorial of $n$. The list has a term for each whole number. Has it a term for $n = \frac{1}{2}$? The product "from 1 up to a half" has no meaning, so the question needs a new idea.`}
+          innerHTML={prose`Multiply the whole numbers from 1 up to $n$. For $n = 1, 2, 3, 4, 5$ you get the
+            factorials 1, 2, 6, 24, 120. What belongs at $n = \frac{1}{2}$? “Multiply from 1 up to
+            a half” has no meaning, so filling the gaps needs a new formula. In 1729, Euler found
+            one — and discovered that the term at $n = \frac{1}{2}$ is $\frac{\sqrt{\pi}}{2}$
+            (about 0.8862), unexpectedly bringing the circle constant $\pi$ into a list of whole-number
+            products.`}
         />
         <p
-          innerHTML={prose`Euler answered it in a paper that he wrote in 1729. His first sentence says where the question came from: he was "prompted by those results concerning series which the celebrated Goldbach has communicated to the Society", and he looked for "a general expression which would give all the terms" of the list. He found an endless product that gives the list at the whole numbers and also has a value between them.`}
+          innerHTML={prose`The proof of the Riemann hypothesis does not define $\Gamma$, $\zeta$, or the statement
+            of the hypothesis itself: all three come from Mathlib, Lean's community library. Where
+            the real part of $s$ is above 0 ($\operatorname{Re}(s) > 0$), Mathlib defines $\Gamma(s)$
+            by Euler's exponential integral:`}
         />
+        <div class="equation" innerHTML={tex`\Gamma(s) = \int_0^\infty e^{-t} t^{s - 1}\,dt`} />
         <p
-          innerHTML={prose`Then he calculated the term for $n = \frac{1}{2}$. He found that it "is equal to the square root of the circle whose diameter = 1". The circle here means its area, which is $\frac{\pi}{4}$. So the term is $\frac{\sqrt{\pi}}{2}$, about 0.8862. The number $\pi$ belongs to circles, and the list is about products of whole numbers. Nothing in the question suggested a circle.`}
+          innerHTML={prose`Here $s$ sits inside an exponent, so it does not have to be a whole number (you do not
+            need to compute integrals to read the rest of this page). Because the exponent is $s - 1$,
+            the values are shifted by 1 from the factorials: $\Gamma(5)$ is not 120, it is 24. For
+            $\operatorname{Re}(s) \le 0$, where the integral no longer converges, Mathlib steps
+            backwards by 1 using the recurrence rule $\Gamma(s + 1) = s \cdot \Gamma(s)$. Four core
+            rules summarize how $\Gamma$ behaves:`}
         />
+        <ul>
+          <li innerHTML={prose`$\Gamma(1) = 1$.`} />
+          <li
+            innerHTML={prose`$\Gamma(s + 1) = s \cdot \Gamma(s)$, wherever both values exist: stepping right by 1 multiplies by $s$.`}
+          />
+          <li
+            innerHTML={prose`$\Gamma(n + 1) = 1 \cdot 2 \cdot 3 \cdots n$ for every whole number $n \ge 1$ (following from the two rules above).`}
+          />
+          <li
+            innerHTML={prose`$\Gamma\!\left(\frac{1}{2}\right) = \sqrt{\pi}$ — so by the second rule, $\Gamma\!\left(\frac{3}{2}\right) = \frac{1}{2}\Gamma\!\left(\frac{1}{2}\right) = \frac{\sqrt{\pi}}{2}$, matching Euler's 1729 term for $n = \frac{1}{2}$.`}
+          />
+        </ul>
         <details class="aside-details">
           <summary>
             <span
-              innerHTML={prose`How did Euler find the product, and where did $\pi$ come from?`}
+              innerHTML={prose`How did Euler find it in 1729, and where did $\pi$ come from?`}
             />
           </summary>
           <div class="aside-body">
             <p
-              innerHTML={prose`In both his October 13, 1729 letter to Goldbach and E19 §1, Euler states the guiding idea without printing the scratchwork: continued far out, the factorial list behaves like a geometric progression. Write $f(x)$ for the term of index $x$, and $N! = 1 \cdot 2 \cdots N$ for the factorial of a whole number $N$. Here is how that idea leads to his formula:`}
+              innerHTML={prose`In his October 13, 1729 letter to Goldbach and paper E19 (§1), Euler started from one
+                guiding idea without printing the scratchwork: continued far out, the factorial list
+                behaves like a geometric progression. Write $f(x)$ for the term of index $x$ and
+                $N! = 1 \cdot 2 \cdots N$:`}
             />
             <ol>
               <li
                 innerHTML={prose`Far out at a huge whole number $N$, consecutive factorial ratios $N + 1$, $N + 2$, $N + 3$ are nearly equal. A geometric progression with fixed ratio $N + 1$ multiplies by $(N + 1)^n$ over a fractional step $n$, so $f(N + n) \approx N!\,(N + 1)^n$.`}
               />
               <li
-                innerHTML={prose`On the other hand, applying the exact factorial rule $N$ times downward from $N + n$ to $n$ multiplies $f(n)$ by $(n + 1)(n + 2)\cdots(n + N)$, giving $f(N + n)$.`}
+                innerHTML={prose`Applying the exact factorial rule $N$ times downward from $N + n$ to $n$ multiplies $f(n)$ by $(n + 1)(n + 2)\cdots(n + N)$, giving $f(N + n)$.`}
               />
               <li
-                innerHTML={prose`Setting both expressions equal gives Euler's finite approximation from his Goldbach letter, and writing $(N + 1)^n = \prod_{k = 1}^{N} \left(\frac{k + 1}{k}\right)^n$ folds it into his endless product:`}
+                innerHTML={prose`Setting both equal gives Euler's finite approximation from his Goldbach letter, and writing $(N + 1)^n = \prod_{k = 1}^{N} \left(\frac{k + 1}{k}\right)^n$ folds it into his endless product:`}
               />
             </ol>
             <div
@@ -76,44 +105,10 @@ export function GammaPage() {
               innerHTML={tex`\begin{aligned} n! &= \lim_{N \to \infty} \frac{1 \cdot 2 \cdots N}{(1 + n)\cdots(N + n)}(N + 1)^n \\ &= \prod_{k = 1}^{\infty} \frac{k^{1 - n}(k + 1)^n}{k + n} \end{aligned}`}
             />
             <p
-              innerHTML={prose`Daniel Bernoulli independently sent Goldbach a closely related product one week earlier, on October 6, 1729.`}
+              innerHTML={prose`Daniel Bernoulli independently sent Goldbach a closely related product one week earlier, on October 6, 1729. Plugging $n = \frac{1}{2}$ into Euler's product yields the square root of $\frac{2 \cdot 4}{3 \cdot 3} \cdot \frac{4 \cdot 6}{5 \cdot 5} \cdot \frac{6 \cdot 8}{7 \cdot 7} \cdots$. Seventy-three years earlier, in 1656, John Wallis had shown — by interpolating a table of areas that forms Pascal's triangle — that this exact endless product equals $\frac{\pi}{4}$, the area of a circle of diameter 1.`}
             />
             <p
-              innerHTML={prose`Plugging $n = \frac{1}{2}$ into Euler's product yields the square root of $\frac{2 \cdot 4}{3 \cdot 3} \cdot \frac{4 \cdot 6}{5 \cdot 5} \cdot \frac{6 \cdot 8}{7 \cdot 7} \cdots$. Seventy-three years earlier, in 1656, John Wallis had shown — by interpolating a table of areas that forms Pascal's triangle — that this exact endless product equals $\frac{\pi}{4}$, the area of a circle of diameter 1.`}
-            />
-          </div>
-        </details>
-        <p class="sources">
-          Sources:{" "}
-          <a href={EULER_E19}>Euler, On transcendental progressions (E19, Euler Archive)</a>,
-          translated by Langton, sections 1, 2 and 17 (and catalogue record for the year 1729);{" "}
-          <a href={GRONAU_2003}>Gronau (2003)</a>, pages 45 to 47, for Daniel Bernoulli's October 6
-          and Euler's October 13, 1729 letters; <a href={DAVIS_1959}>Davis (1959)</a>, pages 852 to
-          853; and <a href={WALLIS_TABLE}>Addington and Dennis on Wallis's 1656 table</a> (with
-          Stedall in Grattan-Guinness, ed., Elsevier 2005, pages 25 to 31). The three-step algebraic
-          reconstruction and 0.8862 are our own.
-        </p>
-      </section>
-
-      <section>
-        <h2>Euler's formula</h2>
-        <p
-          innerHTML={prose`Finding a circle area inside the $n = \frac{1}{2}$ term was a clue: it told Euler that
-            no ordinary algebraic or exponential formula could capture $n!$ between whole numbers,
-            so he went looking for an area — an integral — instead. Later in the same 1729 paper,
-            he turned his product into this second formula for the term of index $n$:`}
-        />
-        <div class="equation" innerHTML={tex`\int_0^1 (-\ln x)^n \, dx`} />
-        <p
-          innerHTML={prose`The sign $\int$ is an integral: the area under a curve, here between $x = 0$ and $x = 1$. The sign $\ln$ is the natural logarithm. You do not need to compute integrals to read the rest of this page. The important point is that $n$ is now a power, and a power does not have to be a whole number. Euler checked the formula for $n = 3$ and got 6. He wrote that the formula is useful for the terms between the whole numbers.`}
-        />
-        <details class="aside-details">
-          <summary>
-            <span>How did Euler turn the product into this integral?</span>
-          </summary>
-          <div class="aside-body">
-            <p
-              innerHTML={prose`Seeing a circle area in the $n = \frac{1}{2}$ term convinced Euler that no algebraic or exponential formula could express $n!$, so he looked for an integral whose value gives a fraction of factorials (E19 §§3–14):`}
+              innerHTML={prose`Seeing a circle area inside the $n = \frac{1}{2}$ term convinced Euler that no algebraic or exponential formula could capture $n!$, so he went looking for an integral instead (E19 §§3–15):`}
             />
             <ol>
               <li>
@@ -126,95 +121,68 @@ export function GammaPage() {
                 />
               </li>
               <li
-                innerHTML={prose`Writing $e = \frac{f}{g}$ (for positive numbers $f$ and $g$), scaling out $g$, and moving the last factor $f + (n + 1)g$ to the integral side leaves the denominator $(f + g)(f + 2g)\cdots(f + ng)$. Setting $f = 1$ and letting $g \to 0$ collapses that denominator to 1, leaving pure $1 \cdot 2 \cdots n$.`}
+                innerHTML={prose`Writing $e = \frac{f}{g}$, scaling out $g$, and moving $f + (n + 1)g$ to the integral side leaves $(f + g)(f + 2g)\cdots(f + ng)$ in the denominator. Setting $f = 1$ and letting $g \to 0$ collapses that denominator to 1, leaving pure $1 \cdot 2 \cdots n$.`}
               />
               <li
-                innerHTML={prose`Under the substitution $x \mapsto x^{\frac{g}{f + g}}$, the integrand contains $\frac{1 - x^z}{z}$ with $z = \frac{g}{f + g} \to 0$, whose limit is $-\ln x$. That yields $\int_0^1 (-\ln x)^n\,dx$.`}
+                innerHTML={prose`Substituting $x \mapsto x^{\frac{g}{f + g}}$ turns the integrand into a power of $\frac{1 - x^z}{z}$ with $z = \frac{g}{f + g} \to 0$, whose limit is $-\ln x$, giving Euler's logarithmic integral $\int_0^1 (-\ln x)^n\,dx$. (For $n = 3$, Euler verified the antiderivative $-x(\ln x)^3 + 3x(\ln x)^2 - 6x\ln x + 6x$, which vanishes as $x \to 0^+$ and gives 6 at $x = 1$.)`}
               />
             </ol>
             <p
-              innerHTML={prose`To test $n = 3$, Euler wrote down the antiderivative $-x(\ln x)^3 + 3x(\ln x)^2 - 6x\ln x + 6x$. Every term vanishes as $x \to 0^+$, and at $x = 1$ (where $\ln 1 = 0$) only 6 remains.`}
+              innerHTML={prose`Substituting $x = e^{-t}$ unfolds $(0, 1)$ into $(0, \infty)$ and turns $\int_0^1 (-\ln x)^{s - 1}\,dx$ identically into Mathlib's exponential integral $\int_0^\infty e^{-t} t^{s - 1}\,dt$.`}
+            />
+          </div>
+        </details>
+        <details class="aside-details">
+          <summary>
+            <span innerHTML={prose`Why the letter $\Gamma$, and why the shift by 1?`} />
+          </summary>
+          <div class="aside-body">
+            <p
+              innerHTML={prose`Euler did not use the letter $\Gamma$. Legendre did. In a memoir read to the Institut de France in November 1809 and printed in August 1810, he wrote of the integral $\int_0^1 \bigl(\ln\frac{1}{x}\bigr)^{a - 1}\,dx$: “nous la désignerons par $\Gamma(a)$” — we will denote it by $\Gamma(a)$. In his book of 1811 he named two integrals studied by Euler “Eulerian integrals” and repeated the symbol: “nous la représenterons plus généralement par $\Gamma(a)$”.`}
+            />
+            <p
+              innerHTML={prose`That shifted form puts $a - 1$ in place of $n$ in Euler's 1729 integral, so $\Gamma(a)$ is the term of index $a - 1$ in Euler's list — giving $\Gamma(n + 1) = n!$. Euler himself had already introduced that parameter shift in his 1768 calculus textbook; Legendre gave it the symbol $\Gamma$ and made the convention standard.`}
+            />
+          </div>
+        </details>
+        <details class="aside-details">
+          <summary>
+            <span innerHTML={prose`Is $\Gamma$ the only smooth curve through the factorials?`} />
+          </summary>
+          <div class="aside-body">
+            <p
+              innerHTML={prose`No: many smooth curves pass through 1, 1, 2, 6, 24, and some even obey $f(x + 1) = x \cdot f(x)$ while differing from $\Gamma$ between whole numbers. Mathlib proves the Bohr–Mollerup theorem, which adds the one missing smoothness condition: if $f$ is defined and positive on $(0, \infty)$, satisfies $f(1) = 1$ and $f(x + 1) = x \cdot f(x)$, and $\ln f$ is convex (its curve never bends downward), then $f$ must be $\Gamma$. Mathlib uses this exact uniqueness theorem below to prove Legendre's doubling formula.`}
             />
           </div>
         </details>
         <p class="sources">
-          Source: <a href={EULER_E19}>Euler, On transcendental progressions (E19, Euler Archive)</a>
-          , sections 3 to 15 (Euler writes lx for the logarithm).{" "}
-          <span
-            innerHTML={prose`Our own Lean check (lean/RiemannChecks/EulerGamma.lean) verifies the $n = 3$ derivative and $x \to 0^+$ limit.`}
-          />
-        </p>
-      </section>
-
-      <section>
-        <h2>The name, and a shift by 1</h2>
-        <p
-          innerHTML={prose`Euler did not use the letter $\Gamma$. Legendre did. In a memoir read to the Institut de France in November 1809 and printed in August 1810, he wrote of the integral $\int_0^1 \bigl(\ln\frac{1}{x}\bigr)^{a - 1}\,dx$: "nous la désignerons par $\Gamma(a)$" — we will denote it by $\Gamma(a)$. In his book of 1811 he gave the name "Eulerian integrals" to two integrals that Euler had studied, and repeated the notation: "nous la représenterons plus généralement par $\Gamma(a)$".`}
-        />
-        <p
-          innerHTML={prose`That shifted form matches Euler's 1729 integral with the power $a - 1$ in place of $n$, so $\Gamma(a)$ is the term of index $a - 1$ in Euler's list. (Euler himself had already introduced that parameter shift in his 1768 calculus textbook; Legendre gave it the symbol $\Gamma$ and made the convention standard.) That is the reason for a shift that surprises every reader: $\Gamma(5)$ is not 120. It is 24, the product of the whole numbers below 5.`}
-        />
-        <div class="equation" innerHTML={tex`\Gamma(n + 1) = 1 \cdot 2 \cdot 3 \cdots n`} />
-        <p class="sources">
           Sources:{" "}
-          <a href={LEGENDRE_1810}>Legendre, Recherches sur diverses sortes d'intégrales définies</a>
-          , Mémoires de l'Institut (Année 1809, printed August 1810), page 477, section 53;{" "}
-          <a href={LEGENDRE}>Legendre, Exercices de calcul intégral</a>, Paris, 1811, page 221; and{" "}
-          <a href={GRONAU_2003}>Gronau (2003)</a>, pages 51 to 52, for Euler's 1768 shift. Both
-          Legendre quotations were read on the page scans.
-        </p>
-      </section>
-
-      <section>
-        <h2>The rules of today</h2>
-        <p
-          innerHTML={prose`The proof of the Riemann hypothesis does not define $\Gamma$, $\zeta$, or the statement of the hypothesis itself: all three come directly from Mathlib, Lean's community mathematics library. Where the real part of $s$ is above 0 (written $\operatorname{Re}(s) > 0$), the exponential integral converges, and Mathlib defines $\Gamma(s)$ by`}
-        />
-        <div class="equation" innerHTML={tex`\Gamma(s) = \int_0^\infty e^{-t} t^{s - 1}\,dt`} />
-        <p
-          innerHTML={prose`Mathlib calls this "Euler's integral", and it is the exact same shifted function as
-            Legendre's $\Gamma(s)$: substituting $x = e^{-t}$ unfolds $(0, 1)$ into $(0, \infty)$
-            and turns $\int_0^1 (-\ln x)^{s - 1}\,dx$ identically into
-            $\int_0^\infty e^{-t} t^{s - 1}\,dt$. Writing it with an exponential $e^{-t}$ is also
-            what will let $\Gamma$ connect to the zeta function below. For points at and to the
-            left of 0 ($\operatorname{Re}(s) \le 0$), the integral no longer converges, so Mathlib
-            uses the recurrence rule $\Gamma(s + 1) = s \cdot \Gamma(s)$ in reverse, stepping
-            backwards by 1. Together, Mathlib proves these rules:`}
-        />
-        <ul>
-          <li innerHTML={prose`$\Gamma(1) = 1$.`} />
-          <li
-            innerHTML={prose`$\Gamma(s + 1) = s \cdot \Gamma(s)$, where both values exist. One step to the right multiplies the value by $s$.`}
-          />
-          <li
-            innerHTML={prose`$\Gamma(n + 1)$ is the factorial of $n$, for each whole number $n$ from 1. This follows from the two rules above.`}
-          />
-          <li innerHTML={prose`$\Gamma\!\left(\frac{1}{2}\right) = \sqrt{\pi}$.`} />
-        </ul>
-        <p
-          innerHTML={prose`Our own check against Euler: by the second rule, $\Gamma\!\left(\frac{3}{2}\right)$ is $\frac{1}{2}$ times $\Gamma\!\left(\frac{1}{2}\right)$, which is $\frac{\sqrt{\pi}}{2}$. And $\Gamma\!\left(\frac{3}{2}\right)$ is the term of index $\frac{1}{2}$ in Euler's list. Euler found the same value in 1729.`}
-        />
-        <p class="sources">
-          Sources: <a href={MATHLIB_BASIC}>Mathlib, the file on the Gamma function</a>, the header
-          and the theorems Gamma_one, Gamma_add_one and Gamma_nat_eq_factorial;{" "}
-          <a href={MATHLIB_RH}>Mathlib, RiemannZeta.lean</a>, for the definitions of{" "}
-          <span innerHTML={prose`$\zeta$`} /> and RiemannHypothesis;{" "}
-          <a href={MATHLIB_HALF}>Mathlib, theorem Gamma_one_half_eq</a>. We read the statements, not
-          the internal Mathlib proofs.{" "}
-          <span
-            innerHTML={prose`Our own Lean proof (lean/RiemannChecks/EulerGamma.lean) checks against Mathlib at this commit that substituting $x = e^{-t}$ turns $\int_0^1 (-\ln x)^{s - 1}\,dx$ into Mathlib's $\Gamma(s)$ for $\operatorname{Re}(s) > 0$.`}
-          />
+          <a href={EULER_E19}>Euler, On transcendental progressions (E19, Euler Archive)</a>,
+          translated by Langton, sections 1 to 17 (and catalogue record for 1729);{" "}
+          <a href={GRONAU_2003}>Gronau (2003)</a>, pages 45 to 47 and 51 to 52 (Bernoulli's and
+          Euler's 1729 letters, and Euler's 1768 shift); <a href={DAVIS_1959}>Davis (1959)</a>,
+          pages 852 to 853; <a href={WALLIS_TABLE}>Addington and Dennis on Wallis's 1656 table</a>{" "}
+          (with Stedall in Grattan-Guinness, ed., Elsevier 2005, pages 25 to 31);{" "}
+          <a href={LEGENDRE_1810}>Legendre, Mémoires de l'Institut (1809/1810)</a>, page 477,
+          section 53, and <a href={LEGENDRE}>Exercices de calcul intégral (1811)</a>, page 221 (read
+          on the scans); <a href={MATHLIB_BASIC}>Mathlib, Gamma/Basic.lean</a> (header, Gamma_one,
+          Gamma_add_one, Gamma_nat_eq_factorial); <a href={MATHLIB_RH}>Mathlib, RiemannZeta.lean</a>
+          ; <a href={MATHLIB_HALF}>Mathlib, theorem Gamma_one_half_eq</a>; and{" "}
+          <a href={MATHLIB_UNIQUE}>Mathlib, theorem eq_Gamma_of_log_convex</a>. The three-step
+          product reconstruction, 0.8862, and our Lean verification of the{" "}
+          <span innerHTML={prose`$n = 3$`} /> check and <span innerHTML={prose`$x = e^{-t}$`} />{" "}
+          substitution (lean/RiemannChecks/EulerGamma.lean) are our own.
         </p>
       </section>
 
       <section>
         <h2>The picture</h2>
         <p
-          innerHTML={prose`The chart shows $\Gamma(x)$ for a real number $x$. Move the slider, or press on the chart. The table shows the second rule at work: $x$ times $\Gamma(x)$ is the same as $\Gamma(x + 1)$, wherever $\Gamma(x)$ has a value.`}
+          innerHTML={prose`The chart shows $\Gamma(x)$ for a real number $x$. Move the slider, or press on the chart. The table shows the recurrence rule at work: $x$ times $\Gamma(x)$ equals $\Gamma(x + 1)$ wherever $\Gamma(x)$ has a value.`}
         />
         <GammaChart />
         <p
-          innerHTML={prose`Right of 0 the curve is smooth and stays above 0. It goes through the points of the list: 1, 1, 2, 6, 24. Left of 0 the curve is in pieces, and the pieces change sides.`}
+          innerHTML={prose`Right of 0 the curve is smooth and stays above 0, passing through 1, 1, 2, 6, 24. Left of 0 the curve breaks into pieces that alternate signs at every negative whole number.`}
         />
         <p class="sources">
           The page computes the values with a standard approximation, and the table rounds them. The
@@ -225,10 +193,10 @@ export function GammaPage() {
       <section>
         <h2 innerHTML={prose`Where $\Gamma$ has no value`} />
         <p
-          innerHTML={prose`$\Gamma$ has no value at 0, $-1$, $-2$ and so on. Mathlib says so in words: at these points "the function is undefined, and we set it to be 0 by convention". The 0 is a filler that the library needs, because each of its functions must give some answer. It is not a value of the function.`}
+          innerHTML={prose`Those breaks on the chart are at 0, $-1$, $-2$ and so on, where $\Gamma$ has no value. Mathlib says so explicitly: at these points “the function is undefined, and we set it to be 0 by convention”. That 0 is only a placeholder required by Lean's type system, not a value of $\Gamma$.`}
         />
         <p
-          innerHTML={prose`Near 0, Mathlib proves that $s \cdot \Gamma(s)$ comes close to 1, so $\Gamma(s)$ behaves like $\frac{1}{s}$ there: it shoots up to $+\infty$ on the right and plunges to $-\infty$ on the left (try 0.05 and $-0.05$ on the chart: about 19.47 and $-20.63$). No finite number can fit at 0.`}
+          innerHTML={prose`Near 0, Mathlib proves that $s \cdot \Gamma(s)$ approaches 1, so $\Gamma(s)$ behaves like $\frac{1}{s}$: it shoots up to $+\infty$ on the right and plunges to $-\infty$ on the left (try 0.05 and $-0.05$ on the chart: about 19.47 and $-20.63$). No finite number can fit at 0.`}
         />
         <p
           innerHTML={prose`At every other point — including negative fractions such as $-\frac{1}{2}$ — $\Gamma$ has a finite value, and that value is never 0.`}
@@ -268,98 +236,64 @@ export function GammaPage() {
                   innerHTML={tex`\Gamma\!\left(-\frac{1}{2}\right) = \frac{\Gamma\!\left(\dfrac{1}{2}\right)}{-\dfrac{1}{2}} = -2\sqrt{\pi} \approx -3.54`}
                 />
                 <p
-                  innerHTML={prose`Starting from any point with $\operatorname{Re}(s) \le 0$ other than 0, $-1$, $-2$, $\dots$, stepping right by 1 eventually lands safely in the region $\operatorname{Re}(s) > 0$ where the integral converges. Only 0, $-1$, $-2$, $\dots$ collide with 0 along the way.`}
+                  innerHTML={prose`Starting from any point with $\operatorname{Re}(s) \le 0$ other than 0, $-1$, $-2$, $\dots$, stepping right by 1 eventually lands safely in $\operatorname{Re}(s) > 0$ where the integral converges. Only 0, $-1$, $-2$, $\dots$ collide with 0 along the way.`}
                 />
               </li>
             </ol>
           </div>
         </details>
         <p class="sources">
-          Sources: <a href={MATHLIB_BASIC}>Mathlib, the header of the file on the Gamma function</a>
-          ; <a href={MATHLIB_ZERO}>Mathlib, theorem tendsto_self_mul_Gamma_nhds_zero</a>, for the
-          behaviour near 0; <a href={MATHLIB_NE_ZERO}>Mathlib, theorem Gamma_ne_zero</a>;{" "}
-          <a href={MATHLIB_DIFF}>Mathlib, theorem differentiableAt_Gamma</a>, for the other points.
-          For <span innerHTML={prose`$-1$, $-2$, $\dots$`} /> we read only the Mathlib statement
-          that they have no value; the domino-step explanation and the{" "}
+          Sources: <a href={MATHLIB_BASIC}>Mathlib, Gamma/Basic.lean</a>;{" "}
+          <a href={MATHLIB_ZERO}>Mathlib, theorem tendsto_self_mul_Gamma_nhds_zero</a>;{" "}
+          <a href={MATHLIB_NE_ZERO}>Mathlib, theorem Gamma_ne_zero</a>;{" "}
+          <a href={MATHLIB_DIFF}>Mathlib, theorem differentiableAt_Gamma</a>. For{" "}
+          <span innerHTML={prose`$-1$, $-2$, $\dots$`} /> we read only the Mathlib statement that
+          they have no value; the domino-step explanation and the{" "}
           <span innerHTML={prose`$\Gamma\!\left(-\frac{1}{2}\right)$`} /> check are our own algebra
           from the recurrence rule.
         </p>
       </section>
 
       <section>
-        <h2>Is it the only answer?</h2>
+        <h2 innerHTML={prose`How $\Gamma$ links to the zeta function symmetry`} />
         <p
-          innerHTML={prose`We filled the gaps of 1, 2, 6, 24, 120 using one integral formula — so a natural
-            question is whether someone else could draw a different smooth curve through those same
-            points that still obeys $f(x + 1) = x \cdot f(x)$. The answer is yes: the recurrence
-            alone does not pin down what happens between whole numbers. Mathlib proves a theorem of
-            Bohr and Mollerup that adds the one missing smoothness condition. Take a function $f$ on
-            the numbers above 0, with values above 0. Suppose that $f(1) = 1$, that
-            $f(x + 1) = x \cdot f(x)$, and that the logarithm of $f$ is convex: its curve never
-            bends downward. Then $f$ must be $\Gamma$. (Mathlib uses this exact uniqueness theorem
-            below to prove the doubling rule that simplifies $\zeta$'s symmetry.)`}
-        />
-        <p class="sources">
-          Source: <a href={MATHLIB_UNIQUE}>Mathlib, theorem eq_Gamma_of_log_convex</a>. The opening
-          remark on other curves is our own; we did not look up an explicit example.
-        </p>
-      </section>
-
-      <section>
-        <h2>Where the zeta function uses it</h2>
-        <p
-          innerHTML={prose`Why does a function invented in 1729 to fill gaps between factorials show up 130 years
-            later inside the symmetry of the zeta function? Because Euler's integral
+          innerHTML={prose`Why does a function invented in 1729 to interpolate factorials show up 130 years later
+            inside the symmetry of $\zeta(s)$? Because Euler's integral
             $\Gamma(s) = \int_0^\infty e^{-t} t^{s - 1}\,dt$ turns a power $\frac{1}{n^s}$ into an
             exponential $e^{-nx}$ — and sums of exponentials have simple closed forms and exact
             symmetries.`}
         />
         <p
-          innerHTML={prose`In his 1859 paper, Riemann did not pull the completed zeta function out of thin air. He
-            started with ordinary $\Gamma(s)$ (written $\Pi(s - 1)$ in his paper): substituting
-            $t = nx$ gives $\frac{\Gamma(s)}{n^s} = \int_0^\infty e^{-nx} x^{s - 1}\,dx$, so summing
-            over $n = 1, 2, 3, \dots$ collapses $\zeta(s)$ into an ordinary geometric series inside
-            the integral:`}
+          innerHTML={prose`In his 1859 paper, Riemann followed that idea in two natural steps. First, substituting
+            $t = nx$ into ordinary $\Gamma(s)$ (written $\Pi(s - 1)$ in his paper) gives
+            $\frac{\Gamma(s)}{n^s} = \int_0^\infty e^{-nx} x^{s - 1}\,dx$, so summing over
+            $n = 1, 2, 3, \dots$ turns $\zeta(s)$ into an ordinary geometric series inside the
+            integral:`}
         />
         <div
           class="equation"
           innerHTML={tex`\Gamma(s)\,\zeta(s) = \int_0^\infty \frac{x^{s - 1}}{e^x - 1}\,dx`}
         />
         <p
-          innerHTML={prose`By turning that integral into a loop around $(0, \infty)$ and collecting the poles of
-            $\frac{1}{e^x - 1}$ at $x = \pm 2\pi i n$, Riemann proved that $\zeta(s)$ extends to the
-            whole complex plane except $s = 1$, and discovered something surprising: the truly
-            symmetric combination is not $\Gamma(s)\zeta(s)$, but
+          innerHTML={prose`Turning that integral into a loop around $(0, \infty)$ and collecting the poles of
+            $\frac{1}{e^x - 1}$ at $x = \pm 2\pi i n$, Riemann extended $\zeta(s)$ to all complex
+            $s \neq 1$ and discovered a surprise: the truly symmetric combination is not
+            $\Gamma(s)\zeta(s)$, but
             $\Lambda(s) = \pi^{-\frac{s}{2}}\,\Gamma\!\left(\frac{s}{2}\right)\,\zeta(s)$, which
-            stays unchanged when $s$ is replaced by $1 - s$.`}
-        />
-        <p
-          innerHTML={prose`That clue — in his own words, “This property of the function induced me to introduce, in
-            place of $\Pi(s - 1)$, the integral $\Pi\!\left(\frac{s}{2} - 1\right)$ into the general
-            term of the series $\sum \frac{1}{n^s}$” — led him directly to his shorter second proof,
-            where substituting $x = \pi n^2 t$ turns $\zeta(s)$ into Jacobi's theta sum
+            stays unchanged under $s \leftrightarrow 1 - s$. That clue — in his words, “This
+            property of the function induced me to introduce, in place of $\Pi(s - 1)$, the integral
+            $\Pi\!\left(\frac{s}{2} - 1\right)$ into the general term of the series
+            $\sum \frac{1}{n^s}$” — led him to his shorter second proof, where substituting
+            $x = \pi n^2 t$ turns $\zeta(s)$ into Jacobi's theta sum
             $\sum_{n = 1}^{\infty} e^{-\pi n^2 t}$ and makes $\Lambda(1 - s) = \Lambda(s)$
             immediate.`}
         />
         <p
-          innerHTML={prose`Once $\Lambda(1 - s) = \Lambda(s)$ is established, solving for $\zeta(1 - s)$ leaves a
-            ratio of two half-argument Gamma factors. Simplifying that ratio back into a single
-            $\Gamma(s)$ needs $\Gamma$'s own $s \leftrightarrow 1 - s$ mirror law — Euler's
-            reflection formula:`}
-        />
-        <div class="equation" innerHTML={tex`\Gamma(s)\,\Gamma(1 - s) = \frac{\pi}{\sin(\pi s)}`} />
-        <p
-          innerHTML={prose`Here $\sin$ is the sine from trigonometry. Setting $s = \frac{1}{2}$ gives
-            $\Gamma\!\left(\frac{1}{2}\right)^2 = \pi$, so $\Gamma\!\left(\frac{1}{2}\right) = \sqrt{\pi}$.
-            Euler already used this identity in his 1749 zeta paper E352 (section 13, published
-            1768) and gave its dedicated infinite-product derivation in E421 (1772, section 43),
-            writing $[\lambda]\,[-\lambda] = \frac{\lambda\pi}{\sin(\lambda\pi)}$ in his shifted
-            notation $[\lambda] = \Gamma(\lambda + 1)$.`}
-        />
-        <p
-          innerHTML={prose`Combining Euler's reflection formula with Legendre's doubling formula collapses the ratio
-            from $\Lambda(1 - s) = \Lambda(s)$ into the explicit conversion factor linking
-            $\zeta(s)$ and $\zeta(1 - s)$:`}
+          innerHTML={prose`Solving $\Lambda(1 - s) = \Lambda(s)$ for $\zeta(1 - s)$ leaves a ratio of two
+            half-argument $\Gamma$ values. Simplifying that ratio with $\Gamma$'s own mirror law
+            (Euler's reflection formula, $\Gamma(s)\,\Gamma(1 - s) = \frac{\pi}{\sin(\pi s)}$) and
+            Legendre's doubling formula produces the explicit conversion factor linking $\zeta(s)$
+            and $\zeta(1 - s)$:`}
         />
         <div
           class="equation"
@@ -367,8 +301,9 @@ export function GammaPage() {
         />
         <p>
           <span
-            innerHTML={prose`Because $\Gamma(s)$ sits in that factor, the rule has no meaning where $\Gamma$ has no
-              value: at 0, $-1$, $-2$ and so on (and at 1, where $\zeta$ itself blows up). The page `}
+            innerHTML={prose`Because $\Gamma(s)$ sits in that factor, the rule skips the exact points where $\Gamma$
+              has no value: 0, $-1$, $-2$ and so on (plus 1, where $\zeta$ itself blows up). The
+              page `}
           />
           <a href={href("zeta")}>Where the zeta function came from</a> gives the numerical examples
           and exceptions.
@@ -434,7 +369,7 @@ export function GammaPage() {
                 <p>
                   <strong>Numerator (Legendre's doubling formula):</strong>{" "}
                   <span
-                    innerHTML={prose`Mathlib uses Bohr–Mollerup uniqueness (above) on positive reals, then analytic continuation to $\mathbb{C}$, to prove $\Gamma\!\left(\frac{s}{2}\right)\,\Gamma\!\left(\frac{s}{2} + \frac{1}{2}\right) = 2^{1 - s}\sqrt{\pi}\,\Gamma(s)$. Multiplying by $\pi^{-\frac{s}{2}}\,\pi^{-\frac{s + 1}{2}}$ cancels $\sqrt{\pi}$ and leaves:`}
+                    innerHTML={prose`Mathlib uses Bohr–Mollerup uniqueness (in the first section above) on positive reals, then analytic continuation to $\mathbb{C}$, to prove $\Gamma\!\left(\frac{s}{2}\right)\,\Gamma\!\left(\frac{s}{2} + \frac{1}{2}\right) = 2^{1 - s}\sqrt{\pi}\,\Gamma(s)$. Multiplying by $\pi^{-\frac{s}{2}}\,\pi^{-\frac{s + 1}{2}}$ cancels $\sqrt{\pi}$ and leaves:`}
                   />
                 </p>
                 <div
@@ -467,9 +402,19 @@ export function GammaPage() {
         </details>
         <details class="aside-details">
           <summary>
-            <span>How Mathlib proves Euler's reflection formula</span>
+            <span>Euler's reflection formula: history and Mathlib's proof</span>
           </summary>
           <div class="aside-body">
+            <p
+              innerHTML={prose`$\Gamma$ satisfies its own $s \leftrightarrow 1 - s$ mirror law — Euler's reflection formula:`}
+            />
+            <div
+              class="equation"
+              innerHTML={tex`\Gamma(s)\,\Gamma(1 - s) = \frac{\pi}{\sin(\pi s)}`}
+            />
+            <p
+              innerHTML={prose`Setting $s = \frac{1}{2}$ immediately gives $\Gamma\!\left(\frac{1}{2}\right)^2 = \pi$, so $\Gamma\!\left(\frac{1}{2}\right) = \sqrt{\pi}$. Euler already used this identity in his 1749 zeta paper E352 (section 13, published 1768) and gave its dedicated infinite-product derivation in E421 (1772, section 43), writing $[\lambda]\,[-\lambda] = \frac{\lambda\pi}{\sin(\lambda\pi)}$ in his shifted notation $[\lambda] = \Gamma(\lambda + 1)$. Here is how Mathlib proves it:`}
+            />
             <ol>
               <li>
                 <p>

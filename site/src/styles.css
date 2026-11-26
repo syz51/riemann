@@ -913,6 +913,10 @@ h3 {
   background: var(--surface);
 }
 
+.aside-details + .aside-details {
+  margin-top: 0.65rem;
+}
+
 .aside-details > summary {
   display: flex;
   align-items: center;
