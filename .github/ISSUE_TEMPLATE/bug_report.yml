@@ -1,0 +1,39 @@
+name: Bug or math/citation error
+description: Report a site bug, broken link, mathematical slip, or inaccurate citation.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This repository is public. Report security problems privately instead (see SECURITY.md).
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Explainer site (site/)
+        - Study notes (docs/notes/)
+        - References & citations (docs/references.md)
+        - Lean bridge checks (lean/)
+        - Build / CI / deployment
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What is wrong
+      description: Describe the bug, layout/rendering issue, or mathematical/citation inaccuracy, and what you expected instead.
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: Page URL or file path
+      placeholder: https://riemann-kappa.vercel.app/#/gamma or docs/notes/background-gamma.md
+    validations:
+      required: true
+  - type: textarea
+    id: source-or-repro
+    attributes:
+      label: Steps to reproduce or supporting source
+      description: For site bugs, steps and browser/viewport. For math or history corrections, please link the primary source or Lean declaration.
