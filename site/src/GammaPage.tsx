@@ -16,7 +16,7 @@ const MATHLIB = `${MATHLIB_ROOT}/Analysis/SpecialFunctions`;
 const MATHLIB_RH = `${MATHLIB_ROOT}/NumberTheory/LSeries/RiemannZeta.lean`;
 const MATHLIB_ZETA_ONE_SUB = `${MATHLIB_RH}#L178-L180`;
 const MATHLIB_HURWITZ_EVEN = `${MATHLIB_ROOT}/NumberTheory/LSeries/HurwitzZetaEven.lean#L760-L770`;
-const MATHLIB_THETA = `${MATHLIB_ROOT}/NumberTheory/ModularForms/JacobiTheta/TwoVariable.lean#L465-L485`;
+const MATHLIB_THETA = `${MATHLIB_ROOT}/NumberTheory/ModularForms/JacobiTheta/TwoVariable.lean#L465-L490`;
 const MATHLIB_BASIC = `${MATHLIB}/Gamma/Basic.lean#L11-L21`;
 const MATHLIB_HALF = `${MATHLIB}/Gaussian/GaussianIntegral.lean#L306-L307`;
 const MATHLIB_ZERO = `${MATHLIB}/Gamma/Deriv.lean#L94-L95`;
@@ -309,7 +309,7 @@ export function GammaPage() {
         />
         <div class="equation" innerHTML={tex`\Gamma(s)\,\Gamma(1 - s) = \frac{\pi}{\sin(\pi s)}`} />
         <p
-          innerHTML={prose`Here $\sin$ is the sine from trigonometry. Setting $s = \frac{1}{2}$ gives $\Gamma\!\left(\frac{1}{2}\right)^2 = \pi$, so $\Gamma\!\left(\frac{1}{2}\right) = \sqrt{\pi}$. Euler already used this identity in his 1749 zeta paper E352 (section 13, published 1768) and gave its dedicated infinite-product derivation in E421 (presented 1771, published 1772, section 43), writing $[\lambda]\,[-\lambda] = \frac{\lambda\pi}{\sin(\lambda\pi)}$ in his shifted notation $[\lambda] = \Gamma(\lambda + 1)$.`}
+          innerHTML={prose`Here $\sin$ is the sine from trigonometry. Setting $s = \frac{1}{2}$ gives $\Gamma\!\left(\frac{1}{2}\right)^2 = \pi$, so $\Gamma\!\left(\frac{1}{2}\right) = \sqrt{\pi}$. Euler already used this identity in his 1749 zeta paper E352 (section 13, published 1768) and gave its dedicated infinite-product derivation in E421 (1772, section 43), writing $[\lambda]\,[-\lambda] = \frac{\lambda\pi}{\sin(\lambda\pi)}$ in his shifted notation $[\lambda] = \Gamma(\lambda + 1)$.`}
         />
         <details class="aside-details">
           <summary>
