@@ -1,0 +1,28 @@
+name: Explanation or improvement suggestion
+description: Suggest a clearer explanation, diagram, proof step, or site improvement.
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Check [README.md](https://github.com/syz51/riemann/blob/main/README.md) first for the
+        pinned proof source and scope of this study project.
+  - type: textarea
+    id: motivation
+    attributes:
+      label: What is unclear or missing
+      description: Which step, background concept, or part of the site would benefit from improvement?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Suggested improvement
+      description: Describe the explanation, interactive diagram, note, or UI change you have in mind.
+    validations:
+      required: true
+  - type: textarea
+    id: references
+    attributes:
+      label: References (optional)
+      description: Any relevant Lean files, papers, or historical sources.

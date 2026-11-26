@@ -1,0 +1,20 @@
+# Weekly version updates; minor and patch updates arrive as one PR per ecosystem, major
+# updates one by one. When a PR bumps `packageManager` in site/package.json, bump
+# `bun@<version>` in vercel.json in the same PR (CI checks they match).
+version: 2
+updates:
+  - package-ecosystem: bun
+    directory: /site
+    schedule:
+      interval: weekly
+    groups:
+      site:
+        update-types: [minor, patch]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      actions:
+        update-types: [minor, patch]

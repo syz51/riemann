@@ -58,6 +58,10 @@ The project uses the [research-factory](https://github.com/syz51/research-factor
 
 The work board is `riemann`.
 
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md), and the [Code of Conduct](CODE_OF_CONDUCT.md).
+
 ## Licence
 
 Licensed under either the [MIT licence](LICENSE-MIT) or the [Apache License 2.0](LICENSE-APACHE), at your option.
