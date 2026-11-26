@@ -32,7 +32,7 @@ export type UpcomingStep = {
   number: number;
   level: string;
   status: "Next in walk-through" | "Planned";
-  title: string;
+  title: Markup;
   summary: Markup;
 };
 
@@ -65,23 +65,23 @@ export const STEPS: StepEntry[] = [
 export const UPCOMING_STEPS: UpcomingStep[] = [
   {
     number: 2,
-    level: "Main.lean",
+    level: "Level 1",
     status: "Next in walk-through",
-    title: "New.grh and Dirichlet L-functions",
+    title: prose`New.grh and Dirichlet $L$-functions`,
     summary: prose`The proof does not treat $\zeta$ alone: New.grh proves non-vanishing in $\operatorname{Re}(s) > \frac{1}{2}$ for every Dirichlet $L$-function.`,
   },
   {
     number: 3,
-    level: "New/Main.lean",
+    level: "Level 2",
     status: "Planned",
-    title: "The mirror argument (New.zeta_zeros_on_line)",
+    title: prose`The mirror argument (New.zeta_zeros_on_line)`,
     summary: prose`Why having no zeros with real part above $\frac{1}{2}$ forces every non-trivial zero onto the critical line.`,
   },
   {
     number: 4,
-    level: "New/Reduction",
+    level: "Level 3",
     status: "Planned",
-    title: "Three main theorems and star_inequality",
+    title: prose`Three main theorems and star_inequality`,
     summary: prose`Short forms, enough forms, and long integral forms: how MainInequality and OneSidedBound yield New.grh.`,
   },
 ];

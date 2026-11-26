@@ -121,5 +121,5 @@ export const step1 = defineStep({
       meaning: prose`New.grh proves that no Dirichlet $L$-function vanishes anywhere with real part above $\frac{1}{2}$ (the pole at 1 excepted). Lean checks that applying New.zeta_zeros_on_line to New.grh proves Mathlib's RiemannHypothesis. Step 2 opens New.grh.`,
     },
   ],
-  next: "Step 2 opens New.grh. The proof never works on zeta alone: it proves non-vanishing in the right half-plane for the whole family of Dirichlet L-functions, and zeta is the modulus-1 member.",
+  next: prose`Step 2 opens New.grh. The proof never works on $\zeta$ alone: it proves non-vanishing in the right half-plane for the whole family of Dirichlet $L$-functions, and $\zeta$ is the modulus-1 member.`,
 });
