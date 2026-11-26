@@ -22,7 +22,7 @@ cd site
 bun run verify
 ```
 
-This checks formatting, lints, type-checks, runs the unit and math-typesetting tests, and builds `site/dist/`. Run `vp check --fix` in `site/` to auto-format.
+This checks formatting, lints, type-checks, runs the unit and math-typesetting tests, and builds `site/dist/`. Run `bunx vp check --fix` in `site/` to auto-format.
 
 If you update `packageManager` in [`site/package.json`](site/package.json), update the matching `bun@<version>` in [`vercel.json`](vercel.json) as well (CI checks that they match).
 

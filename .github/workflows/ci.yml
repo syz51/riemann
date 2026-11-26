@@ -34,7 +34,7 @@ jobs:
       - name: Check vercel.json uses the same Bun
         run: |
           want="$(jq -r '.packageManager | ltrimstr("bun@")' package.json)"
-          grep -q "bun@${want} " ../vercel.json \
+          jq -r '.installCommand // empty' ../vercel.json | grep -Fq "bun@${want} " \
             || { echo "::error file=vercel.json::installCommand does not use bun@${want}, the packageManager in site/package.json"; exit 1; }
       - run: bun install --frozen-lockfile
       - run: bun run verify
