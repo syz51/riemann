@@ -6,19 +6,26 @@ const EULER_E19 = "https://scholarlycommons.pacific.edu/euler-works/19/";
 const DAVIS_1959 = "https://people.math.osu.edu/gautam.42/S20/DavisGammaFunction.pdf";
 const GRONAU_2003 = "https://doi.org/10.5485/TMCS.2003.0008";
 const WALLIS_TABLE = "https://www.quadrivium.info/GGB/WallisTable.html";
+const EULER_E352 = "https://scholarlycommons.pacific.edu/euler-works/352/";
 const EULER_E421 = "https://scholarlycommons.pacific.edu/euler-works/421/";
 const LEGENDRE_1810 = "https://www.digitale-sammlungen.de/en/view/bsb10500481?page=599";
 const LEGENDRE = "https://archive.org/details/10053610bsb";
-const MATHLIB =
-  "https://github.com/leanprover-community/mathlib4/blob/0df444a360eaa60ab8c11dca51a86af692955474/Mathlib/Analysis/SpecialFunctions";
-const MATHLIB_RH =
-  "https://github.com/leanprover-community/mathlib4/blob/0df444a360eaa60ab8c11dca51a86af692955474/Mathlib/NumberTheory/LSeries/RiemannZeta.lean";
+const MATHLIB_ROOT =
+  "https://github.com/leanprover-community/mathlib4/blob/0df444a360eaa60ab8c11dca51a86af692955474/Mathlib";
+const MATHLIB = `${MATHLIB_ROOT}/Analysis/SpecialFunctions`;
+const MATHLIB_RH = `${MATHLIB_ROOT}/NumberTheory/LSeries/RiemannZeta.lean`;
+const MATHLIB_ZETA_ONE_SUB = `${MATHLIB_RH}#L178-L180`;
+const MATHLIB_HURWITZ_EVEN = `${MATHLIB_ROOT}/NumberTheory/LSeries/HurwitzZetaEven.lean#L760-L770`;
+const MATHLIB_THETA = `${MATHLIB_ROOT}/NumberTheory/ModularForms/JacobiTheta/TwoVariable.lean#L465-L485`;
 const MATHLIB_BASIC = `${MATHLIB}/Gamma/Basic.lean#L11-L21`;
 const MATHLIB_HALF = `${MATHLIB}/Gaussian/GaussianIntegral.lean#L306-L307`;
 const MATHLIB_ZERO = `${MATHLIB}/Gamma/Deriv.lean#L94-L95`;
 const MATHLIB_DIFF = `${MATHLIB}/Gamma/Deriv.lean#L65`;
 const MATHLIB_NE_ZERO = `${MATHLIB}/Gamma/Beta.lean#L427`;
-const MATHLIB_REFLECTION = `${MATHLIB}/Gamma/Beta.lean#L397-L398`;
+const MATHLIB_REFLECTION = `${MATHLIB}/Gamma/Beta.lean#L374-L424`;
+const MATHLIB_DOUBLING = `${MATHLIB}/Gamma/Beta.lean#L559-L590`;
+const MATHLIB_DELIGNE = `${MATHLIB}/Gamma/Deligne.lean#L122-L181`;
+const MATHLIB_SINE_PROD = `${MATHLIB}/Trigonometric/EulerSineProd.lean#L271-L293`;
 const MATHLIB_UNIQUE = `${MATHLIB}/Gamma/BohrMollerup.lean#L305-L309`;
 
 export function GammaPage() {
@@ -283,23 +290,163 @@ export function GammaPage() {
         <h2>Where the zeta function uses it</h2>
         <p>
           <span
-            innerHTML={prose`The symmetry of the zeta function links the value at $s$ with the value at $1 - s$. The factor of that link contains $\Gamma(s)$. So the rule of the symmetry has no meaning where $\Gamma$ has no value: at 0, $-1$, $-2$ and so on. The page `}
+            innerHTML={prose`The symmetry of the zeta function links the value at $s$ with the value at $1 - s$ by a conversion factor that contains $\Gamma(s)$:`}
           />
-          <a href={href("zeta")}>Where the zeta function came from</a> gives the rule and its
-          exceptions.
+        </p>
+        <div
+          class="equation"
+          innerHTML={tex`\zeta(1 - s) = 2\,(2\pi)^{-s}\,\Gamma(s)\,\cos\!\left(\frac{\pi s}{2}\right)\,\zeta(s)`}
+        />
+        <p>
+          <span
+            innerHTML={prose`Because $\Gamma(s)$ sits in that factor, the rule has no meaning where $\Gamma$ has no value: at 0, $-1$, $-2$ and so on (and at 1, where $\zeta$ itself blows up). The page `}
+          />
+          <a href={href("zeta")}>Where the zeta function came from</a> gives the numerical examples
+          and exceptions.
         </p>
         <p
-          innerHTML={prose`$\Gamma$ has a rule of the same kind for itself. Mathlib calls it Euler's reflection formula:`}
+          innerHTML={prose`$\Gamma$ has a mirror rule of the same $s \leftrightarrow 1 - s$ kind for itself. Mathlib calls it Euler's reflection formula:`}
         />
         <div class="equation" innerHTML={tex`\Gamma(s)\,\Gamma(1 - s) = \frac{\pi}{\sin(\pi s)}`} />
         <p
-          innerHTML={prose`Here $\sin$ is the sine, a function from the study of angles. Euler stated and derived this identity in his 1772 paper E421 (section 43), writing $[\lambda]\,[-\lambda] = \frac{\lambda\pi}{\sin(\lambda\pi)}$ in his bracket notation $[\lambda] = \Gamma(\lambda + 1)$. This page does not need it further.`}
+          innerHTML={prose`Here $\sin$ is the sine from trigonometry. Setting $s = \frac{1}{2}$ gives $\Gamma\!\left(\frac{1}{2}\right)^2 = \pi$, so $\Gamma\!\left(\frac{1}{2}\right) = \sqrt{\pi}$. Euler already used this identity in his 1749 zeta paper E352 (section 13, published 1768) and gave its dedicated infinite-product derivation in E421 (presented 1771, published 1772, section 43), writing $[\lambda]\,[-\lambda] = \frac{\lambda\pi}{\sin(\lambda\pi)}$ in his shifted notation $[\lambda] = \Gamma(\lambda + 1)$.`}
         />
+        <details class="aside-details">
+          <summary>
+            <span
+              innerHTML={prose`How $\Gamma$ produces the zeta conversion factor (step by step)`}
+            />
+          </summary>
+          <div class="aside-body">
+            <p
+              innerHTML={prose`The conversion factor $2(2\pi)^{-s}\Gamma(s)\cos\!\left(\frac{\pi s}{2}\right)$ is not guessed — in Mathlib it falls straight out of two facts: Riemann's completed symmetry $\Lambda(1 - s) = \Lambda(s)$, and the two mirror identities of $\Gamma$ (doubling and reflection).`}
+            />
+            <ol>
+              <li>
+                <p>
+                  <strong innerHTML={prose`Turn $\frac{1}{n^s}$ into a Gaussian integral:`} />{" "}
+                  <span
+                    innerHTML={prose`start from Euler's integral $\Gamma\!\left(\frac{s}{2}\right) = \int_0^\infty e^{-x}\,x^{\frac{s}{2} - 1}\,dx$ (for $\operatorname{Re}(s) > 0$) and substitute $x = \pi n^2 t$. Summing over $n = 1, 2, 3, \dots$ (for $\operatorname{Re}(s) > 1$) defines the completed zeta function $\Lambda(s) = \Gamma_{\mathbb{R}}(s)\,\zeta(s)$ with $\Gamma_{\mathbb{R}}(s) = \pi^{-\frac{s}{2}}\,\Gamma\!\left(\frac{s}{2}\right)$:`}
+                  />
+                </p>
+                <div
+                  class="equation"
+                  innerHTML={tex`\Lambda(s) = \pi^{-\frac{s}{2}}\,\Gamma\!\left(\frac{s}{2}\right)\,\zeta(s) = \int_0^\infty \left(\sum_{n = 1}^{\infty} e^{-\pi n^2 t}\right) t^{\frac{s}{2} - 1}\,dt`}
+                />
+              </li>
+              <li>
+                <p>
+                  <strong>Symmetry of the Gaussian sum:</strong>{" "}
+                  <span
+                    innerHTML={prose`the full sum $\theta(t) = \sum_{n = -\infty}^{\infty} e^{-\pi n^2 t}$ satisfies $\theta(t) = \frac{1}{\sqrt{t}}\,\theta\!\left(\frac{1}{t}\right)$ by Poisson summation. Splitting the integral at $t = 1$ and substituting $t \mapsto \frac{1}{t}$ on $(0, 1)$ turns that $t \leftrightarrow \frac{1}{t}$ symmetry into exact equality under $s \leftrightarrow 1 - s$:`}
+                  />
+                </p>
+                <div class="equation" innerHTML={tex`\Lambda(1 - s) = \Lambda(s)`} />
+              </li>
+              <li>
+                <p>
+                  <strong>Isolate the conversion factor:</strong>{" "}
+                  <span
+                    innerHTML={prose`dividing $\Lambda(1 - s) = \Lambda(s)$ by $\Gamma_{\mathbb{R}}(1 - s)$ gives $\zeta(1 - s) = \frac{\Gamma_{\mathbb{R}}(s)}{\Gamma_{\mathbb{R}}(1 - s)}\,\zeta(s)$. To simplify that ratio, Mathlib multiplies top and bottom by $\Gamma_{\mathbb{R}}(s + 1)$:`}
+                  />
+                </p>
+                <div
+                  class="equation"
+                  innerHTML={tex`\frac{\Gamma_{\mathbb{R}}(s)}{\Gamma_{\mathbb{R}}(1 - s)} = \frac{\Gamma_{\mathbb{R}}(s)\,\Gamma_{\mathbb{R}}(s + 1)}{\Gamma_{\mathbb{R}}(1 - s)\,\Gamma_{\mathbb{R}}(1 + s)}`}
+                />
+              </li>
+              <li>
+                <p>
+                  <strong>Numerator (Legendre's doubling formula):</strong>{" "}
+                  <span
+                    innerHTML={prose`Mathlib uses Bohr–Mollerup uniqueness (above) on positive reals, then analytic continuation to $\mathbb{C}$, to prove $\Gamma\!\left(\frac{s}{2}\right)\,\Gamma\!\left(\frac{s}{2} + \frac{1}{2}\right) = 2^{1 - s}\sqrt{\pi}\,\Gamma(s)$. Multiplying by $\pi^{-\frac{s}{2}}\,\pi^{-\frac{s + 1}{2}}$ cancels $\sqrt{\pi}$ and leaves:`}
+                  />
+                </p>
+                <div
+                  class="equation"
+                  innerHTML={tex`\Gamma_{\mathbb{R}}(s)\,\Gamma_{\mathbb{R}}(s + 1) = 2\,(2\pi)^{-s}\,\Gamma(s)`}
+                />
+              </li>
+              <li>
+                <p>
+                  <strong>Denominator (Euler's reflection formula):</strong>{" "}
+                  <span
+                    innerHTML={prose`because $\frac{1 + s}{2} = 1 - \frac{1 - s}{2}$, applying $\Gamma(z)\,\Gamma(1 - z) = \frac{\pi}{\sin(\pi z)}$ at $z = \frac{1 - s}{2}$ cancels $\pi^{-1}$ and turns $\sin\!\left(\frac{\pi}{2} - \frac{\pi s}{2}\right)$ into $\cos\!\left(\frac{\pi s}{2}\right)$:`}
+                  />
+                </p>
+                <div
+                  class="equation"
+                  innerHTML={tex`\Gamma_{\mathbb{R}}(1 - s)\,\Gamma_{\mathbb{R}}(1 + s) = \pi^{-1} \cdot \frac{\pi}{\sin\!\left(\frac{\pi(1 - s)}{2}\right)} = \frac{1}{\cos\!\left(\frac{\pi s}{2}\right)}`}
+                />
+              </li>
+              <li>
+                <p>
+                  <strong>Divide numerator by denominator:</strong>{" "}
+                  <span
+                    innerHTML={prose`combining steps 4 and 5 yields $\frac{\Gamma_{\mathbb{R}}(s)}{\Gamma_{\mathbb{R}}(1 - s)} = 2\,(2\pi)^{-s}\,\Gamma(s)\,\cos\!\left(\frac{\pi s}{2}\right)$, which is the exact conversion factor in the zeta symmetry.`}
+                  />
+                </p>
+              </li>
+            </ol>
+          </div>
+        </details>
+        <details class="aside-details">
+          <summary>
+            <span>How Mathlib proves Euler's reflection formula</span>
+          </summary>
+          <div class="aside-body">
+            <ol>
+              <li>
+                <p>
+                  <strong innerHTML={prose`Limit formula for $\Gamma$:`} />{" "}
+                  <span
+                    innerHTML={prose`for $\operatorname{Re}(z) > 0$, Mathlib approximates $e^{-x}$ by $\left(1 - \frac{x}{n}\right)^n$ inside Euler's integral and applies dominated convergence (then shifts left by 1 using $\Gamma(z + 1) = z\,\Gamma(z)$) to show $\Gamma(z)$ is the limit as $n \to \infty$ of:`}
+                  />
+                </p>
+                <div
+                  class="equation"
+                  innerHTML={tex`\operatorname{GammaSeq}(z, n) = \frac{n^z\,n!}{z\,(z + 1)\,(z + 2)\cdots(z + n)}`}
+                />
+              </li>
+              <li>
+                <p>
+                  <strong innerHTML={prose`Multiply the $z$ and $1 - z$ products:`} />{" "}
+                  <span
+                    innerHTML={prose`in $\operatorname{GammaSeq}(z, n)\,\operatorname{GammaSeq}(1 - z, n)$, the powers $n^z \cdot n^{1 - z} = n$ combine, and pairing $(j + 1 + z)$ with $(j + 1 - z)$ gives $(j + 1)^2\left(1 - \frac{z^2}{(j + 1)^2}\right)$. The factors $(j + 1)^2$ cancel $(n!)^2$, leaving:`}
+                  />
+                </p>
+                <div
+                  class="equation"
+                  innerHTML={tex`\operatorname{GammaSeq}(z, n)\,\operatorname{GammaSeq}(1 - z, n) = \frac{n}{n + 1 - z} \cdot \frac{1}{z \prod_{j = 1}^{n} \left(1 - \frac{z^2}{j^2}\right)}`}
+                />
+              </li>
+              <li>
+                <p>
+                  <strong>Match to Euler's sine product:</strong>{" "}
+                  <span
+                    innerHTML={prose`as $n \to \infty$, $\frac{n}{n + 1 - z} \to 1$, and Euler's infinite product for the sine gives $\pi z \prod_{j = 1}^{n} \left(1 - \frac{z^2}{j^2}\right) \to \sin(\pi z)$ (proved in Mathlib by repeated integration by parts on $\int_0^{\frac{\pi}{2}} \cos(2zx)\cos^{2n}(x)\,dx$). Taking the reciprocal gives $\frac{\pi}{\sin(\pi z)}$.`}
+                  />
+                </p>
+              </li>
+            </ol>
+          </div>
+        </details>
         <p class="sources">
-          Sources: <a href={MATHLIB_REFLECTION}>Mathlib, theorem Gamma_mul_Gamma_one_sub</a>;{" "}
-          <a href={EULER_E421}>Euler, E421 (Euler Archive)</a>, Novi Commentarii academiae
-          scientiarum Petropolitanae 16 (1772), pages 120 to 121, section 43 (read on the Latin
-          scan).
+          Sources: <a href={MATHLIB_ZETA_ONE_SUB}>Mathlib, theorem riemannZeta_one_sub</a>;{" "}
+          <a href={MATHLIB_HURWITZ_EVEN}>Mathlib, lemma hurwitzZetaEven_one_sub</a>;{" "}
+          <a href={MATHLIB_DELIGNE}>
+            Mathlib, Deligne.lean (Gammaℝ_mul_Gammaℝ_add_one to inv_Gammaℝ_one_sub)
+          </a>
+          ; <a href={MATHLIB_THETA}>Mathlib, theorem jacobiTheta₂_functional_equation</a>;{" "}
+          <a href={MATHLIB_REFLECTION}>
+            Mathlib, Gamma/Beta.lean (GammaSeq_mul and Gamma_mul_Gamma_one_sub)
+          </a>
+          ; <a href={MATHLIB_DOUBLING}>Mathlib, theorem Gamma_mul_Gamma_add_half</a>;{" "}
+          <a href={MATHLIB_SINE_PROD}>Mathlib, theorem tendsto_euler_sin_prod</a>;{" "}
+          <a href={EULER_E352}>Euler, E352</a> (1749/1768, section 13, Willis and Osler
+          translation); <a href={EULER_E421}>Euler, E421 (Euler Archive)</a>, Novi Commentarii
+          academiae scientiarum Petropolitanae 16 (1772), pages 120 to 121, section 43 (read on the
+          Latin scan).
         </p>
       </section>
     </main>
