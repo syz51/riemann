@@ -168,8 +168,10 @@ export function GammaPage() {
           on the scans); <a href={MATHLIB_BASIC}>Mathlib, Gamma/Basic.lean</a> (header, Gamma_one,
           Gamma_add_one, Gamma_nat_eq_factorial); <a href={MATHLIB_RH}>Mathlib, RiemannZeta.lean</a>
           ; <a href={MATHLIB_HALF}>Mathlib, theorem Gamma_one_half_eq</a>; and{" "}
-          <a href={MATHLIB_UNIQUE}>Mathlib, theorem eq_Gamma_of_log_convex</a>. The three-step
-          product reconstruction, 0.8862, and our Lean verification of the{" "}
+          <a href={MATHLIB_UNIQUE}>Mathlib, theorem eq_Gamma_of_log_convex</a> (for these Mathlib
+          theorems we read the statements, not the internal proofs). The three-step product
+          reconstruction, 0.8862, the remark on other curves obeying the recurrence (we did not look
+          up an explicit example), and our Lean verification of the{" "}
           <span innerHTML={prose`$n = 3$`} /> check and <span innerHTML={prose`$x = e^{-t}$`} />{" "}
           substitution (lean/RiemannChecks/EulerGamma.lean) are our own.
         </p>
