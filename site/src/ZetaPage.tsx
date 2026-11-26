@@ -368,6 +368,9 @@ export function ZetaPage() {
           </a>
           , translated by Willis and Osler, sections 1 to 15 (including section 11 for{" "}
           <span innerHTML={prose`$n = 1$`} />
+          ); <a href={MATHLIB_PIN}>Mathlib, theorem riemannZeta_one_sub</a> (for the conversion
+          factor <span innerHTML={prose`$-\frac{1}{2\pi^2}$`} /> at{" "}
+          <span innerHTML={prose`$s = 2$`} />
           ); <a href={MATHLIB_VALUES}>Mathlib, values of the function</a> and{" "}
           <a href={MATHLIB_BERNOULLI}>the theorem bernoulli_two</a>, for the values at 2 and{" "}
           <span innerHTML={prose`$-1$.`} />

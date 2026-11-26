@@ -173,7 +173,7 @@ export function GammaPage() {
         <div class="equation" innerHTML={tex`\Gamma(s) = \int_0^\infty e^{-t} t^{s - 1}\,dt`} />
         <p
           innerHTML={prose`Mathlib calls this "Euler's integral", and it is the exact same shifted function as
-            Legendre's $\Gamma(s)$: substituting $x = e^{-t}$ unfolds $[0, 1]$ into $(0, \infty)$
+            Legendre's $\Gamma(s)$: substituting $x = e^{-t}$ unfolds $(0, 1)$ into $(0, \infty)$
             and turns $\int_0^1 (-\ln x)^{s - 1}\,dx$ identically into
             $\int_0^\infty e^{-t} t^{s - 1}\,dt$. Writing it with an exponential $e^{-t}$ is also
             what will let $\Gamma$ connect to the zeta function below. For points at and to the

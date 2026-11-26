@@ -8,6 +8,8 @@ import { Stepper, type Part } from "./Stepper";
 // returned "not found" on 23 November 2026.
 const MERINO = "https://math.mit.edu/~dunkel/Teach/18.04_2019S/historic/Merino_2006.pdf";
 const ELKIES = "https://people.math.harvard.edu/~elkies/M229.09/zeta1.pdf";
+const MATHLIB_ZETA_ZERO =
+  "https://github.com/leanprover-community/mathlib4/blob/0df444a360eaa60ab8c11dca51a86af692955474/Mathlib/NumberTheory/LSeries/RiemannZeta.lean#L150-L152";
 
 // The calculation of Bombelli.
 const CUBIC: Part[] = [
@@ -136,24 +138,29 @@ export function ComplexPage() {
       <section>
         <h2>Why the zeta function needs them</h2>
         <p
-          innerHTML={prose`Even after complex numbers had a geometric home, Euler studied the zeta sum using real
-            powers $s$ above 1 only. At $s = 1$ the sum grows without limit, forming a barrier on
-            the real line. In 1859, Riemann let $s$ move off the line into the complex plane. In
-            two dimensions the point 1 is no longer a wall — it is a single point you can walk
-            around — and Riemann showed that $\zeta(s)$ extends smoothly to the entire plane except
-            at 1.`}
+          innerHTML={prose`For more than a century before Riemann, Euler studied the zeta sum using real powers $s$.
+            As an ordinary sum, $1 + \frac{1}{2^s} + \frac{1}{3^s} + \cdots$ converges only for $s$
+            above 1; at $s = 1$ it grows without limit, forming a barrier on the real line. In 1859
+            — after complex numbers had gained their geometric plane — Riemann let $s$ move off the
+            line into that plane. In two dimensions the point 1 is no longer a wall — it is a single
+            point you can walk around — and Riemann showed that $\zeta(s)$ extends smoothly to the
+            entire plane except at 1.`}
         />
         <p
           innerHTML={prose`Why couldn't the Riemann hypothesis stay on the real line? On the real line, $\zeta(s)$
-            has zeros only at the trivial points $-2$, $-4$, $-6$ and so on, and nowhere on the
-            positive real axis — including nowhere between 0 and 1. Every single zero that the
-            hypothesis talks about sits off the real line, inside the strip where the real part of
-            $s$ is between 0 and 1, with a nonzero imaginary part. Without the complex plane, those
-            zeros do not exist at all, and there is no hypothesis to state.`}
+            has zeros only at the trivial points $-2$, $-4$, $-6$ and so on: it equals $-\frac{1}{2}$
+            at 0 and has no zeros anywhere on the positive real axis (including nowhere between 0
+            and 1). Every single zero that the hypothesis talks about sits off the real line, inside
+            the strip where the real part of $s$ is between 0 and 1, with a nonzero imaginary part.
+            Without the complex plane, those zeros do not exist at all, and there is no hypothesis
+            to state.`}
         />
         <p class="sources">
-          Source: <a href={ELKIES}>Elkies, Math 229 notes on the zeta function</a>, pages 1, 2 (the
-          theorem marked “Riemann 1859”) and 7 (no zeros on the positive real axis).
+          Sources: <a href={ELKIES}>Elkies, Math 229 notes on the zeta function</a>, pages 1, 2 (the
+          theorem marked “Riemann 1859”) and 7 (no zeros on the positive real axis);{" "}
+          <a href={MATHLIB_ZETA_ZERO}>Mathlib, theorem riemannZeta_zero</a> (
+          <span innerHTML={prose`$\zeta(0) = -\frac{1}{2}$`} />
+          ).
         </p>
       </section>
 
