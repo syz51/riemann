@@ -10,6 +10,7 @@ const EULER_E352 = "https://scholarlycommons.pacific.edu/euler-works/352/";
 const EULER_E421 = "https://scholarlycommons.pacific.edu/euler-works/421/";
 const LEGENDRE_1810 = "https://www.digitale-sammlungen.de/en/view/bsb10500481?page=599";
 const LEGENDRE = "https://archive.org/details/10053610bsb";
+const RIEMANN_1859 = "https://www.maths.tcd.ie/pub/HistMath/People/Riemann/Zeta/EZeta.pdf";
 const MATHLIB_ROOT =
   "https://github.com/leanprover-community/mathlib4/blob/0df444a360eaa60ab8c11dca51a86af692955474/Mathlib";
 const MATHLIB = `${MATHLIB_ROOT}/Analysis/SpecialFunctions`;
@@ -97,7 +98,10 @@ export function GammaPage() {
       <section>
         <h2>Euler's formula</h2>
         <p
-          innerHTML={prose`Later in the same paper Euler gave a second formula for the term of index $n$:`}
+          innerHTML={prose`Finding a circle area inside the $n = \frac{1}{2}$ term was a clue: it told Euler that
+            no ordinary algebraic or exponential formula could capture $n!$ between whole numbers,
+            so he went looking for an area — an integral — instead. Later in the same 1729 paper,
+            he turned his product into this second formula for the term of index $n$:`}
         />
         <div class="equation" innerHTML={tex`\int_0^1 (-\ln x)^n \, dx`} />
         <p
@@ -168,7 +172,14 @@ export function GammaPage() {
         />
         <div class="equation" innerHTML={tex`\Gamma(s) = \int_0^\infty e^{-t} t^{s - 1}\,dt`} />
         <p
-          innerHTML={prose`Mathlib calls this "Euler's integral", but it is the exact same shifted function as Legendre's $\Gamma(s)$: substituting $x = e^{-t}$ turns $\int_0^1 (-\ln x)^{s - 1}\,dx$ identically into $\int_0^\infty e^{-t} t^{s - 1}\,dt$. To extend $\Gamma(s)$ to points at and to the left of 0 ($\operatorname{Re}(s) \le 0$) — where the integral no longer converges — Mathlib uses the recurrence rule $\Gamma(s + 1) = s \cdot \Gamma(s)$ in reverse, stepping backwards by 1. Together, Mathlib proves these rules:`}
+          innerHTML={prose`Mathlib calls this "Euler's integral", and it is the exact same shifted function as
+            Legendre's $\Gamma(s)$: substituting $x = e^{-t}$ unfolds $(0, 1)$ into $(0, \infty)$
+            and turns $\int_0^1 (-\ln x)^{s - 1}\,dx$ identically into
+            $\int_0^\infty e^{-t} t^{s - 1}\,dt$. Writing it with an exponential $e^{-t}$ is also
+            what will let $\Gamma$ connect to the zeta function below. For points at and to the
+            left of 0 ($\operatorname{Re}(s) \le 0$), the integral no longer converges, so Mathlib
+            uses the recurrence rule $\Gamma(s + 1) = s \cdot \Gamma(s)$ in reverse, stepping
+            backwards by 1. Together, Mathlib proves these rules:`}
         />
         <ul>
           <li innerHTML={prose`$\Gamma(1) = 1$.`} />
@@ -278,39 +289,90 @@ export function GammaPage() {
       <section>
         <h2>Is it the only answer?</h2>
         <p
-          innerHTML={prose`No. Many curves go through the points 1, 1, 2, 6, 24, and a curve can also follow the rule $f(x + 1) = x \cdot f(x)$ and still differ from $\Gamma$ between the whole numbers. Mathlib proves a theorem of Bohr and Mollerup that says what makes $\Gamma$ special. Take a function $f$ on the numbers above 0, with values above 0. Suppose that $f(1) = 1$, that $f(x + 1) = x \cdot f(x)$, and that the logarithm of $f$ is convex: its curve bends upward everywhere. Then $f$ is $\Gamma$.`}
+          innerHTML={prose`We filled the gaps of 1, 2, 6, 24, 120 using one integral formula — so a natural
+            question is whether someone else could draw a different smooth curve through those same
+            points that still obeys $f(x + 1) = x \cdot f(x)$. The answer is yes: the recurrence
+            alone does not pin down what happens between whole numbers. Mathlib proves a theorem of
+            Bohr and Mollerup that adds the one missing smoothness condition. Take a function $f$ on
+            the numbers above 0, with values above 0. Suppose that $f(1) = 1$, that
+            $f(x + 1) = x \cdot f(x)$, and that the logarithm of $f$ is convex: its curve never
+            bends downward. Then $f$ must be $\Gamma$. (Mathlib uses this exact uniqueness theorem
+            below to prove the doubling rule that simplifies $\zeta$'s symmetry.)`}
         />
         <p class="sources">
-          Source: <a href={MATHLIB_UNIQUE}>Mathlib, theorem eq_Gamma_of_log_convex</a>. The first
-          two sentences are our own remark; we did not look up an example of another such curve.
+          Source: <a href={MATHLIB_UNIQUE}>Mathlib, theorem eq_Gamma_of_log_convex</a>. The opening
+          remark on other curves is our own; we did not look up an explicit example.
         </p>
       </section>
 
       <section>
         <h2>Where the zeta function uses it</h2>
-        <p>
-          <span
-            innerHTML={prose`The symmetry of the zeta function links the value at $s$ with the value at $1 - s$ by a conversion factor that contains $\Gamma(s)$:`}
-          />
-        </p>
+        <p
+          innerHTML={prose`Why does a function invented in 1729 to fill gaps between factorials show up 130 years
+            later inside the symmetry of the zeta function? Because Euler's integral
+            $\Gamma(s) = \int_0^\infty e^{-t} t^{s - 1}\,dt$ turns a power $\frac{1}{n^s}$ into an
+            exponential $e^{-nx}$ — and sums of exponentials have simple closed forms and exact
+            symmetries.`}
+        />
+        <p
+          innerHTML={prose`In his 1859 paper, Riemann did not pull the completed zeta function out of thin air. He
+            started with ordinary $\Gamma(s)$ (written $\Pi(s - 1)$ in his paper): substituting
+            $t = nx$ gives $\frac{\Gamma(s)}{n^s} = \int_0^\infty e^{-nx} x^{s - 1}\,dx$, so summing
+            over $n = 1, 2, 3, \dots$ collapses $\zeta(s)$ into an ordinary geometric series inside
+            the integral:`}
+        />
+        <div
+          class="equation"
+          innerHTML={tex`\Gamma(s)\,\zeta(s) = \int_0^\infty \frac{x^{s - 1}}{e^x - 1}\,dx`}
+        />
+        <p
+          innerHTML={prose`By turning that integral into a loop around $(0, \infty)$ and collecting the poles of
+            $\frac{1}{e^x - 1}$ at $x = \pm 2\pi i n$, Riemann proved that $\zeta(s)$ extends to the
+            whole complex plane except $s = 1$, and discovered something surprising: the truly
+            symmetric combination is not $\Gamma(s)\zeta(s)$, but
+            $\Lambda(s) = \pi^{-\frac{s}{2}}\,\Gamma\!\left(\frac{s}{2}\right)\,\zeta(s)$, which
+            stays unchanged when $s$ is replaced by $1 - s$.`}
+        />
+        <p
+          innerHTML={prose`That clue — in his own words, “This property of the function induced me to introduce, in
+            place of $\Pi(s - 1)$, the integral $\Pi\!\left(\frac{s}{2} - 1\right)$ into the general
+            term of the series $\sum \frac{1}{n^s}$” — led him directly to his shorter second proof,
+            where substituting $x = \pi n^2 t$ turns $\zeta(s)$ into Jacobi's theta sum
+            $\sum_{n = 1}^{\infty} e^{-\pi n^2 t}$ and makes $\Lambda(1 - s) = \Lambda(s)$
+            immediate.`}
+        />
+        <p
+          innerHTML={prose`Once $\Lambda(1 - s) = \Lambda(s)$ is established, solving for $\zeta(1 - s)$ leaves a
+            ratio of two half-argument Gamma factors. Simplifying that ratio back into a single
+            $\Gamma(s)$ needs $\Gamma$'s own $s \leftrightarrow 1 - s$ mirror law — Euler's
+            reflection formula:`}
+        />
+        <div class="equation" innerHTML={tex`\Gamma(s)\,\Gamma(1 - s) = \frac{\pi}{\sin(\pi s)}`} />
+        <p
+          innerHTML={prose`Here $\sin$ is the sine from trigonometry. Setting $s = \frac{1}{2}$ gives
+            $\Gamma\!\left(\frac{1}{2}\right)^2 = \pi$, so $\Gamma\!\left(\frac{1}{2}\right) = \sqrt{\pi}$.
+            Euler already used this identity in his 1749 zeta paper E352 (section 13, published
+            1768) and gave its dedicated infinite-product derivation in E421 (1772, section 43),
+            writing $[\lambda]\,[-\lambda] = \frac{\lambda\pi}{\sin(\lambda\pi)}$ in his shifted
+            notation $[\lambda] = \Gamma(\lambda + 1)$.`}
+        />
+        <p
+          innerHTML={prose`Combining Euler's reflection formula with Legendre's doubling formula collapses the ratio
+            from $\Lambda(1 - s) = \Lambda(s)$ into the explicit conversion factor linking
+            $\zeta(s)$ and $\zeta(1 - s)$:`}
+        />
         <div
           class="equation"
           innerHTML={tex`\zeta(1 - s) = 2\,(2\pi)^{-s}\,\Gamma(s)\,\cos\!\left(\frac{\pi s}{2}\right)\,\zeta(s)`}
         />
         <p>
           <span
-            innerHTML={prose`Because $\Gamma(s)$ sits in that factor, the rule has no meaning where $\Gamma$ has no value: at 0, $-1$, $-2$ and so on (and at 1, where $\zeta$ itself blows up). The page `}
+            innerHTML={prose`Because $\Gamma(s)$ sits in that factor, the rule has no meaning where $\Gamma$ has no
+              value: at 0, $-1$, $-2$ and so on (and at 1, where $\zeta$ itself blows up). The page `}
           />
           <a href={href("zeta")}>Where the zeta function came from</a> gives the numerical examples
           and exceptions.
         </p>
-        <p
-          innerHTML={prose`$\Gamma$ has a mirror rule of the same $s \leftrightarrow 1 - s$ kind for itself. Mathlib calls it Euler's reflection formula:`}
-        />
-        <div class="equation" innerHTML={tex`\Gamma(s)\,\Gamma(1 - s) = \frac{\pi}{\sin(\pi s)}`} />
-        <p
-          innerHTML={prose`Here $\sin$ is the sine from trigonometry. Setting $s = \frac{1}{2}$ gives $\Gamma\!\left(\frac{1}{2}\right)^2 = \pi$, so $\Gamma\!\left(\frac{1}{2}\right) = \sqrt{\pi}$. Euler already used this identity in his 1749 zeta paper E352 (section 13, published 1768) and gave its dedicated infinite-product derivation in E421 (1772, section 43), writing $[\lambda]\,[-\lambda] = \frac{\lambda\pi}{\sin(\lambda\pi)}$ in his shifted notation $[\lambda] = \Gamma(\lambda + 1)$.`}
-        />
         <details class="aside-details">
           <summary>
             <span
@@ -319,14 +381,27 @@ export function GammaPage() {
           </summary>
           <div class="aside-body">
             <p
-              innerHTML={prose`The conversion factor $2(2\pi)^{-s}\Gamma(s)\cos\!\left(\frac{\pi s}{2}\right)$ is not guessed — in Mathlib it falls straight out of two facts: Riemann's completed symmetry $\Lambda(1 - s) = \Lambda(s)$, and the two mirror identities of $\Gamma$ (doubling and reflection).`}
+              innerHTML={prose`Mathlib formalizes Riemann's shorter second proof directly — starting with the
+                $\Gamma\!\left(\frac{s}{2}\right)$ substitution that his first proof revealed — and
+                then applies Legendre doubling and Euler reflection to read off
+                $2\,(2\pi)^{-s}\,\Gamma(s)\,\cos\!\left(\frac{\pi s}{2}\right)$:`}
             />
             <ol>
               <li>
                 <p>
-                  <strong innerHTML={prose`Turn $\frac{1}{n^s}$ into a Gaussian integral:`} />{" "}
+                  <strong
+                    innerHTML={prose`Why $\Gamma\!\left(\frac{s}{2}\right)$ and $x = \pi n^2 t$:`}
+                  />{" "}
                   <span
-                    innerHTML={prose`start from Euler's integral $\Gamma\!\left(\frac{s}{2}\right) = \int_0^\infty e^{-x}\,x^{\frac{s}{2} - 1}\,dx$ (for $\operatorname{Re}(s) > 0$) and substitute $x = \pi n^2 t$. Summing over $n = 1, 2, 3, \dots$ (for $\operatorname{Re}(s) > 1$) defines the completed zeta function $\Lambda(s) = \Gamma_{\mathbb{R}}(s)\,\zeta(s)$ with $\Gamma_{\mathbb{R}}(s) = \pi^{-\frac{s}{2}}\,\Gamma\!\left(\frac{s}{2}\right)$:`}
+                    innerHTML={prose`Riemann's first proof via $\Gamma(s)\zeta(s) = \int_0^\infty \frac{x^{s - 1}}{e^x - 1}\,dx$
+                      showed that $\Gamma_{\mathbb{R}}(s)\,\zeta(s)$ is symmetric, where
+                      $\Gamma_{\mathbb{R}}(s) = \pi^{-\frac{s}{2}}\,\Gamma\!\left(\frac{s}{2}\right)$.
+                      To build that multiplier directly from Euler's integral
+                      $\Gamma\!\left(\frac{s}{2}\right) = \int_0^\infty e^{-x}\,x^{\frac{s}{2} - 1}\,dx$
+                      (for $\operatorname{Re}(s) > 0$), substitute $x = \pi n^2 t$ so that
+                      $x^{\frac{s}{2}}$ pulls out $\pi^{\frac{s}{2}} n^s$. Dividing through and
+                      summing over $n = 1, 2, 3, \dots$ (for $\operatorname{Re}(s) > 1$) yields
+                      $\Lambda(s) = \Gamma_{\mathbb{R}}(s)\,\zeta(s)$:`}
                   />
                 </p>
                 <div
@@ -338,7 +413,7 @@ export function GammaPage() {
                 <p>
                   <strong>Symmetry of the Gaussian sum:</strong>{" "}
                   <span
-                    innerHTML={prose`the full sum $\theta(t) = \sum_{n = -\infty}^{\infty} e^{-\pi n^2 t}$ satisfies $\theta(t) = \frac{1}{\sqrt{t}}\,\theta\!\left(\frac{1}{t}\right)$ by Poisson summation. Splitting the integral at $t = 1$ and substituting $t \mapsto \frac{1}{t}$ on $(0, 1)$ turns that $t \leftrightarrow \frac{1}{t}$ symmetry into exact equality under $s \leftrightarrow 1 - s$:`}
+                    innerHTML={prose`the full sum $\theta(t) = \sum_{n = -\infty}^{\infty} e^{-\pi n^2 t}$ satisfies $\theta(t) = \frac{1}{\sqrt{t}}\,\theta\!\left(\frac{1}{t}\right)$ by Poisson summation (which Riemann cited from Jacobi). Splitting the integral at $t = 1$ and substituting $t \mapsto \frac{1}{t}$ on $(0, 1)$ turns that $t \leftrightarrow \frac{1}{t}$ symmetry into exact equality under $s \leftrightarrow 1 - s$:`}
                   />
                 </p>
                 <div class="equation" innerHTML={tex`\Lambda(1 - s) = \Lambda(s)`} />
@@ -347,7 +422,7 @@ export function GammaPage() {
                 <p>
                   <strong>Isolate the conversion factor:</strong>{" "}
                   <span
-                    innerHTML={prose`dividing $\Lambda(1 - s) = \Lambda(s)$ by $\Gamma_{\mathbb{R}}(1 - s)$ gives $\zeta(1 - s) = \frac{\Gamma_{\mathbb{R}}(s)}{\Gamma_{\mathbb{R}}(1 - s)}\,\zeta(s)$. To simplify that ratio, Mathlib multiplies top and bottom by $\Gamma_{\mathbb{R}}(s + 1)$:`}
+                    innerHTML={prose`dividing $\Lambda(1 - s) = \Lambda(s)$ by $\Gamma_{\mathbb{R}}(1 - s)$ gives $\zeta(1 - s) = \frac{\Gamma_{\mathbb{R}}(s)}{\Gamma_{\mathbb{R}}(1 - s)}\,\zeta(s)$. To replace the half-arguments by a single $\Gamma(s)$, Mathlib multiplies top and bottom by $\Gamma_{\mathbb{R}}(s + 1)$:`}
                   />
                 </p>
                 <div
@@ -432,7 +507,13 @@ export function GammaPage() {
           </div>
         </details>
         <p class="sources">
-          Sources: <a href={MATHLIB_ZETA_ONE_SUB}>Mathlib, theorem riemannZeta_one_sub</a>;{" "}
+          Sources:{" "}
+          <a href={RIEMANN_1859}>
+            Riemann, On the Number of Prime Numbers less than a Given Quantity (1859, Wilkins
+            translation)
+          </a>
+          , pages 1 to 3 (both proofs and the motivation quote);{" "}
+          <a href={MATHLIB_ZETA_ONE_SUB}>Mathlib, theorem riemannZeta_one_sub</a>;{" "}
           <a href={MATHLIB_HURWITZ_EVEN}>Mathlib, lemma hurwitzZetaEven_one_sub</a>;{" "}
           <a href={MATHLIB_DELIGNE}>
             Mathlib, Deligne.lean (Gammaℝ_mul_Gammaℝ_add_one to inv_Gammaℝ_one_sub)
