@@ -913,6 +913,14 @@ h3 {
   background: var(--surface);
 }
 
+.aside-details:has(+ .aside-details) {
+  margin-bottom: 0.65rem;
+}
+
+.aside-details + .aside-details {
+  margin-top: 0;
+}
+
 .aside-details > summary {
   display: flex;
   align-items: center;
