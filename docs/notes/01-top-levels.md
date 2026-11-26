@@ -1,5 +1,7 @@
 # The top levels of the proof
 
+**Archived-release notice:** This note documents the original 20 November 2026 17-million-line Lean release (`leanprover-community/riemann-hypothesis`, commit `40e56bab026552e089d7afcfeff08d2defb9c005`) [7](../references.md#reference-7). As of 26 November 2026, the project's primary pinned source is the shorter 25 November 2026 edition (`lsernau/grh-lean`, commit `72fead10`, `grh/`) [37](../references.md#reference-37), where `grh/src/Main.lean` proves `riemannHypothesis` via `New.zeta_zeros_on_line New.grh`.
+
 This note traces the main theorem back four levels. Every Lean statement is copied from the pinned repository [7](../references.md#reference-7). The plain-word lines are our reading. A line marked "guess" interprets a name whose definition we have not read.
 
 ## Result in short

@@ -37,7 +37,7 @@ export type Step<Id extends string = string> = {
   summary: Markup;
   snippets: Snippet<NoInfer<Id>>[];
   pieces: Piece<Id>[];
-  next: string;
+  next: Markup;
 };
 
 /**

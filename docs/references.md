@@ -292,31 +292,47 @@ Inspection: full one-page PDF read directly over HTTPS. Confirms Wallis derived 
 
 ## Reference 37
 
-[37] Leonhard Euler. **Lettre III: Euler à Goldbach (8 January 1730)**. Printed in P. H. Fuss, *Correspondance mathématique et physique de quelques célèbres géomètres du XVIIIème siècle*, Tome I, Saint Petersburg, 1843, pages 11 to 18. Scan from the Euler Archive (`OO0717.pdf`). [Original](http://eulerarchive.maa.org/correspondence/letters/OO0717.pdf). Accessed 26 November 2026, Asia/Tokyo.
+[37] Lucas Sernau and Levent Alpöge. **GRH for Dirichlet L-functions, in Lean 4 (shorter edition)**. GitHub repository `lsernau/grh-lean` (with Claude and Anthropic colleagues), commit `72fead102f663d5c7a407964a13dc0cf9d977207`, released 25 November 2026. [Original](https://github.com/lsernau/grh-lean/tree/72fead102f663d5c7a407964a13dc0cf9d977207). Accessed 26 November 2026, Asia/Tokyo.
+
+Inspection depth: method.
+
+Inspection: method level. Fetched and read directly from commit `72fead102f663d5c7a407964a13dc0cf9d977207` on 26 November 2026: top-level `README.md`, `grh/README.md`, `grh/lean-toolchain` (`leanprover/lean4:v4.35.0`), the `mathlib` entry of `grh/lake-manifest.json` (commit `56a005855ea17e0b0958f73ec801ae140b0a1679`), `grh/src/Main.lean` (all 22 lines, including `theorem riemannHypothesis : RiemannHypothesis := New.zeta_zeros_on_line New.grh`), `grh/src/Statements.lean` (all 16 lines), `grh/src/New/Main.lean` (all 65 lines: `New.zeros_on_line` and `New.zeta_zeros_on_line`), and `grh/GUIDE.md` (section 1 reading order, glossary, and section 3 sizes). The remaining 800 Lean files in `grh/` and all 794 Lean files in `grh-compact/` (1,594 files in total) were not read. Primary Lean source repository for the shorter edition.
+
+## Reference 38
+
+[38] Andrew V. Sutherland. **Verification files for the shorter Lean proof of RH and GRH**. MIT verification page for `lsernau/grh-lean` commit `72fead10` (last updated 26 November 2026, 00:15 UTC). [Original](https://math.mit.edu/~drew/shortgrh/). Accessed 26 November 2026, Asia/Tokyo.
+
+Inspection depth: full.
+
+Inspection: full page read directly over HTTPS on 26 November 2026. Records that both `grh/` (803 files, ~300,000 lines of code) and `grh-compact/` (794 files, ~76,000 lines of code) passed sandboxed `lake build` (9,852 and 9,843 jobs, no errors), `#print axioms` (`propext`, `Classical.choice`, `Quot.sound` only), full kernel module replay, byte-identical exports across two machines, `nanoda`, `con-leche`, and `con-ron` (including `--compare` against `Challenge.lean`), Lean default and paranoid kernels on the exports, and `lean4lean` on the compact edition; notes that as of 2026-11-26 00:15 UTC, `lake comparator --paranoid` (on both editions across two machines) and standalone `lean4lean` on the readable edition were still running. Independent third-party verification report.
+
+## Reference 39
+
+[39] Leonhard Euler. **Lettre III: Euler à Goldbach (8 January 1730)**. Printed in P. H. Fuss, *Correspondance mathématique et physique de quelques célèbres géomètres du XVIIIème siècle*, Tome I, Saint Petersburg, 1843, pages 11 to 18. Scan from the Euler Archive (`OO0717.pdf`). [Original](http://eulerarchive.maa.org/correspondence/letters/OO0717.pdf). Accessed 26 November 2026, Asia/Tokyo.
 
 Inspection depth: full.
 
 Inspection: all five PDF pages (printed pages 11 to 18) read visually on the Euler Archive scan. Euler introduces the logarithmic integral $\int_0^1 (-\ln x)^n\,dx$ (pp. 13, 15), reduces fractional indices to algebraic-curve quadratures (p. 15), and states the Beta-integral interpolation formula for $(f + g)(f + 2g)\cdots(f + ng)$ (p. 16), with no sine product or reflection formula. A primary source.
 
-## Reference 38
+## Reference 40
 
-[38] Leonhard Euler. **De productis ex infinitis factoribus ortis (E122)**. *Commentarii academiae scientiarum Petropolitanae*, volume 11 (1739), 1750, pages 3 to 31 (written 1739; *Opera Omnia*, Series 1, Volume 14, pages 260 to 290). Euler Archive record, original Latin scan (`E122.pdf`), and German translation by Alexander Aycock (`E122de.pdf`, Euler-Kreis Mainz). [Original](https://scholarlycommons.pacific.edu/euler-works/122/). Accessed 26 November 2026, Asia/Tokyo.
+[40] Leonhard Euler. **De productis ex infinitis factoribus ortis (E122)**. *Commentarii academiae scientiarum Petropolitanae*, volume 11 (1739), 1750, pages 3 to 31 (written 1739; *Opera Omnia*, Series 1, Volume 14, pages 260 to 290). Euler Archive record, original Latin scan (`E122.pdf`), and German translation by Alexander Aycock (`E122de.pdf`, Euler-Kreis Mainz). [Original](https://scholarlycommons.pacific.edu/euler-works/122/). Accessed 26 November 2026, Asia/Tokyo.
 
 Inspection depth: full.
 
 Inspection: all 50 sections read in full in Aycock's German translation (`http://eulerarchive.maa.org/docs/translations/E122de.pdf`), and key pages verified visually on the 1750 Latin scan (`http://eulerarchive.maa.org/docs/originals/E122.pdf`): title page (p. 3), §§12–14 (p. 10), §§42–43 (p. 27), §§44–46 (pp. 28–29), and §§47–50 (pp. 30–31). Confirms zero occurrences of $\sin$, $\cos$, or any trigonometric function in E122. In §12 (p. 10) and §45 (p. 29) Euler proves $\pi = 2ag \int_0^1 \frac{x^{a - 1}\,dx}{\sqrt{1 - x^{2g}}} \cdot \int_0^1 \frac{x^{a + g - 1}\,dx}{\sqrt{1 - x^{2g}}}$; in §42 (p. 27) he evaluates $\int_0^1 x^{m - 1}\,dx\,(1 - x^n)^{-\frac{m}{n}}$ as the infinite product $\frac{1}{n - m}\cdot\frac{n \cdot n \cdot 2n \cdot 2n \cdot 3n \cdot 3n \cdots}{m(2n - m)(m + n)(3n - m)(m + 2n)(4n - m)\cdots}$ (Aycock's p. 28 typesetting misprints $(2n - m)$ twice; the 1750 Latin print on p. 27 prints $(3n - m)$ correctly), without identifying it with $\frac{\pi}{n\sin\!\left(\frac{m\pi}{n}\right)}$; and in §§47, 49 (pp. 30–31) he derives Beta-integral ratio identities with complementary exponents $c + h + 1 = 0$. A primary source.
 
-## Reference 39
+## Reference 41
 
-[39] Leonhard Euler. **Introductio in analysin infinitorum, Tomus primus (E101)**. Lausanne, M.-M. Bousquet, 1748 (written 1745; *Opera Omnia*, Series 1, Volume 8). Euler Archive record (`https://scholarlycommons.pacific.edu/euler-works/101/`) and Ian Bruce's parallel Latin–English edition of Chapters IX and XI (archived from `17centurymaths.com`). [Original](https://scholarlycommons.pacific.edu/euler-works/101/). Accessed 26 November 2026, Asia/Tokyo.
+[41] Leonhard Euler. **Introductio in analysin infinitorum, Tomus primus (E101)**. Lausanne, M.-M. Bousquet, 1748 (written 1745; *Opera Omnia*, Series 1, Volume 8). Euler Archive record (`https://scholarlycommons.pacific.edu/euler-works/101/`) and Ian Bruce's parallel Latin–English edition of Chapters IX and XI (archived from `17centurymaths.com`). [Original](https://scholarlycommons.pacific.edu/euler-works/101/). Accessed 26 November 2026, Asia/Tokyo.
 
 Inspection depth: abstract.
 
 Inspection: abstract only relative to the full book. Read Chapters IX (§§143–162) and XI (§§184–194) in full in Ian Bruce's parallel Latin–English PDFs (via Internet Archive `https://web.archive.org/web/2023/http://www.17centurymaths.com/contents/euler/introductiontoanalysisvolone/ch9vol1.pdf` and `ch11vol1.pdf`), checking both the English translation and the appended Latin text of §§158, 184, and 185. Chapter IX §158 derives $\sin z = z\prod_{k = 1}^{\infty}\left(1 - \frac{z^2}{k^2\pi^2}\right)$ and Chapter XI §§184–185 writes $\frac{\pi}{2} = \frac{n}{m}\sin\!\left(\frac{m\pi}{2n}\right)\cdot\frac{2n}{2n - m}\cdot\frac{2n}{2n + m}\cdot\frac{4n}{4n - m}\cdot\frac{4n}{4n + m}\cdots$; neither chapter mentions Beta integrals, factorial interpolation, or the reflection formula. The remaining chapters of Volume 1 and all of Volume 2 are not read. A primary source.
 
-## Reference 40
+## Reference 42
 
-[40] Alexander Aycock. **Euler and the Multiplication Formula for the Gamma-Function**. arXiv:1901.03400, January 2019 (later published in *Euleriana*, volume 1, issue 2, 2021, pages 197 to 204). [Original](https://arxiv.org/abs/1901.03400). Accessed 26 November 2026, Asia/Tokyo.
+[42] Alexander Aycock. **Euler and the Multiplication Formula for the Gamma-Function**. arXiv:1901.03400, January 2019 (later published in *Euleriana*, volume 1, issue 2, 2021, pages 197 to 204). [Original](https://arxiv.org/abs/1901.03400). Accessed 26 November 2026, Asia/Tokyo.
 
 Inspection depth: full.
 
