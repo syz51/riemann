@@ -91,7 +91,7 @@ export const step1 = defineStep({
     {
       id: "line",
       title: prose`Conclusion: the real part of $s$ is $\frac{1}{2}$`,
-      meaning: prose`s.re is the real part of $s$. So $s$ is on the vertical line through $\frac{1}{2}$. This line is the critical line.`,
+      meaning: prose`s.re is the real part of $s$ (written $\operatorname{Re}(s)$ in mathematics, for “real part” — how far left or right $s$ sits in the plane). So $s$ is on the vertical line through $\frac{1}{2}$. This line is the critical line.`,
       mark: "line",
     },
     {

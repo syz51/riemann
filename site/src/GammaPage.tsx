@@ -107,7 +107,7 @@ export function GammaPage() {
           </div>
         </details>
         <p
-          innerHTML={prose`Today, the proof of the Riemann hypothesis does not define $\Gamma$, $\zeta$, or the statement of the hypothesis itself: all three come directly from Mathlib, Lean's community mathematics library. Where the real part of $s$ is above 0 (written $\operatorname{Re}(s) > 0$), Mathlib defines $\Gamma(s)$ by Euler's integral:`}
+          innerHTML={prose`Today, the proof of the Riemann hypothesis does not define $\Gamma$, $\zeta$, or the statement of the hypothesis itself: all three come directly from Mathlib, Lean's community mathematics library. Where the real part of $s$ is above 0 (written $\operatorname{Re}(s) > 0$, where $\operatorname{Re}$ stands for “real part”), Mathlib defines $\Gamma(s)$ by Euler's integral:`}
         />
         <div class="equation" innerHTML={tex`\Gamma(s) = \int_0^\infty e^{-t} t^{s - 1}\,dt`} />
         <p
