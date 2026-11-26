@@ -36,46 +36,40 @@ export function GammaPage() {
       <h1>The Gamma function</h1>
       <p
         class="summary"
-        innerHTML={prose`The symmetry of the zeta function uses a function called $\Gamma$ (gamma). It began with a simple question — what sits between the factorials 1, 2, 6, 24, 120? — and ended up turning $\zeta$'s power sums into exponentials with exact symmetry.`}
+        innerHTML={prose`The symmetry of the zeta function uses a function with the name $\Gamma$ (gamma). It is 300 years old. It began with one question: what comes between the terms of the list 1, 2, 6, 24, 120?`}
       />
 
       <section>
-        <h2>What the Gamma function is</h2>
+        <h2>A list with gaps</h2>
         <p
-          innerHTML={prose`Multiply the whole numbers from 1 up to $n$. For $n = 1, 2, 3, 4, 5$ you get the
-            factorials 1, 2, 6, 24, 120. What belongs at $n = \frac{1}{2}$? “Multiply from 1 up to
-            a half” has no meaning, so filling the gaps needs a new formula. In 1729, Euler found
-            one — and discovered that the term at $n = \frac{1}{2}$ is $\frac{\sqrt{\pi}}{2}$
-            (about 0.8862), unexpectedly bringing the circle constant $\pi$ into a list of whole-number
-            products.`}
+          innerHTML={prose`Multiply the whole numbers from 1 up to $n$. For $n = 1, 2, 3, 4, 5$ the results are 1, 2, 6, 24 and 120. The result for $n$ has the name factorial of $n$. The list has a term for each whole number. Has it a term for $n = \frac{1}{2}$? The product “from 1 up to a half” has no meaning, so the question needs a new idea.`}
         />
         <p
-          innerHTML={prose`The proof of the Riemann hypothesis does not define $\Gamma$, $\zeta$, or the statement
-            of the hypothesis itself: all three come from Mathlib, Lean's community library. Where
-            the real part of $s$ is above 0 ($\operatorname{Re}(s) > 0$), Mathlib defines $\Gamma(s)$
-            by Euler's exponential integral:`}
+          innerHTML={prose`Euler answered it in a paper that he wrote in 1729. His first sentence says where the question came from: he was “prompted by those results concerning series which the celebrated Goldbach has communicated to the Society”, and he looked for “a general expression which would give all the terms” of the list. He found an endless product that gives the list at the whole numbers and also has a value between them.`}
+        />
+        <p
+          innerHTML={prose`Then he calculated the term for $n = \frac{1}{2}$. He found that it “is equal to the square root of the circle whose diameter = 1”. The circle here means its area, which is $\frac{\pi}{4}$. So the term is $\frac{\sqrt{\pi}}{2}$, about 0.8862. The number $\pi$ belongs to circles, and the list is about products of whole numbers. Nothing in the question suggested a circle.`}
+        />
+        <p
+          innerHTML={prose`Today, the proof of the Riemann hypothesis does not define $\Gamma$, $\zeta$, or the statement of the hypothesis itself: all three come directly from Mathlib, Lean's community mathematics library. Where the real part of $s$ is above 0 (written $\operatorname{Re}(s) > 0$), Mathlib defines $\Gamma(s)$ by Euler's integral:`}
         />
         <div class="equation" innerHTML={tex`\Gamma(s) = \int_0^\infty e^{-t} t^{s - 1}\,dt`} />
         <p
-          innerHTML={prose`Here $s$ sits inside an exponent, so it does not have to be a whole number (you do not
-            need to compute integrals to read the rest of this page). Because the exponent is $s - 1$,
-            the values are shifted by 1 from the factorials: $\Gamma(5)$ is not 120, it is 24. For
-            $\operatorname{Re}(s) \le 0$, where the integral no longer converges, Mathlib steps
-            backwards by 1 using the recurrence rule $\Gamma(s + 1) = s \cdot \Gamma(s)$. Four core
-            rules summarize how $\Gamma$ behaves:`}
+          innerHTML={prose`The sign $\int$ is an integral: the area under a curve. You do not need to compute integrals to read the rest of this page. The important point is that $s$ sits in a power, and a power does not have to be a whole number. Because the power is $s - 1$, the values are shifted by 1 from the factorials — a shift that surprises every reader: $\Gamma(5)$ is not 120, it is 24, the product of the whole numbers below 5. For points at and to the left of 0 ($\operatorname{Re}(s) \le 0$), where the integral no longer converges, Mathlib uses the rule $\Gamma(s + 1) = s \cdot \Gamma(s)$ in reverse, stepping backwards by 1. Together, Mathlib proves these rules:`}
         />
         <ul>
           <li innerHTML={prose`$\Gamma(1) = 1$.`} />
           <li
-            innerHTML={prose`$\Gamma(s + 1) = s \cdot \Gamma(s)$, wherever both values exist: stepping right by 1 multiplies by $s$.`}
+            innerHTML={prose`$\Gamma(s + 1) = s \cdot \Gamma(s)$, where both values exist. One step to the right multiplies the value by $s$.`}
           />
           <li
-            innerHTML={prose`$\Gamma(n + 1) = 1 \cdot 2 \cdot 3 \cdots n$ for every whole number $n \ge 1$ (following from the two rules above).`}
+            innerHTML={prose`$\Gamma(n + 1)$ is the factorial of $n$, for each whole number $n$ from 1. This follows from the two rules above.`}
           />
-          <li
-            innerHTML={prose`$\Gamma\!\left(\frac{1}{2}\right) = \sqrt{\pi}$ — so by the second rule, $\Gamma\!\left(\frac{3}{2}\right) = \frac{1}{2}\Gamma\!\left(\frac{1}{2}\right) = \frac{\sqrt{\pi}}{2}$, matching Euler's 1729 term for $n = \frac{1}{2}$.`}
-          />
+          <li innerHTML={prose`$\Gamma\!\left(\frac{1}{2}\right) = \sqrt{\pi}$.`} />
         </ul>
+        <p
+          innerHTML={prose`Our own check against Euler: by the second rule, $\Gamma\!\left(\frac{3}{2}\right)$ is $\frac{1}{2}$ times $\Gamma\!\left(\frac{1}{2}\right)$, which is $\frac{\sqrt{\pi}}{2}$. And $\Gamma\!\left(\frac{3}{2}\right)$ is the term of index $\frac{1}{2}$ in Euler's list. Euler found the same value in 1729.`}
+        />
         <details class="aside-details">
           <summary>
             <span
@@ -180,11 +174,11 @@ export function GammaPage() {
       <section>
         <h2>The picture</h2>
         <p
-          innerHTML={prose`The chart shows $\Gamma(x)$ for a real number $x$. Move the slider, or press on the chart. The table shows the recurrence rule at work: $x$ times $\Gamma(x)$ equals $\Gamma(x + 1)$ wherever $\Gamma(x)$ has a value.`}
+          innerHTML={prose`The chart shows $\Gamma(x)$ for a real number $x$. Move the slider, or press on the chart. The table shows the second rule at work: $x$ times $\Gamma(x)$ is the same as $\Gamma(x + 1)$, wherever $\Gamma(x)$ has a value.`}
         />
         <GammaChart />
         <p
-          innerHTML={prose`Right of 0 the curve is smooth and stays above 0, passing through 1, 1, 2, 6, 24. Left of 0 the curve breaks into pieces that alternate signs at every negative whole number.`}
+          innerHTML={prose`Right of 0 the curve is smooth and stays above 0. It goes through the points of the list: 1, 1, 2, 6, 24. Left of 0 the curve is in pieces, and the pieces change sides.`}
         />
         <p class="sources">
           The page computes the values with a standard approximation, and the table rounds them. The
@@ -195,10 +189,10 @@ export function GammaPage() {
       <section>
         <h2 innerHTML={prose`Where $\Gamma$ has no value`} />
         <p
-          innerHTML={prose`Those breaks on the chart are at 0, $-1$, $-2$ and so on, where $\Gamma$ has no value. Mathlib says so explicitly: at these points “the function is undefined, and we set it to be 0 by convention”. That 0 is only a placeholder required by Lean's type system, not a value of $\Gamma$.`}
+          innerHTML={prose`$\Gamma$ has no value at 0, $-1$, $-2$ and so on. Mathlib says so in words: at these points “the function is undefined, and we set it to be 0 by convention”. The 0 is a filler that the library needs, because each of its functions must give some answer. It is not a value of the function.`}
         />
         <p
-          innerHTML={prose`Near 0, Mathlib proves that $s \cdot \Gamma(s)$ approaches 1, so $\Gamma(s)$ behaves like $\frac{1}{s}$: it shoots up to $+\infty$ on the right and plunges to $-\infty$ on the left (try 0.05 and $-0.05$ on the chart: about 19.47 and $-20.63$). No finite number can fit at 0.`}
+          innerHTML={prose`Near 0, Mathlib proves that $s \cdot \Gamma(s)$ comes close to 1, so $\Gamma(s)$ behaves like $\frac{1}{s}$ there: it shoots up to $+\infty$ on the right and plunges to $-\infty$ on the left (try 0.05 and $-0.05$ on the chart: about 19.47 and $-20.63$). No finite number can fit at 0.`}
         />
         <p
           innerHTML={prose`At every other point — including negative fractions such as $-\frac{1}{2}$ — $\Gamma$ has a finite value, and that value is never 0.`}
