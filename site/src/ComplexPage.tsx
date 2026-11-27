@@ -92,7 +92,7 @@ export function ComplexPage() {
         of negative numbers, and the answers came out right.
       </p>
 
-      <section>
+      <section id="cubic">
         <h2>The equation that forced the issue</h2>
         <p
           innerHTML={prose`A common belief is that complex numbers were invented just to force $x^2 = -1$ to have a
@@ -107,7 +107,7 @@ export function ComplexPage() {
         </p>
       </section>
 
-      <section>
+      <section id="plane">
         <h2>The picture: turn and stretch</h2>
         <p
           innerHTML={prose`Bombelli's calculation produced the right answer, but for more than two centuries nobody
@@ -139,7 +139,7 @@ export function ComplexPage() {
         </p>
       </section>
 
-      <section>
+      <section id="why-zeta">
         <h2>Why the zeta function needs them</h2>
         <p>
           <span
@@ -149,7 +149,7 @@ export function ComplexPage() {
               Euler did manage to probe $s \le 1$ — including $\frac{1}{2}$, 0, and negative whole
               numbers — by switching to alternating signs and power-series limits (see `}
           />
-          <a href={href("zeta")}>Where the zeta function came from</a>
+          <a href={href("zeta", "euler-1749")}>Where the zeta function came from</a>
           <span
             innerHTML={prose`), yet he had no single proof covering every $s$. In 1859 — after complex numbers had
               gained their geometric plane — Riemann let $s$ move off the line into that plane. In
@@ -178,7 +178,7 @@ export function ComplexPage() {
         </p>
       </section>
 
-      <section>
+      <section id="timeline">
         <h2>The dates in one list</h2>
         <p>
           The new numbers worked, but for more than two hundred years they had no satisfactory

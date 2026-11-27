@@ -95,7 +95,7 @@ export function StepPage() {
                   <p innerHTML={piece.meaning} />
                   <Show when={piece.background}>
                     {(bg) => (
-                      <a class="deeper-link" href={href(bg().route)}>
+                      <a class="deeper-link" href={href(bg().route, bg().section)}>
                         <span class="deeper-title">{bg().label} →</span>
                         <span class="deeper-note">{bg().note}</span>
                       </a>

@@ -4,12 +4,52 @@ import { ComplexPage } from "./ComplexPage";
 import { ContentsPage } from "./ContentsPage";
 import { GammaPage } from "./GammaPage";
 import { PageFoot } from "./PageFoot";
-import { CATALOG, CONTENTS, href, isBackgroundSection, isProofSection, routeOf } from "./pages";
+import {
+  CATALOG,
+  CONTENTS,
+  href,
+  isBackgroundSection,
+  isProofSection,
+  parseHash,
+  routeOf,
+} from "./pages";
 import { StepPage } from "./StepPage";
 import { ZetaPage } from "./ZetaPage";
 
 type Theme = "light" | "dark";
 const THEME_KEY = "riemann-theme";
+const SCROLL_KEY = "riemann-scroll";
+const MAX_SAVED_SCROLL = 64;
+
+const loadSavedScroll = (): Map<string, number> => {
+  const map = new Map<string, number>();
+  try {
+    const raw = sessionStorage.getItem(SCROLL_KEY);
+    if (!raw) return map;
+    const parsed: unknown = JSON.parse(raw);
+    if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
+      for (const [k, v] of Object.entries(parsed)) {
+        if (typeof v === "number" && Number.isFinite(v)) map.set(k, v);
+      }
+    }
+  } catch {
+    // Ignore storage/parse errors in restricted environments; in-memory Map still works.
+  }
+  return map;
+};
+
+const persistSavedScroll = (map: Map<string, number>) => {
+  while (map.size > MAX_SAVED_SCROLL) {
+    const oldest = map.keys().next().value;
+    if (oldest === undefined) break;
+    map.delete(oldest);
+  }
+  try {
+    sessionStorage.setItem(SCROLL_KEY, JSON.stringify(Object.fromEntries(map)));
+  } catch {
+    // Ignore storage errors in restricted environments.
+  }
+};
 
 const readInitialTheme = (): Theme => {
   const attr = document.documentElement.dataset.theme;
@@ -24,11 +64,106 @@ export function App() {
   const [theme, setTheme] = createSignal<Theme>(readInitialTheme());
 
   onSettled(() => {
-    const onHash = () => {
-      setRoute(routeOf(location.hash));
-      window.scrollTo(0, 0);
+    const prevRestoration = "scrollRestoration" in history ? history.scrollRestoration : undefined;
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+
+    let keyCounter = 0;
+    const makeKey = () => `nav-${Date.now()}-${++keyCounter}`;
+    const readScrollKey = (): string | undefined => {
+      const state = history.state as { scrollKey?: unknown } | null;
+      return typeof state?.scrollKey === "string" ? state.scrollKey : undefined;
     };
-    window.addEventListener("hashchange", onHash);
+
+    const stampKey = (key: string) => {
+      try {
+        const prev =
+          history.state && typeof history.state === "object"
+            ? (history.state as Record<string, unknown>)
+            : {};
+        history.replaceState({ ...prev, scrollKey: key }, "");
+      } catch {
+        // Ignore History API restrictions (opaque origin / rate limit); routing still works.
+      }
+    };
+
+    const savedScroll = loadSavedScroll();
+    const recordScroll = (key: string, y: number) => {
+      savedScroll.delete(key);
+      savedScroll.set(key, y);
+      persistSavedScroll(savedScroll);
+    };
+
+    const initialExistingKey = readScrollKey();
+    const hasInitialSaved = initialExistingKey !== undefined && savedScroll.has(initialExistingKey);
+    let currentKey = initialExistingKey ?? makeKey();
+    if (!initialExistingKey) stampKey(currentKey);
+    let lastHref = location.href;
+    let restoring = false;
+    let rafId = 0;
+
+    const scrollToTarget = (
+      targetKey: string,
+      isHistoryReturn: boolean,
+      targetSection: string | undefined,
+    ) => {
+      cancelAnimationFrame(rafId);
+      restoring = true;
+      rafId = requestAnimationFrame(() => {
+        if (targetKey !== currentKey) return;
+        if (isHistoryReturn) {
+          window.scrollTo(0, savedScroll.get(targetKey) ?? 0);
+        } else if (targetSection) {
+          const el = document.getElementById(targetSection);
+          if (el) {
+            el.scrollIntoView({ behavior: "auto", block: "start" });
+          } else {
+            window.scrollTo(0, 0);
+          }
+        } else {
+          window.scrollTo(0, 0);
+        }
+        recordScroll(targetKey, window.scrollY);
+        restoring = false;
+      });
+    };
+
+    // Restore saved position on reload / non-bfcache Back, or honor a fresh deep link.
+    const initialSection = parseHash(location.hash).section;
+    if (hasInitialSaved) {
+      scrollToTarget(currentKey, true, undefined);
+    } else if (initialSection) {
+      scrollToTarget(currentKey, false, initialSection);
+    } else {
+      recordScroll(currentKey, window.scrollY);
+    }
+
+    const onScroll = () => {
+      if (!restoring) recordScroll(currentKey, window.scrollY);
+    };
+
+    const onNavigate = () => {
+      const existingKey = readScrollKey();
+      if (location.href === lastHref && existingKey === currentKey) return;
+      if (!restoring) recordScroll(currentKey, window.scrollY);
+      lastHref = location.href;
+
+      const next = parseHash(location.hash);
+      const isHistoryReturn = existingKey !== undefined && savedScroll.has(existingKey);
+
+      if (isHistoryReturn) {
+        currentKey = existingKey;
+      } else {
+        currentKey = existingKey ?? makeKey();
+        if (!existingKey) stampKey(currentKey);
+      }
+
+      setRoute(next.route);
+      scrollToTarget(currentKey, isHistoryReturn, next.section);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("popstate", onNavigate);
+    window.addEventListener("hashchange", onNavigate);
 
     const media = window.matchMedia("(prefers-color-scheme: dark)");
     const onScheme = (event: MediaQueryListEvent) => {
@@ -39,7 +174,11 @@ export function App() {
     media.addEventListener("change", onScheme);
 
     return () => {
-      window.removeEventListener("hashchange", onHash);
+      cancelAnimationFrame(rafId);
+      if (prevRestoration !== undefined) history.scrollRestoration = prevRestoration;
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("popstate", onNavigate);
+      window.removeEventListener("hashchange", onNavigate);
       media.removeEventListener("change", onScheme);
     };
   });

@@ -6,6 +6,8 @@ export type PlaneMark = "plane" | "zeros" | "trivial" | "pole" | "line";
 /** Contextual link from a Lean piece to a standalone background explainer. */
 export type BackgroundLink = {
   route: BackgroundRoute;
+  /** Optional section id inside the target page (`#/zeta#euler-1749`). */
+  section?: string;
   label: string;
   note: string;
 };
