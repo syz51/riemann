@@ -881,6 +881,10 @@ a.spine-card:focus-visible {
   margin-top: 2.25rem;
 }
 
+.article section[id] {
+  scroll-margin-top: 1.5rem;
+}
+
 .article ul {
   padding-left: 1.25rem;
 }

@@ -121,13 +121,28 @@ export const ALL_PAGE_ROUTES: PageRoute[] = [
   ...BACKGROUNDS.map((page) => page.route),
 ];
 
-export const href = (route: Route) => `#/${route}`;
+export const href = (route: Route, section?: string) =>
+  section ? `#/${route}#${section}` : `#/${route}`;
+
+/** Splits a location hash (`#/zeta#euler-1749`) into its route and optional section id. */
+export const parseHash = (hash: string): { route: Route; section?: string } => {
+  const body = hash.replace(/^#\/?/, "");
+  const split = body.indexOf("#");
+  const routePart = split === -1 ? body : body.slice(0, split);
+  const sectionPart = split === -1 ? "" : body.slice(split + 1);
+  if (routePart === "") {
+    return sectionPart ? { route: CONTENTS, section: sectionPart } : { route: CONTENTS };
+  }
+  const matched = ALL_PAGE_ROUTES.find((candidate) => candidate === routePart);
+  if (!matched) return { route: CONTENTS };
+  return sectionPart ? { route: matched, section: sectionPart } : { route: matched };
+};
 
 /** The route in the address, or the proof home page when no page has it. */
-export const routeOf = (hash: string): Route => {
-  const route = hash.replace(/^#\/?/, "");
-  return ALL_PAGE_ROUTES.find((candidate) => candidate === route) ?? CONTENTS;
-};
+export const routeOf = (hash: string): Route => parseHash(hash).route;
+
+/** The optional section anchor in the address (`#/zeta#euler-1749` -> `euler-1749`). */
+export const sectionOf = (hash: string): string | undefined => parseHash(hash).section;
 
 export const isStepRoute = (route: Route): route is StepRoute =>
   STEPS.some((step) => step.route === route);

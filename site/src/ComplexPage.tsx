@@ -1,6 +1,6 @@
 import { For } from "solid-js";
 import { MultiplyPlane } from "./MultiplyPlane";
-import { backgroundKicker } from "./pages";
+import { backgroundKicker, href } from "./pages";
 import { Stepper, type Part } from "./Stepper";
 
 // Source of the content: docs/notes/background-complex-numbers.md.
@@ -8,6 +8,7 @@ import { Stepper, type Part } from "./Stepper";
 // returned "not found" on 23 November 2026.
 const MERINO = "https://math.mit.edu/~dunkel/Teach/18.04_2019S/historic/Merino_2006.pdf";
 const ELKIES = "https://people.math.harvard.edu/~elkies/M229.09/zeta1.pdf";
+const EULER_E352 = "https://scholarlycommons.pacific.edu/euler-works/352/";
 const MATHLIB_ZETA_ZERO =
   "https://github.com/leanprover-community/mathlib4/blob/0df444a360eaa60ab8c11dca51a86af692955474/Mathlib/NumberTheory/LSeries/RiemannZeta.lean#L150-L152";
 
@@ -91,7 +92,7 @@ export function ComplexPage() {
         of negative numbers, and the answers came out right.
       </p>
 
-      <section>
+      <section id="cubic">
         <h2>The equation that forced the issue</h2>
         <p
           innerHTML={prose`A common belief is that complex numbers were invented just to force $x^2 = -1$ to have a
@@ -106,7 +107,7 @@ export function ComplexPage() {
         </p>
       </section>
 
-      <section>
+      <section id="plane">
         <h2>The picture: turn and stretch</h2>
         <p
           innerHTML={prose`Bombelli's calculation produced the right answer, but for more than two centuries nobody
@@ -138,17 +139,25 @@ export function ComplexPage() {
         </p>
       </section>
 
-      <section>
+      <section id="why-zeta">
         <h2>Why the zeta function needs them</h2>
-        <p
-          innerHTML={prose`For more than a century before Riemann, Euler studied the zeta sum using real powers $s$.
-            As an ordinary sum, $1 + \frac{1}{2^s} + \frac{1}{3^s} + \cdots$ converges only for $s$
-            above 1; at $s = 1$ it grows without limit, forming a barrier on the real line. In 1859
-            — after complex numbers had gained their geometric plane — Riemann let $s$ move off the
-            line into that plane. In two dimensions the point 1 is no longer a wall — it is a single
-            point you can walk around — and Riemann showed that $\zeta(s)$ extends smoothly to the
-            entire plane except at 1.`}
-        />
+        <p>
+          <span
+            innerHTML={prose`For more than a century before Riemann, Euler studied the zeta sum using real powers $s$.
+              As an ordinary sum, $1 + \frac{1}{2^s} + \frac{1}{3^s} + \cdots$ converges only for $s$
+              above 1; at $s = 1$ it grows without limit, forming a barrier on the real line. In 1749
+              Euler did manage to probe $s \le 1$ — including $\frac{1}{2}$, 0, and negative whole
+              numbers — by switching to alternating signs and power-series limits (see `}
+          />
+          <a href={href("zeta", "euler-1749")}>Where the zeta function came from</a>
+          <span
+            innerHTML={prose`), yet he had no single proof covering every $s$. In 1859 — after complex numbers had
+              gained their geometric plane — Riemann let $s$ move off the line into that plane. In
+              two dimensions the point 1 is no longer a wall — it is a single point you can walk
+              around — and Riemann showed that $\zeta(s)$ extends smoothly to the entire plane except
+              at 1.`}
+          />
+        </p>
         <p
           innerHTML={prose`Why couldn't the Riemann hypothesis stay on the real line? On the real line, $\zeta(s)$
             has zeros only at the trivial points $-2$, $-4$, $-6$ and so on: it equals $-\frac{1}{2}$
@@ -161,13 +170,15 @@ export function ComplexPage() {
         <p class="sources">
           Sources: <a href={ELKIES}>Elkies, Math 229 notes on the zeta function</a>, pages 1, 2 (the
           theorem marked “Riemann 1859”) and 7 (no zeros on the positive real axis);{" "}
+          <a href={EULER_E352}>Euler, E352 (1749/1768, Willis and Osler translation)</a>, sections 1
+          to 15 (probing <span innerHTML={prose`$s \le 1$`} /> via alternating sums);{" "}
           <a href={MATHLIB_ZETA_ZERO}>Mathlib, theorem riemannZeta_zero</a> (
           <span innerHTML={prose`$\zeta(0) = -\frac{1}{2}$`} />
           ).
         </p>
       </section>
 
-      <section>
+      <section id="timeline">
         <h2>The dates in one list</h2>
         <p>
           The new numbers worked, but for more than two hundred years they had no satisfactory
