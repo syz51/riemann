@@ -39,7 +39,7 @@ The owner asked on 23 November 2026: how were people sure that the formula is co
 
 ## Why zeta needs them
 
-- The sum that defines $\zeta(s)$ converges where $\operatorname{Re}(s) > 1$ [10](../references.md#reference-10) (p. 1).
+- The sum that defines $\zeta(s)$ converges where $\operatorname{Re}(s) > 1$ [10](../references.md#reference-10) (p. 1). In 1749 (E352, §§1–15), Euler did probe $s \le 1$ — including $\frac{1}{2}$, $0$, and negative integers — by switching to alternating series and power-series limits, while noting he had no single proof covering all cases [19](../references.md#reference-19).
 - Apart from the trivial zeros $-2, -4, -6, \dots$, $\zeta(s)$ has no other zeros outside the closed critical strip $0 \le \operatorname{Re}(s) \le 1$ [10](../references.md#reference-10) (p. 2).
 - Moreover, $\zeta(s)$ has a simple pole at $s = 1$ and no other poles or zeros on the positive real axis [10](../references.md#reference-10) (p. 7), and at $s = 0$ Mathlib proves `riemannZeta_zero : riemannZeta 0 = -1 / 2` (`RiemannZeta.lean:151`) [8](../references.md#reference-8), which is nonzero. Consequently, there are no zeros anywhere on the real interval $[0, 1]$ either: every zero that the Riemann hypothesis talks about lies off the real line, with a nonzero imaginary part inside the strip $0 \le \operatorname{Re}(s) \le 1$ (own consequence from Elkies [10](../references.md#reference-10), pp. 2 and 7, and Mathlib [8](../references.md#reference-8)).
 - Own geometric remark: on the real line, $s = 1$ splits the line in two, whereas in the two-dimensional complex plane $s = 1$ is an isolated point that paths can go around.
