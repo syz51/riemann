@@ -18,6 +18,38 @@ import { ZetaPage } from "./ZetaPage";
 
 type Theme = "light" | "dark";
 const THEME_KEY = "riemann-theme";
+const SCROLL_KEY = "riemann-scroll";
+const MAX_SAVED_SCROLL = 64;
+
+const loadSavedScroll = (): Map<string, number> => {
+  const map = new Map<string, number>();
+  try {
+    const raw = sessionStorage.getItem(SCROLL_KEY);
+    if (!raw) return map;
+    const parsed: unknown = JSON.parse(raw);
+    if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
+      for (const [k, v] of Object.entries(parsed)) {
+        if (typeof v === "number" && Number.isFinite(v)) map.set(k, v);
+      }
+    }
+  } catch {
+    // Ignore storage/parse errors in restricted environments; in-memory Map still works.
+  }
+  return map;
+};
+
+const persistSavedScroll = (map: Map<string, number>) => {
+  while (map.size > MAX_SAVED_SCROLL) {
+    const oldest = map.keys().next().value;
+    if (oldest === undefined) break;
+    map.delete(oldest);
+  }
+  try {
+    sessionStorage.setItem(SCROLL_KEY, JSON.stringify(Object.fromEntries(map)));
+  } catch {
+    // Ignore storage errors in restricted environments.
+  }
+};
 
 const readInitialTheme = (): Theme => {
   const attr = document.documentElement.dataset.theme;
@@ -43,16 +75,28 @@ export function App() {
     };
 
     const stampKey = (key: string) => {
-      const prev =
-        history.state && typeof history.state === "object"
-          ? (history.state as Record<string, unknown>)
-          : {};
-      history.replaceState({ ...prev, scrollKey: key }, "");
+      try {
+        const prev =
+          history.state && typeof history.state === "object"
+            ? (history.state as Record<string, unknown>)
+            : {};
+        history.replaceState({ ...prev, scrollKey: key }, "");
+      } catch {
+        // Ignore History API restrictions (opaque origin / rate limit); routing still works.
+      }
     };
 
-    const savedScroll = new Map<string, number>();
-    let currentKey = readScrollKey() ?? makeKey();
-    if (!readScrollKey()) stampKey(currentKey);
+    const savedScroll = loadSavedScroll();
+    const recordScroll = (key: string, y: number) => {
+      savedScroll.delete(key);
+      savedScroll.set(key, y);
+      persistSavedScroll(savedScroll);
+    };
+
+    const initialExistingKey = readScrollKey();
+    const hasInitialSaved = initialExistingKey !== undefined && savedScroll.has(initialExistingKey);
+    let currentKey = initialExistingKey ?? makeKey();
+    if (!initialExistingKey) stampKey(currentKey);
     let lastHref = location.href;
     let restoring = false;
     let rafId = 0;
@@ -78,27 +122,29 @@ export function App() {
         } else {
           window.scrollTo(0, 0);
         }
-        savedScroll.set(targetKey, window.scrollY);
+        recordScroll(targetKey, window.scrollY);
         restoring = false;
       });
     };
 
-    // Honor an initial deep link such as #/zeta#euler-1749 on first load.
+    // Restore saved position on reload / non-bfcache Back, or honor a fresh deep link.
     const initialSection = parseHash(location.hash).section;
-    if (initialSection) {
+    if (hasInitialSaved) {
+      scrollToTarget(currentKey, true, undefined);
+    } else if (initialSection) {
       scrollToTarget(currentKey, false, initialSection);
     } else {
-      savedScroll.set(currentKey, window.scrollY);
+      recordScroll(currentKey, window.scrollY);
     }
 
     const onScroll = () => {
-      if (!restoring) savedScroll.set(currentKey, window.scrollY);
+      if (!restoring) recordScroll(currentKey, window.scrollY);
     };
 
     const onNavigate = () => {
       const existingKey = readScrollKey();
       if (location.href === lastHref && existingKey === currentKey) return;
-      if (!restoring) savedScroll.set(currentKey, window.scrollY);
+      if (!restoring) recordScroll(currentKey, window.scrollY);
       lastHref = location.href;
 
       const next = parseHash(location.hash);
@@ -108,7 +154,7 @@ export function App() {
         currentKey = existingKey;
       } else {
         currentKey = existingKey ?? makeKey();
-        stampKey(currentKey);
+        if (!existingKey) stampKey(currentKey);
       }
 
       setRoute(next.route);

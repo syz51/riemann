@@ -130,8 +130,12 @@ export const parseHash = (hash: string): { route: Route; section?: string } => {
   const split = body.indexOf("#");
   const routePart = split === -1 ? body : body.slice(0, split);
   const sectionPart = split === -1 ? "" : body.slice(split + 1);
-  const route = ALL_PAGE_ROUTES.find((candidate) => candidate === routePart) ?? CONTENTS;
-  return sectionPart ? { route, section: sectionPart } : { route };
+  if (routePart === "") {
+    return sectionPart ? { route: CONTENTS, section: sectionPart } : { route: CONTENTS };
+  }
+  const matched = ALL_PAGE_ROUTES.find((candidate) => candidate === routePart);
+  if (!matched) return { route: CONTENTS };
+  return sectionPart ? { route: matched, section: sectionPart } : { route: matched };
 };
 
 /** The route in the address, or the proof home page when no page has it. */
