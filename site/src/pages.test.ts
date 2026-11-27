@@ -10,12 +10,24 @@ import {
   isBackgroundSection,
   isProofSection,
   parentLinkOf,
+  parseHash,
   routeOf,
+  sectionOf,
   STEPS,
 } from "./pages";
 
 test("the address of each page leads back to its route", () => {
   for (const route of ALL_PAGE_ROUTES) expect(routeOf(href(route))).toBe(route);
+});
+
+test("section anchors round-trip cleanly alongside hash routes", () => {
+  const url = href("zeta", "euler-1749");
+  expect(url).toBe("#/zeta#euler-1749");
+  expect(parseHash(url)).toEqual({ route: "zeta", section: "euler-1749" });
+  expect(routeOf(url)).toBe("zeta");
+  expect(sectionOf(url)).toBe("euler-1749");
+  expect(sectionOf(href("zeta"))).toBeUndefined();
+  expect(parseHash("#/zeta#")).toEqual({ route: "zeta" });
 });
 
 test("an empty or unknown address is the proof home page", () => {

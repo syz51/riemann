@@ -39,7 +39,7 @@ export function GammaPage() {
         innerHTML={prose`The symmetry of the zeta function uses a function with the name $\Gamma$ (gamma). It is 300 years old. It began with one question: what comes between the terms of the list 1, 2, 6, 24, 120?`}
       />
 
-      <section>
+      <section id="list-with-gaps">
         <h2>A list with gaps</h2>
         <p
           innerHTML={prose`Multiply the whole numbers from 1 up to $n$. For $n = 1, 2, 3, 4, 5$ the results are 1, 2, 6, 24 and 120. The result for $n$ has the name factorial of $n$. The list has a term for each whole number. Has it a term for $n = \frac{1}{2}$? The product “from 1 up to a half” has no meaning, so the question needs a new idea.`}
@@ -174,7 +174,7 @@ export function GammaPage() {
         </p>
       </section>
 
-      <section>
+      <section id="picture">
         <h2>The picture</h2>
         <p
           innerHTML={prose`The chart shows $\Gamma(x)$ for a real number $x$. Move the slider, or press on the chart. The table shows the second rule at work: $x$ times $\Gamma(x)$ is the same as $\Gamma(x + 1)$, wherever $\Gamma(x)$ has a value.`}
@@ -189,7 +189,7 @@ export function GammaPage() {
         </p>
       </section>
 
-      <section>
+      <section id="poles">
         <h2 innerHTML={prose`Where $\Gamma$ has no value`} />
         <p
           innerHTML={prose`$\Gamma$ has no value at 0, $-1$, $-2$ and so on. Mathlib says so in words: at these points “the function is undefined, and we set it to be 0 by convention”. The 0 is a filler that the library needs, because each of its functions must give some answer. It is not a value of the function.`}
@@ -253,7 +253,7 @@ export function GammaPage() {
         </p>
       </section>
 
-      <section>
+      <section id="zeta-link">
         <h2 innerHTML={prose`How $\Gamma$ links to the zeta function symmetry`} />
         <p
           innerHTML={prose`Why does a function invented in 1729 to interpolate factorials show up 130 years later
@@ -304,8 +304,8 @@ export function GammaPage() {
               has no value: 0, $-1$, $-2$ and so on (plus 1, where $\zeta$ itself blows up). The
               page `}
           />
-          <a href={href("zeta")}>Where the zeta function came from</a> gives the numerical examples
-          and exceptions.
+          <a href={href("zeta", "euler-1749")}>Where the zeta function came from</a> gives the
+          numerical examples and exceptions.
         </p>
         <details class="aside-details">
           <summary>

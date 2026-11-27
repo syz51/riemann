@@ -4,7 +4,15 @@ import { ComplexPage } from "./ComplexPage";
 import { ContentsPage } from "./ContentsPage";
 import { GammaPage } from "./GammaPage";
 import { PageFoot } from "./PageFoot";
-import { CATALOG, CONTENTS, href, isBackgroundSection, isProofSection, routeOf } from "./pages";
+import {
+  CATALOG,
+  CONTENTS,
+  href,
+  isBackgroundSection,
+  isProofSection,
+  parseHash,
+  routeOf,
+} from "./pages";
 import { StepPage } from "./StepPage";
 import { ZetaPage } from "./ZetaPage";
 
@@ -24,11 +32,92 @@ export function App() {
   const [theme, setTheme] = createSignal<Theme>(readInitialTheme());
 
   onSettled(() => {
-    const onHash = () => {
-      setRoute(routeOf(location.hash));
-      window.scrollTo(0, 0);
+    const prevRestoration = "scrollRestoration" in history ? history.scrollRestoration : undefined;
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+
+    let keyCounter = 0;
+    const makeKey = () => `nav-${Date.now()}-${++keyCounter}`;
+    const readScrollKey = (): string | undefined => {
+      const state = history.state as { scrollKey?: unknown } | null;
+      return typeof state?.scrollKey === "string" ? state.scrollKey : undefined;
     };
-    window.addEventListener("hashchange", onHash);
+
+    const stampKey = (key: string) => {
+      const prev =
+        history.state && typeof history.state === "object"
+          ? (history.state as Record<string, unknown>)
+          : {};
+      history.replaceState({ ...prev, scrollKey: key }, "");
+    };
+
+    const savedScroll = new Map<string, number>();
+    let currentKey = readScrollKey() ?? makeKey();
+    if (!readScrollKey()) stampKey(currentKey);
+    let lastHref = location.href;
+    let restoring = false;
+    let rafId = 0;
+
+    const scrollToTarget = (
+      targetKey: string,
+      isHistoryReturn: boolean,
+      targetSection: string | undefined,
+    ) => {
+      cancelAnimationFrame(rafId);
+      restoring = true;
+      rafId = requestAnimationFrame(() => {
+        if (targetKey !== currentKey) return;
+        if (isHistoryReturn) {
+          window.scrollTo(0, savedScroll.get(targetKey) ?? 0);
+        } else if (targetSection) {
+          const el = document.getElementById(targetSection);
+          if (el) {
+            el.scrollIntoView({ behavior: "auto", block: "start" });
+          } else {
+            window.scrollTo(0, 0);
+          }
+        } else {
+          window.scrollTo(0, 0);
+        }
+        savedScroll.set(targetKey, window.scrollY);
+        restoring = false;
+      });
+    };
+
+    // Honor an initial deep link such as #/zeta#euler-1749 on first load.
+    const initialSection = parseHash(location.hash).section;
+    if (initialSection) {
+      scrollToTarget(currentKey, false, initialSection);
+    } else {
+      savedScroll.set(currentKey, window.scrollY);
+    }
+
+    const onScroll = () => {
+      if (!restoring) savedScroll.set(currentKey, window.scrollY);
+    };
+
+    const onNavigate = () => {
+      const existingKey = readScrollKey();
+      if (location.href === lastHref && existingKey === currentKey) return;
+      if (!restoring) savedScroll.set(currentKey, window.scrollY);
+      lastHref = location.href;
+
+      const next = parseHash(location.hash);
+      const isHistoryReturn = existingKey !== undefined && savedScroll.has(existingKey);
+
+      if (isHistoryReturn) {
+        currentKey = existingKey;
+      } else {
+        currentKey = existingKey ?? makeKey();
+        stampKey(currentKey);
+      }
+
+      setRoute(next.route);
+      scrollToTarget(currentKey, isHistoryReturn, next.section);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("popstate", onNavigate);
+    window.addEventListener("hashchange", onNavigate);
 
     const media = window.matchMedia("(prefers-color-scheme: dark)");
     const onScheme = (event: MediaQueryListEvent) => {
@@ -39,7 +128,11 @@ export function App() {
     media.addEventListener("change", onScheme);
 
     return () => {
-      window.removeEventListener("hashchange", onHash);
+      cancelAnimationFrame(rafId);
+      if (prevRestoration !== undefined) history.scrollRestoration = prevRestoration;
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("popstate", onNavigate);
+      window.removeEventListener("hashchange", onNavigate);
       media.removeEventListener("change", onScheme);
     };
   });

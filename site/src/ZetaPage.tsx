@@ -101,7 +101,7 @@ export function ZetaPage() {
         other powers, and found that the answer knows about the primes.
       </p>
 
-      <section>
+      <section id="basel">
         <h2>A sum that nobody could finish</h2>
         <p
           innerHTML={prose`Add 1 divided by each square number, and never stop. The square of 2, written $2^2$, is
@@ -140,7 +140,7 @@ export function ZetaPage() {
         </p>
       </section>
 
-      <section>
+      <section id="powers">
         <h2>One sum for each power</h2>
         <p innerHTML={prose`Now replace the squares by another power. Write $s$ for the power:`} />
         <p
@@ -167,7 +167,7 @@ export function ZetaPage() {
         </p>
       </section>
 
-      <section>
+      <section id="convergence">
         <h2>Why an endless sum can have a value</h2>
         <p
           innerHTML={prose`Once you let the power $s$ vary, the first question is: for which powers does this
@@ -204,7 +204,7 @@ export function ZetaPage() {
         </p>
       </section>
 
-      <section>
+      <section id="primes">
         <h2>The link to the primes</h2>
         <p>
           A prime is a whole number above 1 that only 1 and itself divide: 2, 3, 5, 7, 11 and so on.
@@ -256,7 +256,7 @@ export function ZetaPage() {
         </p>
       </section>
 
-      <section>
+      <section id="sum-product">
         <h2>The picture: the sum and the product</h2>
         <p
           innerHTML={prose`The chart counts up to a number $N$. The sum takes the terms of the whole numbers up to
@@ -276,7 +276,7 @@ export function ZetaPage() {
         </p>
       </section>
 
-      <section>
+      <section id="euler-1749">
         <h2>A clue Euler could not prove (1749)</h2>
         <p
           innerHTML={prose`Euler now knew $\zeta(s)$ for every even power $s = 2, 4, 6, \dots$ and had linked the
@@ -377,7 +377,7 @@ export function ZetaPage() {
         </p>
       </section>
 
-      <section>
+      <section id="riemann-1859">
         <h2>A hundred years later: Riemann crosses the wall</h2>
         <p>
           After Euler, nobody did substantial work on the function for more than a century. The
@@ -461,7 +461,7 @@ export function ZetaPage() {
         </p>
       </section>
 
-      <section>
+      <section id="timeline">
         <h2>The dates in one list</h2>
         <ol class="timeline">
           <For each={TIMELINE}>

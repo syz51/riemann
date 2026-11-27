@@ -84,6 +84,7 @@ export const step1 = defineStep({
       mark: "pole",
       background: {
         route: "zeta",
+        section: "convergence",
         label: "Where the zeta function came from",
         note: "Background · why zeta grows without limit near 1 and extends across the plane",
       },
@@ -111,6 +112,7 @@ export const step1 = defineStep({
       mark: "line",
       background: {
         route: "zeta",
+        section: "riemann-1859",
         label: "Where the zeta function came from",
         note: "Background · why the symmetry pairs up zeros across the critical line",
       },
