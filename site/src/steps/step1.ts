@@ -52,7 +52,7 @@ export const step1 = defineStep({
     {
       id: "forall",
       title: prose`For every complex number $s$`,
-      meaning: prose`The symbol $\forall$ means “for every”. $\mathbb{C}$ is the set of complex numbers. A complex number is a point of the plane: it has a real part (left to right) and an imaginary part (bottom to top).`,
+      meaning: prose`The symbol $\forall$ means “for every”. $\mathbb{C}$ is the set of complex numbers. A complex number is a point of the plane: it has a real part (how far left or right it sits) and an imaginary part (how far up or down).`,
       mark: "plane",
       background: {
         route: "complex-numbers",
