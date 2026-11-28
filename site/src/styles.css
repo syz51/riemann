@@ -92,6 +92,7 @@ header.site {
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem 2rem;
+  min-height: 4.15rem;
   padding-top: 1.1rem;
   padding-bottom: 0.9rem;
   border-bottom: 1px solid var(--border);
@@ -570,6 +571,21 @@ header.site nav a[aria-current="page"] {
   margin: 0 0 0.7rem;
   font-size: clamp(1.65rem, 3.2vw, 2.25rem);
   line-height: 1.22;
+}
+
+/* Keep the inline stacked fraction in the hero headline optically balanced so it
+   does not inflate the line box and push the title downward relative to other pages. */
+.proof-hero h1 .katex {
+  font-size: 1em;
+}
+
+.proof-hero h1 .katex .mfrac {
+  font-size: 0.68em;
+}
+
+.proof-hero h1 .katex .katex-strut {
+  max-height: 1.25em;
+  vertical-align: -0.25em !important;
 }
 
 .proof-hero .summary {

@@ -68,7 +68,7 @@ export function ContentsPage() {
         <div class="proof-hero-copy">
           <p class="kicker">
             {isZh()
-              ? "自顶向下拆解 Alpöge 的 Lean 4 证明"
+              ? "自上而下拆解 Alpöge 的 Lean 4 证明"
               : "A top-down reading of Alpöge's Lean 4 proof"}
           </p>
           <h1
