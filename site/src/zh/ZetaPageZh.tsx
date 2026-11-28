@@ -556,7 +556,7 @@ export function ZetaPageZh() {
             />
             <details class="aside-details">
               <summary>
-                <span>展开看公式：黎曼 1859 年的波纹公式与舍恩菲尔德显式素数界</span>
+                <span>展开看公式：黎曼 1859 年的波纹公式</span>
               </summary>
               <div class="aside-body">
                 <p
@@ -569,21 +569,22 @@ export function ZetaPageZh() {
                 <p
                   innerHTML={prose`黎曼指出，光滑主项 $\operatorname{Li}(x)$ 与真实素数个数的偏差“只有 $x^{\frac{1}{2}}$ 量级”，而那些周期振荡项恰恰解释了“素数密度在不同区间忽疏忽密的局部起伏”。`}
                 />
-                <p
-                  innerHTML={prose`现代数论里最常用的是切比雪夫加权素数计数函数 $\psi(x)$。对任意正整数 $n$，它有一个超好记的等价写法：$\psi(n) = \log(\operatorname{lcm}(1, 2, \dots, n))$，也就是 $1$ 到 $n$ 的最小公倍数的自然对数。每当 $n$ 跨过一个素数 $p$（或素数幂 $p^k$），最小公倍数就乘上一个 $p$，它的对数就正好往上跳一格 $\log p$。给每个素数赋权 $\log p$ 恰好抵消了素数按 $\frac{1}{\log x}$ 变稀疏的速度，让 $\psi(x)$ 几乎贴着直线 $y = x$ 笔直往上走。`}
-                />
-                <p
-                  innerHTML={prose`1976 年，洛厄尔·舍恩菲尔德（Lowell Schoenfeld）证明，黎曼猜想等价于一条完全显式的不等式——所谓“显式”，就是连常数都算得清清楚楚、随便代个具体数字就能直接用，不再是含糊的“当 $x$ 足够大时”：`}
-                />
-                <p
-                  class="equation"
-                  innerHTML={tex`\left|\psi(x) - x\right| < \frac{\sqrt{x}\log^2 x}{8\pi} \quad (x \ge 73.2).`}
-                />
-                <p
-                  innerHTML={prose`感受一下这个精度有多惊人：代入 $x = 1{,}000{,}000$，右边算出来大约只有 $7{,}594$（四舍五入）——误差不到 $x$ 的 $0.8\%$！安德鲁·萨瑟兰（Andrew Sutherland）已经直接基于精简版证明，在 Lean 里将舍恩菲尔德等价定理及这条显式界端到端校验通过。`}
-                />
               </div>
             </details>
+            <h3 id="chebyshev-psi" innerHTML={prose`切比雪夫的 $\psi(x)$ 与舍恩菲尔德显式界`} />
+            <p
+              innerHTML={prose`现代数论里最常用的是切比雪夫加权素数计数函数 $\psi(x)$（此处沿用解析数论惯例，用 $\log$ 表示自然对数 $\ln$）。对任意正整数 $n$，它有一个超好记的等价写法：$\psi(n) = \log(\operatorname{lcm}(1, 2, \dots, n))$，也就是 $1$ 到 $n$ 的最小公倍数的自然对数。每当 $n$ 跨过一个素数 $p$（或素数幂 $p^k$），最小公倍数就乘上一个 $p$，它的对数就正好往上跳一格 $\log p$。给每个素数赋权 $\log p$ 恰好抵消了素数按 $\frac{1}{\log x}$ 变稀疏的速度，让 $\psi(x)$ 几乎贴着直线 $y = x$ 笔直往上走。`}
+            />
+            <p
+              innerHTML={prose`1976 年，洛厄尔·舍恩菲尔德（Lowell Schoenfeld）证明，黎曼猜想等价于一条完全显式的不等式——所谓“显式”，就是连常数都算得清清楚楚、随便代个具体数字就能直接用，不再是含糊的“当 $x$ 足够大时”：`}
+            />
+            <p
+              class="equation"
+              innerHTML={tex`\left|\psi(x) - x\right| < \frac{\sqrt{x}\log^2 x}{8\pi} \quad (x \ge 73.2).`}
+            />
+            <p
+              innerHTML={prose`感受一下这个精度有多惊人：代入 $x = 1{,}000{,}000$，右边算出来大约只有 $7{,}594$（四舍五入）——误差不到 $x$ 的 $0.8\%$！安德鲁·萨瑟兰（Andrew Sutherland）已经直接基于精简版证明，在 Lean 里将舍恩菲尔德等价定理及这条显式界端到端校验通过。`}
+            />
             <p class="sources">
               参考来源：
               <a href={RIEMANN_1859}>
