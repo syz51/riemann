@@ -636,6 +636,105 @@ header.site nav a[aria-current="page"] {
   margin-top: 1.75rem;
 }
 
+/* Home page two-up editorial callout: verification status + prime-number payoff. */
+.home-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.home-fact {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.15rem;
+  border: 1px solid var(--border);
+  border-top: 2.5px solid var(--mark);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.home-fact:first-child {
+  border-top-color: var(--accent);
+}
+
+.home-fact-kicker {
+  margin: 0 0 0.25rem;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.home-fact h2 {
+  margin: 0 0 0.45rem;
+  font-family: var(--serif);
+  font-size: 1.12rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.home-fact p {
+  margin: 0 0 0.65rem;
+  font-size: 0.94rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.home-fact code {
+  font-family: var(--mono);
+  font-size: 0.85em;
+  color: var(--text);
+}
+
+.home-fact-eq,
+.home-fact-strip {
+  margin: 0.15rem 0 0.7rem !important;
+  padding: 0.45rem 0.65rem;
+  border-radius: 6px;
+  background: var(--page);
+  color: var(--text) !important;
+  text-align: center;
+  overflow-x: auto;
+}
+
+.home-fact-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem 0.35rem;
+  min-height: 3.15rem;
+  font-family: var(--sans);
+  font-size: 0.82rem !important;
+  color: var(--muted) !important;
+}
+
+.home-fact-strip span {
+  font-weight: 500;
+}
+
+.home-fact-links {
+  margin-top: auto !important;
+  margin-bottom: 0 !important;
+  padding-top: 0.55rem;
+  border-top: 1px solid var(--border);
+  font-family: var(--sans);
+  font-size: 0.82rem !important;
+  line-height: 1.4 !important;
+}
+
+.home-fact-links a {
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.home-fact-links a:hover {
+  text-decoration: underline;
+}
+
 .spine-head {
   display: flex;
   flex-wrap: wrap;
@@ -923,10 +1022,6 @@ h3 {
 
 .aside-details + .aside-details {
   margin-top: 0;
-}
-
-.aside-details.home-note {
-  margin: 1.5rem 0 0;
 }
 
 .aside-details .aside-body code {
@@ -1605,6 +1700,10 @@ li:not(:has(p)):has(.katex .mfrac) {
   .proof-hero {
     grid-template-columns: minmax(0, 1fr);
     gap: 1.25rem;
+  }
+
+  .home-facts {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .proof-hero-figure {

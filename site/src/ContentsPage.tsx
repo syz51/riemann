@@ -78,6 +78,51 @@ export function ContentsPage() {
         </div>
       </section>
 
+      <section class="home-facts" aria-label="Proof verification and prime-number payoff">
+        <article class="home-fact">
+          <p class="home-fact-kicker">Independent verification</p>
+          <h2>Checked by 6 Lean proof checkers</h2>
+          <p>
+            The shorter 25 November 2026 proof (<code>lsernau/grh-lean</code>, commit{" "}
+            <code>72fead10</code>) passed Lean's default and paranoid kernels plus{" "}
+            <code>nanoda</code>, <code>lean4lean</code>, <code>con-leche</code>, and{" "}
+            <code>con-ron</code> across both the readable (300k lines) and compact (76k lines)
+            editions.
+          </p>
+          <p class="home-fact-strip">
+            <span>Axioms used:</span> <code>propext</code> · <code>Classical.choice</code> ·{" "}
+            <code>Quot.sound</code>
+          </p>
+          <p class="home-fact-links">
+            <a href={SHORTGRH_URL} target="_blank" rel="noreferrer">
+              Verification report →
+            </a>{" "}
+            ·{" "}
+            <a href={GRH_LEAN_URL} target="_blank" rel="noreferrer">
+              Lean source (72fead10)
+            </a>
+          </p>
+        </article>
+
+        <article class="home-fact">
+          <p class="home-fact-kicker">Why the zeros matter</p>
+          <h2>They pin down the prime count</h2>
+          <p
+            innerHTML={prose`Each zero acts like a wave in the prime count. Putting them all on $\operatorname{Re}(s) = \frac{1}{2}$ forces Chebyshev's weighted prime count $\psi(x)$ (for whole $n$, $\log(\operatorname{lcm}(1, \dots, n))$) to stay within:`}
+          />
+          <p
+            class="home-fact-eq"
+            innerHTML={tex`\left|\psi(x) - x\right| < \frac{\sqrt{x}\log^2 x}{8\pi} \quad (x \ge 73.2)`}
+          />
+          <p class="home-fact-links">
+            <a href={href("zeta", "zeros-and-primes")}>How zeros control the primes →</a> ·{" "}
+            <a href={SCHOENFELD_URL} target="_blank" rel="noreferrer">
+              Schoenfeld bound in Lean
+            </a>
+          </p>
+        </article>
+      </section>
+
       <section class="spine-section" aria-labelledby="proof-route-heading">
         <div class="spine-head">
           <h2 id="proof-route-heading">The proof route</h2>
@@ -133,46 +178,6 @@ export function ContentsPage() {
             )}
           </For>
         </ol>
-
-        <details class="aside-details home-note">
-          <summary>How was the proof checked, and why do these zeros matter for primes?</summary>
-          <div class="aside-body">
-            <p>
-              The shorter 25 November 2026 Lean 4 proof (<code>lsernau/grh-lean</code>, commit{" "}
-              <code>72fead10</code>) has been verified end-to-end by six independent checkers —
-              Lean's default and paranoid kernels plus <code>nanoda</code>, <code>lean4lean</code>,{" "}
-              <code>con-leche</code>, and <code>con-ron</code> — using only Lean's three standard
-              logical axioms.
-            </p>
-            <p
-              innerHTML={prose`Why care where the zeros of $\zeta(s)$ sit? Because they control how smoothly the prime numbers are spread out. Write $\psi(x)$ (the Greek letter psi) for a weighted count of primes and prime powers up to $x$: for any whole number $n$, $\psi(n)$ is simply $\log(\operatorname{lcm}(1, 2, \dots, n))$, the natural logarithm of the least common multiple of the numbers from 1 to $n$. The Prime Number Theorem says $\psi(x)$ stays near $x$. Putting every non-trivial zero on $\operatorname{Re}(s) = \frac{1}{2}$ pins down how close: for every real number $x \ge 73.2$,`}
-            />
-            <div
-              class="equation"
-              innerHTML={tex`\left|\psi(x) - x\right| < \frac{\sqrt{x}\log^2 x}{8\pi}`}
-            />
-            <p>
-              In 1976, Lowell Schoenfeld proved this bound follows from the Riemann hypothesis.
-              Andrew Sutherland formalized that equivalence in Lean and checked the bound itself
-              end-to-end from the shorter proof across all six checkers.
-            </p>
-            <p class="sources">
-              Sources:{" "}
-              <a href={SHORTGRH_URL} target="_blank" rel="noreferrer">
-                Sutherland, shortgrh verification report
-              </a>
-              ;{" "}
-              <a href={SCHOENFELD_URL} target="_blank" rel="noreferrer">
-                schoenfeld-rh-lean
-              </a>
-              ;{" "}
-              <a href={GRH_LEAN_URL} target="_blank" rel="noreferrer">
-                lsernau/grh-lean (commit 72fead10)
-              </a>
-              .
-            </p>
-          </div>
-        </details>
       </section>
     </main>
   );
