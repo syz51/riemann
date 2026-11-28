@@ -465,3 +465,43 @@ Inspection: full PR description read directly on 28 November 2026. Traces `New.V
 Inspection depth: abstract.
 
 Inspection: abstract only (opening 2,000 characters of the PR description read directly on 28 November 2026). Records Lean 4's C++ kernel change replacing its union-find `is_def_eq` cache with a pair set `HashSet (Expr × Expr)` to eliminate cache order-dependence, cited by [57](#reference-57) as the upstream fix ported to `lean4lean`. Primary software engineering record.
+
+## Reference 59
+
+[59] Bernhard Riemann. **Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse**. *Monatsberichte der Königlich Preußischen Akademie der Wissenschaften zu Berlin*, November 1859 (session of 3 November 1859; printed 1860), pages 671 to 680; reprinted in *Bernhard Riemann's gesammelte mathematische Werke und wissenschaftlicher Nachlass*, Leipzig, B. G. Teubner, 1876, No. VII, pages 136 to 144. Open-access facsimile on German Wikisource (`File:RiemannPrim1859.djvu`), 1876 *Werke* facsimile on Wikimedia Commons, and German transcription by David R. Wilkins (`Zeta.pdf`). [Original](https://de.wikisource.org/wiki/Index:RiemannPrim1859). Accessed 28 November 2026, Asia/Tokyo.
+
+Inspection depth: method.
+
+Inspection: method level. Visually verified on the 1859 *Monatsberichte* scan pages 671 to 675 (and cross-checked visually on pages 136 to 139 of the 1876 *Werke* scan), and searched all 9 pages (846 lines) of Wilkins's German transcription (`https://www.maths.tcd.ie/pub/HistMath/People/Riemann/Zeta/Zeta.pdf`). On p. 672 (1876 *Werke* p. 137), immediately after $2\sin(\pi s)\,\Pi(s - 1)\,\zeta(s) = i\int_\infty^\infty \frac{(-x)^{s - 1}\,dx}{e^x - 1}$, Riemann writes: *"Diese Gleichung giebt nun den Werth der Function $\zeta(s)$ für jedes beliebige complexe $s$ und zeigt, daſs sie einwerthig und für alle endlichen Werthe von $s$, auſser $1$, endlich ist, so wie auch, daſs sie verschwindet, wenn $s$ gleich einer negativen geraden Zahl ist."* Confirms zero occurrences of *trivial* or *Nullstelle* across the entire paper; on pp. 674–675 he calls the zeros of $\xi(t)$ *"Wurzeln von $\xi(t) = 0$"* / *"reelle Wurzeln"*. Pages 676 to 680 were read only in Wilkins's transcription, not visually on the 1859 scan. A primary source.
+
+## Reference 60
+
+[60] Edmund Landau. **Über die Verteilung der Nullstellen der Riemannschen Zetafunktion und einer Klasse verwandter Funktionen**. *Mathematische Annalen*, volume 66, 1909, pages 419 to 445 (dated Berlin, 21 June 1908). Open-access digitized scan from the Göttinger Digitalisierungszentrum (SUB Göttingen, `PPN235181684_0066`, `LOG_0047`). [Original](https://gdz.sub.uni-goettingen.de/download/pdf/PPN235181684_0066/LOG_0047.pdf). Accessed 28 November 2026, Asia/Tokyo.
+
+Inspection depth: method.
+
+Inspection: method level. Full 27-page GDZOCR searched for `triv*`, and pages 419, 435–437, 440, and 445 read visually on the scanned PDF (PURL `https://resolver.sub.uni-goettingen.de/purl?PPN235181684_0066`). In the Introduction (p. 419) Landau describes $\zeta(s)$ as having first-order zeros at $s = -2, -4, -6, \dots, -2n, \dots$ and infinitely many *"nicht reelle Nullstellen"*. In § 4 on Dirichlet $L$-functions $L(s)$ (non-principal characters), he explicitly uses *"der nicht trivialen Wurzeln von $L(s)$"* (p. 437) and *"wenn die trivialen Nullstellen hinzugenommen werden"* (p. 440). Signed *"Berlin, den 21. Juni 1908"* on p. 445. The detailed proofs in §§ 1–3 and § 5 are not read visually line by line. A primary source.
+
+## Reference 61
+
+[61] Edmund Landau. **Handbuch der Lehre von der Verteilung der Primzahlen**. Two volumes, Leipzig and Berlin, B. G. Teubner, 1909 (Vorwort dated Göttingen, 13 September 1909). Open-access scans on the Internet Archive (`handbuchderlehre01landuoft` and `handbuchderlehre02landuoft`). [Original](https://archive.org/details/handbuchderlehre01landuoft). Accessed 28 November 2026, Asia/Tokyo.
+
+Inspection depth: abstract.
+
+Inspection: abstract only relative to the two-volume treatise. Searched the full DjVu OCR of Volume 1 and Volume 2 for `trivial` and read visually on the 1909 print scans: Vol. 1 title page, Vorwort pp. IX–X, § 70 pp. 284–286 (on $\zeta(s)$: calls $-2q$ *"Nullstellen erster Ordnung von $\zeta(s)$"*, proves $\zeta(s) < 0$ on $(0, 1)$, and uses *"nicht reelle"* / *"komplexe Nullstellen"* in §§ 76, 84), § 128 pp. 497–498 (on $L(s, \chi)$: *"triviale ... Faktoren"*, *"die trivialen Wurzeln erster Ordnung"* at $\mathfrak{a} - 2q$, and *"Alle nicht trivialen ... Nullstellen"* in $0 < \sigma < 1$), § 130 pp. 507–508 (*"nicht trivialer Nullstellen"*, separating *"die trivialen Wurzeln $< 0$"* from *"den mysteriösen Wurzeln im Streifen $0 < \sigma < 1$"*), and Vol. 2 § 239 p. 866 (*"nicht trivialen Wurzeln"*, *"die triviale Wurzel $0$"*). The rest of the two volumes is not read. A primary source.
+
+## Reference 62
+
+[62] E. C. Titchmarsh. **The Zeta-Function of Riemann**. Cambridge Tracts in Mathematics and Mathematical Physics, No. 26, Cambridge University Press, 1930 (Preface dated May 1930). Open-access scan on the Internet Archive (`zetafunctionofri032076mbp`). [Original](https://archive.org/details/zetafunctionofri032076mbp). Accessed 28 November 2026, Asia/Tokyo.
+
+Inspection depth: abstract.
+
+Inspection: abstract only. Full DjVu OCR searched for `trivial` (3 unrelated hits; zero occurrences of *"trivial zeros"*), and title page, Preface, and Introduction pp. 2–3 read visually on the scan. On pp. 2–3 Titchmarsh deduces from the functional equation that $\zeta(s)$ has no zeros in $\sigma < 0$ except $s = -2, -4, \dots$, and refers to them as *"the real ones already observed"* in contrast to *"the complex zeros"* in $0 \le \sigma \le 1$. The rest of the monograph is not read. A primary exposition.
+
+## Reference 63
+
+[63] Jeff Miller. **Earliest Known Uses of Some of the Words of Mathematics (T and Z)**. MacTutor History of Mathematics Archive, University of St Andrews. [Original](https://mathshistory.st-andrews.ac.uk/Miller/mathword/t/). Accessed 28 November 2026, Asia/Tokyo.
+
+Inspection depth: abstract.
+
+Inspection: abstract only. Fetched and searched both the `T` (`mathword/t/`) and `Z` (`mathword/z/`) pages in full, and read the **TRIVIAL** entry verbatim (tracing the general mathematical term to Cayley 1854/1856 and OED citations from Carmichael 1915 and Birkhoff & MacLane 1941). Confirms neither page has an entry for *"trivial zero"* or *"trivial zeros"*. A scholarly etymology reference.
