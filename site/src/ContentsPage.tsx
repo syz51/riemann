@@ -1,6 +1,11 @@
 import { For } from "solid-js";
 import { href, STEP_COUNT, STEPS, UPCOMING_STEPS } from "./pages";
 
+const SHORTGRH_URL = "https://math.mit.edu/~drew/shortgrh/";
+const SCHOENFELD_URL = "https://github.com/AndrewVSutherland/schoenfeld-rh-lean/tree/0e52d7b1";
+const GRH_LEAN_URL =
+  "https://github.com/lsernau/grh-lean/tree/72fead102f663d5c7a407964a13dc0cf9d977207";
+
 /** Compact to-scale diagram of the critical strip and critical line for the proof home hero. */
 function HeroPlane() {
   // Uniform horizontal scale: 24 units per 1 on the real axis, with Re(s) = 0 at x = 124.
@@ -128,6 +133,46 @@ export function ContentsPage() {
             )}
           </For>
         </ol>
+
+        <details class="aside-details home-note">
+          <summary>How was the proof checked, and why do these zeros matter for primes?</summary>
+          <div class="aside-body">
+            <p>
+              The shorter 25 November 2026 Lean 4 proof (<code>lsernau/grh-lean</code>, commit{" "}
+              <code>72fead10</code>) has been verified end-to-end by six independent checkers —
+              Lean's default and paranoid kernels plus <code>nanoda</code>, <code>lean4lean</code>,{" "}
+              <code>con-leche</code>, and <code>con-ron</code> — using only Lean's three standard
+              logical axioms.
+            </p>
+            <p
+              innerHTML={prose`Why care where the zeros of $\zeta(s)$ sit? Because they control how smoothly the prime numbers are spread out. Write $\psi(x)$ (the Greek letter psi) for a weighted count of primes and prime powers up to $x$: for any whole number $n$, $\psi(n)$ is simply $\log(\operatorname{lcm}(1, 2, \dots, n))$, the natural logarithm of the least common multiple of the numbers from 1 to $n$. The Prime Number Theorem says $\psi(x)$ stays near $x$. Putting every non-trivial zero on $\operatorname{Re}(s) = \frac{1}{2}$ pins down how close: for every real number $x \ge 73.2$,`}
+            />
+            <div
+              class="equation"
+              innerHTML={tex`\left|\psi(x) - x\right| < \frac{\sqrt{x}\log^2 x}{8\pi}`}
+            />
+            <p>
+              In 1976, Lowell Schoenfeld proved this bound follows from the Riemann hypothesis.
+              Andrew Sutherland formalized that equivalence in Lean and checked the bound itself
+              end-to-end from the shorter proof across all six checkers.
+            </p>
+            <p class="sources">
+              Sources:{" "}
+              <a href={SHORTGRH_URL} target="_blank" rel="noreferrer">
+                Sutherland, shortgrh verification report
+              </a>
+              ;{" "}
+              <a href={SCHOENFELD_URL} target="_blank" rel="noreferrer">
+                schoenfeld-rh-lean
+              </a>
+              ;{" "}
+              <a href={GRH_LEAN_URL} target="_blank" rel="noreferrer">
+                lsernau/grh-lean (commit 72fead10)
+              </a>
+              .
+            </p>
+          </div>
+        </details>
       </section>
     </main>
   );
