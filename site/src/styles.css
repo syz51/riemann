@@ -165,10 +165,20 @@ header.site nav a {
   color: var(--muted);
   font: 0.8rem var(--sans);
   font-weight: 500;
+  line-height: 1.25;
   cursor: pointer;
   transition:
     border-color 120ms,
     color 120ms;
+}
+
+.theme-toggle > span:first-child {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 0.9rem;
+  height: 0.9rem;
+  line-height: 1;
 }
 
 .lang-toggle {
@@ -377,6 +387,10 @@ figcaption {
   border-radius: 8px;
 }
 
+.explanation-close {
+  display: none;
+}
+
 /* All piece explanations share one grid cell so the tallest one reserves space
    and the complex plane below never shifts while hovering between tokens. */
 .explanation-slot {
@@ -474,10 +488,19 @@ figcaption {
   stroke-dasharray: 5 4;
 }
 
+.plane .critical line.frac-bar {
+  stroke-dasharray: none;
+  stroke-width: 1.2;
+}
+
 .plane .critical text,
 .plane .pole text {
   fill: var(--mark);
   font-size: 12px;
+}
+
+.plane .critical text.frac-num {
+  font-size: 10px;
 }
 
 .plane .zeros circle {
@@ -500,6 +523,10 @@ figcaption {
   stroke: var(--accent);
   stroke-width: 3;
   stroke-dasharray: none;
+}
+
+.plane .critical.on line.frac-bar {
+  stroke-width: 1.4;
 }
 
 .plane .critical.on text,
@@ -579,17 +606,20 @@ header.site nav a[aria-current="page"] {
 }
 
 /* Match the catalog's vertical rhythm to the Proof hero's tall inline fraction
-   so switching between the two top-level tabs causes zero title or summary shift. */
-.catalog .kicker {
-  margin-bottom: 1.45rem;
-}
+   on desktop (where the hero headline stays on one line) so switching between
+   the two top-level tabs causes zero title or summary shift. */
+@media (min-width: 52rem) {
+  .catalog .kicker {
+    margin-bottom: 1.45rem;
+  }
 
-.catalog h1 {
-  margin-bottom: 1.75rem;
-}
+  .catalog h1 {
+    margin-bottom: 1.75rem;
+  }
 
-:root[lang="zh-Hans"] .catalog .kicker {
-  margin-bottom: 1.35rem;
+  :root[lang="zh-Hans"] .catalog .kicker {
+    margin-bottom: 1.35rem;
+  }
 }
 
 .proof-hero .summary {
@@ -1964,8 +1994,13 @@ li:not(:has(p)):has(.katex .mfrac) {
     white-space: pre-wrap;
   }
 
+  /* Keep all four mobile nav items on a single row in both EN and ZH. */
+  header.site nav {
+    gap: 0.5rem 0.8rem;
+  }
+
   /* The explanation stays in view while the reader presses parts of the Lean text. */
-  main {
+  main:has(.explanation) {
     padding-bottom: 14rem;
   }
 
@@ -1980,6 +2015,27 @@ li:not(:has(p)):has(.katex .mfrac) {
     margin: 0;
     overflow-y: auto;
     box-shadow: 0 6px 24px rgb(0 0 0 / 0.25);
+  }
+
+  .explanation-close {
+    display: inline-flex;
+    align-items: center;
+    position: absolute;
+    top: 0.65rem;
+    right: 0.75rem;
+    z-index: 2;
+    padding: 0.18rem 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--page);
+    color: var(--muted);
+    font: 0.75rem var(--sans);
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .explanation-slot h2 {
+    padding-right: 4.25rem;
   }
 
   /* In the fixed mobile drawer, only the active explanation sizes the overlay. */

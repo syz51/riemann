@@ -119,7 +119,7 @@ export function ZetaPageZh() {
                 <a href={href("zeta", "basel")}>巴塞尔问题与 zeta 定义</a>
               </li>
               <li>
-                <a href={href("zeta", "convergence")}>s = 1 处的那堵墙</a>
+                <a href={href("zeta", "convergence")} innerHTML={prose`$s = 1$ 处的那堵墙`} />
               </li>
               <li>
                 <a href={href("zeta", "primes")}>通往素数的密道</a>
@@ -556,7 +556,7 @@ export function ZetaPageZh() {
             />
             <details class="aside-details">
               <summary>
-                <span>展开看公式：黎曼 1859 年的波纹公式与 Schoenfeld 的显式素数界限</span>
+                <span>展开看公式：黎曼 1859 年的波纹公式与舍恩菲尔德显式素数界限</span>
               </summary>
               <div class="aside-body">
                 <p

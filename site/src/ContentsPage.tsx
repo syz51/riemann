@@ -36,11 +36,11 @@ function HeroPlane() {
       <text class="hero-label" x="145" y="22">
         Re(s) =
       </text>
-      <text class="hero-frac" x="189" y="17" text-anchor="middle">
+      <text class="hero-frac" x="189" y="16" text-anchor="middle">
         1
       </text>
       <line class="hero-frac-bar" x1="185" y1="19.5" x2="193" y2="19.5" />
-      <text class="hero-frac" x="189" y="28" text-anchor="middle">
+      <text class="hero-frac" x="189" y="29" text-anchor="middle">
         2
       </text>
       <text class="hero-tick" x="28" y="76" text-anchor="middle">
@@ -179,7 +179,7 @@ export function ContentsPage() {
             </a>{" "}
             ·{" "}
             <a href={SCHOENFELD_URL} target="_blank" rel="noreferrer">
-              {isZh() ? "Schoenfeld 显式界限（Lean）" : "Schoenfeld bound in Lean"}
+              {isZh() ? "舍恩菲尔德显式界限（Lean）" : "Schoenfeld bound in Lean"}
             </a>
           </p>
         </article>

@@ -291,28 +291,30 @@ export function MultiplyPlane() {
               }}
               innerHTML={isZh() ? prose`把 $z$ 移到 $z \times w$` : prose`Move $z$ to $z \times w$`}
             />
-            <Show when={!productFits()}>
-              <p class="note">
-                <Show
-                  when={isZh()}
-                  fallback={
-                    <>
-                      <span innerHTML={prose`Not possible: length of $z$ stays between `} />
-                      {STEP} and {Z_LIMIT}.
-                    </>
-                  }
-                >
-                  <span innerHTML={prose`超出范围：$z$ 的模长需保持在 `} />
-                  {STEP} 到 {Z_LIMIT} 之间。
-                </Show>
-              </p>
-            </Show>
+            <p
+              class="note"
+              aria-hidden={productFits() ? "true" : undefined}
+              style={{ visibility: productFits() ? "hidden" : "visible" }}
+            >
+              <Show
+                when={isZh()}
+                fallback={
+                  <>
+                    <span innerHTML={prose`Not possible: length of $z$ stays between `} />
+                    {STEP} and {Z_LIMIT}.
+                  </>
+                }
+              >
+                <span innerHTML={prose`超出范围：$z$ 的模长需保持在 `} />
+                {STEP} 到 {Z_LIMIT} 之间。
+              </Show>
+            </p>
           </div>
           <p
             class="hint"
             innerHTML={
               isZh()
-                ? prose`把 $w$ 设为 $i$，连续点两次上面的按钮。连续转两个 $90^\circ$ 就是掉头转 $180^\circ$，$z$ 会正好落到 $-z$ 上——这就是 $i \times i = -1$ 的几何画面。`
+                ? prose`把 $w$ 设为 $i$，连续点两次上面的按钮。连续转两个 $90^\circ$ 就是掉头转 $180^\circ$，$z$ 会正好落到 $-z$ 上——这就是 $ {i \times i = -1}$ 的几何画面。`
                 : prose`Set $w$ to $i$ and press this button two times. Two quarter turns make a half turn, so $z$ lands on $-z$. This is the rule $i \times i = -1$ as a picture.`
             }
           />

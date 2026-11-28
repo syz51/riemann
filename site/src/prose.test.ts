@@ -34,9 +34,9 @@ test("a formula and the marks after it are in one span that does not break", () 
 });
 
 test("Chinese punctuation next to a formula stays in the same nowrap span", () => {
-  const html = proseToHtml("也就是说，当（$x$）大于 $1$。");
+  const html = proseToHtml("也就是说，当（$x$）大于 $1$。而 $n$——如下。");
   expect(html).toMatch(
-    /^也就是说，当<span class="nowrap">（<span class="katex">.*?<\/span>）<\/span>大于 <span class="nowrap"><span class="katex">.*?<\/span>。<\/span>$/,
+    /^也就是说，当<span class="nowrap">（<span class="katex">.*?<\/span>）<\/span>大于 <span class="nowrap"><span class="katex">.*?<\/span>。<\/span>而 <span class="nowrap"><span class="katex">.*?<\/span>——<\/span>如下。$/,
   );
 });
 

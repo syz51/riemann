@@ -147,7 +147,7 @@ export function ZetaPage() {
               </ol>
               <p class="page-toc-back">
                 <a href={href("step-1")}>← Back to Step 1</a>
-                <a href={href("gamma")}>Go deeper: The Gamma function →</a>
+                <a href={href("gamma")}>Go deeper: The Gamma function{"\u00A0"}→</a>
               </p>
             </nav>
           </aside>

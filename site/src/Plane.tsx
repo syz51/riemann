@@ -66,8 +66,21 @@ export function Plane(props: { mark: PlaneMark | undefined }) {
 
         <g class={["critical", { on: on("line") }]}>
           <line x1={x(0.5)} y1="0" x2={x(0.5)} y2={HEIGHT} />
-          <text x={x(0.5) + 8} y="14">
-            {isZh() ? "实部 1/2" : "real part 1/2"}
+          <text x={x(0.5) + 8} y="18">
+            {isZh() ? "实部" : "real part"}
+          </text>
+          <text x={isZh() ? x(0.5) + 39 : x(0.5) + 64} y="12" font-size="10" text-anchor="middle">
+            1
+          </text>
+          <line
+            class="frac-bar"
+            x1={isZh() ? x(0.5) + 34 : x(0.5) + 59}
+            y1="14.5"
+            x2={isZh() ? x(0.5) + 44 : x(0.5) + 69}
+            y2="14.5"
+          />
+          <text x={isZh() ? x(0.5) + 39 : x(0.5) + 64} y="24" font-size="10" text-anchor="middle">
+            2
           </text>
         </g>
 
