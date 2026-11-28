@@ -121,10 +121,22 @@ export function ContentsPage() {
                   <code>con-ron</code> across both the readable (300k lines) and compact (76k lines)
                   editions.
                 </p>
-                <p class="home-fact-strip">
-                  <span>Axioms used:</span> <code>propext</code> · <code>Classical.choice</code> ·{" "}
-                  <code>Quot.sound</code>
-                </p>
+                <div class="home-fact-strip">
+                  <p class="home-fact-strip-label">
+                    Only Lean's 3 built-in standard classical axioms (no extra assumptions)
+                  </p>
+                  <p class="home-fact-axioms">
+                    <span class="axiom-item">
+                      <code>propext</code>
+                    </span>
+                    <span class="axiom-item">
+                      <code>Classical.choice</code>
+                    </span>
+                    <span class="axiom-item">
+                      <code>Quot.sound</code>
+                    </span>
+                  </p>
+                </div>
                 <p class="home-fact-links">
                   <a href={SHORTGRH_URL} target="_blank" rel="noreferrer">
                     Verification report →
@@ -143,10 +155,22 @@ export function ContentsPage() {
               默认内核、严格内核，以及 <code>nanoda</code>、<code>lean4lean</code>、
               <code>con-leche</code> 和 <code>con-ron</code> 的独立校验。
             </p>
-            <p class="home-fact-strip">
-              <span>仅依赖三条标准公理：</span> <code>propext</code> · <code>Classical.choice</code>{" "}
-              · <code>Quot.sound</code>
-            </p>
+            <div class="home-fact-strip">
+              <p class="home-fact-strip-label">
+                仅用到 Lean 经典数学内置的三条标准基础公理（无额外假设）
+              </p>
+              <p class="home-fact-axioms">
+                <span class="axiom-item">
+                  命题外延性 <code>propext</code>
+                </span>
+                <span class="axiom-item">
+                  选择公理 <code>Classical.choice</code>
+                </span>
+                <span class="axiom-item">
+                  商类型健全性 <code>Quot.sound</code>
+                </span>
+              </p>
+            </div>
             <p class="home-fact-links">
               <a href={SHORTGRH_URL} target="_blank" rel="noreferrer">
                 验证报告 →
