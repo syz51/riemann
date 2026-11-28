@@ -639,19 +639,18 @@ export function ZetaPage() {
                 in the density of the primes from place to place”.`}
             />
             <p
-              innerHTML={prose`In modern form, write $\psi(x)$ for Chebyshev's weighted prime-power count up to $x$ (for
-                a whole number $n$, $\psi(n) = \log(\operatorname{lcm}(1, 2, \dots, n))$, the natural log of the least
-                common multiple of 1 through $n$). In 1976, Lowell Schoenfeld proved that the Riemann hypothesis is
-                equivalent to the explicit bound`}
+              innerHTML={prose`In modern form, mathematicians often use Chebyshev's weighted prime count $\psi(x)$. For any whole number $n$, $\psi(n) = \log(\operatorname{lcm}(1, 2, \dots, n))$, the natural log of the least common multiple of 1 through $n$. Every time $n$ hits a prime $p$ (or a prime power $p^k$), that least common multiple multiplies by $p$, so its log jumps up by $\log p$. Giving each prime weight $\log p$ cancels how primes thin out like $\frac{1}{\log x}$, making $\psi(x)$ climb right along the straight line $y = x$.`}
+            />
+            <p
+              innerHTML={prose`In 1976, Lowell Schoenfeld proved that the Riemann hypothesis is equivalent to an explicit bound — meaning real numbers you can plug straight into, not just “eventually small” with an unknown constant:`}
             />
             <p
               class="equation"
-              innerHTML={tex`\left|\psi(x) - x\right| < \frac{\sqrt{x}\log^2 x}{8\pi} \quad (x \ge 73.2),`}
+              innerHTML={tex`\left|\psi(x) - x\right| < \frac{\sqrt{x}\log^2 x}{8\pi} \quad (x \ge 73.2).`}
             />
-            <p>
-              and Andrew Sutherland has already machine-checked both this equivalence and the bound
-              itself end-to-end in Lean directly from the shorter proof.
-            </p>
+            <p
+              innerHTML={prose`To get a feel for the scale, at $x = 1{,}000{,}000$ the right side is about $7{,}594$ (rounded) — less than $0.8\%$ of $x$. Andrew Sutherland has already machine-checked both Schoenfeld's equivalence and the bound itself end-to-end in Lean directly from the shorter proof.`}
+            />
           </div>
         </details>
         <p class="sources">
