@@ -578,6 +578,20 @@ header.site nav a[aria-current="page"] {
   line-height: 1.22;
 }
 
+/* Match the catalog's vertical rhythm to the Proof hero's tall inline fraction
+   so switching between the two top-level tabs causes zero title or summary shift. */
+.catalog .kicker {
+  margin-bottom: 1.45rem;
+}
+
+.catalog h1 {
+  margin-bottom: 1.75rem;
+}
+
+:root[lang="zh-Hans"] .catalog .kicker {
+  margin-bottom: 1.35rem;
+}
+
 .proof-hero .summary {
   margin: 0 0 1.25rem;
   max-width: 40rem;
