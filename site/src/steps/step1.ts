@@ -128,7 +128,7 @@ export const step1 = defineStep({
     {
       id: "proof",
       title: prose`The real proof: no zeros to the right of $\frac{1}{2}$`,
-      meaning: prose`Almost the entire 300,000-line proof lives here. New.grh proves that neither $\zeta$ nor any Dirichlet $L$-function (a wider family of functions introduced in Step 2) vanishes anywhere with $\operatorname{Re}(s) > \frac{1}{2}$, ignoring the pole at 1. Because symmetry handles the left half for free, ruling out the right half is the whole hard job.`,
+      meaning: prose`Almost the entire 300,000-line proof lives here. Here “grh” stands for the Generalized Riemann Hypothesis (specifically for Dirichlet $L$-functions, a wider family introduced in Step 2): New.grh proves that neither $\zeta$ nor any Dirichlet $L$-function vanishes anywhere with $\operatorname{Re}(s) > \frac{1}{2}$, ignoring the pole at 1. Because symmetry handles the left half for free, ruling out the right half is the whole hard job.`,
     },
   ],
   next: prose`Step 2 opens New.grh and introduces Dirichlet $L$-functions. The proof never works on $\zeta$ alone: it proves non-vanishing in the right half-plane for that whole family at once, and $\zeta$ is its simplest member.`,
