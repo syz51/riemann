@@ -1,22 +1,26 @@
 import { For, Show } from "solid-js";
-import { BACKGROUNDS, childrenOf, href, parentLinkOf } from "./pages";
+import { isZh, lang } from "./i18n";
+import { backgroundsFor, childrenOf, href, parentLinkOf } from "./pages";
 
 /** Catalog of all standalone background explainers, tied to where they appear in the proof. */
 export function BackgroundPage() {
+  const backgrounds = () => backgroundsFor(lang());
+
   return (
     <main class="article catalog">
-      <p class="kicker">Background catalog</p>
-      <h1>Mathematical background</h1>
+      <p class="kicker">{isZh() ? "数学背景目录" : "Background catalog"}</p>
+      <h1>{isZh() ? "数学背景" : "Mathematical background"}</h1>
       <p class="summary">
-        You do not need to read these before starting the proof. Each page is also linked inline
-        right where the proof first meets the idea.
+        {isZh()
+          ? "你完全不必先读完这些页面再看证明。每一篇背景都直接挂在证明第一次用到它的地方，随用随看。"
+          : "You do not need to read these before starting the proof. Each page is also linked inline right where the proof first meets the idea."}
       </p>
 
       <ol class="bg-grid">
-        <For each={BACKGROUNDS}>
+        <For each={backgrounds()}>
           {(page) => {
-            const parent = () => parentLinkOf(page.route);
-            const nextTopics = () => childrenOf(page.route);
+            const parent = () => parentLinkOf(page.route, lang());
+            const nextTopics = () => childrenOf(page.route, lang());
             return (
               <li class="bg-card">
                 <p class="bg-origin">{page.originLabel}</p>
@@ -28,17 +32,18 @@ export function BackgroundPage() {
                   <Show when={parent()}>
                     {(origin) => (
                       <p class="bg-meta">
-                        Appears in <a href={href(origin().route)}>{origin().label}</a>
+                        {isZh() ? "首次出现于 " : "Appears in "}
+                        <a href={href(origin().route)}>{origin().label}</a>
                       </p>
                     )}
                   </Show>
                   <Show when={nextTopics().length > 0}>
                     <p class="bg-meta">
-                      Leads onward to{" "}
+                      {isZh() ? "继续延伸至 " : "Leads onward to "}
                       <For each={nextTopics()}>
                         {(child, index) => (
                           <>
-                            <Show when={index() > 0}>{", "}</Show>
+                            <Show when={index() > 0}>{isZh() ? "、" : ", "}</Show>
                             <a href={href(child.route)}>{child.title}</a>
                           </>
                         )}

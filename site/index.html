@@ -10,6 +10,14 @@
         var t = localStorage.getItem("riemann-theme");
         if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
       } catch (e) {}
+      try {
+        var q = new URLSearchParams(location.search).get("lang");
+        var l = q || localStorage.getItem("riemann-lang") || navigator.language || "en";
+        if (l.toLowerCase().indexOf("zh") === 0) {
+          document.documentElement.lang = "zh-Hans";
+          document.title = "一步步读懂黎曼猜想的证明";
+        }
+      } catch (e) {}
     </script>
   </head>
   <body>

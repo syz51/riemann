@@ -170,6 +170,46 @@ header.site nav a {
     color 120ms;
 }
 
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.14rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  font: 0.78rem var(--sans);
+}
+
+.lang-toggle button {
+  padding: 0.14rem 0.52rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-weight: 500;
+  line-height: 1.35;
+  cursor: pointer;
+  transition:
+    background-color 120ms,
+    color 120ms;
+}
+
+.lang-toggle button:hover {
+  color: var(--text);
+}
+
+.lang-toggle button[aria-pressed="true"] {
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.lang-toggle button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
 .site-credit {
   max-width: 68rem;
   margin: 0 auto;
@@ -1983,4 +2023,42 @@ li:not(:has(p)):has(.katex .mfrac) {
 /* A formula in running text with the punctuation marks after it (src/prose.ts). */
 .nowrap {
   white-space: nowrap;
+}
+
+/* Native Simplified Chinese typography: crisp humanist CJK sans-serif for screen
+   and video readability, gentler line-height, no faux-italic slanting, and clean
+   label tracking. */
+:root[lang="zh-Hans"] {
+  --serif:
+    "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Source Han Sans SC", "Microsoft YaHei",
+    system-ui, -apple-system, sans-serif;
+  --sans:
+    "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Source Han Sans SC", "Microsoft YaHei",
+    system-ui, -apple-system, sans-serif;
+}
+
+:root[lang="zh-Hans"] body {
+  font-size: 1.02rem;
+  line-height: 1.82;
+}
+
+:root[lang="zh-Hans"] h1 {
+  line-height: 1.28;
+  letter-spacing: 0.01em;
+}
+
+:root[lang="zh-Hans"] .kicker,
+:root[lang="zh-Hans"] .home-fact-kicker,
+:root[lang="zh-Hans"] .spine-step,
+:root[lang="zh-Hans"] .spine-badge,
+:root[lang="zh-Hans"] .bg-origin,
+:root[lang="zh-Hans"] .page-toc-label,
+:root[lang="zh-Hans"] .page-foot span {
+  text-transform: none;
+  letter-spacing: 0.03em;
+}
+
+:root[lang="zh-Hans"] em {
+  font-style: normal;
+  font-weight: 600;
 }

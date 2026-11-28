@@ -1,8 +1,9 @@
-import { createSignal, Match, onSettled, Show, Switch } from "solid-js";
+import { createEffect, createSignal, Match, onSettled, Show, Switch } from "solid-js";
 import { BackgroundPage } from "./BackgroundPage";
 import { ComplexPage } from "./ComplexPage";
 import { ContentsPage } from "./ContentsPage";
 import { GammaPage } from "./GammaPage";
+import { isZh, lang, setLang } from "./i18n";
 import { PageFoot } from "./PageFoot";
 import {
   CATALOG,
@@ -183,6 +184,17 @@ export function App() {
     };
   });
 
+  createEffect(
+    () => lang(),
+    (current) => {
+      document.documentElement.lang = current === "zh" ? "zh-Hans" : "en";
+      document.title =
+        current === "zh"
+          ? "一步步读懂黎曼猜想的证明"
+          : "The proof of the Riemann hypothesis, step by step";
+    },
+  );
+
   const toggleTheme = () => {
     const next: Theme = theme() === "dark" ? "light" : "dark";
     setTheme(next);
@@ -199,36 +211,72 @@ export function App() {
       <header class="site">
         <a class="brand" href={href(CONTENTS)}>
           <span class="brand-mark" aria-hidden="true" />
-          <span class="project">The Riemann Hypothesis</span>
+          <span class="project">{isZh() ? "黎曼猜想" : "The Riemann Hypothesis"}</span>
         </a>
-        <nav aria-label="Site">
+        <nav aria-label={isZh() ? "网站导航" : "Site"}>
           <a
             href={href(CONTENTS)}
             class={{ active: isProofSection(route()) }}
             aria-current={route() === CONTENTS ? "page" : undefined}
           >
-            The Proof
+            {isZh() ? "证明路线" : "The Proof"}
           </a>
           <a
             href={href(CATALOG)}
             class={{ active: isBackgroundSection(route()) }}
             aria-current={route() === CATALOG ? "page" : undefined}
           >
-            Background
+            {isZh() ? "数学背景" : "Background"}
           </a>
+          <div class="lang-toggle" role="group" aria-label={isZh() ? "切换语言" : "Language"}>
+            <button
+              type="button"
+              aria-pressed={!isZh() ? "true" : "false"}
+              onClick={() => setLang("en")}
+            >
+              EN
+            </button>
+            <button
+              type="button"
+              aria-pressed={isZh() ? "true" : "false"}
+              onClick={() => setLang("zh")}
+            >
+              中文
+            </button>
+          </div>
           <button
             type="button"
             class="theme-toggle"
             aria-label={
-              theme() === "dark"
-                ? "Color theme: dark. Switch to light theme"
-                : "Color theme: light. Switch to dark theme"
+              isZh()
+                ? theme() === "dark"
+                  ? "当前深色主题，点击切换为浅色"
+                  : "当前浅色主题，点击切换为深色"
+                : theme() === "dark"
+                  ? "Color theme: dark. Switch to light theme"
+                  : "Color theme: light. Switch to dark theme"
             }
-            title={theme() === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+            title={
+              isZh()
+                ? theme() === "dark"
+                  ? "切换为浅色主题"
+                  : "切换为深色主题"
+                : theme() === "dark"
+                  ? "Switch to light theme"
+                  : "Switch to dark theme"
+            }
             onClick={toggleTheme}
           >
             <span aria-hidden="true">{theme() === "dark" ? "☾" : "☀"}</span>{" "}
-            <span>{theme() === "dark" ? "Dark" : "Light"}</span>
+            <span>
+              {isZh()
+                ? theme() === "dark"
+                  ? "深色"
+                  : "浅色"
+                : theme() === "dark"
+                  ? "Dark"
+                  : "Light"}
+            </span>
           </button>
         </nav>
       </header>
@@ -254,8 +302,18 @@ export function App() {
       <Show when={route() || undefined}>{(page) => <PageFoot route={page()} />}</Show>
       <footer class="site-credit">
         <p>
-          A reading of Alpöge's Lean proof ·{" "}
-          <a href="https://github.com/syz51/riemann">Notes and sources on GitHub</a>
+          <Show
+            when={isZh()}
+            fallback={
+              <>
+                A reading of Alpöge's Lean proof ·{" "}
+                <a href="https://github.com/syz51/riemann">Notes and sources on GitHub</a>
+              </>
+            }
+          >
+            Alpöge 的 Lean 证明精读笔记 ·{" "}
+            <a href="https://github.com/syz51/riemann">GitHub 笔记与文献索引</a>
+          </Show>
         </p>
       </footer>
     </>

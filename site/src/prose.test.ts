@@ -33,6 +33,13 @@ test("a formula and the marks after it are in one span that does not break", () 
   expect(html.endsWith("</span> is next.")).toBe(true);
 });
 
+test("Chinese punctuation next to a formula stays in the same nowrap span", () => {
+  const html = proseToHtml("也就是说，当（$x$）大于 $1$。");
+  expect(html).toMatch(
+    /^也就是说，当<span class="nowrap">（<span class="katex">.*?<\/span>）<\/span>大于 <span class="nowrap"><span class="katex">.*?<\/span>。<\/span>$/,
+  );
+});
+
 test("a mark between two formulas shows one time", () => {
   const text = proseToHtml('$x$"$y$').replace(/<[^>]*>/g, "");
   expect(text.split('"').length).toBe(2);

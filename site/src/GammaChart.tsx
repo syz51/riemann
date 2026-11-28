@@ -1,5 +1,6 @@
 import { createSignal, For, Show } from "solid-js";
 import { gamma } from "./gamma";
+import { isZh } from "./i18n";
 
 // The chart: Γ(x) for a real x from −4 to 5. The values are computed on the page.
 const X_MIN = -4;
@@ -49,7 +50,6 @@ const CURVE = [...POLES.slice(1), X_MAX]
 
 const minus = (text: string) => text.replace("-", "−");
 const digits = (value: number) => minus(value.toFixed(4));
-const NONE = "No value";
 
 export function GammaChart() {
   const [step, setStep] = createSignal(2.5 * PER_UNIT);
@@ -57,7 +57,8 @@ export function GammaChart() {
   const value = () => gamma(at());
   const next = () => gamma(at() + 1);
   const atText = () => minus(String(at()));
-  const show = (number: number | undefined) => (number === undefined ? NONE : digits(number));
+  const noneText = () => (isZh() ? "无定义" : "No value");
+  const show = (number: number | undefined) => (number === undefined ? noneText() : digits(number));
   const inside = () => {
     const current = value();
     return current !== undefined && current >= Y_MIN && current <= Y_MAX ? current : undefined;
@@ -75,7 +76,8 @@ export function GammaChart() {
     <div class="sumprod gamma-chart">
       <label class="slider">
         <span>
-          <span innerHTML={prose`The number $x =$`} /> <strong>{atText()}</strong>
+          <span innerHTML={isZh() ? prose`自变量 $x =$` : prose`The number $x =$`} />{" "}
+          <strong>{atText()}</strong>
         </span>
         <input
           type="range"
@@ -90,18 +92,31 @@ export function GammaChart() {
 
       <ul class="legend">
         <li class="sum" innerHTML={prose`$\Gamma(x)$`} />
-        <li class="point">Whole numbers: 1, 1, 2, 6, 24</li>
-        <li class="target" innerHTML={prose`$\Gamma$ has no value here`} />
+        <li class="point">
+          {isZh() ? "正整数点：1, 1, 2, 6, 24" : "Whole numbers: 1, 1, 2, 6, 24"}
+        </li>
+        <li
+          class="target"
+          innerHTML={
+            isZh() ? prose`$\Gamma$ 在此处无定义（极点）` : prose`$\Gamma$ has no value here`
+          }
+        />
       </ul>
 
       <svg
         viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
         role="img"
-        aria-label={`Chart of the Gamma function from x = −4 to x = 5. At x = ${atText()}, ${
-          value() === undefined
-            ? "the function has no value"
-            : `the value is about ${show(value())}`
-        }.`}
+        aria-label={
+          isZh()
+            ? `伽马函数在 x = −4 到 x = 5 区间上的图像。当 x = ${atText()} 时，${
+                value() === undefined ? "函数在此处无定义" : `函数值约等于 ${show(value())}`
+              }。`
+            : `Chart of the Gamma function from x = −4 to x = 5. At x = ${atText()}, ${
+                value() === undefined
+                  ? "the function has no value"
+                  : `the value is about ${show(value())}`
+              }.`
+        }
         onPointerDown={(event) => {
           if (event.button !== 0) return;
           event.currentTarget.setPointerCapture(event.pointerId);
@@ -179,7 +194,16 @@ export function GammaChart() {
 
       <table>
         <caption>
-          <span innerHTML={prose`The values at $x =$`} /> {atText()}, rounded
+          <Show
+            when={isZh()}
+            fallback={
+              <>
+                <span innerHTML={prose`The values at $x =$`} /> {atText()}, rounded
+              </>
+            }
+          >
+            <span innerHTML={prose`$x =$`} /> {atText()} 处的近似值
+          </Show>
         </caption>
         <tbody>
           <tr>
@@ -187,8 +211,11 @@ export function GammaChart() {
             <td>{show(value())}</td>
           </tr>
           <tr>
-            <th scope="row" innerHTML={prose`$x$ times $\Gamma(x)$`} />
-            <td>{value() === undefined ? NONE : digits(at() * value()!)}</td>
+            <th
+              scope="row"
+              innerHTML={isZh() ? prose`$x \cdot \Gamma(x)$` : prose`$x$ times $\Gamma(x)$`}
+            />
+            <td>{value() === undefined ? noneText() : digits(at() * value()!)}</td>
           </tr>
           <tr>
             <th scope="row" innerHTML={prose`$\Gamma(x + 1)$`} />
