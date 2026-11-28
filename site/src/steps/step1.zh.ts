@@ -54,7 +54,7 @@ export const step1Zh = defineStep({
     {
       id: "forall",
       title: prose`对任意一个复数 $s$`,
-      meaning: prose`符号 $\forall$ 表示“对任意”，$\mathbb{C}$ 是全体复数的集合。把复数想象成平面上的一个点：实部决定它有多靠左或靠右，虚部决定它有多靠上或靠下。逗号前面括号里的都是对 $s$ 的前提条件，逗号后面则是要推出的结论。`,
+      meaning: prose`符号 $\forall$ 表示“对任意”，$\mathbb{C}$ 是全体复数的集合。把复数想象成平面上的一个点：实部决定它的左右位置，虚部决定它的上下位置。逗号前面括号里的都是对 $s$ 的前提条件，逗号后面则是要推出的结论。`,
       mark: "plane",
       background: {
         route: "complex-numbers",
@@ -76,7 +76,7 @@ export const step1Zh = defineStep({
     {
       id: "trivial",
       title: prose`条件二：$s$ 不是平凡零点`,
-      meaning: prose`符号 $\neg$ 表示“非”，$\exists$ 表示“存在”，$\mathbb{N}$ 是自然数 $0, 1, 2, \dots$——合起来读作“不存在自然数 $n$ 使得 $s = -2(n + 1)$”（写成 $n + 1$ 是为了跳过 $0$，因为 $\zeta(0) = -\frac{1}{2}$）。在 $-2, -4, -6, \dots$ 这些负偶数点上，$\zeta$ 之所以等于 $0$，纯粹是因为配套的伽马因子在这些位置趋于无穷把它们压成了 $0$，所以命题先把这些“平凡零点”排除在外。`,
+      meaning: prose`符号 $\neg$ 表示“非”，$\exists$ 表示“存在”，$\mathbb{N}$ 是自然数 $0, 1, 2, \dots$——合起来读作“不存在自然数 $n$ 使得 $s = -2(n + 1)$”（写成 $n + 1$ 是为了跳过 $0$，因为 $\zeta(0) = -\frac{1}{2}$）。在 $-2, -4, -6, \dots$ 这些负偶数点上，$\zeta$ 之所以等于 $0$，纯粹是因为配套的伽马因子在这些位置趋于无穷，迫使 $\zeta$ 取值为 $0$，所以命题先把这些“平凡零点”排除在外。`,
       mark: "trivial",
       background: {
         route: "zeta",
@@ -88,7 +88,7 @@ export const step1Zh = defineStep({
     {
       id: "pole",
       title: prose`条件三：$s$ 不等于 $1$`,
-      meaning: prose`$\zeta$ 函数在 $s = 1$ 处有一个极点：越靠近 $1$，函数值就飙升到无穷大，因此这里本来没有自然的定义值。但 Lean 里的每个函数都必须对所有输入返回一个值，所以 Mathlib 给 $s = 1$ 按惯例补了一个占位值；加上这条条件，就是把这个例外点排除出去。`,
+      meaning: prose`$\zeta$ 函数在 $s = 1$ 处有一个极点：越靠近 $1$，函数值就趋于无穷大，因此这里本来没有有限的定义值。但 Lean 里的每个函数都必须对所有输入返回一个值，所以 Mathlib 给 $s = 1$ 按惯例补了一个占位值；加上这条条件，就是把这个例外点排除出去。`,
       mark: "pole",
       background: {
         route: "zeta",
@@ -116,7 +116,7 @@ export const step1Zh = defineStep({
     {
       id: "mirror",
       title: prose`对称收尾：顺手把左半边也排掉`,
-      meaning: prose`这只是经典的收尾一步（在 New/Main.lean 里只有短短 16 行），并不是证明最难的地方。只要手里已经有了“$\frac{1}{2}$ 右边没有零点”的结论，利用黎曼发现的 $s \mapsto 1 - s$ 对称性，就能瞬间把 $\frac{1}{2}$ 左边也一起排除，把所有非平凡零点死死夹在 $\operatorname{Re}(s) = \frac{1}{2}$ 这条线上。`,
+      meaning: prose`这只是经典的收尾一步（在 New/Main.lean 里只有短短 16 行），并不是证明最难的地方。只要手里已经有了“$\frac{1}{2}$ 右边没有零点”的结论，利用黎曼函数方程的 $s \mapsto 1 - s$ 对称性，就能顺势把 $\frac{1}{2}$ 左边也一起排除，将所有非平凡零点全部限定在 $\operatorname{Re}(s) = \frac{1}{2}$ 这条临界线上。`,
       mark: "line",
       background: {
         route: "zeta",
@@ -128,8 +128,8 @@ export const step1Zh = defineStep({
     {
       id: "proof",
       title: prose`真正的主证明：$\frac{1}{2}$ 右边没有零点`,
-      meaning: prose`整份 30 万行证明几乎全都在这里。这里的 “grh” 指的是广义黎曼猜想（Generalized Riemann Hypothesis，具体针对狄利克雷 $L$ 函数这一更大的函数族，我们会在第 2 步展开）：New.grh 证明了在 $\operatorname{Re}(s) > \frac{1}{2}$ 的区域里（除去 $s = 1$ 的极点），无论是 $\zeta$ 还是任意一个狄利克雷 $L$ 函数都绝不会等于 $0$。既然左半边靠对称性就能白送，把右半边清理干净就是全部的硬骨头。`,
+      meaning: prose`整份 30 万行证明几乎全都在这里。这里的 “grh” 指的是广义黎曼猜想（Generalized Riemann Hypothesis，具体针对狄利克雷 $L$ 函数这一更大的函数族，我们会在第 2 步展开）：New.grh 证明了在 $\operatorname{Re}(s) > \frac{1}{2}$ 的区域里（除去 $s = 1$ 的极点），无论是 $\zeta$ 还是任意一个狄利克雷 $L$ 函数都绝不会等于 $0$。既然左半边靠对称性即可自动排除，证明右半边没有零点就是整个证明最核心的难关。`,
     },
   ],
-  next: prose`第 2 步我们会打开 New.grh，认识狄利克雷 $L$ 函数。这份证明从头到尾都不是只盯着 $\zeta$ 一个函数，而是一口气对整个函数族证明右半平面没有零点——$\zeta$ 只是其中最简单的那一员。`,
+  next: prose`第 2 步我们会打开 New.grh，认识狄利克雷 $L$ 函数。这份证明从头到尾都不是只针对 $\zeta$ 一个函数，而是对整个函数族统一证明右半平面无零点——$\zeta$ 只是其中最简单的特例。`,
 });

@@ -106,7 +106,7 @@ const UPCOMING_STEPS_ZH: UpcomingStep[] = [
     status: "Next in walk-through",
     statusLabel: "下一步预告",
     title: prose`New.grh 与狄利克雷 $L$ 函数`,
-    summary: prose`证明并不只盯着 $\zeta$ 这一个函数：New.grh 一口气证明了所有狄利克雷 $L$ 函数在 $\operatorname{Re}(s) > \frac{1}{2}$ 里都没有零点。`,
+    summary: prose`证明并不局限于 $\zeta$ 这一个函数：New.grh 一并证明了所有狄利克雷 $L$ 函数在 $\operatorname{Re}(s) > \frac{1}{2}$ 区域内都没有零点。`,
   },
   {
     number: 3,
@@ -114,7 +114,7 @@ const UPCOMING_STEPS_ZH: UpcomingStep[] = [
     status: "Planned",
     statusLabel: "即将更新",
     title: prose`对称收尾（New.zeta_zeros_on_line）`,
-    summary: prose`为什么只要 $\operatorname{Re}(s) > \frac{1}{2}$ 没有零点，就能顺理成章把所有非平凡零点钉在临界线上。`,
+    summary: prose`为什么只要 $\operatorname{Re}(s) > \frac{1}{2}$ 没有零点，就能直接推出所有非平凡零点都落在临界线上。`,
   },
   {
     number: 4,
@@ -122,7 +122,7 @@ const UPCOMING_STEPS_ZH: UpcomingStep[] = [
     status: "Planned",
     statusLabel: "即将更新",
     title: prose`三大核心定理与 star_inequality`,
-    summary: prose`短形式、足够多的形式与长积分形式：MainInequality 和 OneSidedBound 如何联手推出 New.grh。`,
+    summary: prose`短形式、足量形式与长积分形式：MainInequality 与 OneSidedBound 如何共同推出 New.grh。`,
   },
 ];
 
