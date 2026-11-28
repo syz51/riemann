@@ -254,14 +254,33 @@ export function ContentsPage() {
 
         <article class="home-fact">
           <p class="home-fact-kicker">{isZh() ? "零点为什么这么重要" : "Why the zeros matter"}</p>
-          <h2>{isZh() ? "把素数的误差牢牢锁住" : "They pin down the prime count"}</h2>
-          <p
-            innerHTML={
-              isZh()
-                ? prose`每个非平凡零点都像一道加在素数计数上的波纹。如果它们全部落在 $\operatorname{Re}(s) = \frac{1}{2}$ 上，就能让切比雪夫加权素数计数函数 $\psi(x)$ 紧贴直线 $x$，这条显式误差界也已在 Lean 中端到端校验完成：`
-                : prose`Each zero acts like a wave in the prime count. Putting them all on $\operatorname{Re}(s) = \frac{1}{2}$ forces Chebyshev's weighted prime count $\psi(x)$ to stay tightly close to $x$ — checked end-to-end in Lean:`
+          <h2>{isZh() ? "锁住素数的误差" : "They pin down the prime count"}</h2>
+          <Show
+            when={isZh()}
+            fallback={
+              <p>
+                <span
+                  innerHTML={prose`Each non-trivial zero adds an error wave to the prime count, with amplitude set by its real part. Putting every zero on $\operatorname{Re}(s) = \frac{1}{2}$ locks that error to the $\sqrt{x}$ scale — written via `}
+                />
+                <a
+                  href={href("zeta", "chebyshev-psi")}
+                  innerHTML={prose`Chebyshev's weighted prime count $\psi(x)$`}
+                />
+                <span innerHTML={prose` (checked end-to-end in Lean):`} />
+              </p>
             }
-          />
+          >
+            <p>
+              <span
+                innerHTML={prose`每个非平凡零点都会在素数计数上叠加一道误差波，实部决定波幅。全部零点落在 $\operatorname{Re}(s) = \frac{1}{2}$ 上，就把偏差锁在 $\sqrt{x}$ 量级——以`}
+              />
+              <a
+                href={href("zeta", "chebyshev-psi")}
+                innerHTML={prose`切比雪夫加权素数计数 $\psi(x)$`}
+              />
+              <span innerHTML={prose` 写出（Lean 已端到端校验）：`} />
+            </p>
+          </Show>
           <p
             class="home-fact-eq"
             innerHTML={tex`\left|\psi(x) - x\right| < \frac{\sqrt{x}\log^2 x}{8\pi} \quad (x \ge 73.2)`}
