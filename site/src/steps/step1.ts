@@ -114,7 +114,7 @@ export const step1 = defineStep({
     },
     {
       id: "mirror",
-      title: prose`The 16-line mirror wrap-up: right half to critical line`,
+      title: prose`The mirror wrap-up: ruling out the left side too`,
       meaning: prose`This is only the short classical finishing step (16 lines in New/Main.lean), not the hard part. It takes a proof that no zero lies to the right of $\frac{1}{2}$ and uses Riemann's $s \mapsto 1 - s$ symmetry to rule out the left side too — pinching every non-trivial zero onto $\operatorname{Re}(s) = \frac{1}{2}$.`,
       mark: "line",
       background: {
