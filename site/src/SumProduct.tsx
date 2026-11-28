@@ -9,7 +9,7 @@ const HEIGHT = 300;
 const LEFT = 58;
 const RIGHT = 26;
 const TOP = 14;
-const BOTTOM = 38;
+const BOTTOM = 48;
 const PLOT_W = WIDTH - LEFT - RIGHT;
 const PLOT_H = HEIGHT - TOP - BOTTOM;
 const X_TICKS = [1, 25, 50, 75, 100];
@@ -184,7 +184,7 @@ export function SumProduct() {
             <text
               class="tick"
               x={x(tick)}
-              y={HEIGHT - BOTTOM + 12}
+              y={HEIGHT - BOTTOM + 8}
               dominant-baseline="hanging"
               text-anchor="middle"
             >
@@ -192,7 +192,7 @@ export function SumProduct() {
             </text>
           )}
         </For>
-        <text class="tick title" x={LEFT + PLOT_W / 2} y={HEIGHT - 4} text-anchor="middle">
+        <text class="tick title" x={LEFT + PLOT_W / 2} y={HEIGHT - 6} text-anchor="middle">
           N
         </text>
 
@@ -241,9 +241,7 @@ export function SumProduct() {
                 : `Product over ${used().length} ${used().length === 1 ? "prime" : "primes"}`}
               <Show when={used().length > 0}>
                 {isZh() ? "（" : " ("}
-                {used().length > 4
-                  ? `2, 3, 5, … , ${used()[used().length - 1]}`
-                  : used().join(", ")}
+                {used().length > 4 ? `2, 3, 5, …, ${used()[used().length - 1]}` : used().join(", ")}
                 {isZh() ? "）" : ")"}
               </Show>
             </th>

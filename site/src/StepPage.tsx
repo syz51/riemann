@@ -82,6 +82,19 @@ export function StepPage() {
           {/* Stack the hint and every explanation in one grid cell so the tallest
               piece sets the card height and the plane below never shifts on hover. */}
           <div id="explanation" class="explanation" aria-live="polite">
+            <Show when={pinned() !== null}>
+              <button
+                type="button"
+                class="explanation-close"
+                aria-label={isZh() ? "关闭讲解" : "Close explanation"}
+                onClick={() => {
+                  setPinned(null);
+                  setFocused(null);
+                }}
+              >
+                {isZh() ? "关闭 ×" : "Close ×"}
+              </button>
+            </Show>
             <div
               class={["explanation-slot", { current: activeId() === null }]}
               aria-hidden={activeId() !== null ? "true" : undefined}

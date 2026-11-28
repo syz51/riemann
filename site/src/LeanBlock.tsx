@@ -35,9 +35,20 @@ export function LeanBlock(props: Props) {
                   type="button"
                   class={["piece", { active: props.active === token.piece }]}
                   aria-pressed={props.pinned === token.piece ? "true" : "false"}
-                  onPointerEnter={() => props.onHover(token.piece)}
+                  onPointerEnter={(event) => {
+                    if (
+                      event.pointerType === "mouse" &&
+                      window.matchMedia("(min-width: 52rem)").matches
+                    ) {
+                      props.onHover(token.piece);
+                    }
+                  }}
                   onPointerLeave={() => props.onHover(null)}
-                  onFocus={() => props.onFocus(token.piece)}
+                  onFocus={(event) => {
+                    if (event.currentTarget.matches(":focus-visible")) {
+                      props.onFocus(token.piece);
+                    }
+                  }}
                   onBlur={() => props.onFocus(null)}
                   onClick={() => props.onPin(token.piece)}
                 >
