@@ -1,4 +1,4 @@
-import { createSignal, For, Show } from "solid-js";
+import { For, Show } from "solid-js";
 import { isZh, lang } from "./i18n";
 import { href, STEP_COUNT, stepsFor, upcomingStepsFor } from "./pages";
 
@@ -6,105 +6,6 @@ const SHORTGRH_URL = "https://math.mit.edu/~drew/shortgrh/";
 const SCHOENFELD_URL = "https://github.com/AndrewVSutherland/schoenfeld-rh-lean/tree/0e52d7b1";
 const GRH_LEAN_URL =
   "https://github.com/lsernau/grh-lean/tree/72fead102f663d5c7a407964a13dc0cf9d977207";
-
-type AxiomId = "propext" | "choice" | "quot";
-
-const AXIOMS: ReadonlyArray<{
-  id: AxiomId;
-  code: string;
-  zhName: string;
-  enName: string;
-  enNote: Markup;
-  zhNote: Markup;
-}> = [
-  {
-    id: "propext",
-    code: "propext",
-    zhName: "命题外延性",
-    enName: "Propositional extensionality",
-    enNote: prose`Logically equivalent statements ($a \leftrightarrow b$) count as equal ($a = b$) — taken for granted in ordinary math, stated explicitly in Lean's type theory.`,
-    zhNote: prose`若两个命题逻辑等价（$a \leftrightarrow b$），就视作同一个命题（$a = b$）。日常数学默认如此，但在 Lean 的类型论里需要显式声明。`,
-  },
-  {
-    id: "choice",
-    code: "Classical.choice",
-    zhName: "选择公理",
-    enName: "Axiom of choice",
-    enNote: prose`From any nonempty set or type, you may pick an element. In Lean, the law of excluded middle ($P \lor \neg P$) and proof by contradiction also rely on this axiom.`,
-    zhNote: prose`只要一个集合（类型）非空，就能从中取出一个元素。在 Lean 里，排中律（$P \lor \neg P$）与反证法也都依赖这条公理。`,
-  },
-  {
-    id: "quot",
-    code: "Quot.sound",
-    zhName: "商类型健全性",
-    enName: "Quotient soundness",
-    enNote: prose`Objects equivalent under a relation become equal in the quotient — how Lean identifies equivalent representations, such as Cauchy sequences for real numbers.`,
-    zhNote: prose`按某种等价关系视为等价的对象，在商类型中即相等——Lean 正是靠它把等价表示“粘合”为同一对象（例如用等价柯西序列构造实数）。`,
-  },
-];
-
-function AxiomsStrip() {
-  const [openId, setOpenId] = createSignal<AxiomId | null>(null);
-  const active = () => AXIOMS.find((item) => item.id === openId());
-  const toggle = (id: AxiomId) => setOpenId((cur) => (cur === id ? null : id));
-
-  return (
-    <div
-      class="home-fact-strip"
-      onKeyDown={(event) => {
-        if (event.key === "Escape" && openId() !== null) {
-          setOpenId(null);
-        }
-      }}
-    >
-      <p class="home-fact-strip-label">
-        {isZh()
-          ? "仅用到 Lean 经典数学内置的三条标准基础公理（无额外假设，点击可看说明）"
-          : "Only Lean's 3 standard classical axioms (no extra assumptions; click any)"}
-      </p>
-      <div
-        class="home-fact-axioms"
-        role="group"
-        aria-label={isZh() ? "Lean 基础公理" : "Lean axioms"}
-      >
-        <For each={AXIOMS}>
-          {(ax) => (
-            <button
-              type="button"
-              class={["axiom-item", { active: openId() === ax.id }]}
-              aria-expanded={openId() === ax.id ? "true" : "false"}
-              aria-controls="home-axiom-note"
-              onClick={() => toggle(ax.id)}
-            >
-              <Show when={isZh()}>
-                <span>{ax.zhName}</span>
-              </Show>
-              <code>{ax.code}</code>
-            </button>
-          )}
-        </For>
-      </div>
-      <Show when={active()}>
-        {(ax) => (
-          <div id="home-axiom-note" class="axiom-note" aria-live="polite">
-            <div class="axiom-note-head">
-              <strong>{isZh() ? ax().zhName : ax().enName}</strong>
-              <button
-                type="button"
-                class="axiom-note-close"
-                aria-label={isZh() ? "收起公理说明" : "Close axiom note"}
-                onClick={() => setOpenId(null)}
-              >
-                ×
-              </button>
-            </div>
-            <p innerHTML={isZh() ? ax().zhNote : ax().enNote} />
-          </div>
-        )}
-      </Show>
-    </div>
-  );
-}
 
 /** Compact to-scale diagram of the critical strip and critical line for the proof home hero. */
 function HeroPlane() {
@@ -220,7 +121,9 @@ export function ContentsPage() {
                   <code>con-ron</code> across both the readable (300k lines) and compact (76k lines)
                   editions.
                 </p>
-                <AxiomsStrip />
+                <p class="home-fact-strip">
+                  Only Lean's built-in standard classical axioms (no extra assumptions)
+                </p>
                 <p class="home-fact-links">
                   <a href={SHORTGRH_URL} target="_blank" rel="noreferrer">
                     Verification report →
@@ -239,7 +142,7 @@ export function ContentsPage() {
               默认内核、严格内核，以及 <code>nanoda</code>、<code>lean4lean</code>、
               <code>con-leche</code> 和 <code>con-ron</code> 的独立校验。
             </p>
-            <AxiomsStrip />
+            <p class="home-fact-strip">仅用到 Lean 经典数学内置的标准基础公理（无额外假设）</p>
             <p class="home-fact-links">
               <a href={SHORTGRH_URL} target="_blank" rel="noreferrer">
                 验证报告 →
