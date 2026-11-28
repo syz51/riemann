@@ -1,5 +1,6 @@
 import { createMemo, createSignal, For, Show } from "solid-js";
 import { angle, type Complex, format, length, multiply } from "./complex";
+import { isZh } from "./i18n";
 
 // The picture shows real and imaginary parts from about -3.2 to 3.2. The point
 // z stays within distance 1.5 of zero and w within distance 2, so that their
@@ -22,12 +23,17 @@ const ARROWS: Record<string, Complex | undefined> = {
   ArrowDown: { re: 0, im: -STEP },
 };
 
-const PRESETS: { label: Markup; effect: string; value: Complex }[] = [
-  { label: prose`$i$`, effect: "quarter turn", value: { re: 0, im: 1 } },
-  { label: prose`$-1$`, effect: "half turn", value: { re: -1, im: 0 } },
-  { label: prose`$2$`, effect: "stretch", value: { re: 2, im: 0 } },
-  { label: prose`$1 + i$`, effect: "turn and stretch", value: { re: 1, im: 1 } },
-  { label: prose`$0.5$`, effect: "shrink", value: { re: 0.5, im: 0 } },
+const PRESETS: { label: Markup; effect: string; effectZh: string; value: Complex }[] = [
+  { label: prose`$i$`, effect: "quarter turn", effectZh: "逆时针转 90°", value: { re: 0, im: 1 } },
+  { label: prose`$-1$`, effect: "half turn", effectZh: "转 180°", value: { re: -1, im: 0 } },
+  { label: prose`$2$`, effect: "stretch", effectZh: "拉长 2 倍", value: { re: 2, im: 0 } },
+  {
+    label: prose`$1 + i$`,
+    effect: "turn and stretch",
+    effectZh: "旋转并拉长",
+    value: { re: 1, im: 1 },
+  },
+  { label: prose`$0.5$`, effect: "shrink", effectZh: "缩回一半", value: { re: 0.5, im: 0 } },
 ];
 
 /** Moves a point to the grid and keeps it in range. Zero has no direction, so it is refused. */
@@ -72,8 +78,12 @@ function Handle(props: {
       class={["handle", props.class]}
       tabindex="0"
       role="application"
-      aria-roledescription="movable point"
-      aria-label={`Point ${props.name} at ${format(props.value)}. Arrow keys move it.`}
+      aria-roledescription={isZh() ? "可拖动点" : "movable point"}
+      aria-label={
+        isZh()
+          ? `点 ${props.name}，当前位于 ${format(props.value)}，可用方向键移动。`
+          : `Point ${props.name} at ${format(props.value)}. Arrow keys move it.`
+      }
       onPointerDown={(event) => {
         event.currentTarget.setPointerCapture(event.pointerId);
       }}
@@ -139,7 +149,11 @@ export function MultiplyPlane() {
   return (
     <div class="multiply">
       <div class="multiply-controls">
-        <p class="label" id="w-presets" innerHTML={prose`Set $w$ to`} />
+        <p
+          class="label"
+          id="w-presets"
+          innerHTML={isZh() ? prose`把 $w$ 设为` : prose`Set $w$ to`}
+        />
         <div class="presets" role="group" aria-labelledby="w-presets">
           <For each={PRESETS}>
             {(preset) => (
@@ -148,7 +162,8 @@ export function MultiplyPlane() {
                 aria-pressed={isPreset(preset.value) ? "true" : "false"}
                 onClick={() => setW(preset.value)}
               >
-                <span class="value" innerHTML={preset.label} /> {preset.effect}
+                <span class="value" innerHTML={preset.label} />{" "}
+                {isZh() ? preset.effectZh : preset.effect}
               </button>
             )}
           </For>
@@ -160,7 +175,11 @@ export function MultiplyPlane() {
           <svg
             viewBox={`0 0 ${SIZE} ${SIZE}`}
             role="group"
-            aria-label="The complex plane with three points: z, w and their product."
+            aria-label={
+              isZh()
+                ? "复平面上的三个点：z、w 以及它们的乘积。"
+                : "The complex plane with three points: z, w and their product."
+            }
           >
             <rect class="field" x="1" y="1" width={SIZE - 2} height={SIZE - 2} rx="6" />
             <For each={GRID}>
@@ -200,7 +219,11 @@ export function MultiplyPlane() {
             </For>
           </svg>
           <figcaption
-            innerHTML={prose`Drag $z$ or $w$, or select a point and use the arrow keys. The square point is the product.`}
+            innerHTML={
+              isZh()
+                ? prose`拖动 $z$ 或 $w$，或选中点后用方向键微调；方块标出的就是它们的乘积。`
+                : prose`Drag $z$ or $w$, or select a point and use the arrow keys. The square point is the product.`
+            }
           />
         </figure>
 
@@ -208,10 +231,10 @@ export function MultiplyPlane() {
           <table>
             <thead>
               <tr>
-                <th scope="col">Point</th>
-                <th scope="col">Number</th>
-                <th scope="col">Length</th>
-                <th scope="col">Angle</th>
+                <th scope="col">{isZh() ? "点" : "Point"}</th>
+                <th scope="col">{isZh() ? "复数" : "Number"}</th>
+                <th scope="col">{isZh() ? "模长" : "Length"}</th>
+                <th scope="col">{isZh() ? "辐角" : "Angle"}</th>
               </tr>
             </thead>
             <tbody>
@@ -234,13 +257,28 @@ export function MultiplyPlane() {
             </tbody>
           </table>
           <p class="rule">
-            Lengths multiply: {length(z()).toFixed(2)} × {length(w()).toFixed(2)} ≈{" "}
-            {length(product()).toFixed(2)}.
-            <br />
-            Angles add: {degrees(angle(z()))}° + {degrees(angle(w()))}° ≈ {roundedAngleSum()}°
-            {roundedAngleSum() >= 360 ? ` (same as ${degrees(angle(product()))}°).` : "."}
-            <br />
-            <span class="note">The values shown are rounded.</span>
+            <Show
+              when={isZh()}
+              fallback={
+                <>
+                  Lengths multiply: {length(z()).toFixed(2)} × {length(w()).toFixed(2)} ≈{" "}
+                  {length(product()).toFixed(2)}.
+                  <br />
+                  Angles add: {degrees(angle(z()))}° + {degrees(angle(w()))}° ≈ {roundedAngleSum()}°
+                  {roundedAngleSum() >= 360 ? ` (same as ${degrees(angle(product()))}°).` : "."}
+                  <br />
+                  <span class="note">The values shown are rounded.</span>
+                </>
+              }
+            >
+              模长相乘：{length(z()).toFixed(2)} × {length(w()).toFixed(2)} ≈{" "}
+              {length(product()).toFixed(2)}。
+              <br />
+              辐角相加：{degrees(angle(z()))}° + {degrees(angle(w()))}° ≈ {roundedAngleSum()}°
+              {roundedAngleSum() >= 360 ? `（等同于 ${degrees(angle(product()))}°）。` : "。"}
+              <br />
+              <span class="note">显示的数值已四舍五入。</span>
+            </Show>
           </p>
 
           <div class="multiply-action">
@@ -251,18 +289,32 @@ export function MultiplyPlane() {
               onClick={() => {
                 if (productFits()) setZ(product());
               }}
-              innerHTML={prose`Move $z$ to $z \times w$`}
+              innerHTML={isZh() ? prose`把 $z$ 移到 $z \times w$` : prose`Move $z$ to $z \times w$`}
             />
             <Show when={!productFits()}>
               <p class="note">
-                <span innerHTML={prose`Not possible: length of $z$ stays between `} />
-                {STEP} and {Z_LIMIT}.
+                <Show
+                  when={isZh()}
+                  fallback={
+                    <>
+                      <span innerHTML={prose`Not possible: length of $z$ stays between `} />
+                      {STEP} and {Z_LIMIT}.
+                    </>
+                  }
+                >
+                  <span innerHTML={prose`超出范围：$z$ 的模长需保持在 `} />
+                  {STEP} 到 {Z_LIMIT} 之间。
+                </Show>
               </p>
             </Show>
           </div>
           <p
             class="hint"
-            innerHTML={prose`Set $w$ to $i$ and press this button two times. Two quarter turns make a half turn, so $z$ lands on $-z$. This is the rule $i \times i = -1$ as a picture.`}
+            innerHTML={
+              isZh()
+                ? prose`把 $w$ 设为 $i$，连续点两次上面的按钮。连续转两个 $90^\circ$ 就是掉头转 $180^\circ$，$z$ 会正好落到 $-z$ 上——这就是 $i \times i = -1$ 的几何画面。`
+                : prose`Set $w$ to $i$ and press this button two times. Two quarter turns make a half turn, so $z$ lands on $-z$. This is the rule $i \times i = -1$ as a picture.`
+            }
           />
         </div>
       </div>

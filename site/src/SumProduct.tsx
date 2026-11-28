@@ -1,4 +1,5 @@
 import { createMemo, createSignal, For, Show } from "solid-js";
+import { isZh } from "./i18n";
 
 // The chart: the sum over the whole numbers up to N, and the product over the
 // primes up to N, for one power s. Both are computed on the page.
@@ -14,11 +15,23 @@ const PLOT_H = HEIGHT - TOP - BOTTOM;
 const X_TICKS = [1, 25, 50, 75, 100];
 const Y_STEPS = [0.02, 0.05, 0.1, 0.2, 0.5, 1, 2];
 
-const POWERS: { s: number; label: string; term: string; termHtml: Markup }[] = [
-  { s: 2, label: "Squares", term: "1/n²", termHtml: prose`$\frac{1}{n^2}$` },
-  { s: 3, label: "Third powers", term: "1/n³", termHtml: prose`$\frac{1}{n^3}$` },
-  { s: 4, label: "Fourth powers", term: "1/n⁴", termHtml: prose`$\frac{1}{n^4}$` },
-  { s: 1, label: "No power", term: "1/n", termHtml: prose`$\frac{1}{n}$` },
+const POWERS: { s: number; label: string; labelZh: string; term: string; termHtml: Markup }[] = [
+  { s: 2, label: "Squares", labelZh: "平方倒数", term: "1/n²", termHtml: prose`$\frac{1}{n^2}$` },
+  {
+    s: 3,
+    label: "Third powers",
+    labelZh: "立方倒数",
+    term: "1/n³",
+    termHtml: prose`$\frac{1}{n^3}$`,
+  },
+  {
+    s: 4,
+    label: "Fourth powers",
+    labelZh: "四次方倒数",
+    term: "1/n⁴",
+    termHtml: prose`$\frac{1}{n^4}$`,
+  },
+  { s: 1, label: "No power", labelZh: "调和级数", term: "1/n", termHtml: prose`$\frac{1}{n}$` },
 ];
 
 const isPrime = (n: number) => {
@@ -82,13 +95,16 @@ export function SumProduct() {
   const digits = (value: number) => value.toFixed(4);
   const limitText = () => {
     const value = target();
-    return value === undefined ? "None. Both grow without limit." : digits(value);
+    if (value === undefined) {
+      return isZh() ? "没有极限，两者都会无限增大。" : "None. Both grow without limit.";
+    }
+    return digits(value);
   };
 
   return (
     <div class="sumprod">
       <p class="label" id="power-choice">
-        Terms of the sum
+        {isZh() ? "选择级数通项" : "Terms of the sum"}
       </p>
       <div class="presets" role="group" aria-labelledby="power-choice">
         <For each={POWERS}>
@@ -98,7 +114,8 @@ export function SumProduct() {
               aria-pressed={power() === choice ? "true" : "false"}
               onClick={() => setPower(choice)}
             >
-              <span class="value" innerHTML={choice.termHtml} /> {choice.label}
+              <span class="value" innerHTML={choice.termHtml} />{" "}
+              {isZh() ? choice.labelZh : choice.label}
             </button>
           )}
         </For>
@@ -106,7 +123,8 @@ export function SumProduct() {
 
       <label class="slider">
         <span>
-          <span innerHTML={prose`Count up to $N =$`} /> <strong>{count()}</strong>
+          <span innerHTML={isZh() ? prose`计算到 $N =$` : prose`Count up to $N =$`} />{" "}
+          <strong>{count()}</strong>
         </span>
         <input
           type="range"
@@ -119,17 +137,31 @@ export function SumProduct() {
       </label>
 
       <ul class="legend">
-        <li class="sum" innerHTML={prose`Sum over the whole numbers up to $N$`} />
-        <li class="product" innerHTML={prose`Product over the primes up to $N$`} />
+        <li
+          class="sum"
+          innerHTML={
+            isZh() ? prose`到 $N$ 为止的正整数求和` : prose`Sum over the whole numbers up to $N$`
+          }
+        />
+        <li
+          class="product"
+          innerHTML={
+            isZh() ? prose`到 $N$ 为止的素数连乘` : prose`Product over the primes up to $N$`
+          }
+        />
         <Show when={target()}>
-          <li class="target">The value that both approach</li>
+          <li class="target">{isZh() ? "两者共同逼近的极限值" : "The value that both approach"}</li>
         </Show>
       </ul>
 
       <svg
         viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
         role="img"
-        aria-label={`Chart for the terms ${power().term}. At N = ${count()}, the sum is about ${digits(sum())} and the product is about ${digits(product())}.`}
+        aria-label={
+          isZh()
+            ? `通项 ${power().term} 的对比图。当 N = ${count()} 时，部分和约等于 ${digits(sum())}，素数连乘约等于 ${digits(product())}。`
+            : `Chart for the terms ${power().term}. At N = ${count()}, the sum is about ${digits(sum())} and the product is about ${digits(product())}.`
+        }
       >
         <For each={yTicks()}>
           {(tick) => (
@@ -178,31 +210,47 @@ export function SumProduct() {
 
       <table>
         <caption>
-          <span innerHTML={prose`The values at $N =$`} /> {count()}, rounded
+          <Show
+            when={isZh()}
+            fallback={
+              <>
+                <span innerHTML={prose`The values at $N =$`} /> {count()}, rounded
+              </>
+            }
+          >
+            <span innerHTML={prose`$N =$`} /> {count()} 时的近似值
+          </Show>
         </caption>
         <tbody>
           <tr>
             <th scope="row">
-              {count() === 1 ? "The first term alone" : `Sum of the first ${count()} terms`}
+              {isZh()
+                ? count() === 1
+                  ? "仅第 1 项"
+                  : `前 ${count()} 项之和`
+                : count() === 1
+                  ? "The first term alone"
+                  : `Sum of the first ${count()} terms`}
             </th>
             <td>{digits(sum())}</td>
           </tr>
           <tr>
             <th scope="row">
-              Product over {used().length} {used().length === 1 ? "prime" : "primes"}
+              {isZh()
+                ? `前 ${used().length} 个素数的连乘`
+                : `Product over ${used().length} ${used().length === 1 ? "prime" : "primes"}`}
               <Show when={used().length > 0}>
-                {" "}
-                (
+                {isZh() ? "（" : " ("}
                 {used().length > 4
                   ? `2, 3, 5, … , ${used()[used().length - 1]}`
                   : used().join(", ")}
-                )
+                {isZh() ? "）" : ")"}
               </Show>
             </th>
             <td>{digits(product())}</td>
           </tr>
           <tr>
-            <th scope="row">The value that both approach</th>
+            <th scope="row">{isZh() ? "两者共同逼近的极限值" : "The value that both approach"}</th>
             <td>{limitText()}</td>
           </tr>
         </tbody>

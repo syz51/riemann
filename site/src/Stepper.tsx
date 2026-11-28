@@ -1,4 +1,5 @@
 import { createEffect, createSignal, For, Show } from "solid-js";
+import { isZh } from "./i18n";
 
 /** `equation` comes from a tex literal and `text` from a prose literal (see tex.d.ts). */
 export type Part = { title: string; titleHtml?: Markup; equation: Markup; text: Markup };
@@ -25,13 +26,15 @@ export function Stepper(props: { parts: Part[] }) {
       <div class="stepper">
         {/* Announce the active part number and title to screen readers on change. */}
         <p class="sr-only" aria-live="polite">
-          Part {index() + 1} of {props.parts.length}: {current()?.title}
+          {isZh()
+            ? `第 ${index() + 1} 步（共 ${props.parts.length} 步）：${current()?.title ?? ""}`
+            : `Part ${index() + 1} of ${props.parts.length}: ${current()?.title ?? ""}`}
         </p>
         {/* Two-column desktop layout: the clickable outline rail on the left anchors
             card height with useful navigation instead of blank space, while single-cell
             whole-part stacking on the right keeps 0px layout shift across parts. */}
         <div class="stepper-grid">
-          <nav class="stepper-rail" aria-label="Calculation parts">
+          <nav class="stepper-rail" aria-label={isZh() ? "推导步骤" : "Calculation parts"}>
             <For each={props.parts}>
               {(part, at) => (
                 <button
@@ -51,7 +54,9 @@ export function Stepper(props: { parts: Part[] }) {
           <div class="stepper-panel">
             <div class="stepper-bar">
               <p class="count">
-                Part {index() + 1} of {props.parts.length}
+                {isZh()
+                  ? `第 ${index() + 1} / ${props.parts.length} 步`
+                  : `Part ${index() + 1} of ${props.parts.length}`}
               </p>
               <div class="controls">
                 <button
@@ -59,14 +64,14 @@ export function Stepper(props: { parts: Part[] }) {
                   aria-disabled={index() <= 0 ? "true" : "false"}
                   onClick={() => setIndex(Math.max(0, index() - 1))}
                 >
-                  Back
+                  {isZh() ? "上一步" : "Back"}
                 </button>
                 <button
                   type="button"
                   aria-disabled={index() >= last() ? "true" : "false"}
                   onClick={() => setIndex(Math.min(last(), index() + 1))}
                 >
-                  Next part
+                  {isZh() ? "下一步" : "Next part"}
                 </button>
               </div>
             </div>

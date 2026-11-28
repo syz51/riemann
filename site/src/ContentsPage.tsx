@@ -1,5 +1,6 @@
-import { For } from "solid-js";
-import { href, STEP_COUNT, STEPS, UPCOMING_STEPS } from "./pages";
+import { For, Show } from "solid-js";
+import { isZh, lang } from "./i18n";
+import { href, STEP_COUNT, stepsFor, upcomingStepsFor } from "./pages";
 
 const SHORTGRH_URL = "https://math.mit.edu/~drew/shortgrh/";
 const SCHOENFELD_URL = "https://github.com/AndrewVSutherland/schoenfeld-rh-lean/tree/0e52d7b1";
@@ -14,7 +15,11 @@ function HeroPlane() {
       class="hero-plane"
       viewBox="0 0 212 124"
       role="img"
-      aria-label="The complex plane to uniform horizontal scale, with the critical strip from 0 to 1, the dashed critical line at real part one half, non-trivial zeros on that line, the pole at 1, and trivial zeros at minus 2 and minus 4."
+      aria-label={
+        isZh()
+          ? "按统一横向比例绘制的复平面：0 到 1 之间为临界带，实部 1/2 处的虚线为临界线，线上标有非平凡零点，实轴 1 处为极点，−2 与 −4 处为平凡零点。"
+          : "The complex plane to uniform horizontal scale, with the critical strip from 0 to 1, the dashed critical line at real part one half, non-trivial zeros on that line, the pole at 1, and trivial zeros at minus 2 and minus 4."
+      }
     >
       <rect class="hero-field" x="1" y="1" width="210" height="122" rx="7" />
       <rect class="hero-strip" x="124" y="2" width="24" height="120" />
@@ -53,71 +58,128 @@ function HeroPlane() {
 
 /** The proof home page: thesis hero and vertical critical-line spine of proof steps. */
 export function ContentsPage() {
-  const firstStep = STEPS[0];
+  const steps = () => stepsFor(lang());
+  const upcoming = () => upcomingStepsFor(lang());
+  const firstStep = () => steps()[0];
 
   return (
     <main class="proof-home">
       <section class="proof-hero">
         <div class="proof-hero-copy">
-          <p class="kicker">A top-down reading of Alpöge's Lean 4 proof</p>
+          <p class="kicker">
+            {isZh()
+              ? "自顶向下拆解 Alpöge 的 Lean 4 证明"
+              : "A top-down reading of Alpöge's Lean 4 proof"}
+          </p>
           <h1
-            innerHTML={prose`Every non-trivial zero lies on $\operatorname{Re}(s) = \frac{1}{2}$`}
+            innerHTML={
+              isZh()
+                ? prose`所有非平凡零点，全都落在 $\operatorname{Re}(s) = \frac{1}{2}$ 上`
+                : prose`Every non-trivial zero lies on $\operatorname{Re}(s) = \frac{1}{2}$`
+            }
           />
           <p
             class="summary"
-            innerHTML={prose`Follow the proof straight down from Main.lean, one small step at a time. Whenever a step meets an unfamiliar idea—complex numbers, $\zeta(s)$, or $\Gamma(s)$—branch into it right there, then return to the proof.`}
+            innerHTML={
+              isZh()
+                ? prose`从主文件 Main.lean 出发，顺着证明结构一步步往下拆。每当遇到陌生概念——复数、$\zeta(s)$ 或 $\Gamma(s)$——当场点开背景页补课，读懂后再无缝回到证明主线。`
+                : prose`Follow the proof straight down from Main.lean, one small step at a time. Whenever a step meets an unfamiliar idea—complex numbers, $\zeta(s)$, or $\Gamma(s)$—branch into it right there, then return to the proof.`
+            }
           />
-          {firstStep && (
-            <a class="hero-cta" href={href(firstStep.route)}>
-              Start Step {firstStep.number}: {firstStep.title} →
-            </a>
-          )}
+          <Show when={firstStep()}>
+            {(step) => (
+              <a class="hero-cta" href={href(step().route)}>
+                {isZh()
+                  ? `进入第 ${step().number} 步：${step().title} →`
+                  : `Start Step ${step().number}: ${step().title} →`}
+              </a>
+            )}
+          </Show>
         </div>
         <div class="proof-hero-figure">
           <HeroPlane />
         </div>
       </section>
 
-      <section class="home-facts" aria-label="Proof verification and prime-number payoff">
+      <section
+        class="home-facts"
+        aria-label={
+          isZh() ? "独立形式化验证与素数分布意义" : "Proof verification and prime-number payoff"
+        }
+      >
         <article class="home-fact">
-          <p class="home-fact-kicker">Independent verification</p>
-          <h2>Checked by 6 Lean proof checkers</h2>
-          <p>
-            The shorter 25 November 2026 proof (<code>lsernau/grh-lean</code>, commit{" "}
-            <code>72fead10</code>) passed Lean's default and paranoid kernels plus{" "}
-            <code>nanoda</code>, <code>lean4lean</code>, <code>con-leche</code>, and{" "}
-            <code>con-ron</code> across both the readable (300k lines) and compact (76k lines)
-            editions.
-          </p>
-          <p class="home-fact-strip">
-            <span>Axioms used:</span> <code>propext</code> · <code>Classical.choice</code> ·{" "}
-            <code>Quot.sound</code>
-          </p>
-          <p class="home-fact-links">
-            <a href={SHORTGRH_URL} target="_blank" rel="noreferrer">
-              Verification report →
-            </a>{" "}
-            ·{" "}
-            <a href={GRH_LEAN_URL} target="_blank" rel="noreferrer">
-              Lean source (72fead10)
-            </a>
-          </p>
+          <p class="home-fact-kicker">{isZh() ? "独立形式化检验" : "Independent verification"}</p>
+          <h2>{isZh() ? "通过 6 个 Lean 验证内核检查" : "Checked by 6 Lean proof checkers"}</h2>
+          <Show
+            when={isZh()}
+            fallback={
+              <>
+                <p>
+                  The shorter 25 November 2026 proof (<code>lsernau/grh-lean</code>, commit{" "}
+                  <code>72fead10</code>) passed Lean's default and paranoid kernels plus{" "}
+                  <code>nanoda</code>, <code>lean4lean</code>, <code>con-leche</code>, and{" "}
+                  <code>con-ron</code> across both the readable (300k lines) and compact (76k lines)
+                  editions.
+                </p>
+                <p class="home-fact-strip">
+                  <span>Axioms used:</span> <code>propext</code> · <code>Classical.choice</code> ·{" "}
+                  <code>Quot.sound</code>
+                </p>
+                <p class="home-fact-links">
+                  <a href={SHORTGRH_URL} target="_blank" rel="noreferrer">
+                    Verification report →
+                  </a>{" "}
+                  ·{" "}
+                  <a href={GRH_LEAN_URL} target="_blank" rel="noreferrer">
+                    Lean source (72fead10)
+                  </a>
+                </p>
+              </>
+            }
+          >
+            <p>
+              2026 年 11 月 25 日发布的精简版证明（<code>lsernau/grh-lean</code>，提交{" "}
+              <code>72fead10</code>）在可读版（30 万行）与压缩版（7.6 万行）上，全部通过了 Lean
+              默认内核、严格内核，以及 <code>nanoda</code>、<code>lean4lean</code>、
+              <code>con-leche</code> 和 <code>con-ron</code> 的独立校验。
+            </p>
+            <p class="home-fact-strip">
+              <span>仅依赖三条标准公理：</span> <code>propext</code> · <code>Classical.choice</code>{" "}
+              · <code>Quot.sound</code>
+            </p>
+            <p class="home-fact-links">
+              <a href={SHORTGRH_URL} target="_blank" rel="noreferrer">
+                验证报告 →
+              </a>{" "}
+              ·{" "}
+              <a href={GRH_LEAN_URL} target="_blank" rel="noreferrer">
+                Lean 源码（72fead10）
+              </a>
+            </p>
+          </Show>
         </article>
 
         <article class="home-fact">
-          <p class="home-fact-kicker">Why the zeros matter</p>
-          <h2>They pin down the prime count</h2>
+          <p class="home-fact-kicker">{isZh() ? "零点为什么这么重要" : "Why the zeros matter"}</p>
+          <h2>{isZh() ? "它们把素数的误差牢牢锁住" : "They pin down the prime count"}</h2>
           <p
-            innerHTML={prose`Each zero acts like a wave in the prime count. Putting them all on $\operatorname{Re}(s) = \frac{1}{2}$ forces Chebyshev's weighted prime count $\psi(x)$ to stay tightly close to $x$ — checked end-to-end in Lean:`}
+            innerHTML={
+              isZh()
+                ? prose`每个非平凡零点都像一道加在素数计数上的波纹。把它们全部钉在 $\operatorname{Re}(s) = \frac{1}{2}$ 上，就能让切比雪夫加权素数计数函数 $\psi(x)$ 紧贴直线 $x$，这条显式界限也已在 Lean 中端到端验完：`
+                : prose`Each zero acts like a wave in the prime count. Putting them all on $\operatorname{Re}(s) = \frac{1}{2}$ forces Chebyshev's weighted prime count $\psi(x)$ to stay tightly close to $x$ — checked end-to-end in Lean:`
+            }
           />
           <p
             class="home-fact-eq"
             innerHTML={tex`\left|\psi(x) - x\right| < \frac{\sqrt{x}\log^2 x}{8\pi} \quad (x \ge 73.2)`}
           />
           <p class="home-fact-links">
-            <a href={href("zeta", "zeros-and-primes")}>How zeros control the primes →</a> ·{" "}
+            <a href={href("zeta", "zeros-and-primes")}>
+              {isZh() ? "零点如何控制素数分布 →" : "How zeros control the primes →"}
+            </a>{" "}
+            ·{" "}
             <a href={SCHOENFELD_URL} target="_blank" rel="noreferrer">
-              Schoenfeld bound in Lean
+              {isZh() ? "Schoenfeld 显式界限（Lean）" : "Schoenfeld bound in Lean"}
             </a>
           </p>
         </article>
@@ -125,22 +187,26 @@ export function ContentsPage() {
 
       <section class="spine-section" aria-labelledby="proof-route-heading">
         <div class="spine-head">
-          <h2 id="proof-route-heading">The proof route</h2>
+          <h2 id="proof-route-heading">{isZh() ? "证明路线图" : "The proof route"}</h2>
           <p class="spine-progress">
-            {STEPS.length} of {STEP_COUNT} top-level steps published
+            {isZh()
+              ? `顶层主线共 ${STEP_COUNT} 步，已发布 ${steps().length} 步`
+              : `${steps().length} of ${STEP_COUNT} top-level steps published`}
           </p>
         </div>
 
         <ol class="proof-spine">
-          <For each={STEPS}>
+          <For each={steps()}>
             {(step) => (
               <li class="spine-item published">
                 <a class="spine-card" href={href(step.route)}>
                   <div class="spine-meta">
                     <span class="spine-step">
-                      Step {String(step.number).padStart(2, "0")} · {step.level}
+                      {isZh()
+                        ? `第 ${String(step.number).padStart(2, "0")} 步 · ${step.level}`
+                        : `Step ${String(step.number).padStart(2, "0")} · ${step.level}`}
                     </span>
-                    <span class="spine-badge published">Published</span>
+                    <span class="spine-badge published">{isZh() ? "已发布" : "Published"}</span>
                   </div>
                   <h3>{step.title}</h3>
                   <p innerHTML={step.summary} />
@@ -149,7 +215,7 @@ export function ContentsPage() {
             )}
           </For>
 
-          <For each={UPCOMING_STEPS}>
+          <For each={upcoming()}>
             {(step) => (
               <li
                 class={[
@@ -160,7 +226,9 @@ export function ContentsPage() {
                 <div class="spine-card upcoming">
                   <div class="spine-meta">
                     <span class="spine-step">
-                      Step {String(step.number).padStart(2, "0")} · {step.level}
+                      {isZh()
+                        ? `第 ${String(step.number).padStart(2, "0")} 步 · ${step.level}`
+                        : `Step ${String(step.number).padStart(2, "0")} · ${step.level}`}
                     </span>
                     <span
                       class={[
@@ -168,7 +236,7 @@ export function ContentsPage() {
                         step.status === "Next in walk-through" ? "next-up" : "planned",
                       ]}
                     >
-                      {step.status}
+                      {step.statusLabel ?? step.status}
                     </span>
                   </div>
                   <h3 innerHTML={step.title} />

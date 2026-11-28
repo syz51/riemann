@@ -1,4 +1,5 @@
 import { For } from "solid-js";
+import { isZh } from "./i18n";
 import type { PlaneMark } from "./steps/types";
 
 // The picture shows real parts from -8.25 to 4.25 and imaginary parts from -40
@@ -24,7 +25,11 @@ export function Plane(props: { mark: PlaneMark | undefined }) {
       <svg
         viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
         role="img"
-        aria-label="The complex plane. The trivial zeros are at minus 2, minus 4 and minus 6 on the real axis. The other zeros shown are on the vertical line through one half. The point 1 is marked on the real axis."
+        aria-label={
+          isZh()
+            ? "复平面示意图。平凡零点位于实轴上的 −2、−4 和 −6；其余标出的非平凡零点都落在穿过实部 1/2 的竖直线上；实轴上的空心点标记了 s = 1。"
+            : "The complex plane. The trivial zeros are at minus 2, minus 4 and minus 6 on the real axis. The other zeros shown are on the vertical line through one half. The point 1 is marked on the real axis."
+        }
       >
         <rect
           class={["field", { on: on("plane") }]}
@@ -53,16 +58,16 @@ export function Plane(props: { mark: PlaneMark | undefined }) {
           )}
         </For>
         <text class="tick" x={WIDTH - 8} y={y(0) - 8} text-anchor="end">
-          real part
+          {isZh() ? "实部" : "real part"}
         </text>
         <text class="tick" x={x(0) - 6} y="14" text-anchor="end">
-          imaginary part
+          {isZh() ? "虚部" : "imaginary part"}
         </text>
 
         <g class={["critical", { on: on("line") }]}>
           <line x1={x(0.5)} y1="0" x2={x(0.5)} y2={HEIGHT} />
           <text x={x(0.5) + 8} y="14">
-            real part 1/2
+            {isZh() ? "实部 1/2" : "real part 1/2"}
           </text>
         </g>
 
@@ -81,7 +86,11 @@ export function Plane(props: { mark: PlaneMark | undefined }) {
         </g>
       </svg>
       <figcaption
-        innerHTML={prose`Filled points are zeros of zeta. The open point is $s = 1$. The shaded band is the critical strip, from real part 0 to real part 1. The vertical scale is compressed.`}
+        innerHTML={
+          isZh()
+            ? prose`实心点是 $\zeta$ 函数的零点，空心点是极点 $s = 1$；浅蓝竖带是从实部 $0$ 到实部 $1$ 的临界带。为装下前几个零点，纵轴比例经过了压缩。`
+            : prose`Filled points are zeros of zeta. The open point is $s = 1$. The shaded band is the critical strip, from real part 0 to real part 1. The vertical scale is compressed.`
+        }
       />
     </figure>
   );

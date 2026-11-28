@@ -1,8 +1,10 @@
 import { createMemo, createSignal, For, onSettled, Show } from "solid-js";
+import { isZh } from "./i18n";
 import { LeanBlock } from "./LeanBlock";
 import { href } from "./pages";
 import { Plane } from "./Plane";
-import { step1 as step } from "./steps/step1";
+import { step1 } from "./steps/step1";
+import { step1Zh } from "./steps/step1.zh";
 
 /** One step of the walk-through: Lean text, contextual background links, and the picture. */
 export function StepPage() {
@@ -10,11 +12,13 @@ export function StepPage() {
   const [pinned, setPinned] = createSignal<string | null>(null);
   const [focused, setFocused] = createSignal<string | null>(null);
 
+  const step = createMemo(() => (isZh() ? step1Zh : step1));
+
   // Live hover and keyboard focus preview any token freely; leaving or blurring
   // returns to the pinned token so a reader can pin a token and follow its
   // background link in the explanation panel.
   const activeId = createMemo(() => hovered() ?? focused() ?? pinned());
-  const active = createMemo(() => step.pieces.find((piece) => piece.id === activeId()));
+  const active = createMemo(() => step().pieces.find((piece) => piece.id === activeId()));
 
   const togglePin = (piece: string) => {
     if (pinned() === piece) {
@@ -38,14 +42,16 @@ export function StepPage() {
   return (
     <main>
       <p class="kicker">
-        Step {step.number} of {step.of}
+        {isZh()
+          ? `第 ${step().number} 步（共 ${step().of} 步）`
+          : `Step ${step().number} of ${step().of}`}
       </p>
-      <h1>{step.title}</h1>
-      <p class="summary" innerHTML={step.summary} />
+      <h1>{step().title}</h1>
+      <p class="summary" innerHTML={step().summary} />
 
       <div class="columns">
         <div class="reading">
-          <For each={step.snippets}>
+          <For each={step().snippets}>
             {(snippet, index) => (
               <section>
                 <h2>{snippet.heading}</h2>
@@ -67,8 +73,8 @@ export function StepPage() {
             )}
           </For>
           <section class="next">
-            <h2>Next</h2>
-            <p innerHTML={step.next} />
+            <h2>{isZh() ? "接下来" : "Next"}</h2>
+            <p innerHTML={step().next} />
           </section>
         </div>
 
@@ -81,11 +87,12 @@ export function StepPage() {
               aria-hidden={activeId() !== null ? "true" : undefined}
             >
               <p class="hint">
-                Point at a marked part of the Lean text to preview it, or press it to pin its
-                explanation and follow any linked background page.
+                {isZh()
+                  ? "把鼠标悬停在 Lean 代码里带下划线的片段上即可预览解释；点击它就能固定讲解卡片，并进一步点开对应的数学背景页。"
+                  : "Point at a marked part of the Lean text to preview it, or press it to pin its explanation and follow any linked background page."}
               </p>
             </div>
-            <For each={step.pieces}>
+            <For each={step().pieces}>
               {(piece) => (
                 <div
                   class={["explanation-slot", { current: activeId() === piece.id }]}

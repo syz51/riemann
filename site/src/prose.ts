@@ -11,9 +11,9 @@ export function equationToHtml(latex: string): string {
 }
 
 /** The punctuation marks at the start of the text after a formula; they need no escape. */
-const MARKS_AFTER = /^[.,;:!?)"”]*/;
+const MARKS_AFTER = /^[.,;:!?)"”）。，、；：！？》」』】]*/;
 /** The opening marks at the end of the text before a formula. */
-const MARKS_BEFORE = /[("“]*$/;
+const MARKS_BEFORE = /[("“（《「『【]*$/;
 
 const ESCAPES: Record<string, string> = { "&": "&amp;", "<": "&lt;", ">": "&gt;" };
 

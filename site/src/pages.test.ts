@@ -31,10 +31,10 @@ test("section anchors round-trip cleanly alongside hash routes", () => {
   expect(parseHash("#/missing#proof-route-heading")).toEqual({ route: CONTENTS });
 });
 
-const ROUTE_FILES: Partial<Record<string, string>> = {
-  "complex-numbers": "./ComplexPage.tsx",
-  zeta: "./ZetaPage.tsx",
-  gamma: "./GammaPage.tsx",
+const ROUTE_FILES: Partial<Record<string, string[]>> = {
+  "complex-numbers": ["./ComplexPage.tsx", "./zh/ComplexPageZh.tsx"],
+  zeta: ["./ZetaPage.tsx", "./zh/ZetaPageZh.tsx"],
+  gamma: ["./GammaPage.tsx", "./zh/GammaPageZh.tsx"],
 };
 
 const SOURCE_FILES = import.meta.glob<string>(["./**/*.{ts,tsx}", "!./**/*.test.ts"], {
@@ -43,7 +43,7 @@ const SOURCE_FILES = import.meta.glob<string>(["./**/*.{ts,tsx}", "!./**/*.test.
   eager: true,
 });
 
-test("every section anchor referenced in href() or step background links exists in its target page", () => {
+test("every section anchor referenced in href() or step background links exists in both EN and ZH target pages", () => {
   const refs: { from: string; route: string; section: string }[] = [];
   for (const [file, text] of Object.entries(SOURCE_FILES)) {
     for (const m of text.matchAll(/\bhref\(\s*["']([^"']+)["']\s*,\s*["']([^"']+)["']\s*\)/g)) {
@@ -57,16 +57,18 @@ test("every section anchor referenced in href() or step background links exists 
   }
   expect(refs.length).toBeGreaterThanOrEqual(4);
   for (const ref of refs) {
-    const targetFile = ROUTE_FILES[ref.route];
+    const targetFiles = ROUTE_FILES[ref.route];
     expect(
-      targetFile,
-      `No page file registered for route "${ref.route}" from ${ref.from}`,
+      targetFiles,
+      `No page files registered for route "${ref.route}" from ${ref.from}`,
     ).toBeDefined();
-    const targetText = SOURCE_FILES[targetFile!] ?? "";
-    expect(
-      targetText,
-      `Missing id="${ref.section}" in ${targetFile} (linked from ${ref.from})`,
-    ).toContain(`id="${ref.section}"`);
+    for (const targetFile of targetFiles!) {
+      const targetText = SOURCE_FILES[targetFile] ?? "";
+      expect(
+        targetText,
+        `Missing id="${ref.section}" in ${targetFile} (linked from ${ref.from})`,
+      ).toContain(`id="${ref.section}"`);
+    }
   }
 });
 
