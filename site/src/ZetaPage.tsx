@@ -23,6 +23,15 @@ const EULER_E352 = "https://scholarlycommons.pacific.edu/euler-works/352/";
 const EULER_E19 = "https://scholarlycommons.pacific.edu/euler-works/19/";
 const ELKIES = "https://people.math.harvard.edu/~elkies/M229.09/zeta1.pdf";
 const RIEMANN_1859 = "https://www.maths.tcd.ie/pub/HistMath/People/Riemann/Zeta/EZeta.pdf";
+const RIEMANN_1859_DE = "https://de.wikisource.org/wiki/Index:RiemannPrim1859";
+const LANDAU_1909_ANN =
+  "https://gdz.sub.uni-goettingen.de/download/pdf/PPN235181684_0066/LOG_0047.pdf";
+const LANDAU_1909_HANDBUCH = "https://archive.org/details/handbuchderlehre01landuoft";
+const TITCHMARSH_1930 = "https://archive.org/details/zetafunctionofri032076mbp";
+const MATHLIB_TRIVIAL =
+  "https://github.com/leanprover-community/mathlib4/blob/56a005855ea17e0b0958f73ec801ae140b0a1679/Mathlib/NumberTheory/LSeries/RiemannZeta.lean#L172-L180";
+const MATHLIB_HURWITZ_TRIVIAL =
+  "https://github.com/leanprover-community/mathlib4/blob/56a005855ea17e0b0958f73ec801ae140b0a1679/Mathlib/NumberTheory/LSeries/HurwitzZetaEven.lean#L604-L621";
 
 const SIEVE: Part[] = [
   {
@@ -458,6 +467,124 @@ export function ZetaPage() {
           statements for the mirrored pairs of zeros, and riemannZeta_one_sub for the conversion
           factor); <a href={MATHLIB_GAMMA}>Mathlib, the header of the file on the Gamma function</a>
           ; and <a href={EULER_E19}>Euler Archive, record of paper E19</a>, for the year 1729.
+        </p>
+      </section>
+
+      <section id="trivial-zeros">
+        <h2>Why the negative even numbers are “trivial” zeros</h2>
+        <p
+          innerHTML={prose`The statement of the Riemann hypothesis explicitly leaves out $s = -2, -4, -6$ and so on.
+            Once you have Riemann's completed symmetry $\Lambda(s) = \pi^{-\frac{s}{2}}\,\Gamma\!\left(\frac{s}{2}\right)\,\zeta(s)$,
+            you can see in two lines why $\zeta(s)$ has to be 0 at every one of those points. Rearrange the completed
+            function to solve for $\zeta(s)$:`}
+        />
+        <p
+          class="equation"
+          innerHTML={tex`\zeta(s) = \frac{\Lambda(s)}{\pi^{-\frac{s}{2}}\,\Gamma\!\left(\frac{s}{2}\right)}`}
+        />
+        <p
+          innerHTML={prose`Now plug in $s = -2, -4, -6, \dots$ (so $\frac{s}{2}$ lands on $-1, -2, -3, \dots$). Because
+            $\Lambda(s) = \Lambda(1 - s)$, the top equals $\Lambda(3), \Lambda(5), \Lambda(7), \dots$ —
+            all completely finite, nonzero numbers. Meanwhile, the bottom factor $\Gamma\!\left(\frac{s}{2}\right)$
+            blows up to infinity at every negative whole number. A finite number divided by infinity is 0, so
+            $\zeta(s)$ is forced to vanish at $-2, -4, -6, \dots$ simply to keep the completed product finite.`}
+        />
+        <p
+          innerHTML={prose`What about $s = 0$, where $\frac{s}{2} = 0$ also makes $\Gamma$ blow up? At $s = 0$ the top
+            $\Lambda(s)$ blows up too (0 and 1 are its two poles). Those two infinities cancel each other out,
+            leaving the finite nonzero value $\zeta(0) = -\frac{1}{2}$ instead of 0.`}
+        />
+        <details class="aside-details">
+          <summary>
+            <span>How Riemann proved it in 1859, the cosine shortcut, and Lean's proof</span>
+          </summary>
+          <div class="aside-body">
+            <p>
+              <strong>Riemann's 1859 proof:</strong>{" "}
+              <span
+                innerHTML={prose`In the very paragraph where he extended $\zeta(s)$ to all complex numbers, Riemann bent $\int_0^\infty \frac{x^{s - 1}}{e^x - 1}\,dx$ into a contour loop around $(0, \infty)$ (writing $\Pi(s - 1)$ for $\Gamma(s)$):`}
+              />
+            </p>
+            <p
+              class="equation"
+              innerHTML={tex`\begin{aligned} &2\sin(\pi s)\,\Pi(s - 1)\,\zeta(s) \\ &= i \int_\infty^\infty \frac{(-x)^{s - 1}}{e^x - 1}\,dx \end{aligned}`}
+            />
+            <p>
+              <span
+                innerHTML={prose`He immediately noted (1859 Monatsberichte, p. 672) that this formula shows $\zeta(s)$ is single-valued and finite everywhere except 1, “as well as that it vanishes when $s$ is equal to a negative even integer” (`}
+              />
+              <em>
+                <span
+                  innerHTML={prose`“daſs sie verschwindet, wenn $s$ gleich einer negativen geraden Zahl ist”`}
+                />
+              </em>
+              <span
+                innerHTML={prose`). Earlier, in 1749, Euler had already found that the alternating series $1 - 2^m + 3^m - 4^m + \cdots$ evaluates to 0 for positive even $m$, without rigorously defining $\zeta(s)$ past $s = 1$.`}
+              />
+            </p>
+            <p>
+              <strong>The cosine shortcut:</strong>{" "}
+              <span
+                innerHTML={prose`In the direct symmetry rule linking $\zeta(s)$ and $\zeta(1 - s)$,`}
+              />
+            </p>
+            <p
+              class="equation"
+              innerHTML={tex`\zeta(1 - s) = 2\,(2\pi)^{-s}\,\Gamma(s)\,\cos\!\left(\frac{\pi s}{2}\right)\,\zeta(s),`}
+            />
+            <p
+              innerHTML={prose`plugging in any odd whole number $s = 3, 5, 7, \dots$ sends $1 - s$ to $-2, -4, -6, \dots$.
+                Every other factor on the right is finite, while $\cos\!\left(\frac{3\pi}{2}\right) = \cos\!\left(\frac{5\pi}{2}\right) = \cdots = 0$,
+                forcing $\zeta(-2) = \zeta(-4) = \zeta(-6) = \cdots = 0$ at once. ($s = 1$ is excluded because $\zeta(1)$ blows up.)`}
+            />
+            <p>
+              <strong>In Lean today:</strong> Mathlib's theorem{" "}
+              <code>riemannZeta_neg_two_mul_nat_add_one</code>{" "}
+              <span
+                innerHTML={prose`proves $\zeta(-2(n + 1)) = 0$ directly from $\frac{\Lambda(s)}{\pi^{-\frac{s}{2}}\Gamma\!\left(\frac{s}{2}\right)}$ in four lines, and`}
+              />{" "}
+              <code>differentiableAt_hurwitzZetaEven</code>{" "}
+              <span
+                innerHTML={prose`proves $\zeta$ is smooth at those points — confirming that 0 is the genuine analytic limit.`}
+              />
+            </p>
+          </div>
+        </details>
+        <p
+          innerHTML={prose`These zeros are called “trivial” not because they are unimportant, but because nothing deep about
+            prime numbers is needed to find them: they drop out mechanically from the poles of $\Gamma$. Every other
+            zero of $\zeta(s)$ is trapped inside the strip $0 \le \operatorname{Re}(s) \le 1$, where the irregularities
+            of the primes live.`}
+        />
+        <p>
+          <span
+            innerHTML={prose`Riemann himself never used the word “trivial” in 1859 — he simply noted the negative even zeros and called the zeros of $\xi(t)$ “roots” (`}
+          />
+          <em>Wurzeln</em>
+          <span innerHTML={prose`). Half a century later, in his 1908–1909 papers and `} />
+          <em>Handbuch</em>
+          <span innerHTML={prose`, Edmund Landau used “trivial zeros” (`} />
+          <em>triviale Nullstellen</em>
+          <span
+            innerHTML={prose`) for Dirichlet $L$-functions to separate “the trivial roots $< 0$” from “the mysterious roots in the strip $0 < \operatorname{Re}(s) < 1$” — while for $\zeta(s)$ alone, Landau and even Titchmarsh in 1930 still simply contrasted the “real” zeros at $-2, -4, -6, \dots$ with the “complex” zeros in the strip.`}
+          />
+        </p>
+        <p class="sources">
+          Sources:{" "}
+          <a href={RIEMANN_1859_DE}>
+            Riemann, Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse (1859
+            Monatsberichte, p. 672)
+          </a>{" "}
+          and <a href={RIEMANN_1859}>Wilkins translation (pp. 2–3)</a>;{" "}
+          <a href={LANDAU_1909_ANN}>Landau, Math. Ann. 66 (1909, signed June 1908), pp. 437, 440</a>
+          ;{" "}
+          <a href={LANDAU_1909_HANDBUCH}>
+            Landau, Handbuch der Lehre von der Verteilung der Primzahlen (1909), Vol. 1 §§ 70, 128,
+            130
+          </a>
+          ; <a href={TITCHMARSH_1930}>Titchmarsh, The Zeta-Function of Riemann (1930), pp. 2–3</a>;{" "}
+          <a href={MATHLIB_TRIVIAL}>Mathlib, riemannZeta_neg_two_mul_nat_add_one</a> and{" "}
+          <a href={MATHLIB_HURWITZ_TRIVIAL}>hurwitzZetaEven_neg_two_mul_nat_add_one</a>.
         </p>
       </section>
 

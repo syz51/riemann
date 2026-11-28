@@ -74,8 +74,14 @@ export const step1 = defineStep({
     {
       id: "trivial",
       title: prose`Second condition: $s$ is not a trivial zero`,
-      meaning: prose`$\mathbb{N}$ is the set of the numbers 0, 1, 2, and so on. So $-2 \cdot (n + 1)$ gives $-2$, $-4$, $-6$, and so on. Zeta is zero at each of them. These zeros are well understood, and the statement leaves them out.`,
+      meaning: prose`$\mathbb{N}$ is the set of the numbers 0, 1, 2, and so on. So $-2 \cdot (n + 1)$ gives $-2$, $-4$, $-6$, and so on. Zeta vanishes at each of them simply because the Gamma factor in its symmetry blows up there — nothing mysterious about primes is needed to find them — so the statement leaves these “trivial” zeros out.`,
       mark: "trivial",
+      background: {
+        route: "zeta",
+        section: "trivial-zeros",
+        label: "Why −2, −4, −6 are trivial zeros",
+        note: "Background · how Gamma's poles force them, Riemann's 1859 proof, and where the name came from",
+      },
     },
     {
       id: "pole",
