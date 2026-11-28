@@ -29,7 +29,8 @@ export const step1 = defineStep({
     },
     {
       heading: "The proof, as the main file gives it",
-      intro: "The pattern is: theorem, then a name, then the statement, then the proof.",
+      intro:
+        "The pattern is: theorem, name, statement, then proof. In Lean, applying a function to an input is written with a space (f x), so the short finishing step sits on the left and the giant main proof sits on the right.",
       source: "grh/src/Main.lean of lsernau/grh-lean (commit 72fead10). Line break added.",
       tokens: [
         "theorem ",
@@ -113,8 +114,8 @@ export const step1 = defineStep({
     },
     {
       id: "mirror",
-      title: prose`The mirror step: from half-plane to critical line`,
-      meaning: prose`New.zeta_zeros_on_line (in New/Main.lean) uses the symmetry of the completed zeta function under $s \mapsto 1 - s$. Once no zero lies to the right of $\frac{1}{2}$, none can lie to the left either, so every non-trivial zero has real part $\frac{1}{2}$.`,
+      title: prose`The 16-line mirror wrap-up: right half to critical line`,
+      meaning: prose`This is only the short classical finishing step (16 lines in New/Main.lean), not the hard part. It takes a proof that no zero lies to the right of $\frac{1}{2}$ and uses Riemann's $s \mapsto 1 - s$ symmetry to rule out the left side too — pinching every non-trivial zero onto $\operatorname{Re}(s) = \frac{1}{2}$.`,
       mark: "line",
       background: {
         route: "zeta",
@@ -125,8 +126,8 @@ export const step1 = defineStep({
     },
     {
       id: "proof",
-      title: prose`The main theorem: non-vanishing for all Dirichlet $L$-functions`,
-      meaning: prose`New.grh proves that no Dirichlet $L$-function vanishes anywhere with real part above $\frac{1}{2}$ (the pole at 1 excepted). Lean checks that applying New.zeta_zeros_on_line to New.grh proves Mathlib's RiemannHypothesis. Step 2 opens New.grh.`,
+      title: prose`The real proof: no zeros to the right of $\frac{1}{2}$`,
+      meaning: prose`Almost the entire 300,000-line proof lives here. New.grh proves that neither $\zeta$ nor any Dirichlet $L$-function vanishes anywhere with $\operatorname{Re}(s) > \frac{1}{2}$ (ignoring the pole at 1). Because symmetry handles the left half for free, ruling out the right half is the whole hard job. Step 2 opens New.grh.`,
     },
   ],
   next: prose`Step 2 opens New.grh. The proof never works on $\zeta$ alone: it proves non-vanishing in the right half-plane for the whole family of Dirichlet $L$-functions, and $\zeta$ is the modulus-1 member.`,
