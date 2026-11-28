@@ -109,7 +109,7 @@ export function ContentsPage() {
       >
         <article class="home-fact">
           <p class="home-fact-kicker">{isZh() ? "独立形式化检验" : "Independent verification"}</p>
-          <h2>{isZh() ? "通过 6 个 Lean 验证内核检查" : "Checked by 6 Lean proof checkers"}</h2>
+          <h2>{isZh() ? "已通过 6 个 Lean 内核的独立校验" : "Checked by 6 Lean proof checkers"}</h2>
           <Show
             when={isZh()}
             fallback={
@@ -161,7 +161,7 @@ export function ContentsPage() {
 
         <article class="home-fact">
           <p class="home-fact-kicker">{isZh() ? "零点为什么这么重要" : "Why the zeros matter"}</p>
-          <h2>{isZh() ? "它们把素数的误差牢牢锁住" : "They pin down the prime count"}</h2>
+          <h2>{isZh() ? "把素数的误差牢牢锁住" : "They pin down the prime count"}</h2>
           <p
             innerHTML={
               isZh()
