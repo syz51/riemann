@@ -108,7 +108,7 @@ export function ContentsPage() {
           <p class="home-fact-kicker">Why the zeros matter</p>
           <h2>They pin down the prime count</h2>
           <p
-            innerHTML={prose`Each zero acts like a wave in the prime count. Putting them all on $\operatorname{Re}(s) = \frac{1}{2}$ forces Chebyshev's weighted prime count $\psi(x)$ (for whole $n$, $\log(\operatorname{lcm}(1, \dots, n))$) to stay within:`}
+            innerHTML={prose`Each zero acts like a wave in the prime count. Putting them all on $\operatorname{Re}(s) = \frac{1}{2}$ forces Chebyshev's weighted prime count $\psi(x)$ to stay tightly close to $x$ — checked end-to-end in Lean:`}
           />
           <p
             class="home-fact-eq"
