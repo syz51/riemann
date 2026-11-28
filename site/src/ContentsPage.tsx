@@ -165,7 +165,7 @@ export function ContentsPage() {
           <p
             innerHTML={
               isZh()
-                ? prose`每个非平凡零点都像一道加在素数计数上的波纹。把它们全部钉在 $\operatorname{Re}(s) = \frac{1}{2}$ 上，就能让切比雪夫加权素数计数函数 $\psi(x)$ 紧贴直线 $x$，这条显式界限也已在 Lean 中端到端验完：`
+                ? prose`每个非平凡零点都像一道加在素数计数上的波纹。如果它们全部落在 $\operatorname{Re}(s) = \frac{1}{2}$ 上，就能让切比雪夫加权素数计数函数 $\psi(x)$ 紧贴直线 $x$，这条显式误差界也已在 Lean 中端到端校验完成：`
                 : prose`Each zero acts like a wave in the prime count. Putting them all on $\operatorname{Re}(s) = \frac{1}{2}$ forces Chebyshev's weighted prime count $\psi(x)$ to stay tightly close to $x$ — checked end-to-end in Lean:`
             }
           />
@@ -179,7 +179,7 @@ export function ContentsPage() {
             </a>{" "}
             ·{" "}
             <a href={SCHOENFELD_URL} target="_blank" rel="noreferrer">
-              {isZh() ? "舍恩菲尔德显式界限（Lean）" : "Schoenfeld bound in Lean"}
+              {isZh() ? "舍恩菲尔德显式界（Lean）" : "Schoenfeld bound in Lean"}
             </a>
           </p>
         </article>
@@ -190,7 +190,7 @@ export function ContentsPage() {
           <h2 id="proof-route-heading">{isZh() ? "证明路线图" : "The proof route"}</h2>
           <p class="spine-progress">
             {isZh()
-              ? `顶层主线共 ${STEP_COUNT} 步，已发布 ${steps().length} 步`
+              ? `主线共 ${STEP_COUNT} 步，已发布 ${steps().length} 步`
               : `${steps().length} of ${STEP_COUNT} top-level steps published`}
           </p>
         </div>

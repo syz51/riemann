@@ -71,7 +71,7 @@ export function GammaPageZh() {
               innerHTML={prose`把从 $1$ 到 $n$ 的正整数连乘起来，当 $n = 1, 2, 3, 4, 5$ 时，得到 $1, 2, 6, 24, 120$——这就是 $n$ 的阶乘（$n!$）。这个数列在每个正整数上都有值，可如果我问你：$n = \frac{1}{2}$ 的阶乘该是多少？“把从 $1$ 到 $\frac{1}{2}$ 的整数乘起来”根本说不通，想要给它下定义，就必须换一种新思路。`}
             />
             <p
-              innerHTML={prose`1729 年，欧拉在一篇论文里给出了答案。他在开篇第一句话就交代了缘起：他是受到“著名学者哥德巴赫向科学院提交的级数成果的启发”，想寻找“一个能给出该数列所有项的通用表达式”。结果，欧拉构造出了一个无穷乘积——在正整数上它严丝合缝地吐出阶乘，在整数之间的分数点上也能算出确切数值。`}
+              innerHTML={prose`1729 年，欧拉在一篇论文里给出了答案。他在开篇第一句话就交代了缘起：他是受到“著名学者哥德巴赫向科学院提交的级数成果的启发”，想寻找“一个能给出该数列所有项的通用表达式”。结果，欧拉构造出了一个无穷乘积——在正整数上它精确给出阶乘，在整数之间的分数点上也能算出确切数值。`}
             />
             <p
               innerHTML={prose`接着，他把 $n = \frac{1}{2}$ 代了进去，惊讶地发现结果“等于直径为 $1$ 的圆面积的平方根”！直径为 $1$ 的圆面积是 $\frac{\pi}{4}$，开平方就是 $\frac{\sqrt{\pi}}{2}$，约等于 $0.8862$。$\pi$ 是圆周率，而原问题明明只是正整数连乘，谁也没想到半个阶乘里竟然藏着一个圆。`}
@@ -91,7 +91,7 @@ export function GammaPageZh() {
                     innerHTML={prose`当 $N$ 极大时，相邻阶乘的比值 $N + 1, N + 2, N + 3$ 几乎相等。对公比固定为 $N + 1$ 的等比数列，往前跨出小数步长 $n$ 就是乘以 $(N + 1)^n$，因此 $f(N + n) \approx N!\,(N + 1)^n$。`}
                   />
                   <li
-                    innerHTML={prose`另一方面，严格按阶乘递推律从 $n$ 往上走 $N$ 步，会依次乘上 $(n + 1)(n + 2)\cdots(n + N)$，精准到达 $f(N + n)$。`}
+                    innerHTML={prose`另一方面，严格按阶乘递推公式从 $n$ 往上走 $N$ 步，会依次乘上 $(n + 1)(n + 2)\cdots(n + N)$，精准到达 $f(N + n)$。`}
                   />
                   <li
                     innerHTML={prose`令两式相等，就得到了欧拉给哥德巴赫信中的有限近似；再利用 $(N + 1)^n = \prod_{k = 1}^{N} \left(\frac{k + 1}{k}\right)^n$ 叠缩，便得到欧拉的无穷乘积：`}
@@ -118,7 +118,7 @@ export function GammaPageZh() {
                     />
                   </li>
                   <li
-                    innerHTML={prose`令 $e = \frac{f}{g}$，提取因子 $g$ 并把 $f + (n + 1)g$ 移到积分一侧，分母只剩下 $(f + g)(f + 2g)\cdots(f + ng)$。再令 $f = 1$ 且 $g \to 0$，分母整体塌缩成 $1$，右边就只剩干干净净的 $1 \cdot 2 \cdots n$。`}
+                    innerHTML={prose`令 $e = \frac{f}{g}$，提取因子 $g$ 并把 $f + (n + 1)g$ 移到积分一侧，分母只剩下 $(f + g)(f + 2g)\cdots(f + ng)$。再令 $f = 1$ 且 $g \to 0$，分母整体趋于 $1$，右边就只剩干干净净的 $1 \cdot 2 \cdots n$。`}
                   />
                   <li
                     innerHTML={prose`做换元 $x \mapsto x^{\frac{g}{f + g}}$，被积函数变成 $\frac{1 - x^z}{z}$ 的幂（其中 $z = \frac{g}{f + g} \to 0$），其极限恰好是 $-\ln x$，于是得到欧拉的对数积分 $\int_0^1 (-\ln x)^n\,dx$。（对 $n = 3$，欧拉亲自验算了原函数 $-x(\ln x)^3 + 3x(\ln x)^2 - 6x\ln x + 6x$：在 $x \to 0^+$ 时趋于 $0$，在 $x = 1$ 时正好给出 $6$。）`}
@@ -150,7 +150,7 @@ export function GammaPageZh() {
               </div>
             </details>
             <p
-              innerHTML={prose`到了 $\operatorname{Re}(s) \le 0$ 的区域，上面的积分不再收敛，Mathlib 便把递推律 $\Gamma(s + 1) = s \cdot \Gamma(s)$ 倒过来用，每次往左退 $1$ 步来延拓定义。合在一起，Mathlib 证明了以下几条核心性质：`}
+              innerHTML={prose`到了 $\operatorname{Re}(s) \le 0$ 的区域，上面的积分不再收敛，Mathlib 便把递推关系 $\Gamma(s + 1) = s \cdot \Gamma(s)$ 倒过来用，每次往左退 $1$ 步来延拓定义。合在一起，Mathlib 证明了以下几条核心性质：`}
             />
             <ul>
               <li innerHTML={prose`$\Gamma(1) = 1$。`} />
@@ -169,7 +169,7 @@ export function GammaPageZh() {
               </summary>
               <div class="aside-body">
                 <p
-                  innerHTML={prose`不是！能穿过 $1, 1, 2, 6, 24$ 的光滑曲线有无数条，甚至有不少曲线也严格满足 $f(x + 1) = x \cdot f(x)$，只是在整数之间偏离了 $\Gamma$。Mathlib 里证明了玻尔–莫勒鲁普定理（Bohr–Mollerup theorem），它补上了唯一缺的那块拼图：只要函数 $f$ 在 $(0, \infty)$ 上恒正、满足 $f(1) = 1$ 与 $f(x + 1) = x \cdot f(x)$，而且 $\ln f$ 是凸函数（图像绝不向下弯），那 $f$ 就只能是 $\Gamma$ 本人。Mathlib 后面正是靠这条唯一性定理证明了勒让德倍元公式。`}
+                  innerHTML={prose`不是！能穿过 $1, 1, 2, 6, 24$ 的光滑曲线有无数条，甚至有不少曲线也严格满足 $f(x + 1) = x \cdot f(x)$，只是在整数之间偏离了 $\Gamma$。Mathlib 里证明了玻尔–莫勒鲁普定理（Bohr–Mollerup theorem），它补上了唯一缺的那块拼图：只要函数 $f$ 在 $(0, \infty)$ 上恒正、满足 $f(1) = 1$ 与 $f(x + 1) = x \cdot f(x)$，而且 $\ln f$ 是凸函数（图像绝不向下弯），那 $f$ 就必然是 $\Gamma$ 本身。Mathlib 后面正是靠这条唯一性定理证明了勒让德倍元公式。`}
                 />
               </div>
             </details>
@@ -189,7 +189,7 @@ export function GammaPageZh() {
               <a href={MATHLIB_HALF}>Mathlib 定理 Gamma_one_half_eq</a>；以及{" "}
               <a href={MATHLIB_UNIQUE}>Mathlib 定理 eq_Gamma_of_log_convex</a>（对这些 Mathlib
               定理我们核对了陈述，未展开内部证明）。三步乘积重构、0.8862
-              数值校验、其他满足递推律曲线的说明，以及 <span innerHTML={prose`$n = 3$`} /> 与{" "}
+              数值校验、其他满足递推关系曲线的说明，以及 <span innerHTML={prose`$n = 3$`} /> 与{" "}
               <span innerHTML={prose`$x = e^{-t}$`} /> 换元的 Lean
               验算（lean/RiemannChecks/EulerGamma.lean）为本站自行补充。
             </p>
@@ -215,7 +215,7 @@ export function GammaPageZh() {
               innerHTML={prose`在 $0, -1, -2, -3, \dots$ 这些非正整数点上，$\Gamma$ 没有定义。Mathlib 的注释写得很坦白：在这些点上“函数本来无定义，我们按惯例把返回值设为 $0$”。那个 $0$ 只是形式化数学库为了保证每个函数处处有输出而填进去的占位值，并不是 $\Gamma$ 真正的函数值。`}
             />
             <p
-              innerHTML={prose`在 $0$ 附近，Mathlib 证明了 $s \cdot \Gamma(s)$ 趋近于 $1$，也就是说 $\Gamma(s)$ 长得几乎就像 $\frac{1}{s}$：从右边逼近 $0$ 时冲向 $+\infty$，从左边逼近 $0$ 时栽向 $-\infty$（你可以在上图试试 $x = 0.05$ 和 $-0.05$，数值分别是约 $19.47$ 和 $-20.63$）。任何有限的数都填不进 $0$ 处的断口。`}
+              innerHTML={prose`在 $0$ 附近，Mathlib 证明了 $s \cdot \Gamma(s)$ 趋近于 $1$，也就是说 $\Gamma(s)$ 长得几乎就像 $\frac{1}{s}$：从右边逼近 $0$ 时趋于 $+\infty$，从左边逼近 $0$ 时趋于 $-\infty$（你可以在上图试试 $x = 0.05$ 和 $-0.05$，数值分别是约 $19.47$ 和 $-20.63$）。任何有限的数都填不进 $0$ 处的断口。`}
             />
             <p
               innerHTML={prose`但在除此以外的所有点上——包括像 $-\frac{1}{2}$ 这样的负分数——$\Gamma$ 都有光滑有限的取值，而且永远不等于 $0$。`}
@@ -223,12 +223,12 @@ export function GammaPageZh() {
             <details class="aside-details">
               <summary>
                 <span
-                  innerHTML={prose`展开看原因：为什么 $0, -1, -2, \dots$ 全部爆掉，负分数却安然无恙？`}
+                  innerHTML={prose`展开看原因：为什么 $0, -1, -2, \dots$ 处全部无定义，负分数却完全没问题？`}
                 />
               </summary>
               <div class="aside-body">
                 <p
-                  innerHTML={prose`一切都源于把递推律 $\Gamma(s + 1) = s \cdot \Gamma(s)$ 倒写成 $\Gamma(s) = \frac{\Gamma(s + 1)}{s}$ 一步步往左推：`}
+                  innerHTML={prose`一切都源于把递推公式 $\Gamma(s + 1) = s \cdot \Gamma(s)$ 倒写成 $\Gamma(s) = \frac{\Gamma(s + 1)}{s}$ 一步步往左推：`}
                 />
                 <ol>
                   <li>
@@ -240,7 +240,7 @@ export function GammaPageZh() {
                   <li>
                     <strong innerHTML={prose`$-1, -2, -3, \dots$ 上的多米诺骨牌：`} />
                     <span
-                      innerHTML={prose`当 $s$ 靠近 $-1$ 时，$s + 1$ 就靠近 $0$，于是 $\Gamma(s) = \frac{\Gamma(s + 1)}{s}$ 直接把 $0$ 处的无穷大复制到了 $-1$ 处，同时除以 $s \approx -1$ 把正负号翻个个儿（这就是曲线在相邻区间一正一负的原因）。同理，$s$ 靠近 $-2$ 时，$s + 1$ 靠近 $-1$，除以 $s \approx -2$ 又把无穷大传给 $-2$ 并再翻一次号——多米诺骨牌就这样一路倒向所有负整数。`}
+                      innerHTML={prose`当 $s$ 靠近 $-1$ 时，$s + 1$ 就靠近 $0$，于是 $\Gamma(s) = \frac{\Gamma(s + 1)}{s}$ 直接把 $0$ 处的无穷大复制到了 $-1$ 处，同时除以 $s \approx -1$ 使正负号翻转一次（这就是曲线在相邻区间一正一负的原因）。同理，$s$ 靠近 $-2$ 时，$s + 1$ 靠近 $-1$，除以 $s \approx -2$ 又把无穷大传给 $-2$ 并再翻一次号——多米诺骨牌就这样一路倒向所有负整数。`}
                     />
                   </li>
                   <li>
@@ -269,7 +269,7 @@ export function GammaPageZh() {
               <span innerHTML={prose`$-1, -2, \dots$`} /> 我们仅核对了 Mathlib
               的无定义陈述；多米诺骨牌直观解释与{" "}
               <span innerHTML={prose`$\Gamma\!\left(-\frac{1}{2}\right)$`} />{" "}
-              算例由本站直接据递推律写出。
+              算例由本站直接据递推公式写出。
             </p>
           </section>
 
@@ -279,7 +279,7 @@ export function GammaPageZh() {
               innerHTML={prose`一个 1729 年为了给阶乘插值而诞生的函数，为什么会在 130 年后突然现身于 $\zeta(s)$ 的对称公式里？秘密在于欧拉积分 $\Gamma(s) = \int_0^\infty e^{-t} t^{s - 1}\,dt$ 是一台神奇的转换器：它能把幂次 $\frac{1}{n^s}$ 变成指数函数 $e^{-nx}$——而指数函数相加，既能凑出干净的闭式和，又天生自带精妙的对称性。`}
             />
             <p
-              innerHTML={prose`1859 年，黎曼正是顺着这座桥发现：给 $\zeta(s)$ 配上一个由 $\Gamma$ 造出来的“伴随因子”，拼成所谓的完备 zeta 函数 $\Lambda(s) = \pi^{-\frac{s}{2}}\,\Gamma\!\left(\frac{s}{2}\right)\,\zeta(s)$ 后，只要把 $s$ 换成 $1 - s$，函数值居然丝毫不差地相等：$\Lambda(1 - s) = \Lambda(s)$。把 $\zeta(1 - s)$ 单独解出来，再化简那串 $\Gamma$ 的比值，就得到了直接连通 $\zeta(s)$ 与 $\zeta(1 - s)$ 的显式换算公式：`}
+              innerHTML={prose`1859 年，黎曼正是顺着这座桥发现：给 $\zeta(s)$ 配上一个由 $\Gamma$ 构成的“伴随因子”，拼成所谓的完备化 $\zeta$ 函数 $\Lambda(s) = \pi^{-\frac{s}{2}}\,\Gamma\!\left(\frac{s}{2}\right)\,\zeta(s)$ 后，只要把 $s$ 换成 $1 - s$，函数值居然丝毫不差地相等：$\Lambda(1 - s) = \Lambda(s)$。把 $\zeta(1 - s)$ 单独解出来，再化简那串 $\Gamma$ 的比值，就得到了直接连通 $\zeta(s)$ 与 $\zeta(1 - s)$ 的函数方程：`}
             />
             <div
               class="equation"
@@ -287,11 +287,11 @@ export function GammaPageZh() {
             />
             <p>
               <span
-                innerHTML={prose`这条公式一口气解释了你在 zeta 页面遇到的两大谜题：第一，因为换算因子里直接坐着 $\Gamma(s)$，所以原始公式会跳过 $\Gamma$ 没有定义的那些点（$0, -1, -2, \dots$，外加 $\zeta$ 自己发散的 $s = 1$，见`}
+                innerHTML={prose`这条公式一口气解释了你在 zeta 页面遇到的两大谜题：第一，因为换算因子里直接包含 $\Gamma(s)$，所以原始函数方程会跳过 $\Gamma$ 没有定义的那些点（$0, -1, -2, \dots$，外加 $\zeta$ 自己发散的 $s = 1$，见`}
               />
               <a href={href("zeta", "euler-1749")}>欧拉 1749 年发现的对称线索</a>
               <span
-                innerHTML={prose`）；第二，$\Gamma\!\left(\frac{s}{2}\right)$ 的极点硬生生把 $\zeta(s)$ 在 $-2, -4, -6, \dots$ 处压成了 $0$（见`}
+                innerHTML={prose`）；第二，$\Gamma\!\left(\frac{s}{2}\right)$ 的极点迫使 $\zeta(s)$ 在 $-2, -4, -6, \dots$ 处取值为 $0$（见`}
               />
               <a href={href("zeta", "trivial-zeros")}>为什么负偶数都是平凡零点</a>
               ）。
@@ -311,7 +311,7 @@ export function GammaPageZh() {
                   innerHTML={tex`\Gamma(s)\,\zeta(s) = \int_0^\infty \frac{x^{s - 1}}{e^x - 1}\,dx`}
                 />
                 <p
-                  innerHTML={prose`接着，黎曼把积分路径弯成一条绕着正实轴 $(0, \infty)$ 的复平面围道，收集 $\frac{1}{e^x - 1}$ 在 $x = \pm 2\pi i n$ 处的极点留数，不仅把 $\zeta(s)$ 延拓到了所有 $s \neq 1$，还一眼看出了真正对称的组合正是 $\Lambda(s) = \pi^{-\frac{s}{2}}\,\Gamma\!\left(\frac{s}{2}\right)\,\zeta(s)$。用黎曼自己的话说：“函数的这一性质促使我在级数 $\sum \frac{1}{n^s}$ 的通项里用积分 $\Pi\!\left(\frac{s}{2} - 1\right)$ 代替 $\Pi(s - 1)$。”Mathlib 直接形式化了这套更简短的第二证法，再借用勒让德倍元公式与欧拉反射公式完成收尾：`}
+                  innerHTML={prose`接着，黎曼把积分路径弯成一条绕着正实轴 $(0, \infty)$ 的复平面围道，收集 $\frac{1}{e^x - 1}$ 在 $x = \pm 2\pi i n$ 处的极点留数，不仅把 $\zeta(s)$ 延拓到了所有 $s \neq 1$，还一眼看出了真正对称的组合正是 $\Lambda(s) = \pi^{-\frac{s}{2}}\,\Gamma\!\left(\frac{s}{2}\right)\,\zeta(s)$。用黎曼自己的话说：“函数的这一性质促使我在级数 $\sum \frac{1}{n^s}$ 的通项里用积分 $\Pi\!\left(\frac{s}{2} - 1\right)$ 代替 $\Pi(s - 1)$。”Mathlib 直接形式化了这套更简短的第二证法，再借用勒让德倍元公式与欧拉余元公式（反射公式）完成收尾：`}
                 />
                 <ol>
                   <li>
@@ -320,7 +320,7 @@ export function GammaPageZh() {
                         innerHTML={prose`为什么选 $\Gamma\!\left(\frac{s}{2}\right)$ 和换元 $x = \pi n^2 t$：`}
                       />
                       <span
-                        innerHTML={prose`第一证法已经揭示了 $\Gamma_{\mathbb{R}}(s)\,\zeta(s)$ 是对称的，其中 $\Gamma_{\mathbb{R}}(s) = \pi^{-\frac{s}{2}}\,\Gamma\!\left(\frac{s}{2}\right)$。为了直接从欧拉积分 $\Gamma\!\left(\frac{s}{2}\right) = \int_0^\infty e^{-x}\,x^{\frac{s}{2} - 1}\,dx$（$\operatorname{Re}(s) > 0$）造出这个因子，令 $x = \pi n^2 t$，让 $x^{\frac{s}{2}}$ 恰好吐出 $\pi^{\frac{s}{2}} n^s$。除到左边并对 $n = 1, 2, 3, \dots$（$\operatorname{Re}(s) > 1$）求和，立得 $\Lambda(s) = \Gamma_{\mathbb{R}}(s)\,\zeta(s)$：`}
+                        innerHTML={prose`第一证法已经揭示了 $\Gamma_{\mathbb{R}}(s)\,\zeta(s)$ 是对称的，其中 $\Gamma_{\mathbb{R}}(s) = \pi^{-\frac{s}{2}}\,\Gamma\!\left(\frac{s}{2}\right)$。为了直接从欧拉积分 $\Gamma\!\left(\frac{s}{2}\right) = \int_0^\infty e^{-x}\,x^{\frac{s}{2} - 1}\,dx$（$\operatorname{Re}(s) > 0$）造出这个因子，令 $x = \pi n^2 t$，让 $x^{\frac{s}{2}}$ 恰好提出 $\pi^{\frac{s}{2}} n^s$。除到左边并对 $n = 1, 2, 3, \dots$（$\operatorname{Re}(s) > 1$）求和，立得 $\Lambda(s) = \Gamma_{\mathbb{R}}(s)\,\zeta(s)$：`}
                       />
                     </p>
                     <div
@@ -363,7 +363,7 @@ export function GammaPageZh() {
                   </li>
                   <li>
                     <p>
-                      <strong>化简分母（欧拉反射公式）：</strong>
+                      <strong>化简分母（欧拉余元公式）：</strong>
                       <span
                         innerHTML={prose`注意到 $\frac{1 + s}{2} = 1 - \frac{1 - s}{2}$，在 $z = \frac{1 - s}{2}$ 处套用 $\Gamma(z)\,\Gamma(1 - z) = \frac{\pi}{\sin(\pi z)}$，既消掉了 $\pi^{-1}$，又把 $\sin\!\left(\frac{\pi}{2} - \frac{\pi s}{2}\right)$ 变成了 $\cos\!\left(\frac{\pi s}{2}\right)$：`}
                       />
@@ -377,7 +377,7 @@ export function GammaPageZh() {
                     <p>
                       <strong>分子除以分母：</strong>
                       <span
-                        innerHTML={prose`把第 4、5 两步一除，就得到 $\frac{\Gamma_{\mathbb{R}}(s)}{\Gamma_{\mathbb{R}}(1 - s)} = 2\,(2\pi)^{-s}\,\Gamma(s)\,\cos\!\left(\frac{\pi s}{2}\right)$——丝毫不差，正是 $\zeta$ 对称公式里的换算因子。`}
+                        innerHTML={prose`把第 4、5 两步一除，就得到 $\frac{\Gamma_{\mathbb{R}}(s)}{\Gamma_{\mathbb{R}}(1 - s)} = 2\,(2\pi)^{-s}\,\Gamma(s)\,\cos\!\left(\frac{\pi s}{2}\right)$——丝毫不差，正是 $\zeta$ 函数方程里的换算因子。`}
                       />
                     </p>
                   </li>
@@ -386,11 +386,11 @@ export function GammaPageZh() {
             </details>
             <details class="aside-details">
               <summary>
-                <span>欧拉反射公式：历史渊源与 Mathlib 证明</span>
+                <span>欧拉余元公式（反射公式）：历史渊源与 Mathlib 证明</span>
               </summary>
               <div class="aside-body">
                 <p
-                  innerHTML={prose`$\Gamma$ 自己也服从一条优美的 $s \leftrightarrow 1 - s$ 镜像公式——欧拉反射公式（余元公式）：`}
+                  innerHTML={prose`$\Gamma$ 自己也服从一条优美的 $s \leftrightarrow 1 - s$ 镜像关系——余元公式（又称欧拉反射公式）：`}
                 />
                 <div
                   class="equation"
