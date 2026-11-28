@@ -300,11 +300,11 @@ Inspection: method level. Fetched and read directly from commit `72fead102f663d5
 
 ## Reference 38
 
-[38] Andrew V. Sutherland. **Verification files for the shorter Lean proof of RH and GRH**. MIT verification page for `lsernau/grh-lean` commit `72fead10` (last updated 26 November 2026, 00:15 UTC). [Original](https://math.mit.edu/~drew/shortgrh/). Accessed 26 November 2026, Asia/Tokyo.
+[38] Andrew V. Sutherland. **Verification files for the shorter Lean proof of RH and GRH**. MIT verification page for `lsernau/grh-lean` commit `72fead10` (last updated 27 November 2026, 17:27 UTC). [Original](https://math.mit.edu/~drew/shortgrh/). Accessed 28 November 2026, Asia/Tokyo.
 
 Inspection depth: full.
 
-Inspection: full page read directly over HTTPS on 26 November 2026. Records that both `grh/` (803 files, ~300,000 lines of code) and `grh-compact/` (794 files, ~76,000 lines of code) passed sandboxed `lake build` (9,852 and 9,843 jobs, no errors), `#print axioms` (`propext`, `Classical.choice`, `Quot.sound` only), full kernel module replay, byte-identical exports across two machines, `nanoda`, `con-leche`, and `con-ron` (including `--compare` against `Challenge.lean`), Lean default and paranoid kernels on the exports, and `lean4lean` on the compact edition; notes that as of 2026-11-26 00:15 UTC, `lake comparator --paranoid` (on both editions across two machines) and standalone `lean4lean` on the readable edition were still running. Independent third-party verification report.
+Inspection: full page read directly over HTTPS on 26 November 2026 and re-read in full on 28 November 2026 after all checks finished. Records that both `grh/` (803 files, 477,124 lines, 299,902 lines of code) and `grh-compact/` (794 files, 112,827 lines, 76,149 lines of code) passed sandboxed `lake build` (9,852 and 9,843 jobs, no errors), `#print axioms` (`propext`, `Classical.choice`, `Quot.sound` only), full kernel module replay, byte-identical exports across two machines, `nanoda`, `con-leche`, `con-ron` (including `--compare` against `Challenge.lean`), Lean default and paranoid kernels, standalone `lean4lean`, and `lake comparator --paranoid` (Lean `v4.35.0`, reporting "Your solution is okay!"). On the compact edition, `lake comparator --paranoid` passed independently on both machines (2 h 11 min and 2 h 32 min; standalone `lean4lean` checked 204,580 declarations in 28 min 39 s). On the readable edition, `lake comparator --paranoid` passed on the 192-core machine B (exit 0 at 02:47:54 UTC on 26 November, 4 h 9 min 59 s; standalone `lean4lean` peaked at 332 GB RAM, spending 2 h 12 min on `New.Variety.tiltTheory`, which exceeded the 128 GB memory of machine A where `lean4lean` was stopped without a verdict while all other stages accepted). Also records end-to-end `lake comparator --paranoid` verification of Schoenfeld's explicit bound $\left|\psi(x) - x\right| < \frac{\sqrt{x}\log^2 x}{8\pi}$ for $x \ge 73.2$ (`AndrewVSutherland/schoenfeld-rh-lean` at commit `0e52d7b1`, proving the equivalence `schoenfeld_strict_bound_iff_riemannHypothesis` in 6 min 19 s and deriving `schoenfeld_strict_bound` from `grh-compact/` with `propext`, `Classical.choice`, `Quot.sound` only). Independent third-party verification report.
 
 ## Reference 39
 
@@ -441,3 +441,11 @@ Inspection: all five pages read in full directly from the arXiv PDF. Notes that 
 Inspection depth: method.
 
 Inspection: method level. Read visually on rendered images of pages 341–342 from the NUMDAM PDF scan and checked the full extracted text: §I introduction citing Legendre and Dirichlet, and §II Theorem I explicitly taking real $\rho > 0$ (*"par $\rho$ une quantité $> 0$"*) to prove that $\sum_{m = 2}^{\infty} \frac{1}{m^{1 + \rho}} - \frac{1}{\rho}$, $\log\rho - \sum_\mu \log\!\left(1 - \frac{1}{\mu^{1 + \rho}}\right)$, and their derivatives of all orders with respect to $\rho$ approach finite limits as $\rho \to 0^{+}$. Detailed proofs on pages 343–365 are not checked visually line by line. A primary source.
+
+## Reference 56
+
+[56] Anurag Sahay, Will Sawin, and Lior Silberman. **G.R.H. Polymath**. Guest post on Terence Tao's blog *What's new*, 24 November 2026 (published 25 November 2026 UTC; updated 26 November 2026). [Original](https://terrytao.wordpress.com/2026/11/24/g-r-h-polymath/). Accessed 28 November 2026, Asia/Tokyo.
+
+Inspection depth: full.
+
+Inspection: full blog post read directly over HTTPS on 28 November 2026. Announces a public Polymath-style forum at `https://rh-polymath.zulipchat.com` for collaboratively reading, unpacking, and producing a human-readable exposition of Levent Alpöge's Lean proof of the Generalized Riemann Hypothesis, with all discussions preserved publicly. Community coordination announcement.
