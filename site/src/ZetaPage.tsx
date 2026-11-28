@@ -112,6 +112,36 @@ export function ZetaPage() {
         other powers, and found that the answer knows about the primes.
       </p>
 
+      <nav class="page-toc" aria-label="On this page">
+        <p class="page-toc-label">On this page</p>
+        <ol>
+          <li>
+            <a href={href("zeta", "basel")}>The sum</a>
+          </li>
+          <li>
+            <a href={href("zeta", "convergence")}>The wall at 1</a>
+          </li>
+          <li>
+            <a href={href("zeta", "primes")}>Link to the primes</a>
+          </li>
+          <li>
+            <a href={href("zeta", "euler-1749")}>Euler's 1749 clue</a>
+          </li>
+          <li>
+            <a href={href("zeta", "riemann-1859")}>Riemann's mirror (1859)</a>
+          </li>
+          <li>
+            <a href={href("zeta", "trivial-zeros")}>Trivial zeros</a>
+          </li>
+          <li>
+            <a href={href("zeta", "zeros-and-primes")}>Zeros and primes</a>
+          </li>
+          <li>
+            <a href={href("zeta", "timeline")}>Dates</a>
+          </li>
+        </ol>
+      </nav>
+
       <section id="basel">
         <h2>A sum that nobody could finish</h2>
         <p
@@ -145,14 +175,8 @@ export function ZetaPage() {
           The result made him famous among mathematicians across Europe. His teacher Johann
           Bernoulli said that the most burning desire of his dead brother Jakob was now fulfilled.
         </p>
-        <p class="sources">
-          Source: <a href={PAPADOPOULOS}>Papadopoulos, Looking backward: from Euler to Riemann</a>,
-          section 6.
-        </p>
-      </section>
 
-      <section id="powers">
-        <h2>One sum for each power</h2>
+        <h3 id="powers">One sum for each power</h3>
         <p innerHTML={prose`Now replace the squares by another power. Write $s$ for the power:`} />
         <p
           class="equation"
@@ -166,11 +190,9 @@ export function ZetaPage() {
         <p
           innerHTML={prose`Jakob Bernoulli had looked at these sums in 1689. Euler found the value for each even
             power in 1735. Each value is a fraction times a power of $\pi$. For the odd powers 3, 5,
-            7 and so on, he tried through his whole life to find a formula, and did not find one.`}
-        />
-        <p
-          innerHTML={prose`Euler did not use the letter $\zeta$. The name and the letter come from Riemann, more
-            than a hundred years later.`}
+            7 and so on, he tried through his whole life to find a formula, and did not find one.
+            Euler did not use the letter $\zeta$: the name and letter come from Riemann, more than a
+            hundred years later.`}
         />
         <p class="sources">
           Source: <a href={PAPADOPOULOS}>Papadopoulos, Looking backward: from Euler to Riemann</a>,
@@ -255,20 +277,7 @@ export function ZetaPage() {
             end, but the primes come more often than the squares. Euclid's result cannot tell the
             two lists apart. Euler's result can.`}
         />
-        <p class="sources">
-          Sources:{" "}
-          <a href={VIADER}>Viader, Bibiloni and Paradís, On a series of Goldbach and Euler</a>,
-          sections 1 and 7, for the 1737 paper, its steps and Mertens.{" "}
-          <a href={PAPADOPOULOS}>Papadopoulos</a>, section 6, for Euclid and the words of Euler.{" "}
-          <a href={CONRAD}>Conrad, The infinitude of the primes</a>, section 3, for the primes
-          against the squares. The first source shows the steps for the sum{" "}
-          <span innerHTML={prose`$1 + \frac{1}{2} + \frac{1}{3} + \cdots$;`} /> the squares here
-          follow the same lines.
-        </p>
-      </section>
-
-      <section id="sum-product">
-        <h2>The picture: the sum and the product</h2>
+        <h3 id="sum-product">Watch the sum and the product meet</h3>
         <p
           innerHTML={prose`The chart counts up to a number $N$. The sum takes the terms of the whole numbers up to
             $N$. The product takes one factor for each prime up to $N$. Move $N$ and watch both come
@@ -282,8 +291,14 @@ export function ZetaPage() {
             limit, but more and more slowly.`}
         />
         <p class="sources">
-          The numbers in the chart are computed on this page. The formula is the one of the section
-          above.
+          Sources:{" "}
+          <a href={VIADER}>Viader, Bibiloni and Paradís, On a series of Goldbach and Euler</a>,
+          sections 1 and 7, for the 1737 paper, its steps and Mertens.{" "}
+          <a href={PAPADOPOULOS}>Papadopoulos</a>, section 6, for Euclid and the words of Euler.{" "}
+          <a href={CONRAD}>Conrad, The infinitude of the primes</a>, section 3, for the primes
+          against the squares. The first source shows the steps for the sum{" "}
+          <span innerHTML={prose`$1 + \frac{1}{2} + \frac{1}{3} + \cdots$;`} /> the squares here
+          follow the same lines, and the numbers in the chart are computed on this page.
         </p>
       </section>
 
@@ -441,20 +456,36 @@ export function ZetaPage() {
           <span innerHTML={prose`$\zeta(s)$.`} />
         </p>
         <p
-          innerHTML={prose`Finally, Riemann's complex symmetry explains why the Riemann hypothesis focuses on the
-            vertical line where the real part is $\frac{1}{2}$. For a complex number $s = a + bi$,
-            the partner $1 - s = (1 - a) - bi$ is a half turn around the point $\frac{1}{2}$, not a
-            flip across a line. Because $\zeta$ has real coefficients, it also obeys a second
-            symmetry: the value at $a - bi$ is the value at $a + bi$ with the sign of its $i$ part
-            flipped. Together, the two symmetries tie $a + bi$ to $(1 - a) + bi$ — two points at the
-            same height $b$, exact mirror images across the line $\operatorname{Re}(s) = \frac{1}{2}$
-            (here $\operatorname{Re}$ stands for “real part”, the left-to-right coordinate $a$).
-            Inside the strip where $0 < \operatorname{Re}(s) < 1$, the companion factor between
-            $\zeta$ and its completed form is never 0, so the zeros there come in mirrored pairs:
-            whenever $a + bi$ is a zero, $(1 - a) + bi$ is a zero too. The Riemann hypothesis says
-            that apart from the known zeros at $-2$, $-4$, $-6$ and so on, every zero sits right on
-            the mirror line $\operatorname{Re}(s) = \frac{1}{2}$, where it is its own mirror image.`}
+          innerHTML={prose`Riemann's complex symmetry also explains why the Riemann hypothesis focuses on the
+            vertical line $\operatorname{Re}(s) = \frac{1}{2}$ (here $\operatorname{Re}$ stands for
+            “real part”, how far left or right $s$ sits). Inside the strip $0 < \operatorname{Re}(s) < 1$,
+            the zeros of $\zeta(s)$ always come in mirrored pairs across that line: whenever a zero sits
+            at $a + bi$, a twin zero sits at $(1 - a) + bi$ at the exact same height on the opposite
+            side. The Riemann hypothesis says that apart from the negative even zeros, every zero sits
+            right on the mirror line $\operatorname{Re}(s) = \frac{1}{2}$, where it is its own mirror image.`}
         />
+        <details class="aside-details">
+          <summary>
+            <span
+              innerHTML={prose`Why $s \mapsto 1 - s$ becomes a vertical mirror across $\operatorname{Re}(s) = \frac{1}{2}$`}
+            />
+          </summary>
+          <div class="aside-body">
+            <p
+              innerHTML={prose`For a complex number $s = a + bi$, the partner $1 - s = (1 - a) - bi$ flips both
+                left-to-right and up-to-down — a half turn around the point $\frac{1}{2}$, not yet a
+                mirror across a line.`}
+            />
+            <p
+              innerHTML={prose`Because $\zeta$ has real coefficients, it also obeys a second symmetry: flipping the
+                sign of the $i$ part sends $\zeta(a + bi)$ to the conjugate of $\zeta(a + bi)$, so
+                $a - bi$ is a zero whenever $a + bi$ is. Combining both symmetries sends $a + bi$ to
+                $(1 - a) + bi$ — the exact same height $b$, mirrored across $\operatorname{Re}(s) = \frac{1}{2}$.
+                Inside $0 < \operatorname{Re}(s) < 1$, the $\Gamma$ factor between $\zeta$ and its
+                completed form is never 0, so the zeros of $\zeta$ inherit that exact pairing.`}
+            />
+          </div>
+        </details>
         <p class="sources">
           Sources: <a href={PAPADOPOULOS}>Papadopoulos, Looking backward: from Euler to Riemann</a>,
           section 6;{" "}
@@ -474,23 +505,35 @@ export function ZetaPage() {
 
       <section id="trivial-zeros">
         <h2>Why the negative even numbers are “trivial” zeros</h2>
-        <p
-          innerHTML={prose`The statement of the Riemann hypothesis explicitly leaves out $s = -2, -4, -6$ and so on.
-            Once you have Riemann's completed symmetry $\Lambda(s) = \pi^{-\frac{s}{2}}\,\Gamma\!\left(\frac{s}{2}\right)\,\zeta(s)$,
-            you can see in two lines why $\zeta(s)$ has to be 0 at every one of those points. Rearrange the completed
-            function to solve for $\zeta(s)$:`}
-        />
+        <p>
+          <span
+            innerHTML={prose`The statement of the Riemann hypothesis explicitly leaves out $s = -2, -4, -6$ and so on.
+              Once you have Riemann's completed symmetry $\Lambda(s) = \pi^{-\frac{s}{2}}\,\Gamma\!\left(\frac{s}{2}\right)\,\zeta(s)$
+              (introduced in `}
+          />
+          <a href={href("zeta", "riemann-1859")}>Riemann's 1859 symmetry above</a>
+          <span
+            innerHTML={prose`), you can see in two lines why $\zeta(s)$ has to be 0 at every one of those points.
+              Rearrange the completed function to solve for $\zeta(s)$:`}
+          />
+        </p>
         <p
           class="equation"
           innerHTML={tex`\zeta(s) = \frac{\Lambda(s)}{\pi^{-\frac{s}{2}}\,\Gamma\!\left(\frac{s}{2}\right)}`}
         />
-        <p
-          innerHTML={prose`Now plug in $s = -2, -4, -6, \dots$ (so $\frac{s}{2}$ lands on $-1, -2, -3, \dots$). Because
-            $\Lambda(s) = \Lambda(1 - s)$, the top equals $\Lambda(3), \Lambda(5), \Lambda(7), \dots$ —
-            all completely finite, nonzero numbers. Meanwhile, the bottom factor $\Gamma\!\left(\frac{s}{2}\right)$
-            blows up to infinity at every negative whole number. A finite number divided by infinity is 0, so
-            $\zeta(s)$ is forced to vanish at $-2, -4, -6, \dots$ simply to keep the completed product finite.`}
-        />
+        <p>
+          <span
+            innerHTML={prose`Now plug in $s = -2, -4, -6, \dots$ (so $\frac{s}{2}$ lands on $-1, -2, -3, \dots$). Because
+              $\Lambda(s) = \Lambda(1 - s)$, the top equals $\Lambda(3), \Lambda(5), \Lambda(7), \dots$ —
+              all completely finite, nonzero numbers. Meanwhile, the bottom factor $\Gamma\!\left(\frac{s}{2}\right)$
+              blows up to infinity at every negative whole number (see `}
+          />
+          <a href={href("gamma", "poles")}>Where Gamma has no value</a>
+          <span
+            innerHTML={prose`). A finite number divided by infinity is 0, so $\zeta(s)$ is forced to vanish at
+              $-2, -4, -6, \dots$ simply to keep the completed product finite.`}
+          />
+        </p>
         <p
           innerHTML={prose`What about $s = 0$, where $\frac{s}{2} = 0$ also makes $\Gamma$ blow up? At $s = 0$ the top
             $\Lambda(s)$ blows up too (0 and 1 are its two poles). Those two infinities cancel each other out,
@@ -592,11 +635,14 @@ export function ZetaPage() {
 
       <section id="zeros-and-primes">
         <h2>Why the zeros control the primes</h2>
-        <p
-          innerHTML={prose`Euler's 1737 product already tied $\zeta(s)$ to the primes, but it only said the primes never run out.
-            In the second half of his 1859 paper, Riemann took the logarithm of Euler's product and inverted it to turn
-            $\zeta(s)$ into an exact formula for counting how many primes lie below any number $x$.`}
-        />
+        <p>
+          <a href={href("zeta", "primes")}>Euler's 1737 product above</a>{" "}
+          <span
+            innerHTML={prose`already tied $\zeta(s)$ to the primes, but it only said the primes never run out.
+              In the second half of his 1859 paper, Riemann took the logarithm of Euler's product and inverted it to turn
+              $\zeta(s)$ into an exact formula for counting how many primes lie below any number $x$.`}
+          />
+        </p>
         <p
           innerHTML={prose`In Riemann's formula, a smooth curve $\operatorname{Li}(x)$ gives the main trend for the prime count,
             and every non-trivial zero $\rho = \beta + i\gamma$ of $\zeta(s)$ adds a wave built from $x^\rho$:`}

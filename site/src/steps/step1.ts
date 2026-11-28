@@ -68,9 +68,8 @@ export const step1 = defineStep({
       mark: "zeros",
       background: {
         route: "zeta",
-        section: "zeros-and-primes",
-        label: "Why the zeros control the primes",
-        note: "Background · how each zero adds a wave to the prime count (and the full story of zeta)",
+        label: "Where the zeta function came from",
+        note: "Background · start from Euler's sum, or jump to symmetry and zeros at the top of the page",
       },
     },
     {

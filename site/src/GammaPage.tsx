@@ -39,6 +39,24 @@ export function GammaPage() {
         innerHTML={prose`The symmetry of the zeta function uses a function with the name $\Gamma$ (gamma). It is 300 years old. It began with one question: what comes between the terms of the list 1, 2, 6, 24, 120?`}
       />
 
+      <nav class="page-toc" aria-label="On this page">
+        <p class="page-toc-label">On this page</p>
+        <ol>
+          <li>
+            <a href={href("gamma", "list-with-gaps")}>A list with gaps</a>
+          </li>
+          <li>
+            <a href={href("gamma", "picture")}>The picture</a>
+          </li>
+          <li>
+            <a href={href("gamma", "poles")}>Where Gamma has no value</a>
+          </li>
+          <li>
+            <a href={href("gamma", "zeta-link")}>Link to zeta's symmetry</a>
+          </li>
+        </ol>
+      </nav>
+
       <section id="list-with-gaps">
         <h2>A list with gaps</h2>
         <p
@@ -256,43 +274,19 @@ export function GammaPage() {
       <section id="zeta-link">
         <h2 innerHTML={prose`How $\Gamma$ links to the zeta function symmetry`} />
         <p
-          innerHTML={prose`Why does a function invented in 1729 to interpolate factorials show up 130 years later
-            inside the symmetry of $\zeta(s)$? Because Euler's integral
+          innerHTML={prose`Why does a function invented in 1729 to fill gaps between factorials show up 130 years
+            later inside the symmetry of $\zeta(s)$? Because Euler's integral
             $\Gamma(s) = \int_0^\infty e^{-t} t^{s - 1}\,dt$ turns a power $\frac{1}{n^s}$ into an
-            exponential $e^{-nx}$ — and sums of exponentials have simple closed forms and exact
+            exponential $e^{-nx}$ — and sums of exponentials have clean closed forms and exact
             symmetries.`}
         />
         <p
-          innerHTML={prose`In his 1859 paper, Riemann followed that idea in two natural steps. First, substituting
-            $t = nx$ into ordinary $\Gamma(s)$ (written $\Pi(s - 1)$ in his paper) gives
-            $\frac{\Gamma(s)}{n^s} = \int_0^\infty e^{-nx} x^{s - 1}\,dx$, so summing over
-            $n = 1, 2, 3, \dots$ turns $\zeta(s)$ into an ordinary geometric series inside the
-            integral:`}
-        />
-        <div
-          class="equation"
-          innerHTML={tex`\Gamma(s)\,\zeta(s) = \int_0^\infty \frac{x^{s - 1}}{e^x - 1}\,dx`}
-        />
-        <p
-          innerHTML={prose`Turning that integral into a loop around $(0, \infty)$ and collecting the poles of
-            $\frac{1}{e^x - 1}$ at $x = \pm 2\pi i n$, Riemann extended $\zeta(s)$ to all complex
-            $s \neq 1$ and discovered a surprise: the truly symmetric combination is not
-            $\Gamma(s)\zeta(s)$, but
-            $\Lambda(s) = \pi^{-\frac{s}{2}}\,\Gamma\!\left(\frac{s}{2}\right)\,\zeta(s)$, which
-            stays unchanged under $s \leftrightarrow 1 - s$. That clue — in his words, “This
-            property of the function induced me to introduce, in place of $\Pi(s - 1)$, the integral
-            $\Pi\!\left(\frac{s}{2} - 1\right)$ into the general term of the series
-            $\sum \frac{1}{n^s}$” — led him to his shorter second proof, where substituting
-            $x = \pi n^2 t$ turns $\zeta(s)$ into Jacobi's theta sum
-            $\sum_{n = 1}^{\infty} e^{-\pi n^2 t}$ and makes $\Lambda(1 - s) = \Lambda(s)$
-            immediate.`}
-        />
-        <p
-          innerHTML={prose`Solving $\Lambda(1 - s) = \Lambda(s)$ for $\zeta(1 - s)$ leaves a ratio of two
-            half-argument $\Gamma$ values. Simplifying that ratio with $\Gamma$'s own mirror law
-            (Euler's reflection formula, $\Gamma(s)\,\Gamma(1 - s) = \frac{\pi}{\sin(\pi s)}$) and
-            Legendre's doubling formula produces the explicit conversion factor linking $\zeta(s)$
-            and $\zeta(1 - s)$:`}
+          innerHTML={prose`In 1859, Riemann used that bridge to discover that multiplying $\zeta(s)$ by a companion
+            factor built from $\Gamma$ produces a completed function
+            $\Lambda(s) = \pi^{-\frac{s}{2}}\,\Gamma\!\left(\frac{s}{2}\right)\,\zeta(s)$ that stays
+            literally equal when you swap $s$ and $1 - s$: $\Lambda(1 - s) = \Lambda(s)$. Solving for
+            $\zeta(1 - s)$ and simplifying the resulting ratio of $\Gamma$ values gives the explicit
+            conversion factor linking $\zeta(s)$ and $\zeta(1 - s)$:`}
         />
         <div
           class="equation"
@@ -300,25 +294,45 @@ export function GammaPage() {
         />
         <p>
           <span
-            innerHTML={prose`Because $\Gamma(s)$ sits in that factor, the rule skips the exact points where $\Gamma$
-              has no value: 0, $-1$, $-2$ and so on (plus 1, where $\zeta$ itself blows up). The
-              page `}
+            innerHTML={prose`This explains two facts you meet on the zeta page: because $\Gamma(s)$ sits in that
+              factor, the raw rule skips the exact points where $\Gamma$ has no value (0, $-1$, $-2$
+              and so on, plus 1 where $\zeta$ blows up — see `}
           />
-          <a href={href("zeta", "euler-1749")}>Where the zeta function came from</a> gives the
-          numerical examples and exceptions.
+          <a href={href("zeta", "euler-1749")}>Euler's 1749 symmetry</a>
+          <span
+            innerHTML={prose`), and the poles of $\Gamma\!\left(\frac{s}{2}\right)$ force $\zeta(s)$ to vanish at
+              $-2, -4, -6, \dots$ (see `}
+          />
+          <a href={href("zeta", "trivial-zeros")}>
+            Why the negative even numbers are trivial zeros
+          </a>
+          ).
         </p>
         <details class="aside-details">
           <summary>
             <span
-              innerHTML={prose`How $\Gamma$ produces the zeta conversion factor (step by step)`}
+              innerHTML={prose`How Riemann's two 1859 proofs and Mathlib build that conversion factor`}
             />
           </summary>
           <div class="aside-body">
             <p
-              innerHTML={prose`Mathlib formalizes Riemann's shorter second proof directly — starting with the
-                $\Gamma\!\left(\frac{s}{2}\right)$ substitution that his first proof revealed — and
-                then applies Legendre doubling and Euler reflection to read off
-                $2\,(2\pi)^{-s}\,\Gamma(s)\,\cos\!\left(\frac{\pi s}{2}\right)$:`}
+              innerHTML={prose`In his 1859 paper, Riemann reached $\Lambda(1 - s) = \Lambda(s)$ in two steps. First,
+                substituting $t = nx$ into $\Gamma(s)$ (written $\Pi(s - 1)$ in his paper) gives
+                $\frac{\Gamma(s)}{n^s} = \int_0^\infty e^{-nx} x^{s - 1}\,dx$, turning $\zeta(s)$ into a
+                geometric series inside the integral:`}
+            />
+            <div
+              class="equation"
+              innerHTML={tex`\Gamma(s)\,\zeta(s) = \int_0^\infty \frac{x^{s - 1}}{e^x - 1}\,dx`}
+            />
+            <p
+              innerHTML={prose`Bending that integral into a loop around $(0, \infty)$ and collecting the poles of
+                $\frac{1}{e^x - 1}$ at $x = \pm 2\pi i n$ extended $\zeta(s)$ to all $s \neq 1$ and revealed
+                that the truly symmetric combination is $\Lambda(s) = \pi^{-\frac{s}{2}}\,\Gamma\!\left(\frac{s}{2}\right)\,\zeta(s)$.
+                In Riemann's words, “This property of the function induced me to introduce, in place of
+                $\Pi(s - 1)$, the integral $\Pi\!\left(\frac{s}{2} - 1\right)$ into the general term of the
+                series $\sum \frac{1}{n^s}$”. Mathlib formalizes that shorter second proof directly and
+                then applies Legendre doubling and Euler reflection:`}
             />
             <ol>
               <li>

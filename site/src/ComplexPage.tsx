@@ -92,6 +92,24 @@ export function ComplexPage() {
         of negative numbers, and the answers came out right.
       </p>
 
+      <nav class="page-toc" aria-label="On this page">
+        <p class="page-toc-label">On this page</p>
+        <ol>
+          <li>
+            <a href={href("complex-numbers", "cubic")}>The cubic puzzle</a>
+          </li>
+          <li>
+            <a href={href("complex-numbers", "plane")}>Turn and stretch</a>
+          </li>
+          <li>
+            <a href={href("complex-numbers", "why-zeta")}>Why zeta needs the plane</a>
+          </li>
+          <li>
+            <a href={href("complex-numbers", "timeline")}>Dates</a>
+          </li>
+        </ol>
+      </nav>
+
       <section id="cubic">
         <h2>The equation that forced the issue</h2>
         <p
