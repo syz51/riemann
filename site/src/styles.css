@@ -830,11 +830,89 @@ header.site nav a[aria-current="page"] {
   display: inline-flex;
   align-items: baseline;
   gap: 0.28rem;
-  padding: 0.1rem 0.45rem;
+  padding: 0.14rem 0.5rem;
   border: 1px solid var(--border);
   border-radius: 4px;
   background: var(--surface);
+  color: var(--muted);
+  font: inherit;
+  cursor: pointer;
   white-space: nowrap;
+  transition:
+    border-color 140ms ease,
+    background-color 140ms ease,
+    color 140ms ease;
+}
+
+.home-fact-axioms .axiom-item:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.home-fact-axioms .axiom-item:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.home-fact-axioms .axiom-item.active {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, var(--surface));
+  color: var(--text);
+}
+
+.axiom-note {
+  width: 100%;
+  margin-top: 0.25rem;
+  padding-top: 0.45rem;
+  border-top: 1px solid var(--border);
+  text-align: left;
+}
+
+.axiom-note-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.2rem;
+}
+
+.axiom-note-head strong {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.axiom-note-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.axiom-note-close:hover {
+  color: var(--text);
+  background: var(--surface);
+}
+
+.axiom-note-close:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.axiom-note p {
+  margin: 0 !important;
+  font-size: 0.8rem !important;
+  line-height: 1.5 !important;
+  color: var(--muted) !important;
 }
 
 .home-fact-links {
