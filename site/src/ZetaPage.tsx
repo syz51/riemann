@@ -32,6 +32,8 @@ const MATHLIB_TRIVIAL =
   "https://github.com/leanprover-community/mathlib4/blob/56a005855ea17e0b0958f73ec801ae140b0a1679/Mathlib/NumberTheory/LSeries/RiemannZeta.lean#L172-L180";
 const MATHLIB_HURWITZ_TRIVIAL =
   "https://github.com/leanprover-community/mathlib4/blob/56a005855ea17e0b0958f73ec801ae140b0a1679/Mathlib/NumberTheory/LSeries/HurwitzZetaEven.lean#L604-L621";
+const SHORTGRH_URL = "https://math.mit.edu/~drew/shortgrh/";
+const SCHOENFELD_URL = "https://github.com/AndrewVSutherland/schoenfeld-rh-lean/tree/0e52d7b1";
 
 const SIEVE: Part[] = [
   {
@@ -585,6 +587,82 @@ export function ZetaPage() {
           ; <a href={TITCHMARSH_1930}>Titchmarsh, The Zeta-Function of Riemann (1930), pp. 2–3</a>;{" "}
           <a href={MATHLIB_TRIVIAL}>Mathlib, riemannZeta_neg_two_mul_nat_add_one</a> and{" "}
           <a href={MATHLIB_HURWITZ_TRIVIAL}>hurwitzZetaEven_neg_two_mul_nat_add_one</a>.
+        </p>
+      </section>
+
+      <section id="zeros-and-primes">
+        <h2>Why the zeros control the primes</h2>
+        <p
+          innerHTML={prose`Euler's 1737 product already tied $\zeta(s)$ to the primes, but it only said the primes never run out.
+            In the second half of his 1859 paper, Riemann took the logarithm of Euler's product and inverted it to turn
+            $\zeta(s)$ into an exact formula for counting how many primes lie below any number $x$.`}
+        />
+        <p
+          innerHTML={prose`In Riemann's formula, a smooth curve $\operatorname{Li}(x)$ gives the main trend for the prime count,
+            and every non-trivial zero $\rho = \beta + i\gamma$ of $\zeta(s)$ adds a wave built from $x^\rho$:`}
+        />
+        <p
+          class="equation"
+          innerHTML={tex`\begin{aligned} x^{\beta + i\gamma} &= x^{\beta} \cdot x^{i\gamma} \\ &= x^{\beta}\bigl(\cos(\gamma\log x) + i\sin(\gamma\log x)\bigr) \end{aligned}`}
+        />
+        <p
+          innerHTML={prose`The two coordinates of each zero play two completely different roles in that wave. The vertical
+            coordinate (the imaginary part $\gamma$) sets the frequency — how quickly the prime count wobbles above
+            and below its average. The horizontal coordinate (the real part $\beta$) sets the height of the wave:
+            it grows like $x^{\beta}$.`}
+        />
+        <p
+          innerHTML={prose`Because mirrored zeros come in pairs at $\beta$ and $1 - \beta$, you can never push all of them
+            to the left of $\frac{1}{2}$: moving one zero left automatically pushes its twin to the right, making
+            that twin's wave taller than $x^{\frac{1}{2}} = \sqrt{x}$. Putting every non-trivial zero right on the
+            mirror line $\operatorname{Re}(s) = \frac{1}{2}$ is the sharpest possible outcome — it keeps every wave
+            as small as $\sqrt{x}$.`}
+        />
+        <details class="aside-details">
+          <summary>
+            <span>Riemann's 1859 wave formula and Schoenfeld's explicit prime bound</span>
+          </summary>
+          <div class="aside-body">
+            <p
+              innerHTML={prose`Riemann wrote $f(x) = F(x) + \frac{1}{2} F\!\left(x^{\frac{1}{2}}\right) + \frac{1}{3} F\!\left(x^{\frac{1}{3}}\right) + \cdots$
+                for a weighted count of primes and prime powers below $x$ (where $F(x)$ counts primes). Inverting
+                $\frac{\log\zeta(s)}{s}$ gave his explicit formula (1859, translated pp. 8–9), whose derivative turns
+                the density of primes into a smooth curve minus a sum of cosine waves over the zeros $\frac{1}{2} \pm i\alpha$:`}
+            />
+            <p
+              class="equation"
+              innerHTML={tex`\frac{1}{\log x} - 2\sum_{\alpha} \frac{\cos(\alpha\log x)\,x^{-\frac{1}{2}}}{\log x}`}
+            />
+            <p
+              innerHTML={prose`He noted that the smooth curve $\operatorname{Li}(x)$ agrees with the prime count “up to
+                quantities of the order $x^{\frac{1}{2}}$”, while the periodic terms explain “the increase and decrease
+                in the density of the primes from place to place”.`}
+            />
+            <p
+              innerHTML={prose`In modern form, write $\psi(x)$ for Chebyshev's weighted prime-power count up to $x$ (for
+                a whole number $n$, $\psi(n) = \log(\operatorname{lcm}(1, 2, \dots, n))$, the natural log of the least
+                common multiple of 1 through $n$). In 1976, Lowell Schoenfeld proved that the Riemann hypothesis is
+                equivalent to the explicit bound`}
+            />
+            <p
+              class="equation"
+              innerHTML={tex`\left|\psi(x) - x\right| < \frac{\sqrt{x}\log^2 x}{8\pi} \quad (x \ge 73.2),`}
+            />
+            <p>
+              and Andrew Sutherland has already machine-checked both this equivalence and the bound
+              itself end-to-end in Lean directly from the shorter proof.
+            </p>
+          </div>
+        </details>
+        <p class="sources">
+          Sources:{" "}
+          <a href={RIEMANN_1859}>
+            Riemann, On the Number of Prime Numbers less than a Given Quantity (1859, Wilkins
+            translation)
+          </a>
+          , pages 4 to 9 (PDF pages 5 to 10);{" "}
+          <a href={SHORTGRH_URL}>Sutherland, shortgrh verification report</a> and{" "}
+          <a href={SCHOENFELD_URL}>schoenfeld-rh-lean</a> (for Schoenfeld's 1976 explicit bound).
         </p>
       </section>
 

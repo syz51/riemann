@@ -48,12 +48,12 @@ export const step1 = defineStep({
     {
       id: "def",
       title: prose`A name for a statement`,
-      meaning: prose`This line gives a name to a statement. Prop means “a statement that is true or false”. Nothing is proved here.`,
+      meaning: prose`This line gives a name to a statement. In Lean, “:” means “is a” (or “has type”) and “:=” means “is defined as”. Prop means “a statement that is true or false”. Nothing is proved here.`,
     },
     {
       id: "forall",
       title: prose`For every complex number $s$`,
-      meaning: prose`The symbol $\forall$ means “for every”. $\mathbb{C}$ is the set of complex numbers. A complex number is a point of the plane: it has a real part (how far left or right it sits) and an imaginary part (how far up or down).`,
+      meaning: prose`The symbol $\forall$ means “for every”, and $\mathbb{C}$ is the set of complex numbers. A complex number is a point of the plane: it has a real part (how far left or right it sits) and an imaginary part (how far up or down). Everything in parentheses before the comma is a condition on $s$; what comes after the comma is the conclusion.`,
       mark: "plane",
       background: {
         route: "complex-numbers",
@@ -64,18 +64,19 @@ export const step1 = defineStep({
     {
       id: "zero",
       title: prose`First condition: $s$ is a zero`,
-      meaning: prose`The zeta function is zero at $s$. The picture shows some of these points. The underscore means that the condition has no name of its own.`,
+      meaning: prose`The zeta function is zero at $s$. The picture shows some of these points, and the underscore means the condition has no name of its own. Each non-trivial zero acts like a wave controlling how the prime numbers are spread out.`,
       mark: "zeros",
       background: {
         route: "zeta",
-        label: "Where the zeta function came from",
-        note: "Background · Euler's Basel sum, the prime product, and the symmetry",
+        section: "zeros-and-primes",
+        label: "Why the zeros control the primes",
+        note: "Background · how each zero adds a wave to the prime count (and the full story of zeta)",
       },
     },
     {
       id: "trivial",
       title: prose`Second condition: $s$ is not a trivial zero`,
-      meaning: prose`$\mathbb{N}$ is the set of the numbers 0, 1, 2, and so on. So $-2 \cdot (n + 1)$ gives $-2$, $-4$, $-6$, and so on. Zeta vanishes at each of them simply because the Gamma factor in its symmetry blows up there — nothing mysterious about primes is needed to find them — so the statement leaves these “trivial” zeros out.`,
+      meaning: prose`The symbol $\neg$ means “not”, $\exists$ means “there exists”, and $\mathbb{N}$ is $0, 1, 2, \dots$ — so this reads “there is no whole number $n$ with $s = -2(n + 1)$” (the $+1$ skips 0, where $\zeta(0) = -\frac{1}{2}$). At $-2, -4, -6, \dots$, zeta vanishes simply because the Gamma factor blows up there, so the statement leaves these “trivial” zeros out.`,
       mark: "trivial",
       background: {
         route: "zeta",
@@ -115,7 +116,7 @@ export const step1 = defineStep({
     {
       id: "mirror",
       title: prose`The mirror wrap-up: ruling out the left side too`,
-      meaning: prose`This is only the short classical finishing step (16 lines in New/Main.lean), not the hard part. It takes a proof that no zero lies to the right of $\frac{1}{2}$ and uses Riemann's $s \mapsto 1 - s$ symmetry to rule out the left side too — pinching every non-trivial zero onto $\operatorname{Re}(s) = \frac{1}{2}$.`,
+      meaning: prose`This is only the short classical finishing step (16 lines in New/Main.lean), not the hard part. It takes a proof that no zero lies to the right of $\frac{1}{2}$ and uses Riemann's symmetry sending $s$ to $1 - s$ (written $s \mapsto 1 - s$) to rule out the left side too — pinching every non-trivial zero onto $\operatorname{Re}(s) = \frac{1}{2}$.`,
       mark: "line",
       background: {
         route: "zeta",
@@ -127,8 +128,8 @@ export const step1 = defineStep({
     {
       id: "proof",
       title: prose`The real proof: no zeros to the right of $\frac{1}{2}$`,
-      meaning: prose`Almost the entire 300,000-line proof lives here. New.grh proves that neither $\zeta$ nor any Dirichlet $L$-function vanishes anywhere with $\operatorname{Re}(s) > \frac{1}{2}$ (ignoring the pole at 1). Because symmetry handles the left half for free, ruling out the right half is the whole hard job. Step 2 opens New.grh.`,
+      meaning: prose`Almost the entire 300,000-line proof lives here. New.grh proves that neither $\zeta$ nor any Dirichlet $L$-function (a wider family of functions introduced in Step 2) vanishes anywhere with $\operatorname{Re}(s) > \frac{1}{2}$, ignoring the pole at 1. Because symmetry handles the left half for free, ruling out the right half is the whole hard job.`,
     },
   ],
-  next: prose`Step 2 opens New.grh. The proof never works on $\zeta$ alone: it proves non-vanishing in the right half-plane for the whole family of Dirichlet $L$-functions, and $\zeta$ is the modulus-1 member.`,
+  next: prose`Step 2 opens New.grh and introduces Dirichlet $L$-functions. The proof never works on $\zeta$ alone: it proves non-vanishing in the right half-plane for that whole family at once, and $\zeta$ is its simplest member.`,
 });
